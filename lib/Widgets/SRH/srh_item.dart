@@ -16,7 +16,7 @@ class SRHItem extends StatelessWidget {
               color: Colors.transparent,
               child: Container(
                   decoration: const BoxDecoration(
-                      color: Colors.orangeAccent[400],
+                      color: Colors.orangeAccent,
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   child: const Center(
                     // ignore: unnecessary_const
