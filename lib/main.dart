@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0.0,
         landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
         enableFeedback: true,
-        unselectedItemColor: Colors.blueGrey,
+        unselectedItemColor: Colors.black,
         onTap: (index) {
           setState(() {
             currentIndex = index;
