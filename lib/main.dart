@@ -1,7 +1,9 @@
 import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
 import 'package:bertucanfrontend/Widgets/articles/articles.dart';
 import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
+import 'package:bertucanfrontend/Widgets/login/login_page.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
+import 'package:bertucanfrontend/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Bold'),
-      home: const MyHomePage(),
+      theme:
+          ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
+      onGenerateRoute: PageRouter.generateRoute,
+      initialRoute: LoginPage.pageRoute,
     );
   }
 }
