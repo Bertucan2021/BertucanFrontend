@@ -17,6 +17,7 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           child: ListView(
+            shrinkWrap: true,
             padding: const EdgeInsets.all(30),
             children: [
               SvgPicture.asset(
