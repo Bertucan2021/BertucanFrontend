@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/Widgets/register/ui/call_to_action_button.dart';
 import 'package:bertucanfrontend/Widgets/register/ui/custom_textfiled.dart';
@@ -20,6 +21,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void _handleFormSubmit() {
     if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, Questionnaire.routeName);
       // Navigator.pushNamedAndRemoveUntil(
       //     context, '/', ModalRoute.withName(LoginPage.pageRoute));
       // context.read<LoginBloc>().add(LoginSubmitted());
@@ -69,6 +71,7 @@ class _LoginFormState extends State<LoginForm> {
             onPressed: _handleFormSubmit,
             backgroundColor: const Color(0xFFE95F9F),
             foregroundColor: Colors.white,
+
           ),
           SizedBox(
             height: screenHeight * 0.02,
