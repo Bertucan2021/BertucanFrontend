@@ -14,26 +14,24 @@ class LoginPage extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(30),
-          children: [
-            SvgPicture.asset(
-              'assets/undraw_certification_aif8.svg',
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Welcome back,',
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'Poppins Regular',
-                      color: Color(0xFF3F3F3F)),
-                ),
-                Text('Login with',
+
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(30),
+            children: [
+              SvgPicture.asset(
+                'assets/undraw_certification_aif8.svg',
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.4,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Welcome back,',
+
                     style: TextStyle(
                         fontSize: 25,
                         fontFamily: 'Poppins Bold',
