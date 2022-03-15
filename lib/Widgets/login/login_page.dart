@@ -14,6 +14,7 @@ class LoginPage extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
+
       body: SingleChildScrollView(
         child: SafeArea(
           child: ListView(
@@ -30,26 +31,20 @@ class LoginPage extends StatelessWidget {
                 children: const [
                   Text(
                     'Welcome back,',
+
                     style: TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Poppins Regular',
-                        color: Color(0xFF3F3F3F)),
-                  ),
-                  Text('Login with',
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontFamily: 'Poppins Bold',
-                          color: Color(0xFFE95F9F))),
-                ],
-              ),
-              SizedBox(
-                height: screenHeight * 0.018,
-              ),
-              const FormContainer(
-                form: LoginForm(),
-              ),
-            ],
-          ),
+                        fontSize: 25,
+                        fontFamily: 'Poppins Bold',
+                        color: Color(0xFFE95F9F))),
+              ],
+            ),
+            SizedBox(
+              height: screenHeight * 0.018,
+            ),
+            const FormContainer(
+              form: LoginForm(),
+            ),
+          ],
         ),
       ),
     );

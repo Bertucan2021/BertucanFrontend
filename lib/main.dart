@@ -1,8 +1,11 @@
 import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
 import 'package:bertucanfrontend/Widgets/articles/articles.dart';
 import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
-import 'package:bertucanfrontend/Widgets/login/login_page.dart';
+import 'package:bertucanfrontend/Widgets/log/ui/log_activity.dart';
+import 'package:bertucanfrontend/Widgets/log/ui/period.dart';
+import 'package:bertucanfrontend/Widgets/notification/ui/notification.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
+import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme:
           ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: LoginPage.pageRoute,
+      initialRoute: '/',
     );
   }
 }
