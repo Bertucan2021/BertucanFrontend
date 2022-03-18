@@ -6,26 +6,41 @@ import 'package:bertucanfrontend/Widgets/log/ui/period.dart';
 import 'package:bertucanfrontend/Widgets/notification/ui/notification.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
 import 'package:bertucanfrontend/Widgets/register/register_page.dart';
+import 'package:bertucanfrontend/bloc/cycle/cycle_bloc.dart';
 import 'package:bertucanfrontend/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
+
+import 'Model/cycle_model.dart';
+
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => CycleBloc(),
+        )
+      ],
+    child:MaterialApp(
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
       onGenerateRoute: PageRouter.generateRoute,
 
-      initialRoute: RegisterPage.pageRoute,
-    );
+      initialRoute: '/',
+    ));
   }
 }
 
