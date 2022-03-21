@@ -239,25 +239,37 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
-                      child: ElevatedButton(
-                          onPressed: () async {
-                            final availableMaps =
-                                await MapLauncher.installedMaps;
-                            await availableMaps.first.showMarker(
-                              coords: Coords(31.233568, 121.505504),
-                              title: "",
-                            );
-                          },
-                          child: const Text("View Location"),
-                          style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                  const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 25)),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(60.0),
-                              )))),
+                      child: blocState.gbvCentersData.lat == null ||
+                              blocState.gbvCentersData.long == null
+                          ? const ElevatedButton(
+                              onPressed: null,
+                              child: Text('Unable to display location'))
+                          : ElevatedButton(
+                              onPressed: () async {
+                                // ignore: avoid_print
+                                print(blocState.gbvCentersData.lat);
+                                final availableMaps =
+                                    await MapLauncher.installedMaps;
+                                await availableMaps.first.showMarker(
+                                  coords: Coords(
+                                      double.tryParse(
+                                          blocState.gbvCentersData.lat!)!,
+                                      double.tryParse(
+                                          blocState.gbvCentersData.long!)!),
+                                  title: blocState.gbvCentersData.city!,
+                                );
+                              },
+                              child: const Text("View Location"),
+                              style: ButtonStyle(
+                                  padding:
+                                      MaterialStateProperty.all<EdgeInsets>(
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 30, vertical: 25)),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(60.0),
+                                  )))),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
