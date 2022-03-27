@@ -35,6 +35,7 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
       backgroundColor: const Color(0xffFFFAF5),
       appBar: AppBar(
         titleSpacing: 0,
+        centerTitle: false,
         elevation: 0,
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
@@ -45,15 +46,15 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
           },
         ),
         // actions: [],
-        title: const Text(
-          "Back",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontFamily: "Red Hat Display",
-              fontWeight: FontWeight.w500,
-              fontSize: 18,
-              color: Color(0xff99879D)),
-        ),
+        // title: const Text(
+        //   "Back",
+        //   textAlign: TextAlign.center,
+        //   style: TextStyle(
+        //       fontFamily: "Red Hat Display",
+        //       fontWeight: FontWeight.w500,
+        //       fontSize: 18,
+        //       color: Color(0xff99879D)),
+        // ),
       ),
       body: blocState.isLoading == true
           ? Container(
@@ -69,18 +70,6 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 35, horizontal: 20),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 45, vertical: 20),
-                            color: const Color(0xffDF438B),
-                            child: Container(
-                              width: 200,
-                              height: 8.0,
-                              color: Colors.white,
-                            )),
-                        const Padding(padding: EdgeInsets.only(bottom: 15)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,6 +93,16 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
                             ),
                           ],
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
+                        ),
+                        Center(
+                          child: Container(
+                            width: 100.0,
+                            height: 15.0,
+                            color: Colors.white,
+                          ),
                         ),
                         const Padding(
                           padding: EdgeInsets.only(top: 10.0, bottom: 2),
@@ -185,22 +184,6 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 35, horizontal: 20),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 45, vertical: 20),
-                      color: const Color(0xffDF438B),
-                      child: const Text(
-                        "You are in charge of this project \n Deadline 28/03/2020",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: "Public Sans",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                            color: Colors.white),
-                      ),
-                    ),
                     Center(
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -221,6 +204,14 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                         ),
                       ),
                     ),
+                    Center(
+                        child: Text(blocState.gbvCentersData.name!,
+                            style: TextStyle(
+                              fontFamily: "Public Sans",
+                              color: Colors.primaries.first,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ))),
                     Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 50, horizontal: 35),

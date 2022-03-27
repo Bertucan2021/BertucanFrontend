@@ -145,7 +145,9 @@ class _SRHPageState extends State<SRHPage> {
                                 child: SRHArticleItemWidget(
                                     articleName:
                                         "${blocState.articleData[index].title!} : ${blocState.articleData[index].id!}",
-                                    articlePublisher: 'Fred')),
+                                    articlePublisher: 'Fred',
+                                    articleShortDescription: blocState
+                                        .articleData[index].smallDescription!)),
                             onTap: () {
                               // ignore: avoid_print
                               print(blocState.articleData[index].id);

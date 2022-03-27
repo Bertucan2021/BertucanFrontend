@@ -1,4 +1,10 @@
+import 'package:bertucanfrontend/Data/report.dart';
+import 'package:bertucanfrontend/Repositories/gbv_repository.dart';
+import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_bloc.dart';
+import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_event.dart';
+import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GBVReportPage extends StatefulWidget {
   static const pageRoute = '/gbvReport';
@@ -10,29 +16,58 @@ class GBVReportPage extends StatefulWidget {
 }
 
 class _GBVReportPageState extends State<GBVReportPage> {
-  TextEditingController reportController = TextEditingController();
+  String selectedValue = "1";
+
+  TextEditingController reportMessageController = TextEditingController();
+  TextEditingController abuseTypeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SafeArea(
+          child: BlocProvider(
+              create: (context) =>
+                  GBVReportBloc(gbvRepository: GBVRepository()),
+              child: BlocConsumer<GBVReportBloc, GBVReportState>(
+                  builder: buildForState,
+                  listener: (blocContext, blocState) {
+                    if (blocState.created == null) {
+                    } else {
+                      if (blocState.created == true) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const GBVReportPage()));
+                      } else {}
+                    }
+                  }))),
+    );
+  }
+
+  Widget buildForState(blocContext, GBVReportState blocState) {
+    return Scaffold(
         backgroundColor: const Color(0xffFFFAF5),
         appBar: AppBar(
-          titleSpacing: 0,
+          // titleSpacing: 0,
+          centerTitle: false,
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
-          leading: const Icon(
-            Icons.arrow_back,
-            color: Color(0xffFAF9FE),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Color(0xff99879D)),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
-          title: const Text(
-            "Back",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: "Red Hat Display",
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-                color: Color(0xff99879D)),
-          ),
+          // title: const Text(
+          //   "Back",
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //       fontFamily: "Red Hat Display",
+          //       fontWeight: FontWeight.w500,
+          //       fontSize: 18,
+          //       color: Color(0xff99879D)),
+          // ),
         ),
         body: SingleChildScrollView(
             padding:
@@ -65,7 +100,7 @@ class _GBVReportPageState extends State<GBVReportPage> {
                     ),
                   ),
                   TextFormField(
-                    controller: reportController,
+                    controller: reportMessageController,
                     maxLines: 6,
                     decoration: const InputDecoration(
                       hintText: "Message",
@@ -86,19 +121,70 @@ class _GBVReportPageState extends State<GBVReportPage> {
                     ),
                   ),
                   Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: DropdownButtonFormField(
+                        focusColor: Colors.white,
+                        decoration: const InputDecoration(
+                          fillColor: Colors.transparent,
+                          border: OutlineInputBorder(),
+                        ),
+                        hint: const Text("Abuse Type"),
+                        value: selectedValue,
+                        items: dropdownItems,
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedValue = value!;
+                          });
+                        },
+                      )),
+                  Padding(
+                      child: Tooltip(
+                        message: "Tap Here To Add Location",
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Image.asset(
+                            "assets/pickLocation.png",
+                            fit: BoxFit.contain,
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 0)),
+                  Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 10),
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(60.0)),
-                          primary: const Color(0xffE95F9F),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 25),
-                        ),
-                        onPressed: () {},
-                        child: const Text("Send")),
+                    child: blocState.isLoading
+                        ? const CircularProgressIndicator()
+                        : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(60.0)),
+                              primary: const Color(0xffE95F9F),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 25),
+                            ),
+                            onPressed: () {
+                              BlocProvider.of<GBVReportBloc>(blocContext).add(
+                                  PostGBVReportButtonPressed(
+                                      reportData: ReportData(
+                                          abuseType: abuseTypeController.text,
+                                          message:
+                                              reportMessageController.text)));
+                            },
+                            child: const Text("Send")),
                   )
                 ])));
+  }
+
+  List<DropdownMenuItem<String>> get dropdownItems {
+    List<DropdownMenuItem<String>> menuItems = const [
+      DropdownMenuItem(child: Text("1"), value: "1"),
+      DropdownMenuItem(child: Text("2"), value: "2"),
+      DropdownMenuItem(child: Text("3"), value: "3"),
+      DropdownMenuItem(child: Text("4"), value: "4"),
+    ];
+    return menuItems;
   }
 }

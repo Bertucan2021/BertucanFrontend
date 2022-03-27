@@ -31,6 +31,7 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
         backgroundColor: const Color(0xffFFFAF5),
         appBar: AppBar(
           titleSpacing: 0,
+          centerTitle: false,
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
@@ -40,15 +41,15 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
               Navigator.of(context).pop();
             },
           ),
-          title: const Text(
-            "Back",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: "Red Hat Display",
-                fontWeight: FontWeight.w500,
-                fontSize: 18,
-                color: Color(0xff99879D)),
-          ),
+          // title: const Text(
+          //   "Back",
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //       fontFamily: "Red Hat Display",
+          //       fontWeight: FontWeight.w500,
+          //       fontSize: 18,
+          //       color: Color(0xff99879D)),
+          // ),
         ),
         body: blocState.isLoading == true
             ? Container(
@@ -66,17 +67,6 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 35, horizontal: 20),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 45, vertical: 20),
-                              color: const Color(0xffDF438B),
-                              child: Container(
-                                width: 200,
-                                height: 8.0,
-                                color: Colors.white,
-                              )),
                           Row(
                             children: [
                               const CircleAvatar(
@@ -109,6 +99,16 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
                                 ),
                               )
                             ],
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                          ),
+                          Center(
+                            child: Container(
+                              width: 100.0,
+                              height: 15.0,
+                              color: Colors.white,
+                            ),
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 2.0),
@@ -151,26 +151,24 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 35, horizontal: 20),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 45, vertical: 20),
-                          color: const Color(0xffDF438B),
-                          child: const Text(
-                            "You are in charge of this project \n Deadline 28/03/2020",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: "Public Sans",
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16,
-                                color: Colors.white),
-                          )),
                       const ListTile(
                         enabled: true,
                         tileColor: Colors.transparent,
                         leading: CircleAvatar(radius: 20),
                         title: Text("Francisco Fisher"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Center(
+                            child: Text(
+                          blocState.articleData.title!,
+                          style: TextStyle(
+                            fontFamily: "Public Sans",
+                            color: Colors.primaries.first,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),

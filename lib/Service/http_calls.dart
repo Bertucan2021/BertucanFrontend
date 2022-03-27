@@ -4,13 +4,16 @@ import 'package:bertucanfrontend/Data/article.dart';
 import 'package:bertucanfrontend/Data/gbv_centers.dart';
 import 'package:bertucanfrontend/Service/shared_pref.dart';
 import 'package:http/http.dart' as http;
+import 'package:bertucanfrontend/Data/report.dart';
 
 class HttpCalls {
   //Get Requests
-  final _getSRHArticles = "https://bertucan.herokuapp.com/api/articles";
-  final _getSRHArticleDetail = "https://bertucan.herokuapp.com/api/articles/";
-  final _getGBVCenters = "https://bertucan.herokuapp.com/api/gbvcenters";
-  final _getGBVCenterDetail = "https://bertucan.herokuapp.com/api/gbvcenters/";
+  final _baseUrl = "https://bertucan.herokuapp.com/api/";
+  final _getSRHArticles = "articles";
+  final _getSRHArticleDetail = "articles/";
+  final _getGBVCenters = "/gbvcenters";
+  final _getGBVCenterDetail = "gbvcenters/";
+  final _postGBVReport = "reports";
 
   // Put token in to header
   static Map<String, String> _getRequestHeader({String token = ""}) {
@@ -35,7 +38,8 @@ class HttpCalls {
     print("inside get");
     List<ArticleData> articles = [];
     return await http
-        .get(Uri.parse(_getSRHArticles), headers: _getRequestHeader())
+        .get(Uri.parse(_baseUrl + _getSRHArticles),
+            headers: _getRequestHeader())
         .then((value) async {
       // ignore: avoid_print
       print(Uri.parse(_getSRHArticles));
@@ -64,7 +68,7 @@ class HttpCalls {
   Future<ArticleData> getSRHArticleDetail(int id) async {
     ArticleData articleData = ArticleData();
     return await http
-        .get(Uri.parse(_getSRHArticleDetail + id.toString()),
+        .get(Uri.parse(_baseUrl + _getSRHArticleDetail + id.toString()),
             headers: _getRequestHeader())
         .then((value) async {
       if (value.statusCode == 200) {
@@ -89,10 +93,10 @@ class HttpCalls {
     print("inside get");
     List<GBVCentersData> gbvCenters = [];
     return await http
-        .get(Uri.parse(_getGBVCenters), headers: _getRequestHeader())
+        .get(Uri.parse(_baseUrl + _getGBVCenters), headers: _getRequestHeader())
         .then((value) async {
       // ignore: avoid_print
-      print(Uri.parse(_getSRHArticles));
+      print(Uri.parse(_baseUrl + _getSRHArticles));
       if (value.statusCode == 200) {
         var response = jsonDecode(value.body);
         var data = response["data"];
@@ -118,7 +122,7 @@ class HttpCalls {
   Future<GBVCentersData> getGBVCenterDetail(int id) async {
     GBVCentersData gbvCentersData = GBVCentersData();
     return await http
-        .get(Uri.parse(_getGBVCenterDetail + id.toString()),
+        .get(Uri.parse(_baseUrl + _getGBVCenterDetail + id.toString()),
             headers: _getRequestHeader())
         .then((value) async {
       if (value.statusCode == 200) {
@@ -135,6 +139,30 @@ class HttpCalls {
       // ignore: avoid_print
       print(onError);
       return onError;
+    });
+  }
+
+  Future<int> postGBVReport(ReportData reportData) async {
+    // ignore: avoid_print
+    print(reportData.toJson());
+    return await http
+        .post(Uri.parse(_baseUrl + _postGBVReport),
+            headers: _getRequestHeader(), body: jsonEncode(reportData.toJson()))
+        .then((value) async {
+      // ignore: avoid_print
+      print(value.statusCode);
+      if (value.statusCode == 200) {
+        return value.statusCode;
+
+        // ignore: avoid_print
+
+      }
+      return value.statusCode;
+    }).catchError((onError) {
+      // ignore: avoid_print
+      print(onError);
+      // handleOnError(onError, masterProvider);
+      return -1;
     });
   }
 }

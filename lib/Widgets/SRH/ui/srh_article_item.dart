@@ -4,12 +4,14 @@ class SRHArticleItemWidget extends StatefulWidget {
   final String articleName;
   final String articlePublisher;
   final String image;
+  final String articleShortDescription;
 
   const SRHArticleItemWidget(
       {Key? key,
       required this.articleName,
       required this.articlePublisher,
-      this.image = "assets/srharticle.png"})
+      this.image = "assets/srharticle.png",
+      required this.articleShortDescription})
       : super(key: key);
 
   @override
@@ -44,7 +46,7 @@ class _SRHArticleItemWidgetState extends State<SRHArticleItemWidget> {
             ),
             Expanded(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(widget.articleName,
@@ -54,6 +56,13 @@ class _SRHArticleItemWidgetState extends State<SRHArticleItemWidget> {
                           fontFamily: "Cabin",
                           color: Color(0xff384f7d),
                           fontSize: 18)),
+                  Text(widget.articleShortDescription,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Cabin",
+                          color: Color(0xff384f7d),
+                          fontSize: 14)),
                   Text(widget.articlePublisher,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
