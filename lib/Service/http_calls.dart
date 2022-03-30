@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class HttpCalls {
   //Get Requests
-  final _baseUrl = "https://bertucan.herokuapp.com/api/";
+  final _baseUrl = "https://bertucan.com/api/";
   final _getSRHArticles = "articles";
   final _getSRHArticleDetail = "articles/";
   final _getGBVCenters = "gbvcenters";
