@@ -18,7 +18,13 @@ class GBVPage extends StatefulWidget {
 
 class _GBVPageState extends State<GBVPage> {
   TextEditingController searchEngine = TextEditingController();
-
+@override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    searchEngine.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -54,11 +60,21 @@ class _GBVPageState extends State<GBVPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70),
               child: TextField(
+                controller: searchEngine,
+                onChanged: (text) {
+                  if (text.isEmpty && searchEngine.text.isEmpty) {
+                    BlocProvider.of<GBVPageBloc>(blocContext)
+                        .add(SearchPressed(searchGbv: text));
+                  } else {
+                    BlocProvider.of<GBVPageBloc>(blocContext)
+                        .add(SearchPressed(searchGbv: text));
+                  }
+                },
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     isDense: true,
-                    prefixIcon: const Icon(
+                    suffixIcon: const Icon(
                       Icons.search,
                       size: 20,
                     ),
@@ -130,6 +146,23 @@ class _GBVPageState extends State<GBVPage> {
                     ),
                   )),
                 ]))
+                : blocState.gbvCentersData.isEmpty == true
+                ? Center(
+                    child: SingleChildScrollView(
+                      child: Column(children: [
+                        Icon(
+                          Icons.list_alt,
+                          size: 60,
+                          color: Colors.grey[300]?.withOpacity(0.8),
+                        ),
+                        Text(
+                          "No GBV Locations To Display Yet.",
+                          style: TextStyle(
+                              color: Colors.grey[400]?.withOpacity(0.8)),
+                        )
+                      ]),
+                    ),
+                  )
             : SingleChildScrollView(
                 child: SafeArea(
                     minimum: const EdgeInsets.all(8),

@@ -16,7 +16,8 @@ class GBVReportPage extends StatefulWidget {
 }
 
 class _GBVReportPageState extends State<GBVReportPage> {
-  String selectedValue = "1";
+  late List<DropdownMenuItem<String>> menuItems;
+  String selectedValue ;
 
   TextEditingController reportMessageController = TextEditingController();
   TextEditingController abuseTypeController = TextEditingController();
@@ -120,39 +121,79 @@ class _GBVReportPageState extends State<GBVReportPage> {
                       fillColor: Color(0xfffbeeff),
                     ),
                   ),
+                   Padding(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 23, horizontal: 10),
+                          primary: const Color(0xffFBEEFF),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              side: const BorderSide(
+                                  color: Colors.black, width: 0.6))),
+                      onPressed: () async {
+                        // FilePickerResult? result = await FilePicker.platform
+                        //     .pickFiles(allowMultiple: true);
+                        // if (result == null) return;
+
+                        // List<File> files =
+                        //     result.paths.map((path) => File(path!)).toList();
+                        FilePickerResult? result =
+                            await FilePicker.platform.pickFiles();
+                        if (result != null) {
+                          PlatformFile file = result.files.first;
+
+                          // ignore: avoid_print
+                          print(file.name);
+                          // print(file.bytes);
+                          // print(file.size);
+                          // print(file.extension);
+                          // print(file.path);
+                        } else {
+                          // User canceled the picker
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            "Upload File",
+                            style: TextStyle(
+                                fontFamily: "Public Sans",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff99879D)),
+                          ),
+                          Icon(Icons.file_upload, color: Color(0xff99879D))
+                        ],
+                      ),
+                    ),
+                    padding: const EdgeInsets.only(top: 10),
+                  ),
                   Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: DropdownButtonFormField(
                         focusColor: Colors.white,
                         decoration: const InputDecoration(
-                          fillColor: Colors.transparent,
-                          border: OutlineInputBorder(),
+                          fillColor: Color(0xffFBEEFF),
+                          filled: true,
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              borderSide: BorderSide(width: 0.5)),
                         ),
                         hint: const Text("Abuse Type"),
                         value: selectedValue,
                         items: dropdownItems,
-                        onChanged: (String? value) {
-                          setState(() {
-                            selectedValue = value!;
-                          });
+                        onTap: () {
+                          BlocProvider.of<GBVReportBloc>(blocContext)
+                              .add(const DropDownIconPressed());
                         },
+                        onChanged: (String? value) {},
                       )),
-                  Padding(
-                      child: Tooltip(
-                        message: "Tap Here To Add Location",
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Image.asset(
-                            "assets/pickLocation.png",
-                            fit: BoxFit.contain,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 0)),
-                  Padding(
+                
+                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 10),
                     child: blocState.isLoading

@@ -11,3 +11,10 @@ class InitializeGBVCenters extends GBVPageEvent {
   @override
   List<Object> get props => [];
 }
+class SearchPressed extends GBVPageEvent {
+  const SearchPressed({required this.searchGbv});
+  final String searchGbv;
+
+  @override
+  List<Object> get props => [searchGbv];
+}

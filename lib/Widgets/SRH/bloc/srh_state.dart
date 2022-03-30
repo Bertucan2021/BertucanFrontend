@@ -17,10 +17,14 @@ class SRHState extends Equatable {
   SRHState copyWith(
       {bool? isLoading,
       String? exceptionError,
-      List<ArticleData>? articleData}) {
+      bool? isSearching,
+      List<ArticleData>? articleData,
+      bool? isSearchCompleted,
+      ArticleData? searchedArticle}) {
     return SRHState(
-        isLoading: isLoading ?? this.isLoading,
-        exceptionError: exceptionError ?? this.exceptionError,
-        articleData: articleData ?? this.articleData);
+      isLoading: isLoading ?? this.isLoading,
+      exceptionError: exceptionError ?? this.exceptionError,
+      articleData: articleData ?? this.articleData,
+    );
   }
 }

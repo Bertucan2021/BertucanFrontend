@@ -5,8 +5,8 @@ List<ReportData> reportDataFromJson(String str) =>
 
 String reportDataToJson(List<ReportData> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-String addressToJson(List<ReportData> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+// String addressToJson(List<ReportData> data) =>
+//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ReportData {
   ReportData(

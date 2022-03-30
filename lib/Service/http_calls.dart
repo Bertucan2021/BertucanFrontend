@@ -1,19 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:bertucanfrontend/Data/abuse_type.dart';
 import 'package:bertucanfrontend/Data/article.dart';
 import 'package:bertucanfrontend/Data/gbv_centers.dart';
+import 'package:bertucanfrontend/Data/report.dart';
 import 'package:bertucanfrontend/Service/shared_pref.dart';
 import 'package:http/http.dart' as http;
-import 'package:bertucanfrontend/Data/report.dart';
 
 class HttpCalls {
   //Get Requests
   final _baseUrl = "https://bertucan.herokuapp.com/api/";
   final _getSRHArticles = "articles";
   final _getSRHArticleDetail = "articles/";
-  final _getGBVCenters = "/gbvcenters";
+  final _getGBVCenters = "gbvcenters";
   final _getGBVCenterDetail = "gbvcenters/";
-  final _postGBVReport = "reports";
+  final _postGBVReport = "reports";  
+  final _getAbuseTypes = "abusetypes";
 
   // Put token in to header
   static Map<String, String> _getRequestHeader({String token = ""}) {
@@ -163,6 +165,37 @@ class HttpCalls {
       print(onError);
       // handleOnError(onError, masterProvider);
       return -1;
+    });
+  }
+}
+
+ Future<List<AbuseType>> getAbuseType() async {
+    // ignore: avoid_print
+    print("inside get");
+    List<AbuseType> abuseTypes = [];
+    return await http
+        .get(Uri.parse(_baseUrl + _getAbuseTypes), headers: _getRequestHeader())
+        .then((value) async {
+      // ignore: avoid_print
+      if (value.statusCode == 200) {
+        var response = jsonDecode(value.body);
+        var data = response["data"];
+
+        for (var responseAbuseTypes in data) {
+          abuseTypes.add(AbuseType.fromJson(responseAbuseTypes));
+          // ignore: avoid_print
+        }
+        // ignore: avoid_print
+        print(abuseTypes);
+
+        return abuseTypes;
+      }
+      return abuseTypes;
+    }).catchError((onError) {
+      // handleOnError(onError);
+      // ignore: avoid_print
+      print(onError);
+      return onError;
     });
   }
 }

@@ -19,6 +19,13 @@ class SRHPage extends StatefulWidget {
 
 class _SRHPageState extends State<SRHPage> {
   TextEditingController searchArticles = TextEditingController();
+@override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    searchArticles.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +57,27 @@ class _SRHPageState extends State<SRHPage> {
                 fontFamily: "Poppins",
                 fontSize: 24),
           ),
-          bottom: PreferredSize(
+         bottom: PreferredSize(
             preferredSize: Size.zero,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70),
               child: TextField(
+                controller: searchArticles,
+                onChanged: (text) {
+                  if (text.isEmpty && searchArticles.text.isEmpty) {
+                    BlocProvider.of<SRHBloc>(blocContext)
+                        .add(SearchIconPressed(searchTag: text));
+                  } else {
+                    text = searchArticles.text;
+                    BlocProvider.of<SRHBloc>(blocContext)
+                        .add(SearchIconPressed(searchTag: text));
+                  }
+                },
                 textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     isDense: true,
-                    prefixIcon: const Icon(
+                    suffixIcon: const Icon(
                       Icons.search,
                       size: 20,
                     ),
@@ -131,6 +149,23 @@ class _SRHPageState extends State<SRHPage> {
                     ),
                   )),
                 ]))
+                : blocState.articleData.isEmpty == true
+                ? Center(
+                    child: SingleChildScrollView(
+                      child: Column(children: [
+                        Icon(
+                          Icons.list_alt,
+                          size: 60,
+                          color: Colors.grey[300]?.withOpacity(0.8),
+                        ),
+                        Text(
+                          "No Articles To Display Yet.",
+                          style: TextStyle(
+                              color: Colors.grey[400]?.withOpacity(0.8)),
+                        )
+                      ]),
+                    ),
+                  )
             : SingleChildScrollView(
                 child: SafeArea(
                     minimum: const EdgeInsets.all(8),

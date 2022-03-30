@@ -25,5 +25,39 @@ class GBVPageBloc extends Bloc<GBVPageEvent, GBVPageState> {
           gbvCentersData: response,
           exceptionError: response.toString()));
     });
+     on<SearchPressed>((event, emit) async {
+      final response = await gbvRepository.getGBVCenters();
+
+      emit(GBVPageState(
+          isLoading: false, gbvCentersData: response, exceptionError: ''));
+
+      if (event.searchGbv.isNotEmpty) {
+        if (response.isNotEmpty) {
+          var centers = response
+              .where((e) =>
+                  e.name!
+                      .toLowerCase()
+                      .contains(event.searchGbv.toString().toLowerCase()) &&
+                  e.name!
+                      .toLowerCase()
+                      .startsWith(event.searchGbv.toString().toLowerCase()))
+              .toList();
+          if (centers.isNotEmpty) {
+            emit(GBVPageState(
+                isLoading: false, gbvCentersData: centers, exceptionError: ''));
+          } else {
+            emit(GBVPageState(
+                isLoading: false,
+                gbvCentersData: centers,
+                exceptionError: response.toString()));
+          }
+        } else {
+          emit(GBVPageState(
+              isLoading: false,
+              gbvCentersData: response,
+              exceptionError: response.toString()));
+        }
+      }
+    });
   }
 }

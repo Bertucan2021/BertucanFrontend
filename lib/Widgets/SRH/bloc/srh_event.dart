@@ -10,3 +10,10 @@ class InitializeSRH extends SRHEvent {
   @override
   List<Object> get props => [];
 }
+class SearchIconPressed extends SRHEvent {
+  const SearchIconPressed({required this.searchTag});
+  final String searchTag;
+
+  @override
+  List<Object> get props => [searchTag];
+}

@@ -7,6 +7,6 @@ class GBVRepository {
   Future<List<GBVCentersData>> getGBVCenters() => _httpCalls.getGBVCenters();
   Future<GBVCentersData> getGBVCenterDetail(int id) =>
       _httpCalls.getGBVCenterDetail(id);
-  Future<int> postGBVReport(ReportData reportData) =>
-      _httpCalls.postGBVReport(reportData);
+//   Future<int> postGBVReport(ReportData reportData) =>
+//       _httpCalls.postGBVReport(reportData);
 }

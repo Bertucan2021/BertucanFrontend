@@ -13,3 +13,9 @@ class PostGBVReportButtonPressed extends GBVReportEvent {
   @override
   List<Object> get props => [reportData];
 }
+class DropDownIconPressed extends GBVReportEvent {
+  const DropDownIconPressed();
+
+  @override
+  List<Object> get props => [];
+}

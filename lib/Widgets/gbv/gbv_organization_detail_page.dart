@@ -4,7 +4,7 @@ import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_detail_event.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:map_launcher/map_launcher.dart';
+//import 'package:map_launcher/map_launcher.dart';
 import 'package:shimmer/shimmer.dart';
 
 class GBVOrganizationDetail extends StatefulWidget {
@@ -227,7 +227,7 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                             color: Color(0xff99879D)),
                       ),
                     ),
-                    Padding(
+                    /* Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
                       child: blocState.gbvCentersData.lat == null ||
@@ -261,7 +261,7 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                                       RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(60.0),
                                   )))),
-                    ),
+                    ), */
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),
