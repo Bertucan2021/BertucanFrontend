@@ -1,8 +1,12 @@
+
+import 'package:bertucanfrontend/Widgets/SRH/srh_page.dart';
+import 'package:bertucanfrontend/Widgets/articles/articles.dart';
+import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
+import 'package:bertucanfrontend/Widgets/gbv/gbv_page.dart';
+import 'package:bertucanfrontend/Widgets/login/login_page.dart';
 import 'package:bertucanfrontend/Local_database/sqlite.dart';
 import 'package:bertucanfrontend/Repositories/user_repository.dart';
 import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
-import 'package:bertucanfrontend/Widgets/articles/articles.dart';
-import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
 import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
 import 'package:bertucanfrontend/bloc/cycle/cycle_bloc.dart';
@@ -59,9 +63,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final screens = [
     const HomePage(),
-    SRHItem(),
+    SRHPage(),
     const ProfilePage(),
-    const ArticlesPage()
+    GBVPage(),
   ];
   int currentIndex = 0;
   final PageStorageBucket _bucket = PageStorageBucket();
@@ -90,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.dock), label: 'SRH'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Articles')
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'GBV')
         ],
       ),
     );
