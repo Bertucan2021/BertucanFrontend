@@ -3,7 +3,11 @@ import 'package:bertucanfrontend/Widgets/SRH/srh_page.dart';
 import 'package:bertucanfrontend/Widgets/gbv/gbv_organization_detail_page.dart';
 import 'package:bertucanfrontend/Widgets/gbv/gbv_page.dart';
 import 'package:bertucanfrontend/Widgets/gbv/gbv_report.dart';
+import 'package:bertucanfrontend/Widgets/log/ui/log_activity.dart';
+import 'package:bertucanfrontend/Widgets/log/ui/period.dart';
 import 'package:bertucanfrontend/Widgets/login/login_page.dart';
+import 'package:bertucanfrontend/Widgets/notification/ui/notification.dart';
+import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/arguments/gbv_argument.dart';
 import 'package:bertucanfrontend/arguments/srh_argument.dart';
@@ -32,6 +36,7 @@ class PageRouter {
           // return MyHomePage();
           return const LoginPage();
         });
+
       case SRHPage.pageRoute:
         return MaterialPageRoute(builder: (context) {
           // return MyHomePage();
@@ -54,6 +59,26 @@ class PageRouter {
       case GBVReportPage.pageRoute:
         return MaterialPageRoute(builder: (context) {
           return const GBVReportPage();
+
+      case Questionnaire.routeName:
+        return MaterialPageRoute(builder: (context) {
+          // return MyHomePage();
+          return const Questionnaire();
+        });
+      case NotificationsPage.routeName:
+        return MaterialPageRoute(builder: (context){
+          return const NotificationsPage();
+        });
+
+      case LogActivities.routeName:
+        return MaterialPageRoute(builder: (context){
+          return const LogActivities();
+        });
+
+      case LogPeriod.routeName:
+        return MaterialPageRoute(builder: (context){
+          return const LogPeriod();
+
         });
     }
     return null;

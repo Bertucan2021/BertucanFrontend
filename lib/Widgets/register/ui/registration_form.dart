@@ -4,6 +4,10 @@ import 'package:bertucanfrontend/Widgets/register/ui/custom_textfiled.dart';
 import 'package:bertucanfrontend/Widgets/register/ui/form_bottom_question.dart';
 import 'package:bertucanfrontend/Widgets/register/ui/password_field.dart';
 import 'package:bertucanfrontend/Widgets/register/validators.dart';
+import 'package:bertucanfrontend/bloc/user/register/register_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bertucanfrontend/bloc/user/register/register_state.dart';
+import 'package:bertucanfrontend/bloc/user/register/resgister_bloc.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -15,10 +19,14 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   final _formKey = GlobalKey<FormState>();
+  late String full_name = '';
+  late String email = '';
+  late String phone = '';
+  late String password = '';
 
   void _handleFormSubmit() {
     if (_formKey.currentState!.validate()) {
-      // context.read<SignupBloc>().add(SignupSubmitted());
+      context.read<RegisterBloc>().add(Register(firstName: full_name, lastName: full_name, email: email, phoneNumber: phone, password: password));
     }
   }
 
@@ -35,7 +43,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             labelText: 'Full Name',
             hintText: 'Marry Doe',
             validator: (value) => _validator.validateName(value)?.toString(),
-            onChanged: (value) => {},
+            onChanged: (value) => {full_name = value},
           ),
           SizedBox(
             height: screenHeight * 0.025,
@@ -45,24 +53,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
             hintText: 'username@example.com',
             inputType: TextInputType.emailAddress,
             validator: (value) => _validator.validateEmail(value)?.toString(),
-            onChanged: (value) => {},
+            onChanged: (value) => {email = value},
           ),
 
           CustomTextField(
               labelText: 'Phone',
-              hintText: '0987654321',
+              hintText: '0900000000',
               inputType: TextInputType.emailAddress,
               validator: (value) => _validator.validatePhone(value)?.toString(),
-              onChanged: (value) => {}),
+              onChanged: (value) => {phone = value}),
           SizedBox(
             height: screenHeight * 0.015,
           ),
           PasswordField(
               labelText: 'Password',
               hintText: 'Password*',
-              validator: (value) =>
-                  _validator.validatePassword(value)?.toString(),
-              onChanged: (value) => {}
+              validator: (value) => _validator.validatePassword(value)?.toString(),
+              onChanged: (value) => {password = value}
               //   context
               //       .read<SignupBloc>()
               //       .add(SignupPasswordChanged(password: value)),
@@ -71,16 +78,33 @@ class _RegistrationFormState extends State<RegistrationForm> {
           SizedBox(
             height: screenHeight * 0.05,
           ),
-          Container(),
+        BlocBuilder<RegisterBloc, RegisterState>(builder: (context, state) {
+          print(state.toString());
+          if (state is RegisterErrorState) {
+            return Text(state.errorMessage!, style: const TextStyle(color: Colors.red),);
+          }
+          return Container();
+        }),
           SizedBox(
             height: screenHeight * 0.004,
           ),
-          CallToActionButton(
-            labelText: 'Register',
-            onPressed: _handleFormSubmit,
-            backgroundColor: const Color(0xFFE95F9F),
-            foregroundColor: Colors.white,
-          ),
+          BlocBuilder<RegisterBloc, RegisterState>(builder: (context, state) {
+            print(state.toString());
+            if (state is RegisterSuccessState) {
+              Navigator.pushNamed(context, '/');
+            } else if (state is RegisterLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return CallToActionButton(
+              labelText: 'Register',
+              onPressed: _handleFormSubmit,
+              backgroundColor: const Color(0xFFE95F9F),
+              foregroundColor: Colors.white,
+            );
+          }),
 
           SizedBox(
             height: screenHeight * 0.02,
