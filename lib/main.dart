@@ -1,29 +1,31 @@
+import 'package:bertucanfrontend/Local_database/sqlite.dart';
+import 'package:bertucanfrontend/Repositories/user_repository.dart';
 import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
 import 'package:bertucanfrontend/Widgets/articles/articles.dart';
 import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
-import 'package:bertucanfrontend/Widgets/log/ui/log_activity.dart';
-import 'package:bertucanfrontend/Widgets/log/ui/period.dart';
-import 'package:bertucanfrontend/Widgets/notification/ui/notification.dart';
+import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
-import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/bloc/cycle/cycle_bloc.dart';
+import 'package:bertucanfrontend/bloc/user/register/resgister_bloc.dart';
+import 'package:bertucanfrontend/providers/user_data_provider.dart';
 import 'package:bertucanfrontend/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc/bloc.dart';
-
-import 'Model/cycle_model.dart';
+import 'package:http/http.dart' as http;
 
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+    await test();
+
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
 
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
+  final UserRepository userRepository = UserRepository(userDataProvider: UserDataProvider(httpClient: http.Client()));
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => CycleBloc(),
+        ),
+        BlocProvider(
+          create: (_) => RegisterBloc(userRepository: userRepository),
         )
       ],
     child:MaterialApp(
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
           ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
       onGenerateRoute: PageRouter.generateRoute,
 
-      initialRoute: '/',
+      initialRoute: Questionnaire.routeName,
     ));
   }
 }
@@ -91,3 +96,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
