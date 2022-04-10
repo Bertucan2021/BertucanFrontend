@@ -25,7 +25,7 @@ class GBVPageBloc extends Bloc<GBVPageEvent, GBVPageState> {
           gbvCentersData: response,
           exceptionError: response.toString()));
     });
-     on<SearchPressed>((event, emit) async {
+    on<SearchPressed>((event, emit) async {
       final response = await gbvRepository.getGBVCenters();
 
       emit(GBVPageState(

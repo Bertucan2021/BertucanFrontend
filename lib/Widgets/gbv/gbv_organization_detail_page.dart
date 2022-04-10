@@ -4,7 +4,6 @@ import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_detail_event.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:map_launcher/map_launcher.dart';
 import 'package:shimmer/shimmer.dart';
 
 class GBVOrganizationDetail extends StatefulWidget {
@@ -45,16 +44,6 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
             Navigator.of(context).pop();
           },
         ),
-        // actions: [],
-        // title: const Text(
-        //   "Back",
-        //   textAlign: TextAlign.center,
-        //   style: TextStyle(
-        //       fontFamily: "Red Hat Display",
-        //       fontWeight: FontWeight.w500,
-        //       fontSize: 18,
-        //       color: Color(0xff99879D)),
-        // ),
       ),
       body: blocState.isLoading == true
           ? Container(
@@ -161,19 +150,6 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Center(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30))),
-                              width: screenWidth / 2,
-                              height: 60.0,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -204,17 +180,20 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                         ),
                       ),
                     ),
-                    Center(
-                        child: Text(blocState.gbvCentersData.name!,
-                            style: TextStyle(
-                              fontFamily: "Public Sans",
-                              color: Colors.primaries.first,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                            ))),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Center(
+                          child: Text(blocState.gbvCentersData.name!,
+                              style: TextStyle(
+                                fontFamily: "Public Sans",
+                                color: Colors.primaries.first,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700,
+                              ))),
+                    ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 50, horizontal: 35),
+                      padding: const EdgeInsets.only(
+                          top: 10, bottom: 50, right: 35, left: 35),
                       child: Text(
                         blocState.gbvCentersData.description == null
                             ? " "
@@ -227,41 +206,41 @@ class _GBVOrganizationDetailState extends State<GBVOrganizationDetail> {
                             color: Color(0xff99879D)),
                       ),
                     ),
-                    /* Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 10),
-                      child: blocState.gbvCentersData.lat == null ||
-                              blocState.gbvCentersData.long == null
-                          ? const ElevatedButton(
-                              onPressed: null,
-                              child: Text('Unable to display location'))
-                          : ElevatedButton(
-                              onPressed: () async {
-                                // ignore: avoid_print
-                                print(blocState.gbvCentersData.lat);
-                                final availableMaps =
-                                    await MapLauncher.installedMaps;
-                                await availableMaps.first.showMarker(
-                                  coords: Coords(
-                                      double.tryParse(
-                                          blocState.gbvCentersData.lat!)!,
-                                      double.tryParse(
-                                          blocState.gbvCentersData.long!)!),
-                                  title: blocState.gbvCentersData.city!,
-                                );
-                              },
-                              child: const Text("View Location"),
-                              style: ButtonStyle(
-                                  padding:
-                                      MaterialStateProperty.all<EdgeInsets>(
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 30, vertical: 25)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(60.0),
-                                  )))),
-                    ), */
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 50, vertical: 10),
+                    //   child: blocState.gbvCentersData.lat == null ||
+                    //           blocState.gbvCentersData.long == null
+                    //       ? const ElevatedButton(
+                    //           onPressed: null,
+                    //           child: Text('Unable to display location'))
+                    //       : ElevatedButton(
+                    //           onPressed: () async {
+                    //             // ignore: avoid_print
+                    //             print(blocState.gbvCentersData.lat);
+                    //             final availableMaps =
+                    //                 await MapLauncher.installedMaps;
+                    //             await availableMaps.first.showMarker(
+                    //               coords: Coords(
+                    //                   double.tryParse(
+                    //                       blocState.gbvCentersData.lat!)!,
+                    //                   double.tryParse(
+                    //                       blocState.gbvCentersData.long!)!),
+                    //               title: blocState.gbvCentersData.city!,
+                    //             );
+                    //           },
+                    //           child: const Text("View Location"),
+                    //           style: ButtonStyle(
+                    //               padding:
+                    //                   MaterialStateProperty.all<EdgeInsets>(
+                    //                       const EdgeInsets.symmetric(
+                    //                           horizontal: 30, vertical: 25)),
+                    //               shape: MaterialStateProperty.all<
+                    //                       RoundedRectangleBorder>(
+                    //                   RoundedRectangleBorder(
+                    //                 borderRadius: BorderRadius.circular(60.0),
+                    //               )))),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 50, vertical: 10),

@@ -1,10 +1,12 @@
+import 'dart:io';
 import 'package:bertucanfrontend/Data/report.dart';
-import 'package:bertucanfrontend/Repositories/gbv_repository.dart';
+import 'package:bertucanfrontend/Repositories/report_repository.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_bloc.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_event.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:file_picker/file_picker.dart';
 
 class GBVReportPage extends StatefulWidget {
   static const pageRoute = '/gbvReport';
@@ -17,10 +19,14 @@ class GBVReportPage extends StatefulWidget {
 
 class _GBVReportPageState extends State<GBVReportPage> {
   late List<DropdownMenuItem<String>> menuItems;
-  String selectedValue ;
+  String? selectedValue ;
 
   TextEditingController reportMessageController = TextEditingController();
   TextEditingController abuseTypeController = TextEditingController();
+  int? typeId;
+  Icon? icon;
+  File? file;
+  String? uploadedText;
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +34,23 @@ class _GBVReportPageState extends State<GBVReportPage> {
       body: SafeArea(
           child: BlocProvider(
               create: (context) =>
-                  GBVReportBloc(gbvRepository: GBVRepository()),
+                  GBVReportBloc(reportRepository: ReportRepository())
+                    ..add(const DropDownIconPressed()),
               child: BlocConsumer<GBVReportBloc, GBVReportState>(
                   builder: buildForState,
                   listener: (blocContext, blocState) {
                     if (blocState.created == null) {
                     } else {
                       if (blocState.created == true) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const GBVReportPage()));
-                      } else {}
+                        Navigator.of(context).pop();
+                      } else {
+                        const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                                "Your report was not created successfully",
+                                style: TextStyle(color: Colors.white)));
+                        print("Not succesfull");
+                      }
                     }
                   }))),
     );
@@ -104,6 +115,8 @@ class _GBVReportPageState extends State<GBVReportPage> {
                     controller: reportMessageController,
                     maxLines: 6,
                     decoration: const InputDecoration(
+                      focusColor: Color(0xffFBEEFF),
+                      hoverColor: Color(0xffFBEEFF),
                       hintText: "Message",
                       hintStyle: TextStyle(
                           fontSize: 16,
@@ -114,7 +127,7 @@ class _GBVReportPageState extends State<GBVReportPage> {
                       border: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color(0xfffbeeff),
-                              width: 0.0,
+                              width: 0.5,
                               style: BorderStyle.none),
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                       filled: true,
@@ -133,39 +146,45 @@ class _GBVReportPageState extends State<GBVReportPage> {
                               side: const BorderSide(
                                   color: Colors.black, width: 0.6))),
                       onPressed: () async {
-                        // FilePickerResult? result = await FilePicker.platform
-                        //     .pickFiles(allowMultiple: true);
-                        // if (result == null) return;
-
-                        // List<File> files =
-                        //     result.paths.map((path) => File(path!)).toList();
                         FilePickerResult? result =
                             await FilePicker.platform.pickFiles();
                         if (result != null) {
-                          PlatformFile file = result.files.first;
-
+                          file = File(result.files.single.path.toString());
                           // ignore: avoid_print
-                          print(file.name);
-                          // print(file.bytes);
-                          // print(file.size);
-                          // print(file.extension);
-                          // print(file.path);
-                        } else {
+                          print(file);
+                          setState(() {
+                            uploadedText = result.files.single.name.toString();
+                            icon = const Icon(
+                              Icons.check_circle_outlined,
+                              color: Colors.green,
+                            );
+                          });
+                        } else if (result == null) {
+                          return;
                           // User canceled the picker
                         }
                       },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text(
-                            "Upload File",
-                            style: TextStyle(
-                                fontFamily: "Public Sans",
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff99879D)),
+                            uploadedText ?? "Upload File",
+                            style: uploadedText == null
+                                ? const TextStyle(
+                                    fontFamily: "Public Sans",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xff99879D))
+                                : const TextStyle(
+                                    fontFamily: "Public Sans",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.green),
                           ),
-                          Icon(Icons.file_upload, color: Color(0xff99879D))
+                          SafeArea(
+                              child: icon ??
+                                  const Icon(Icons.file_upload,
+                                      color: Color(0xff99879D)))
                         ],
                       ),
                     ),
@@ -185,12 +204,16 @@ class _GBVReportPageState extends State<GBVReportPage> {
                         ),
                         hint: const Text("Abuse Type"),
                         value: selectedValue,
-                        items: dropdownItems,
-                        onTap: () {
-                          BlocProvider.of<GBVReportBloc>(blocContext)
-                              .add(const DropDownIconPressed());
+                        items: blocState.abuseType.map((item) {
+                         return DropdownMenuItem(
+                            child: Text(item.type.toString()),
+                            value: item.id,
+                          );
+                        }).toList(),
+                        onChanged: (newValue) {
+                          typeId = newValue as int?;
+                          // selectedValue = newValue.toString();
                         },
-                        onChanged: (String? value) {},
                       )),
                 
                  Padding(
@@ -207,25 +230,82 @@ class _GBVReportPageState extends State<GBVReportPage> {
                                   horizontal: 30, vertical: 25),
                             ),
                             onPressed: () {
-                              BlocProvider.of<GBVReportBloc>(blocContext).add(
-                                  PostGBVReportButtonPressed(
-                                      reportData: ReportData(
-                                          abuseType: abuseTypeController.text,
-                                          message:
-                                              reportMessageController.text)));
+                              if (reportMessageController.text == '' ||
+                                  reportMessageController.text.isEmpty) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment
+                                            .centerRight, // 10% of the width, so there are ten blinds.
+                                        colors: <Color>[
+                                          Color(0xffee0000),
+                                          Colors.red
+                                        ], // red to yellow
+                                        // repeats the gradient over the canvas
+                                      ),
+                                      color: Colors.white,
+                                    ),
+                                    // margin: EdgeInsets.fromLTRB(0, 0, 0, 75),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(12.0),
+                                      child: Text('Please enter a message'),
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 1000,
+                                  behavior: SnackBarBehavior.fixed,
+                                ));
+                              } else if (file == null) {
+                                // file = "" as File?;
+                                // file = "assets/";
+                                // ignore: unrelated_type_equality_checks
+                              } else if (typeId == '' || typeId == null) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment
+                                            .centerRight, // 10% of the width, so there are ten blinds.
+                                        colors: <Color>[
+                                          Color(0xffee0000),
+                                          Colors.red
+                                        ], // red to yellow
+                                        // repeats the gradient over the canvas
+                                      ),
+                                      color: Colors.white,
+                                    ),
+                                    // margin: EdgeInsets.fromLTRB(0, 0, 0, 75),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(12.0),
+                                      child: Text('Please select abuse type'),
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 1000,
+                                  behavior: SnackBarBehavior.fixed,
+                                ));
+                              } else {
+                                BlocProvider.of<GBVReportBloc>(blocContext).add(
+                                    PostGBVReportButtonPressed(
+                                        reportData: ReportData(
+                                            reportedby: 1,
+                                            abuseType: typeId,
+                                            message:
+                                                reportMessageController.text),
+                                        filePath: file!));
+                              }
                             },
-                            child: const Text("Send")),
+                            child: const Text("Report")),
                   )
                 ])));
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = const [
-      DropdownMenuItem(child: Text("1"), value: "1"),
-      DropdownMenuItem(child: Text("2"), value: "2"),
-      DropdownMenuItem(child: Text("3"), value: "3"),
-      DropdownMenuItem(child: Text("4"), value: "4"),
-    ];
-    return menuItems;
   }
 }

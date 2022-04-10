@@ -11,11 +11,7 @@ class GBVDetailBloc extends Bloc<GBVDetailEvent, GBVDetailState> {
             isLoading: true,
             exceptionError: '',
             gbvCentersData: GBVCentersData())) {
-    // ignore: avoid_print
-    print("not here yet");
     on<InitializeGBVDetailEvent>((event, emit) async {
-      // ignore: avoid_print
-      print("here");
       emit(GBVDetailState(
           isLoading: true,
           exceptionError: '',

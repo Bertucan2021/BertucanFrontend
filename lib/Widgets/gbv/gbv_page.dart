@@ -111,7 +111,7 @@ class _GBVPageState extends State<GBVPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             const CircleAvatar(
-                              radius: 30,
+                              radius: 20,
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -182,23 +182,51 @@ class _GBVPageState extends State<GBVPage> {
                             },
                             enabled: true,
                             tileColor: Colors.white,
-                            leading: const CircleAvatar(radius: 20),
-                            title: Text(
-                                blocState.gbvCentersData[index].name == null
+                            leading: blocState.gbvCentersData[index].logo ==
+                                        null
+                                    ? CircleAvatar(
+                                        radius: 20.0,
+                                        foregroundColor: Colors.white,
+                                        backgroundColor:
+                                            const Color(0xffEF5DA8),
+                                        child: Text(
+                                          blocState.gbvCentersData[index]
+                                                      .name ==
+                                                  null
+                                              ? " "
+                                              : blocState
+                                                  .gbvCentersData[index].name!
+                                                  .substring(0, 1)
+                                                  .toUpperCase(),
+                                          style: const TextStyle(fontSize: 10),
+                                        ),
+                                      )
+                                    : CircleAvatar(
+                                        radius: 20.0,
+                                        backgroundImage: NetworkImage(
+                                            blocState.imageUrl +
+                                                blocState.gbvCentersData[index]
+                                                    .logo!),
+                                        backgroundColor: Colors.transparent,
+                                      ),
+                                title: Text(
+                                    blocState.gbvCentersData[index].name == null
+                                        ? " "
+                                        : blocState
+                                            .gbvCentersData[index].name!),
+                                subtitle: Text(blocState.gbvCentersData[index]
+                                            .phonenumber ==
+                                        null
                                     ? " "
-                                    : blocState.gbvCentersData[index].name!),
-                            subtitle: Text(blocState
-                                        .gbvCentersData[index].phonenumber ==
-                                    null
-                                ? " "
-                                : blocState.gbvCentersData[index].phonenumber!),
-                            trailing: const Icon(
-                              Icons.chevron_right,
-                              color: Color(0xffEF5DA8),
-                            ),
-                          ),
-                        );
-                      },
-                    ))));
+                                    : blocState
+                                        .gbvCentersData[index].phonenumber!),
+                                trailing: const Icon(
+                                  Icons.chevron_right,
+                                  color: Color(0xffEF5DA8),
+                                ),
+                              ),
+                            );
+                          },
+                        ))));
   }
 }

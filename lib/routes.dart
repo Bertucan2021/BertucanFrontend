@@ -19,9 +19,9 @@ class PageRouter {
     final args = settings.arguments;
     switch (settings.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) {
-          return const MyHomePage();
-        });
+         return MaterialPageRoute(builder: (context) {
+           return const MyHomePage();
+         });
       // // case OnBoard.pageRoute:
       // //   return MaterialPageRoute(builder: (context) {
       // //     return OnBoard();
@@ -59,7 +59,7 @@ class PageRouter {
       case GBVReportPage.pageRoute:
         return MaterialPageRoute(builder: (context) {
           return const GBVReportPage();
-
+        });
       case Questionnaire.routeName:
         return MaterialPageRoute(builder: (context) {
           // return MyHomePage();
@@ -79,7 +79,7 @@ class PageRouter {
         return MaterialPageRoute(builder: (context){
           return const LogPeriod();
 
-        });
+        }); 
     }
     return null;
   }

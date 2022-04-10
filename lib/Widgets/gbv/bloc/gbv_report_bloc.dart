@@ -1,32 +1,29 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-import 'package:bertucanfrontend/Repositories/gbv_repository.dart';
+import 'package:bertucanfrontend/Repositories/report_repository.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_event.dart';
 import 'package:bertucanfrontend/Widgets/gbv/bloc/gbv_report_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:http/http.dart';
 
 class GBVReportBloc extends Bloc<GBVReportEvent, GBVReportState> {
-  GBVRepository gbvRepository = GBVRepository();
-  GBVReportBloc({required this.gbvRepository})
+  ReportRepository reportRepository = ReportRepository();
+  GBVReportBloc({required this.reportRepository})
       : super(const GBVReportState(
-          isLoading: false,
-          exceptionError: '',
-          created: false,
-          abuseType: [],
-          isIconLoading: false
-        )) {
+            isLoading: false,
+            exceptionError: '',
+            created: false,
+            abuseType: [],
+            isIconLoading: false)) {
     // ignore: avoid_print
     on<PostGBVReportButtonPressed>((event, emit) async {
       // ignore: avoid_print
       print("working");
       emit(const GBVReportState(
-          isLoading: true, 
-          exceptionError: '', 
+          isLoading: true,
+          exceptionError: '',
           created: false,
           abuseType: [],
           isIconLoading: false));
-        
-      final response = await gbvRepository.postGBVReport(event.reportData);
+      final response = await reportRepository.postGBVReport(event.reportData, event.filePath);
       if (response == 201 || response == 200) {
         emit(const GBVReportState(
             isLoading: false,
@@ -42,17 +39,10 @@ class GBVReportBloc extends Bloc<GBVReportEvent, GBVReportState> {
           abuseType: [],
           isIconLoading: false));
     });
-    on<DropDownIconPressed>((event, emit) async {
-      emit(const GBVReportState(
-          exceptionError: " ",
-          isLoading: false,
-          created: false,
-          abuseType: [],
-          isIconLoading: true));
 
+    on<DropDownIconPressed>((event, emit) async {
       final response = await reportRepository.getAbuseType();
       // ignore: avoid_print
-      print(response);
       if (response.isNotEmpty) {
         emit(GBVReportState(
             isLoading: false,
@@ -60,13 +50,14 @@ class GBVReportBloc extends Bloc<GBVReportEvent, GBVReportState> {
             created: false,
             abuseType: response,
             isIconLoading: false));
+      } else {
+        emit(const GBVReportState(
+            isLoading: false,
+            exceptionError: "can not post report",
+            created: false,
+            abuseType: [],
+            isIconLoading: false));
       }
-      emit(const GBVReportState(
-          isLoading: false,
-          exceptionError: "can not post report",
-          created: false,
-          abuseType: [],
-          isIconLoading: false));
     });
   }
 }

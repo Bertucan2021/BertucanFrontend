@@ -10,6 +10,7 @@ class GBVPageState extends Equatable {
   final bool isLoading;
   final String exceptionError;
   final List<GBVCentersData> gbvCentersData;
+  final String imageUrl = "https://bertucan.com/public/";
 
   @override
   List<Object> get props => [isLoading, exceptionError, gbvCentersData];

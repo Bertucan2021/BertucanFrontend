@@ -35,7 +35,9 @@ class _SRHPageState extends State<SRHPage> {
               ..add(const InitializeSRH()),
             child: BlocConsumer<SRHBloc, SRHState>(
                 builder: buildForState,
-                listener: (blocContext, blocState) {})));
+                listener: (blocContext, blocState) {
+
+                })));
   }
 
   Widget buildForState(blocContext, SRHState blocState) {
@@ -178,11 +180,14 @@ class _SRHPageState extends State<SRHPage> {
                             child: Card(
                                 elevation: 5,
                                 child: SRHArticleItemWidget(
-                                    articleName:
-                                        "${blocState.articleData[index].title!} : ${blocState.articleData[index].id!}",
-                                    articlePublisher: 'Fred',
-                                    articleShortDescription: blocState
-                                        .articleData[index].smallDescription!)),
+                                      articleName:
+                                          "${blocState.articleData[index].title!} : ${blocState.articleData[index].introduction!}",
+                                      articlePublisher: 'Fred',
+                                      articleShortDescription: blocState
+                                          .articleData[index].smallDescription!,
+                                      image: blocState.imageUrl +
+                                          blocState.articleData[index].icon!,
+                                    )),
                             onTap: () {
                               // ignore: avoid_print
                               print(blocState.articleData[index].id);

@@ -9,14 +9,16 @@ import 'package:http/http.dart' as http;
 
 class HttpCalls {
   //Get Requests
+
   final _baseUrl = "https://bertucan.com/api/";
+  // final _baseUrl = "https://bertucan.herokuapp.com/api/";
   final _getSRHArticles = "articles";
   final _getSRHArticleDetail = "articles/";
   final _getGBVCenters = "gbvcenters";
   final _getGBVCenterDetail = "gbvcenters/";
-  final _postGBVReport = "reports";  
+  final _postGBVReport = "reports";
   final _getAbuseTypes = "abusetypes";
-
+  final uploadFile = '';
   // Put token in to header
   static Map<String, String> _getRequestHeader({String token = ""}) {
     if (token == "") {
@@ -98,7 +100,7 @@ class HttpCalls {
         .get(Uri.parse(_baseUrl + _getGBVCenters), headers: _getRequestHeader())
         .then((value) async {
       // ignore: avoid_print
-      print(Uri.parse(_baseUrl + _getSRHArticles));
+      print(Uri.parse(_getSRHArticles));
       if (value.statusCode == 200) {
         var response = jsonDecode(value.body);
         var data = response["data"];
@@ -144,32 +146,31 @@ class HttpCalls {
     });
   }
 
-  Future<int> postGBVReport(ReportData reportData) async {
-    // ignore: avoid_print
-    print(reportData.toJson());
-    return await http
-        .post(Uri.parse(_baseUrl + _postGBVReport),
-            headers: _getRequestHeader(), body: jsonEncode(reportData.toJson()))
-        .then((value) async {
-      // ignore: avoid_print
-      print(value.statusCode);
-      if (value.statusCode == 200) {
-        return value.statusCode;
+  // Future<int> postGBVReport(ReportData reportData) async {
+  //   // ignore: avoid_print
+  //   print(reportData.toJson());
+  //   return await http
+  //       .post(Uri.parse(_baseUrl + _postGBVReport),
+  //           headers: _getRequestHeader(), body: jsonEncode(reportData.toJson()))
+  //       .then((value) async {
+  //     // ignore: avoid_print
+  //     print(value.statusCode);
+  //     if (value.statusCode == 200) {
+  //       return value.statusCode;
 
-        // ignore: avoid_print
+  //       // ignore: avoid_print
 
-      }
-      return value.statusCode;
-    }).catchError((onError) {
-      // ignore: avoid_print
-      print(onError);
-      // handleOnError(onError, masterProvider);
-      return -1;
-    });
-  }
-}
+  //     }
+  //     return value.statusCode;
+  //   }).catchError((onError) {
+  //     // ignore: avoid_print
+  //     print(onError);
+  //     // handleOnError(onError, masterProvider);
+  //     return -1;
+  //   });
+  // }
 
- Future<List<AbuseType>> getAbuseType() async {
+  Future<List<AbuseType>> getAbuseType() async {
     // ignore: avoid_print
     print("inside get");
     List<AbuseType> abuseTypes = [];
@@ -198,4 +199,70 @@ class HttpCalls {
       return onError;
     });
   }
+
+  Future<int> postGBVReport(ReportData reportData, File filePath) async {
+    var uri = Uri.parse(_baseUrl + _postGBVReport);
+
+    final data = {
+      'user_id': reportData.reportedby,
+      'message': reportData.message,
+      'abuse_types_id': reportData.abuseType,
+    };
+
+    try {
+      var request = http.MultipartRequest('POST', uri);
+      request = jsonToFormData(request, data);
+
+      final file = await http.MultipartFile.fromPath('file', filePath.path);
+      request.headers.addAll(_getRequestHeader());
+      request.files.add(file);
+
+      final response = await request.send();
+      final responseData = await response.stream.toBytes();
+      final responseString = String.fromCharCodes(responseData);
+      // ignore: avoid_print
+      print(responseString);
+      return response.statusCode;
+    } catch (error) {
+      // ignore: avoid_print
+      print('Error add project $error');
+      return -1;
+    }
+  }
+
+  jsonToFormData(http.MultipartRequest request, Map<String, dynamic> data) {
+    for (var key in data.keys) {
+      request.fields[key] = data[key].toString();
+    }
+    // ignore: avoid_print
+    print(request);
+    return request;
+  }
+
+  // Future<int> postGBVReport(
+  //   File selectedFile,
+  //   int userId,
+  // ) async {
+  //   //var stream = new http.ByteStream(DelegatingStream.typed(image.openRead()));
+  //   //var length = await image.length();
+
+  //   request.fields["user_id"] = userId as String;
+  //   request.fields[""]
+  //   try {
+  //     final streamedResponse = await request.send();
+  //     final response = await http.Response.fromStream(streamedResponse);
+  //     if (response.statusCode != 200 || response.statusCode != 204) {
+  //       print("image post  ${response.statusCode}");
+  //       return response.statusCode;
+  //     }
+  //     // final Map<String, dynamic> responseData = jsonDecode(response.body);
+  //     else {
+  //       return response.statusCode;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+
+  //     return -1;
+  //   }
+  // }
 }
