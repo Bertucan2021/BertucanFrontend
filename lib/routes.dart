@@ -7,7 +7,6 @@ import 'package:bertucanfrontend/Widgets/login/login_page.dart';
 import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/arguments/gbv_argument.dart';
 import 'package:bertucanfrontend/arguments/srh_argument.dart';
-import 'package:bertucanfrontend/main.dart';
 import 'package:flutter/material.dart';
 
 class PageRouter {

@@ -10,6 +10,7 @@ class SRHState extends Equatable {
   final bool isLoading;
   final String exceptionError;
   final List<ArticleData> articleData;
+  final String imageUrl = "https://bertucan.com/public/";
 
   @override
   List<Object> get props => [isLoading, exceptionError, articleData];
@@ -18,6 +19,7 @@ class SRHState extends Equatable {
       {bool? isLoading,
       String? exceptionError,
       bool? isSearching,
+      String? imageUrl,
       List<ArticleData>? articleData,
       bool? isSearchCompleted,
       ArticleData? searchedArticle}) {

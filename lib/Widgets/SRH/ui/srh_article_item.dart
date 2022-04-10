@@ -10,7 +10,7 @@ class SRHArticleItemWidget extends StatefulWidget {
       {Key? key,
       required this.articleName,
       required this.articlePublisher,
-      this.image = "assets/srharticle.png",
+      required this.image,
       required this.articleShortDescription})
       : super(key: key);
 
@@ -36,13 +36,59 @@ class _SRHArticleItemWidgetState extends State<SRHArticleItemWidget> {
           children: [
             ClipRRect(
               clipBehavior: Clip.antiAlias,
-              child: Image.asset(
-                widget.image,
-                color: null,
-                fit: BoxFit.contain,
-                height: screenHeight,
-                width: width / 4,
-              ),
+              child: widget.image.isEmpty
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 0),
+                        // height: 70.0,
+                        width: 75.0,
+                        color: Colors.pink.shade400,
+                        child: Center(
+                          child: Text(
+                            widget.articleName == " "
+                                ? "Image"
+                                : widget.articleName
+                                    .substring(0, 1)
+                                    .toUpperCase(),
+                            style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: Image.network(
+                        widget.image,
+                        color: null,
+                        fit: BoxFit.contain,
+                        height: screenHeight,
+                        width: width / 4,
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 5),
+                            width: 75,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                                color: Colors.grey,
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
             ),
             Expanded(
               child: Column(

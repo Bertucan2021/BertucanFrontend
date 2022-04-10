@@ -15,19 +15,27 @@ class SRHBloc extends Bloc<SRHEvent, SRHState> {
     // ignore: avoid_print
     on<InitializeSRH>((event, emit) async {
       // ignore: avoid_print
-      emit(
-          const SRHState(isLoading: true, articleData: [], exceptionError: ''));
-      final response = await srhRepository.getSRHArticles();
+     emit(const SRHState(
+        isLoading: true,
+        articleData: [],
+        exceptionError: '',
+      ));
+      response = await srhRepository.getSRHArticles();
       if (response.isNotEmpty) {
         emit(SRHState(
-            isLoading: false, articleData: response, exceptionError: ''));
-      }
-      emit(SRHState(
           isLoading: false,
           articleData: response,
-          exceptionError: response.toString()));
+          exceptionError: '',
+        ));
+      }
+      emit(SRHState(
+        isLoading: false,
+        articleData: response,
+        exceptionError: response.toString(),
+      ));
     });
-   on<SearchIconPressed>((event, emit) async {
+
+    on<SearchIconPressed>((event, emit) async {
       emit(SRHState(
         articleData: response,
         exceptionError: '',

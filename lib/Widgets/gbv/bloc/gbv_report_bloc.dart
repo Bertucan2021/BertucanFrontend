@@ -37,22 +37,14 @@ class GBVReportBloc extends Bloc<GBVReportEvent, GBVReportState> {
       }
       emit(const GBVReportState(
           isLoading: false,
-          exceptionError: "can not post report",
+          exceptionError: "Can not post report",
           created: false,
           abuseType: [],
           isIconLoading: false));
     });
     on<DropDownIconPressed>((event, emit) async {
-      emit(const GBVReportState(
-          exceptionError: " ",
-          isLoading: false,
-          created: false,
-          abuseType: [],
-          isIconLoading: true));
-
       final response = await reportRepository.getAbuseType();
       // ignore: avoid_print
-      print(response);
       if (response.isNotEmpty) {
         emit(GBVReportState(
             isLoading: false,
@@ -60,13 +52,14 @@ class GBVReportBloc extends Bloc<GBVReportEvent, GBVReportState> {
             created: false,
             abuseType: response,
             isIconLoading: false));
+      } else {
+        emit(const GBVReportState(
+            isLoading: false,
+            exceptionError: "can not post report",
+            created: false,
+            abuseType: [],
+            isIconLoading: false));
       }
-      emit(const GBVReportState(
-          isLoading: false,
-          exceptionError: "can not post report",
-          created: false,
-          abuseType: [],
-          isIconLoading: false));
     });
   }
 }

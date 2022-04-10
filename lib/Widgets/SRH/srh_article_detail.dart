@@ -151,11 +151,64 @@ class _SRHArticleDetailState extends State<SRHArticleDetail> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const ListTile(
+                       ListTile(
                         enabled: true,
                         tileColor: Colors.transparent,
-                        leading: CircleAvatar(radius: 20),
-                        title: Text("Francisco Fisher"),
+                        leading: blocState.articleData.profilepicture == null
+                            ? CircleAvatar(
+                                radius: 20.0,
+                                foregroundColor: Colors.white,
+                                backgroundColor: const Color(0xffEF5DA8),
+                                child: Text(
+                                  blocState.articleData.firstname == null ||
+                                          blocState.articleData.lastname == null
+                                      ? " "
+                                      : blocState.articleData.firstname!
+                                          .substring(0, 1)
+                                          .toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              )
+                            : CircleAvatar(
+                                child: ClipOval(
+                                    child: Image.network(
+                                  blocState.imageUrl +
+                                      blocState.articleData.profilepicture!,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      width: 30,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: Colors.grey,
+                                          value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )),
+                                backgroundColor: Colors.transparent,
+                              ),
+                        title: Text(blocState.articleData.firstname == null ||
+                                blocState.articleData.lastname == null
+                            ? " "
+                            : blocState.articleData.firstname! +
+                                " " +
+                                blocState.articleData.lastname!),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
