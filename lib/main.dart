@@ -1,28 +1,55 @@
+
 import 'package:bertucanfrontend/Widgets/SRH/srh_page.dart';
 import 'package:bertucanfrontend/Widgets/articles/articles.dart';
 import 'package:bertucanfrontend/Widgets/homepage/homepage.dart';
 import 'package:bertucanfrontend/Widgets/gbv/gbv_page.dart';
 import 'package:bertucanfrontend/Widgets/login/login_page.dart';
+import 'package:bertucanfrontend/Local_database/sqlite.dart';
+import 'package:bertucanfrontend/Repositories/user_repository.dart';
+import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
+import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
+import 'package:bertucanfrontend/bloc/cycle/cycle_bloc.dart';
+import 'package:bertucanfrontend/bloc/user/register/resgister_bloc.dart';
+import 'package:bertucanfrontend/providers/user_data_provider.dart';
 import 'package:bertucanfrontend/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(const MyApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+    await test();
+
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+   MyApp({Key? key}) : super(key: key);
+  final UserRepository userRepository = UserRepository(userDataProvider: UserDataProvider(httpClient: http.Client()));
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => CycleBloc(),
+        ),
+        BlocProvider(
+          create: (_) => RegisterBloc(userRepository: userRepository),
+        )
+      ],
+    child:MaterialApp(
       debugShowCheckedModeBanner: false,
       theme:
           ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: LoginPage.pageRoute,
-    );
+
+      initialRoute: Questionnaire.routeName,
+    ));
   }
 }
 
@@ -73,3 +100,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
