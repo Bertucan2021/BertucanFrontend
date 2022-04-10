@@ -10,6 +10,7 @@ class SRHDetailState extends Equatable {
   final bool isLoading;
   final String exceptionError;
   final ArticleData articleData;
+  final String imageUrl = "https://bertucan.com/public/";
 
   @override
   List<Object> get props => [isLoading, exceptionError, articleData];

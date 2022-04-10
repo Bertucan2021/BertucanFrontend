@@ -11,6 +11,7 @@ import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart'
 import 'package:bertucanfrontend/Widgets/register/register_page.dart';
 import 'package:bertucanfrontend/arguments/gbv_argument.dart';
 import 'package:bertucanfrontend/arguments/srh_argument.dart';
+import 'package:bertucanfrontend/main.dart';
 import 'package:flutter/material.dart';
 
 class PageRouter {
@@ -18,9 +19,9 @@ class PageRouter {
     final args = settings.arguments;
     switch (settings.name) {
       case "/":
-        return MaterialPageRoute(builder: (context) {
-          return const MyHomePage();
-        });
+         return MaterialPageRoute(builder: (context) {
+           return const MyHomePage();
+         });
       // // case OnBoard.pageRoute:
       // //   return MaterialPageRoute(builder: (context) {
       // //     return OnBoard();
@@ -58,7 +59,7 @@ class PageRouter {
       case GBVReportPage.pageRoute:
         return MaterialPageRoute(builder: (context) {
           return const GBVReportPage();
-
+        });
       case Questionnaire.routeName:
         return MaterialPageRoute(builder: (context) {
           // return MyHomePage();
@@ -78,7 +79,7 @@ class PageRouter {
         return MaterialPageRoute(builder: (context){
           return const LogPeriod();
 
-        });
+        }); 
     }
     return null;
   }

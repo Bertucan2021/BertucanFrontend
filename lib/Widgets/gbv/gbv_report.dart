@@ -19,7 +19,7 @@ class GBVReportPage extends StatefulWidget {
 
 class _GBVReportPageState extends State<GBVReportPage> {
   late List<DropdownMenuItem<String>> menuItems;
-  String selectedValue ;
+  String? selectedValue ;
 
   TextEditingController reportMessageController = TextEditingController();
   TextEditingController abuseTypeController = TextEditingController();

@@ -6,7 +6,6 @@ import 'package:bertucanfrontend/Widgets/gbv/gbv_page.dart';
 import 'package:bertucanfrontend/Widgets/login/login_page.dart';
 import 'package:bertucanfrontend/Local_database/sqlite.dart';
 import 'package:bertucanfrontend/Repositories/user_repository.dart';
-import 'package:bertucanfrontend/Widgets/SRH/srh_item.dart';
 import 'package:bertucanfrontend/Widgets/onBoaringQuetinary/ui/on_boarding.dart';
 import 'package:bertucanfrontend/Widgets/profile/profile.dart';
 import 'package:bertucanfrontend/bloc/cycle/cycle_bloc.dart';
