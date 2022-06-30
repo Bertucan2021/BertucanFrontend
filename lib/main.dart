@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme:
           ThemeData(primarySwatch: Colors.pink, fontFamily: 'Poppins Medium'),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: LoginPage.pageRoute,
+      initialRoute: GBVPage.pageRoute,
     );
   }
 }
