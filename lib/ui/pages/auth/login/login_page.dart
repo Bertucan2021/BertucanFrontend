@@ -1,6 +1,3 @@
-import 'package:bertucanfrontend/Widgets/login/ui/login_form.dart';
-import 'package:bertucanfrontend/Widgets/register/ui/form_container.dart';
-import 'package:bertucanfrontend/Widgets/register/ui/form_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
