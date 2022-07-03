@@ -1,9 +1,10 @@
-import 'package:bertucanfrontend/main.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
-import 'package:bertucanfrontend/ui/pages/auth/login/login_page.dart';
-import 'package:bertucanfrontend/ui/pages/auth/register/register_page.dart';
-import 'package:bertucanfrontend/ui/pages/intro/onBoaringQuetinary/on_boarding.dart';
-import 'package:bertucanfrontend/ui/pages/notification/ui/notification.dart';
+import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
+import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
+import 'package:bertucanfrontend/ui/pages/home_page.dart';
+import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
+import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
+import 'package:bertucanfrontend/ui/pages/notification/notifications_page.dart';
 import 'package:get/get.dart';
 
 abstract class AppPages {
@@ -11,7 +12,7 @@ abstract class AppPages {
     //auth
     GetPage(
       name: Routes.signupPage,
-      page: () => const RegisterPage(),
+      page: () => SignUpPage(),
     ),
     GetPage(
       name: Routes.loginPage,
@@ -21,11 +22,15 @@ abstract class AppPages {
     //main
     GetPage(
       name: Routes.homePage,
-      page: () => const MyHomePage(),
+      page: () => const HomePage(),
     ),
     GetPage(
       name: Routes.questionnairePage,
-      page: () => const Questionnaire(),
+      page: () => const QuestionnairePage(),
+    ),
+    GetPage(
+      name: Routes.introPage,
+      page: () => const IntroPage(),
     ),
     GetPage(
       name: Routes.notificationPage,
