@@ -17,16 +17,19 @@ class RectangularButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.maxFinite,
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: isColorPrimary
-          ? AppTheme.primaryColoredRectangularButtonDecoration()
-          : AppTheme.nonPrimaryColoredRectangularButtonDecoration(),
-      child: LocalizedText(
-        label,
-        style: AppTheme.buttonLabelStyle,
-        textAlign: TextAlign.center,
+    return GestureDetector(
+      onTap: isActive ? onPressed : null,
+      child: Container(
+        width: double.maxFinite,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: isColorPrimary
+            ? AppTheme.primaryColoredRectangularButtonDecoration()
+            : AppTheme.nonPrimaryColoredRectangularButtonDecoration(),
+        child: LocalizedText(
+          label,
+          style: AppTheme.buttonLabelStyle,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
