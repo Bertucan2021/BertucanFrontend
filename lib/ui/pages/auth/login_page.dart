@@ -82,7 +82,7 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const LocalizedText(
-                    "don't_have_an_account?",
+                    "don't_have_an_account",
                     style: AppTheme.thinTextStyle,
                   ),
                   TextButton(
