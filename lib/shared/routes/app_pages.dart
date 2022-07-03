@@ -16,7 +16,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.loginPage,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
     ),
 
     //main

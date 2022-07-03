@@ -1,9 +1,11 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
 import 'package:bertucanfrontend/utils/helpers/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -95,7 +97,10 @@ class SignUpPage extends StatelessWidget {
                     style: AppTheme.thinTextStyle,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.loginPage);
+                      print('object');
+                    },
                     child: const LocalizedText(
                       "sign_in",
                       style: AppTheme.buttonLabel2Style,
