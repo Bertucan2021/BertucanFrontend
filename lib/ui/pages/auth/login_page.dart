@@ -1,9 +1,11 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -46,6 +48,7 @@ class LoginPage extends StatelessWidget {
                 label: "password",
                 hintText: "password",
                 controller: _passwordController,
+                rightIcon: Icons.remove_red_eye,
                 obscureText: true,
               ),
               const Align(
@@ -59,7 +62,8 @@ class LoginPage extends StatelessWidget {
               ),
               RectangularButton(
                   label: "login",
-                  onPressed: () {                
+                  onPressed: () { 
+                    Get.toNamed(Routes.homePage);
                   }),
                    const SizedBox(
                 height: 20,
@@ -77,7 +81,9 @@ class LoginPage extends StatelessWidget {
               RectangularButton(
                   label: "continue_without_account",
                   isColorPrimary: false,
-                  onPressed: () {}),
+                  onPressed: () {
+                    Get.toNamed(Routes.homePage);
+                  }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -86,7 +92,9 @@ class LoginPage extends StatelessWidget {
                     style: AppTheme.thinTextStyle,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.signupPage);
+                    },
                     child: const LocalizedText(
                       "sign_up", 
                       style: AppTheme.buttonLabel2Style,

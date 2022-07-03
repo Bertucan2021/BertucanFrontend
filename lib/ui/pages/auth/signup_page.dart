@@ -58,6 +58,7 @@ class SignUpPage extends StatelessWidget {
                 label: "password",
                 hintText: "password",
                 controller: _passwordController,
+                rightIcon: Icons.remove_red_eye,
                 obscureText: true,
               ),
               const SizedBox(
@@ -88,7 +89,10 @@ class SignUpPage extends StatelessWidget {
               RectangularButton(
                   label: "continue_without_account",
                   isColorPrimary: false,
-                  onPressed: () {}),
+                  onPressed: () {
+                    Get.toNamed(Routes.homePage);
+
+                  }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

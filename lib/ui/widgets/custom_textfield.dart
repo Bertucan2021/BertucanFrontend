@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final IconData? rightIcon;
   final FormFieldValidator<String>? validator;
   final String hintText;
   final TextEditingController controller;
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     this.validator,
     required this.hintText,
     required this.controller,
+    this.rightIcon,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
   }) : super(key: key);
@@ -42,7 +44,7 @@ class CustomTextField extends StatelessWidget {
                   validator: validator,
                   style: AppTheme.normalTextStyle,
                   decoration: AppTheme.textFieldInputDecoration()
-                      .copyWith(hintText: hintText)),
+                      .copyWith(hintText: hintText, suffix: rightIcon != null ? Icon(rightIcon) : null)),
             ),
           ],
         ));
