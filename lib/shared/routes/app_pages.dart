@@ -1,4 +1,6 @@
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/ui/bindings/auth_binding.dart';
+import 'package:bertucanfrontend/ui/bindings/home_binding.dart';
 import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
@@ -13,20 +15,22 @@ abstract class AppPages {
     GetPage(
       name: Routes.signupPage,
       page: () => SignUpPage(),
+      binding: AuthBinding(),
     ),
     GetPage(
       name: Routes.loginPage,
       page: () => LoginPage(),
+      binding: AuthBinding(),
     ),
 
     //main
     GetPage(
-      name: Routes.homePage,
-      page: () => const HomePage(),
-    ),
+        name: Routes.homePage,
+        page: () => const HomePage(),
+        binding: HomeBinding()),
     GetPage(
       name: Routes.questionnairePage,
-      page: () => const QuestionnairePage(),
+      page: () => QuestionnairePage(),
     ),
     GetPage(
       name: Routes.introPage,
