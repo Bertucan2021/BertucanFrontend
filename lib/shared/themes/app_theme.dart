@@ -32,6 +32,11 @@ class AppTheme {
     color: textBlack,
     fontWeight: FontWeight.w400,
   );
+   static const TextStyle normal2TextStyle = TextStyle(
+    fontSize: 16,
+    color: textBlack,
+    fontWeight: FontWeight.w400,
+  );
   static const TextStyle thinTextStyle = TextStyle(
     fontSize: 14,
     color: textBlack,
