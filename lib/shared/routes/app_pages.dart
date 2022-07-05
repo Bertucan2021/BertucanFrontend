@@ -5,7 +5,8 @@ import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_page.dart';
-import 'package:bertucanfrontend/ui/pages/home/srh_screen.dart';
+import 'package:bertucanfrontend/ui/pages/srh/srh_detail_page.dart';
+import 'package:bertucanfrontend/ui/pages/srh/srh_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
@@ -54,6 +55,10 @@ abstract class AppPages {
     GetPage(
       name: Routes.srhScreenPage,
       page: () => SrhScreen(),
+    ),
+      GetPage(
+      name: Routes.srhDetailPage,
+      page: () =>  const SrhDetailPage(),
     ),
   ];
 }

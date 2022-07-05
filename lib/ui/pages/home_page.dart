@@ -1,7 +1,7 @@
 import 'package:bertucanfrontend/ui/pages/home/articles_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/home_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/profile_screen.dart';
-import 'package:bertucanfrontend/ui/pages/home/srh_screen.dart';
+import 'package:bertucanfrontend/ui/pages/srh/srh_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         controller: _controller,
         children: [
           HomeScreen(),
-          SrhScreenPage(),
+          SrhScreen(),
           ArticlesScreen(),
           ProfileScreen(),
         ],

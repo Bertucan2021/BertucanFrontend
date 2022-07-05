@@ -14,5 +14,6 @@ abstract class Routes {
   static const gbvPage = "/gbv_page";
   static const gbvDetailPage = "/gbv_detail_page";
   static const srhScreenPage = "/srh_screenPage";
+  static const srhDetailPage = "/srh_detail_page";
 }
  
