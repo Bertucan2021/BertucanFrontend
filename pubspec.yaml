@@ -29,6 +29,7 @@ dependencies:
   json_annotation: ^4.5.0
   intl: ^0.17.0
   percent_indicator: ^4.2.1
+  syncfusion_flutter_datepicker: ^20.2.36
 
 dev_dependencies:
   flutter_test:
