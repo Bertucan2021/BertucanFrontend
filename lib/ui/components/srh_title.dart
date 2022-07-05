@@ -31,7 +31,7 @@ class SrhTitle extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name, style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
-                  const SizedBox(height: 25),     
+                  const SizedBox(height: 50),     
                   Text(description,
                       style: AppTheme.greySubtitleStyle
                           .copyWith(fontWeight: FontWeight.w400)),

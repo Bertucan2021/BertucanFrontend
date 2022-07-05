@@ -19,6 +19,7 @@ class AppTheme {
   static const Color containerBlack = Color(0xFF4B4B4B);
   static const Color textFieldGrey = Color(0xFFEFF3F3);
   static const Color creamyBackground = Color(0xFFE5E5E5);
+  static const Color peachBackground = Color(0xFFF9F5F4);
 
   static const Color textBlack = Color(0xFF3F3F3F);
   static const Color hintGrey = Color(0xFF878890);
@@ -104,6 +105,13 @@ class AppTheme {
   static BoxDecoration textFieldDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: textFieldGrey,
+      );
+ static BoxDecoration textFieldDecoration2() => BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: peachBackground,
+        border: Border.all(
+          width: 1,
+        ),
       );
 
   static BoxDecoration primaryColoredRectangularButtonDecoration() =>

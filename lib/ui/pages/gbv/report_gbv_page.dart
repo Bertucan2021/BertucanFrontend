@@ -93,9 +93,31 @@ class ReportGbvPage extends StatelessWidget {
                               color: AppTheme.hintGrey,
                             ),
                           ),
-                        ],
+                        ], 
                       ),
                     ),
+                   const SizedBox(height: 20,),
+                   Container(
+                      decoration: AppTheme.textFieldDecoration2(),
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const LocalizedText(
+                            "wireframes.sketch",
+                            style: AppTheme.hintTextStyle,
+                          ),
+                         IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.close,
+                              color: AppTheme.hintGrey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ), 
                   ],
                 ),
                 Padding(
