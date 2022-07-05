@@ -2,7 +2,7 @@ import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:get/get.dart';
 
-class AuthController {
+class AuthController extends GetxController {
   final IAuthRepository _authRepository;
 
   AuthController(this._authRepository);

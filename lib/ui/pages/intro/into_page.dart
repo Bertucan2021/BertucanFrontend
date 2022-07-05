@@ -47,7 +47,7 @@ class _IntroPageState extends State<IntroPage> {
                     alignment: Alignment.center,
                     child: LocalizedText(
                       "take_control_of_your_cycle",
-                      style: AppTheme.title2Style,
+                      style: AppTheme.titleStyle2,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -86,7 +86,7 @@ class _IntroPageState extends State<IntroPage> {
                     alignment: Alignment.center,
                     child: LocalizedText(
                       "take_control_of_your_cycle",
-                      style: AppTheme.title2Style,
+                      style: AppTheme.titleStyle2,
                       textAlign: TextAlign.center,
                     ),
                   ),

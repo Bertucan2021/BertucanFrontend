@@ -91,7 +91,6 @@ class SignUpPage extends StatelessWidget {
                   isColorPrimary: false,
                   onPressed: () {
                     Get.toNamed(Routes.homePage);
-
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +106,7 @@ class SignUpPage extends StatelessWidget {
                     },
                     child: const LocalizedText(
                       "sign_in",
-                      style: AppTheme.buttonLabel2Style,
+                      style: AppTheme.buttonLabelStyle2,
                     ),
                   ),
                 ],
