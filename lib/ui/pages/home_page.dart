@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         controller: _controller,
         children: [
           HomeScreen(),
-          SrhScreen(),
+          SrhScreenPage(),
           ArticlesScreen(),
           ProfileScreen(),
         ],
