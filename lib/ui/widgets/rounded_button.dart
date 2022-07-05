@@ -17,8 +17,8 @@ class RoundedButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         decoration: AppTheme.primaryColoredRoundedButtonDecoration(),
-        width: MediaQuery.of(context).size.width * 0.4,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        width: MediaQuery.of(context).size.width * 0.6,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: LocalizedText(
           text,
           style: AppTheme.buttonLabelStyle,
