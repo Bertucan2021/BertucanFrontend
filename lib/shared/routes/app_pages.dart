@@ -53,7 +53,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.srhScreenPage,
-      page: () => SrhScreenPage(),
+      page: () => SrhScreen(),
     ),
   ];
 }

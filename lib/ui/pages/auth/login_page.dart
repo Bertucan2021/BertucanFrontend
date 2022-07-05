@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
           RectangularButton(
               label: "login",
               onPressed: () {
-                Get.toNamed(Routes.homePage);
+                Get.toNamed(Routes.questionnairePage);
               }),
           const SizedBox(
             height: 20,
@@ -80,7 +80,7 @@ class LoginPage extends StatelessWidget {
               label: "continue_without_account",
               isColorPrimary: false,
               onPressed: () {
-                Get.toNamed(Routes.homePage);
+                Get.toNamed(Routes.questionnairePage);
               }),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

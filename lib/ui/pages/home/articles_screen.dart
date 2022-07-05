@@ -9,16 +9,19 @@ class ArticlesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          RoundedButton(text: 'srh', onPressed: () {}),
-          const SizedBox(height: 20),
-          RoundedButton(
-              text: 'gbv',
-              onPressed: () {
-                Get.toNamed(Routes.gbvPage);
-              }),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RoundedButton(text: 'srh', onPressed: () {}),
+            const SizedBox(height: 20),
+            RoundedButton(
+                text: 'gbv',
+                onPressed: () {
+                  Get.toNamed(Routes.gbvPage);
+                }),
+          ],
+        ),
       ),
     );
   }

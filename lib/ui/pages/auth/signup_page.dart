@@ -90,7 +90,7 @@ class SignUpPage extends StatelessWidget {
                   label: "continue_without_account",
                   isColorPrimary: false,
                   onPressed: () {
-                    Get.toNamed(Routes.homePage);
+                    Get.toNamed(Routes.questionnairePage);
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +102,6 @@ class SignUpPage extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Get.toNamed(Routes.loginPage);
-                      print('object');
                     },
                     child: const LocalizedText(
                       "sign_in",

@@ -15,6 +15,7 @@ class GbvPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
+            const SizedBox(height: 20),
             const LocalizedText("gbv_title", style: AppTheme.titleStyle2),
             const SizedBox(height: 10),
             SearchTextField(

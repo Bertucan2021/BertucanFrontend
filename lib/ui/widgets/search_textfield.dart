@@ -14,7 +14,7 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 30),
       child: TextField(
         style: AppTheme.normalTextStyle,
         decoration: InputDecoration(
@@ -22,7 +22,7 @@ class SearchTextField extends StatelessWidget {
           hintText: hintText.tr,
           hintStyle:
               AppTheme.greySubtitleStyle.copyWith(fontWeight: FontWeight.w400),
-          suffixIcon: Icon(Icons.search),
+          prefixIcon: const Icon(Icons.search),
         ),
         controller: controller,
       ),
