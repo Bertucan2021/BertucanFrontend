@@ -17,6 +17,7 @@ class AppTheme {
 
   static const Color containerBlack = Color(0xFF4B4B4B);
   static const Color textFieldGrey = Color(0xFFEFF3F3);
+  static const Color creamyBackground = Color(0xFFE5E5E5);
 
   static const Color textBlack = Color(0xFF3F3F3F);
   static const Color hintGrey = Color(0xFF878890);
@@ -39,6 +40,12 @@ class AppTheme {
   static const TextStyle thinTextStyle = TextStyle(
     fontSize: 14,
     color: textBlack,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle articleTextStyle = TextStyle(
+    fontSize: 16,
+    color: textGrey,
     fontWeight: FontWeight.w400,
   );
   static const TextStyle hintTextStyle = TextStyle(

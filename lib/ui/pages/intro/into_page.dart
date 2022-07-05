@@ -21,8 +21,6 @@ class _IntroPageState extends State<IntroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-          
-
       children: [
         PageView(
           controller: pageViewController,
@@ -108,23 +106,30 @@ class _IntroPageState extends State<IntroPage> {
           ],
         ),
         Positioned(
-        bottom: 40, 
-        width:MediaQuery.of(context).size.width,  
-         child: Padding(
-           padding: const EdgeInsets.symmetric(horizontal: 20),
-           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,    
+          bottom: 40,
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  child: LocalizedText('skip',style: AppTheme.normal2TextStyle.copyWith(color: AppTheme.primaryColor)),
+                  child: LocalizedText('skip',
+                      style: AppTheme.normal2TextStyle
+                          .copyWith(color: AppTheme.primaryColor)),
                   onPressed: () {
-                    Get.toNamed(Routes.signupPage);         
+                    Get.toNamed(Routes.signupPage);
                   },
                 ),
-               IconButton(onPressed: _onPageChanged, icon:Icon(Icons.arrow_forward,color: AppTheme.primaryColor,) )
+                IconButton(
+                    onPressed: _onPageChanged,
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      color: AppTheme.primaryColor,
+                    ))
               ],
             ),
-         ),
+          ),
         ),
       ],
     ));
