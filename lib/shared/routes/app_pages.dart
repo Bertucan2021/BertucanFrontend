@@ -5,6 +5,7 @@ import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_page.dart';
+import 'package:bertucanfrontend/ui/pages/gbv/report_gbv_page.dart';
 import 'package:bertucanfrontend/ui/pages/home/srh_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
@@ -50,6 +51,10 @@ abstract class AppPages {
     GetPage(
       name: Routes.gbvDetailPage,
       page: () => const GbvDetailPage(),
+    ),
+    GetPage(
+      name: Routes.report_gbv_page,
+      page: () => const ReportGbvPage(),
     ),
     GetPage(
       name: Routes.srhScreenPage,
