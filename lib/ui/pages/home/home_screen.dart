@@ -23,30 +23,34 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Obx(
-                  () => Text(
-                      DateFormat.yMMMd().format(_homeController.selectedDate),
-                      style: AppTheme.titleStyle3),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                      onPressed: () async {
-                        DateTimeRange? newDateRange = await showDateRangePicker(
-                            context: context,
-                            confirmText: "confirm",
-                            firstDate:
-                                DateTime.now().subtract(Duration(days: 365)),
-                            lastDate: DateTime.now().add(Duration(days: 365)),
-                            builder: (context, child) {
-                              return Container(child: child);
-                            });
-                      },
-                      // Get.toNamed(Routes.LogPage);
-                      icon: const Icon(
-                        Icons.calendar_month_outlined,
-                        size: 25,
-                      )),
+                Row(
+                  children: [
+                    Obx(
+                      () => Text(
+                          DateFormat.yMMMd().format(_homeController.selectedDate),
+                          style: AppTheme.titleStyle3),
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: IconButton(
+                          onPressed: () async {
+                            DateTimeRange? newDateRange = await showDateRangePicker(
+                                context: context,
+                                confirmText: "confirm",
+                                firstDate:
+                                    DateTime.now().subtract(Duration(days: 365)),
+                                lastDate: DateTime.now().add(Duration(days: 365)),
+                                builder: (context, child) {
+                                  return Container(child: child);
+                                });
+                          },
+                          // Get.toNamed(Routes.LogPage);
+                          icon: const Icon(
+                            Icons.calendar_month_outlined,
+                            size: 25,
+                          )),
+                    ),
+                  ],
                 ),
                 IconButton(
                     onPressed: () {
