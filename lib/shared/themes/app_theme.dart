@@ -6,10 +6,12 @@ class AppTheme {
   static const Color secondaryColor = Color(0xFFF7924A);
   static const Color white = Color(0xFFFFFFFF);
   static const Color orange = Color(0xFFFF2020);
+  static const Color orange2 = Color(0xFFF7924A);
   static const Color blue = Color(0xFF2029FF);
   static const Color green = Color(0xFF04DE5B);
   static const Color pink = Color(0xFFFF5353);
-
+  static const Color purple = Color(0xFFFBEEFF);
+  static const Color cream = Color(0xFFF9F5F4);
   static const Color subtlePink = Color(0xFFFFB1B1);
   static const Color subtleGreen = Color(0xFFA3E7F0);
   static const Color subtleBlue = Color(0xFFBAD5FD);
@@ -17,8 +19,10 @@ class AppTheme {
 
   static const Color containerBlack = Color(0xFF4B4B4B);
   static const Color textFieldGrey = Color(0xFFEFF3F3);
+  static const Color creamyBackground = Color(0xFFE5E5E5);
 
   static const Color textBlack = Color(0xFF3F3F3F);
+  static const Color textDarkGrey = Color(0xFF515A6E);
   static const Color hintGrey = Color(0xFF878890);
   static const Color textBlue = Color(0xFF68A4F4);
   static const Color textGrey = Color(0xFF6B6464);
@@ -31,7 +35,7 @@ class AppTheme {
     color: textBlack,
     fontWeight: FontWeight.w400,
   );
-   static const TextStyle normal2TextStyle = TextStyle(
+  static const TextStyle normal2TextStyle = TextStyle(
     fontSize: 16,
     color: textBlack,
     fontWeight: FontWeight.w400,
@@ -39,6 +43,12 @@ class AppTheme {
   static const TextStyle thinTextStyle = TextStyle(
     fontSize: 14,
     color: textBlack,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle articleTextStyle = TextStyle(
+    fontSize: 16,
+    color: textGrey,
     fontWeight: FontWeight.w400,
   );
   static const TextStyle hintTextStyle = TextStyle(
@@ -103,7 +113,10 @@ class AppTheme {
         borderRadius: BorderRadius.circular(8),
         color: primaryColor,
       );
-
+  static BoxDecoration whiteBoxDecoration() => BoxDecoration(
+        borderRadius: BorderRadius.circular(37),
+        color: AppTheme.white,
+      );
   static BoxDecoration nonPrimaryColoredRectangularButtonDecoration() =>
       BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -129,8 +142,9 @@ class AppTheme {
         ),
       );
   static BoxDecoration orangeBoxDecoration() => const BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(30.0)),
-      color: Color(0xFFF7924A));
+      borderRadius: BorderRadius.all(Radius.circular(30.0)), color: orange2);
+  static BoxDecoration purpleBoxDecoration() => const BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(10.0)), color: purple);
   //input decorations
   static InputDecoration textFieldInputDecoration() => const InputDecoration(
       border: InputBorder.none,

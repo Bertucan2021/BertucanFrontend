@@ -102,7 +102,6 @@ class SignUpPage extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Get.toNamed(Routes.loginPage);
-                      print('object');
                     },
                     child: const LocalizedText(
                       "sign_in",
