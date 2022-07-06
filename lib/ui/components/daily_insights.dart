@@ -26,7 +26,7 @@ class DailyInsights extends StatelessWidget {
                   size: 30,
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.logPage);
+                  Get.toNamed(Routes.dailyDetailPage);
                 },
               ),
               const DailyInsightCard(

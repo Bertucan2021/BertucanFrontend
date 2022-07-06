@@ -18,4 +18,5 @@ abstract class Routes {
   static const logChancePregnancyPage = "/log_chance_pregnancy_page";
   static const symptomsPage = "/symptoms_page";
   static const logPage = "/log_page";
+  static const dailyDetailPage = "/daily_detail_page";
 }

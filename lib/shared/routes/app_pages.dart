@@ -11,6 +11,7 @@ import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/chances_of_pregnancy_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/daily_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/log_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/symptoms_page.dart';
 import 'package:bertucanfrontend/ui/pages/notification/notifications_page.dart';
@@ -71,6 +72,6 @@ abstract class AppPages {
       name: Routes.symptomsPage,
       page: () => const SymptomsPage(),
     ),
-    GetPage(name: Routes.logPage, page: () => const LogPage())
+    GetPage(name: Routes.dailyDetailPage, page: () => const DailyDetailPage())
   ];
 }
