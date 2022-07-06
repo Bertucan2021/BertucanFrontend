@@ -82,7 +82,7 @@ class GbvDetailPage extends StatelessWidget {
                       RoundedButton(
                           text: 'report_abuse',
                           onPressed: () {
-                            Get.toNamed(Routes.report_gbv_page);
+                            Get.toNamed(Routes.reportGbvPage);
                           }),
                     ],
                   ),

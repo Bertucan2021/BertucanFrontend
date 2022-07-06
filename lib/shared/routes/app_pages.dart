@@ -10,6 +10,9 @@ import 'package:bertucanfrontend/ui/pages/home/srh_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/chances_of_pregnancy_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/log_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/symptoms_page.dart';
 import 'package:bertucanfrontend/ui/pages/notification/notifications_page.dart';
 import 'package:get/get.dart';
 
@@ -53,12 +56,21 @@ abstract class AppPages {
       page: () => const GbvDetailPage(),
     ),
     GetPage(
-      name: Routes.report_gbv_page,
+      name: Routes.reportGbvPage,
       page: () => const ReportGbvPage(),
     ),
     GetPage(
       name: Routes.srhScreenPage,
       page: () => SrhScreen(),
     ),
+    GetPage(
+      name: Routes.logChancePregnancyPage,
+      page: () => const ChancesOfPregnancy(),
+    ),
+    GetPage(
+      name: Routes.symptomsPage,
+      page: () => const SymptomsPage(),
+    ),
+    GetPage(name: Routes.logPage, page: () => const LogPage())
   ];
 }

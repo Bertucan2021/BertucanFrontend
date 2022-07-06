@@ -13,6 +13,9 @@ abstract class Routes {
   static const notificationPage = "/notification_page";
   static const gbvPage = "/gbv_page";
   static const gbvDetailPage = "/gbv_detail_page";
-  static const report_gbv_page = "/report_gbv_page";
+  static const reportGbvPage = "/report_gbv_page";
   static const srhScreenPage = "/srh_screenPage";
+  static const logChancePregnancyPage = "/log_chance_pregnancy_page";
+  static const symptomsPage = "/symptoms_page";
+  static const logPage = "/log_page";
 }
