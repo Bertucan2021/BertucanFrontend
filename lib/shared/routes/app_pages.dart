@@ -5,13 +5,14 @@ import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/log_page.dart';
+import 'package:bertucanfrontend/ui/pages/srh/srh_detail_page.dart';
+import 'package:bertucanfrontend/ui/pages/srh/srh_screen.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/report_gbv_page.dart';
-import 'package:bertucanfrontend/ui/pages/home/srh_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/chances_of_pregnancy_page.dart';
-import 'package:bertucanfrontend/ui/pages/log/log_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/symptoms_page.dart';
 import 'package:bertucanfrontend/ui/pages/notification/notifications_page.dart';
 import 'package:get/get.dart';
@@ -48,10 +49,6 @@ abstract class AppPages {
       page: () => const NotificationsPage(),
     ),
     GetPage(
-      name: Routes.srhScreenPage,
-      page: () => SrhScreen(),
-    ),
-    GetPage(
       name: Routes.gbvPage,
       page: () => const GbvPage(),
     ),
@@ -75,6 +72,13 @@ abstract class AppPages {
       name: Routes.symptomsPage,
       page: () => const SymptomsPage(),
     ),
-    GetPage(name: Routes.logPage, page: () => const LogPage())
+    GetPage(
+      name: Routes.srhDetailPage,
+      page: () => const SrhDetailPage(),
+    ),
+    GetPage(
+      name: Routes.logPage,
+      page: () => LogPage(),
+    ),
   ];
 }

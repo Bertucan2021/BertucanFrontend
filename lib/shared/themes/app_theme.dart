@@ -13,6 +13,7 @@ class AppTheme {
   static const Color purple = Color(0xFFFBEEFF);
   static const Color cream = Color(0xFFF9F5F4);
   static const Color subtlePink = Color(0xFFFFB1B1);
+  static const Color lightPink = Color(0xFFF6B4CB);
   static const Color subtleGreen = Color(0xFFA3E7F0);
   static const Color subtleBlue = Color(0xFFBAD5FD);
   static const Color subtlePurple = Color(0xFFECBAFD);
@@ -20,6 +21,7 @@ class AppTheme {
   static const Color containerBlack = Color(0xFF4B4B4B);
   static const Color textFieldGrey = Color(0xFFEFF3F3);
   static const Color creamyBackground = Color(0xFFE5E5E5);
+  static const Color peachBackground = Color(0xFFF9F5F4);
 
   static const Color textBlack = Color(0xFF3F3F3F);
   static const Color textDarkGrey = Color(0xFF515A6E);
@@ -106,6 +108,13 @@ class AppTheme {
   static BoxDecoration textFieldDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: textFieldGrey,
+      );
+ static BoxDecoration textFieldDecoration2() => BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: peachBackground,
+        border: Border.all(
+          width: 1,
+        ),
       );
 
   static BoxDecoration primaryColoredRectangularButtonDecoration() =>

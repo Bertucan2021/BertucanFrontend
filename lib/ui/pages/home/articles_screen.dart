@@ -13,7 +13,9 @@ class ArticlesScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RoundedButton(text: 'srh', onPressed: () {}),
+            RoundedButton(text: 'srh', onPressed: () {
+              Get.toNamed(Routes.srhScreenPage);
+            }),
             const SizedBox(height: 20),
             RoundedButton(
                 text: 'gbv',
