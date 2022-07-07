@@ -2,7 +2,9 @@ import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class GbvDetailPage extends StatelessWidget {
@@ -77,7 +79,17 @@ class GbvDetailPage extends StatelessWidget {
                       const SizedBox(
                         height: 100,
                       ),
-                      RoundedButton(text: 'view_location', onPressed: () {}),
+                      RoundedButton(
+                          text: 'view_location',
+                          onPressed: () async {
+                            await getCurrentLocation();
+                            var temp = await Geolocator.checkPermission();
+
+                            if (temp == LocationPermission.always ||
+                                temp == LocationPermission.whileInUse) {
+                              Get.toNamed(Routes.gbvLocationPage);
+                            }
+                          }),
                       const SizedBox(height: 40),
                       RoundedButton(
                           text: 'report_abuse',

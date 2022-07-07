@@ -1,4 +1,4 @@
-import 'package:bertucanfrontend/ui/pages/home/articles_screen.dart';
+import 'package:bertucanfrontend/ui/pages/gbv/gbv_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/home_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/profile_screen.dart';
 import 'package:bertucanfrontend/ui/pages/srh/srh_screen.dart';
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           HomeScreen(),
           SrhScreen(),
-          ArticlesScreen(),
+          GbvPage(),
           ProfileScreen(),
         ],
       ),
@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
           BottomNavigationBarItem(

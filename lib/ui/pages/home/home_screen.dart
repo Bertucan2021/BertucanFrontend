@@ -33,14 +33,15 @@ class HomeScreen extends StatelessWidget {
                   child: IconButton(
                       onPressed: () async {
                         DateTimeRange? newDateRange = await showDateRangePicker(
-                            context: context,
-                            confirmText: "confirm",
-                            firstDate:
-                                DateTime.now().subtract(Duration(days: 365)),
-                            lastDate: DateTime.now().add(Duration(days: 365)),
-                            builder: (context, child) {
-                              return Container(child: child);
-                            });
+                          context: context,
+                          confirmText: "confirm",
+                          firstDate:
+                              DateTime.now().subtract(Duration(days: 365)),
+                          lastDate: DateTime.now().add(Duration(days: 365)),
+                          builder: (context, child) {
+                            return Container(child: child);
+                          },
+                        );
                       },
                       // Get.toNamed(Routes.LogPage);
                       icon: const Icon(
