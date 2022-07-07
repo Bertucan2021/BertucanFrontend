@@ -1,5 +1,7 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class LogPage extends StatelessWidget {
@@ -48,7 +50,7 @@ class LogPage extends StatelessWidget {
             children: [
               TextButton(
                   onPressed: () {
-                    _controller.selectedDate = null;
+                    Get.toNamed(Routes.homePage);
                   },
                   child: Text(
                     "cancel",

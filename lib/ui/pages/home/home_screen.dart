@@ -33,18 +33,9 @@ class HomeScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: IconButton(
-                          onPressed: () async {
-                            DateTimeRange? newDateRange = await showDateRangePicker(
-                                context: context,
-                                confirmText: "confirm",
-                                firstDate:
-                                    DateTime.now().subtract(Duration(days: 365)),
-                                lastDate: DateTime.now().add(Duration(days: 365)),
-                                builder: (context, child) {
-                                  return Container(child: child);
-                                });
+                          onPressed: ()  {
+                          Get.toNamed(Routes.logPage);
                           },
-                          // Get.toNamed(Routes.LogPage);
                           icon: const Icon(
                             Icons.calendar_month_outlined,
                             size: 25,
