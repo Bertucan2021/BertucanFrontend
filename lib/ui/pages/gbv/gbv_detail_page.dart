@@ -36,43 +36,57 @@ class GbvDetailPage extends StatelessWidget {
                     child: LocalizedText("back", style: AppTheme.titleStyle3)),
               ],
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset(
-                              'assets/twitter_logo.png',
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/facebook_logo.png',
-                              height: 40,
-                            ),
-                            Image.asset(
-                              'assets/instagram_logo.png',
-                              height: 40,
-                            ),
-                          ],
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    margin: const EdgeInsets.all(10),
+                    color: AppTheme.primaryColor,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        const LocalizedText("you_are_in_charge_of_this_project",
+                            style: AppTheme.titleStyle4),
+                        const SizedBox(height: 5),
+                        const LocalizedText("deadline_28/03/2020",
+                            style: AppTheme.greySubtitleStyle),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset(
+                          'assets/twitter_logo.png',
+                          height: 40,
                         ),
-                      ),
-                      const SizedBox(height: 50),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: const Text(
-                          "I need a designer for my new website. The project is just at the beginning and I need wireframes before I start coding the website. I only want wireframes and I don’t want prototype or UI design.",
-                          textAlign: TextAlign.center,
-                          maxLines: 5,
-                          style: AppTheme.articleTextStyle,
+                        Image.asset(
+                          'assets/instagram_logo.png',
+                          height: 40,
                         ),
-                      ),
-                    ],
+                        Image.asset(
+                          'assets/facebook_logo.png',
+                          height: 40,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: const Text(
+                      "I need a designer for my new website. The project is just at the beginning and I need wireframes before I start coding the website. I only want wireframes and I don’t want prototype or UI design.",
+                      textAlign: TextAlign.center,
+                      maxLines: 5,
+                      style: AppTheme.articleTextStyle,
+                    ),
                   ),
                   Column(
                     children: [
@@ -82,13 +96,7 @@ class GbvDetailPage extends StatelessWidget {
                       RoundedButton(
                           text: 'view_location',
                           onPressed: () async {
-                            await getCurrentLocation();
-                            var temp = await Geolocator.checkPermission();
-
-                            if (temp == LocationPermission.always ||
-                                temp == LocationPermission.whileInUse) {
-                              Get.toNamed(Routes.gbvLocationPage);
-                            }
+                            Get.toNamed(Routes.gbvLocationPage);
                           }),
                       const SizedBox(height: 40),
                       RoundedButton(
@@ -100,7 +108,7 @@ class GbvDetailPage extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ])
           ],
         ),
       ),
