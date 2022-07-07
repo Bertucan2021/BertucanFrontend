@@ -27,7 +27,8 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Obx(
                       () => Text(
-                          DateFormat.yMMMd().format(_homeController.selectedDate),
+                          DateFormat.yMMMd()
+                              .format(_homeController.selectedDate),
                           style: AppTheme.titleStyle3),
                     ),
                     Align(
