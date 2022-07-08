@@ -1,6 +1,8 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NotificationTile extends StatelessWidget {
   final String title;
@@ -47,7 +49,9 @@ class NotificationTile extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.srhDetailPage);
+                    },
                     child: LocalizedText(
                       "take_a_look",
                       style: AppTheme.greySubtitleStyle

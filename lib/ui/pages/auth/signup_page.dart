@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
@@ -37,18 +39,18 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Center(
                 child: Stack(children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 60,
                     backgroundColor: AppTheme.primaryColor,
-                    // backgroundImage: _imageFile != null
-                    //     ? AssetImage('assets/images/user.png')
-                    //     : FileImage(_imageFile!.path),
-                 child: Icon(
+                    backgroundImage: _imageFile == null
+                        ? null
+                        : FileImage(File(_imageFile!.path)),
+                    child: Icon(
                       Icons.person,
                       color: Colors.white,
                       size: 50,
                     ),
-                  ),                  
+                  ),
                   Positioned(
                       top: 90,
                       right: 20,
@@ -196,5 +198,6 @@ class _SignUpPageState extends State<SignUpPage> {
     setState(() {
       _imageFile = pickedFile;
     });
+    Get.back();
   }
 }

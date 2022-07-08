@@ -193,13 +193,13 @@ abstract class _UserToSignUp implements UserToSignUp {
       _$_UserToSignUp.fromJson;
 
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phoneNumber;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_UserToSignUpCopyWith<_$_UserToSignUp> get copyWith =>
@@ -347,9 +347,9 @@ abstract class _UserToLogin implements UserToLogin {
       _$_UserToLogin.fromJson;
 
   @override
-  String get email => throw _privateConstructorUsedError;
+  String get email;
   @override
-  String get password => throw _privateConstructorUsedError;
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$$_UserToLoginCopyWith<_$_UserToLogin> get copyWith =>

@@ -59,3 +59,7 @@ Future<Position> getCurrentLocation() async {
   // continue accessing the position of the device.
   return await Geolocator.getCurrentPosition();
 }
+
+void toast(String title, String message) {
+  Get.snackbar(title.tr, message.tr, snackPosition: SnackPosition.BOTTOM);
+}
