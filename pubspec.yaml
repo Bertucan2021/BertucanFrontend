@@ -31,6 +31,11 @@ dependencies:
   percent_indicator: ^4.2.1
   google_maps_flutter: ^2.1.8
   geolocator: ^9.0.0
+  syncfusion_flutter_datepicker: ^20.2.36
+  image_picker: ^0.8.5+3
+  dio: ^4.0.6
+  connectivity: ^3.0.6
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

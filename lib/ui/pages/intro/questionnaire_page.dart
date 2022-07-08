@@ -44,7 +44,7 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
           ],
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.1,
+          height: MediaQuery.of(context).size.height * 0.05,
         ),
         Expanded(
           child: PageView(
@@ -68,11 +68,49 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
                 answers: [
                   "Painful menstrual cramps",
                   "PMS symptoms",
-                  "Unusual discharge"
+                  "Unusual discharge","Heavy menstrual flow","Mood swings",
+                  "Other","No, nothing bothers me"
+                ],
+                 onAnswer: (answerIndexs) {
+                  _changeQuestion(2);
+                },
+              ),
+                 Questionnaire(
+                question:
+                    "Do you experiance discomfort due to any of the following?",
+                answers: [
+                  "Painful menstrual cramps",
+                  "PMS symptoms",
+                  "Unusual discharge","Heavy menstrual flow","Mood swings",
+                  "Other","No, nothing bothers me"
                 ],
                 isMultiple: true,
+                  onAnswer: (answerIndexs) {
+                  _changeQuestion(3);
+                },
+              ),
+                Questionnaire(
+                question:
+                    "Do you have any reproductive health disorders (endometriosis, PCOS, etc.)?",
+                answers: [
+                  "Yes",
+                  "No",
+                  "No, but I used to",
+                  "I don’t know"
+                ],
+                  onAnswer: (answerIndexs) {
+                  _changeQuestion(4);
+                },
+              ),  Questionnaire(
+                question:
+                    "Is there anything you want to improve about your sleep?",
+                answers: [
+                  "No, I sleep well","Difficulty falling sleep"
+                  "Waking up tired","Waking up during night"
+                  "Lack of sleep schedule","Insomnia",
+                  "Other"
+                ],
                 onAnswer: (answerIndexs) {
-                  // _changeQuestion(2);
                   Get.toNamed(Routes.homePage);
                 },
               ),
