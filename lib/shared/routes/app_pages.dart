@@ -55,7 +55,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.reportGbvPage,
-      page: () => const ReportGbvPage(),
+      page: () => ReportGbvPage(),
     ),
     GetPage(
       name: Routes.logChancePregnancyPage,

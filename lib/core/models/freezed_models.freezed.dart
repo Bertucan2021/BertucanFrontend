@@ -126,7 +126,7 @@ class __$$_UserToSignUpCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserToSignUp implements _UserToSignUp {
+class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
   const _$_UserToSignUp(
       {required this.email,
       required this.phoneNumber,
@@ -146,8 +146,19 @@ class _$_UserToSignUp implements _UserToSignUp {
   final String name;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'UserToSignUp(email: $email, phoneNumber: $phoneNumber, password: $password, name: $name)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserToSignUp'))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('name', name));
   }
 
   @override
@@ -295,7 +306,7 @@ class __$$_UserToLoginCopyWithImpl<$Res> extends _$UserToLoginCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserToLogin implements _UserToLogin {
+class _$_UserToLogin with DiagnosticableTreeMixin implements _UserToLogin {
   const _$_UserToLogin({required this.email, required this.password});
 
   factory _$_UserToLogin.fromJson(Map<String, dynamic> json) =>
@@ -307,8 +318,17 @@ class _$_UserToLogin implements _UserToLogin {
   final String password;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'UserToLogin(email: $email, password: $password)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserToLogin'))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
@@ -564,7 +584,7 @@ class __$$_GbvCopyWithImpl<$Res> extends _$GbvCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Gbv implements _Gbv {
+class _$_Gbv with DiagnosticableTreeMixin implements _Gbv {
   const _$_Gbv(
       {required this.id,
       this.name,
@@ -601,8 +621,25 @@ class _$_Gbv implements _Gbv {
   final GbvAddress? address;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Gbv(id: $id, name: $name, description: $description, phone_number: $phone_number, address_id: $address_id, membership_id: $membership_id, status: $status, license: $license, logo: $logo, address: $address)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Gbv'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('description', description))
+      ..add(DiagnosticsProperty('phone_number', phone_number))
+      ..add(DiagnosticsProperty('address_id', address_id))
+      ..add(DiagnosticsProperty('membership_id', membership_id))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('license', license))
+      ..add(DiagnosticsProperty('logo', logo))
+      ..add(DiagnosticsProperty('address', address));
   }
 
   @override
@@ -850,7 +887,7 @@ class __$$_GbvAddressCopyWithImpl<$Res> extends _$GbvAddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GbvAddress implements _GbvAddress {
+class _$_GbvAddress with DiagnosticableTreeMixin implements _GbvAddress {
   const _$_GbvAddress(
       {required this.id,
       this.country,
@@ -883,8 +920,22 @@ class _$_GbvAddress implements _GbvAddress {
   final String? status;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'GbvAddress(id: $id, country: $country, city: $city, latitude: $latitude, longitude: $longitude, type: $type, status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GbvAddress'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('country', country))
+      ..add(DiagnosticsProperty('city', city))
+      ..add(DiagnosticsProperty('latitude', latitude))
+      ..add(DiagnosticsProperty('longitude', longitude))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -958,5 +1009,204 @@ abstract class _GbvAddress implements GbvAddress {
   @override
   @JsonKey(ignore: true)
   _$$_GbvAddressCopyWith<_$_GbvAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GbvReport _$GbvReportFromJson(Map<String, dynamic> json) {
+  return _GbvReport.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GbvReport {
+  String? get message => throw _privateConstructorUsedError;
+  String? get user_id => throw _privateConstructorUsedError;
+  String? get abuse_types_id => throw _privateConstructorUsedError;
+  String? get file => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GbvReportCopyWith<GbvReport> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GbvReportCopyWith<$Res> {
+  factory $GbvReportCopyWith(GbvReport value, $Res Function(GbvReport) then) =
+      _$GbvReportCopyWithImpl<$Res>;
+  $Res call(
+      {String? message, String? user_id, String? abuse_types_id, String? file});
+}
+
+/// @nodoc
+class _$GbvReportCopyWithImpl<$Res> implements $GbvReportCopyWith<$Res> {
+  _$GbvReportCopyWithImpl(this._value, this._then);
+
+  final GbvReport _value;
+  // ignore: unused_field
+  final $Res Function(GbvReport) _then;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? user_id = freezed,
+    Object? abuse_types_id = freezed,
+    Object? file = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user_id: user_id == freezed
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      abuse_types_id: abuse_types_id == freezed
+          ? _value.abuse_types_id
+          : abuse_types_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      file: file == freezed
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_GbvReportCopyWith<$Res> implements $GbvReportCopyWith<$Res> {
+  factory _$$_GbvReportCopyWith(
+          _$_GbvReport value, $Res Function(_$_GbvReport) then) =
+      __$$_GbvReportCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String? message, String? user_id, String? abuse_types_id, String? file});
+}
+
+/// @nodoc
+class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
+    implements _$$_GbvReportCopyWith<$Res> {
+  __$$_GbvReportCopyWithImpl(
+      _$_GbvReport _value, $Res Function(_$_GbvReport) _then)
+      : super(_value, (v) => _then(v as _$_GbvReport));
+
+  @override
+  _$_GbvReport get _value => super._value as _$_GbvReport;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+    Object? user_id = freezed,
+    Object? abuse_types_id = freezed,
+    Object? file = freezed,
+  }) {
+    return _then(_$_GbvReport(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user_id: user_id == freezed
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      abuse_types_id: abuse_types_id == freezed
+          ? _value.abuse_types_id
+          : abuse_types_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      file: file == freezed
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
+  const _$_GbvReport(
+      {this.message, this.user_id, this.abuse_types_id, this.file});
+
+  factory _$_GbvReport.fromJson(Map<String, dynamic> json) =>
+      _$$_GbvReportFromJson(json);
+
+  @override
+  final String? message;
+  @override
+  final String? user_id;
+  @override
+  final String? abuse_types_id;
+  @override
+  final String? file;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, file: $file)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GbvReport'))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('user_id', user_id))
+      ..add(DiagnosticsProperty('abuse_types_id', abuse_types_id))
+      ..add(DiagnosticsProperty('file', file));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GbvReport &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.user_id, user_id) &&
+            const DeepCollectionEquality()
+                .equals(other.abuse_types_id, abuse_types_id) &&
+            const DeepCollectionEquality().equals(other.file, file));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(user_id),
+      const DeepCollectionEquality().hash(abuse_types_id),
+      const DeepCollectionEquality().hash(file));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GbvReportCopyWith<_$_GbvReport> get copyWith =>
+      __$$_GbvReportCopyWithImpl<_$_GbvReport>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GbvReportToJson(this);
+  }
+}
+
+abstract class _GbvReport implements GbvReport {
+  const factory _GbvReport(
+      {final String? message,
+      final String? user_id,
+      final String? abuse_types_id,
+      final String? file}) = _$_GbvReport;
+
+  factory _GbvReport.fromJson(Map<String, dynamic> json) =
+      _$_GbvReport.fromJson;
+
+  @override
+  String? get message;
+  @override
+  String? get user_id;
+  @override
+  String? get abuse_types_id;
+  @override
+  String? get file;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GbvReportCopyWith<_$_GbvReport> get copyWith =>
       throw _privateConstructorUsedError;
 }

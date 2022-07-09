@@ -50,7 +50,6 @@ class GbvController extends GetxController {
     await getCurrentLocation().then((value) {
       currentLocation = LatLng(value.latitude, value.longitude);
     });
-    await getGbvies();
   }
 
   Future<void> getGbvies() async {
@@ -113,5 +112,17 @@ class GbvController extends GetxController {
             (1 - c((currentLocation.longitude - loc1.longitude) * p)) /
             2;
     return 12742 * asin(sqrt(a));
+  }
+
+  Future<void> reportGbv(GbvReport report) async {
+    status = RxStatus.loading();
+    await _gbvRepository.reportGbv(report).then((value) {
+      value.success
+          ? {
+              Get.back(),
+              status = RxStatus.success(),
+            }
+          : status = RxStatus.error();
+    });
   }
 }

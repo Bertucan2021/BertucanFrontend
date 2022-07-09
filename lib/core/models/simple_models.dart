@@ -30,3 +30,10 @@ class QuestionnaireModel {
         'answerIndexs': answerIndexs,
       };
 }
+
+class NormalResponse {
+  bool success;
+  NormalResponse({
+    required this.success,
+  });
+}

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bertucanfrontend/core/adapters/gbv_adapters.dart';
 import 'package:bertucanfrontend/core/enums/common_enums.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/core/services/api/api_client.dart';
 
 class GbvRepository implements IGbvRepository {
@@ -24,5 +25,16 @@ class GbvRepository implements IGbvRepository {
       return gbvies;
     }
     return null;
+  }
+
+  @override
+  Future<NormalResponse> reportGbv(GbvReport reportPayload) async {
+    Map<String, dynamic> extra = {};
+    extra = reportPayload.toJson();
+    extra.removeWhere((key, value) => key == 'file');
+    var response =
+        await apiClient.uploadFile(reportPayload.file!, extra, "/reports");
+    print(response);
+    return NormalResponse(success: response["success"] as bool);
   }
 }

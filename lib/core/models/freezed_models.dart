@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'freezed_models.g.dart';
@@ -66,3 +67,16 @@ class GbvAddress with _$GbvAddress {
 
 double? _stringOrNullToDoubleConverter(dynamic val) =>
     val == null ? null : double.tryParse(val.toString());
+
+@freezed
+abstract class GbvReport with _$GbvReport {
+  const factory GbvReport({
+    String? message,
+    String? user_id,
+    String? abuse_types_id,
+    String? file,
+  }) = _GbvReport;
+
+  factory GbvReport.fromJson(Map<String, dynamic> json) =>
+      _$GbvReportFromJson(json);
+}

@@ -83,3 +83,18 @@ Map<String, dynamic> _$$_GbvAddressToJson(_$_GbvAddress instance) =>
       'type': instance.type,
       'status': instance.status,
     };
+
+_$_GbvReport _$$_GbvReportFromJson(Map<String, dynamic> json) => _$_GbvReport(
+      message: json['message'] as String?,
+      user_id: json['user_id'] as String?,
+      abuse_types_id: json['abuse_types_id'] as String?,
+      file: json['file'] as String?,
+    );
+
+Map<String, dynamic> _$$_GbvReportToJson(_$_GbvReport instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'user_id': instance.user_id,
+      'abuse_types_id': instance.abuse_types_id,
+      'file': instance.file,
+    };
