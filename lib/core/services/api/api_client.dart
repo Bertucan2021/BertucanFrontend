@@ -35,7 +35,9 @@ class ApiClient {
       Map<String, dynamic>? queryParameters,
       Map<String, dynamic>? data}) async {
     try {
-      dioClient.updateBaseUrl(port ?? '8008');
+      log("request: $requestType $path");
+      log("data: $data");
+      log("queryParameters: $queryParameters");
       if (requiresAuth) await dioClient.addAuthorizationInterceptor();
       if (requiresDefaultParams && data != null) {
         String locale = GetStorage().read<String>('locale') ?? 'en';
@@ -181,7 +183,6 @@ class ApiClient {
       log('form payload here: $formPayload');
       var formData = FormData.fromMap(formPayload);
 
-      dioClient.updateBaseUrl(port ?? '8008');
       final response = await dioClient.post(endPoint, data: formData);
       // Iterable l = json.decode(jsonEncode(response));
       // return List<Files>.from(l.map((model) => Files.fromJson(model)).toList());

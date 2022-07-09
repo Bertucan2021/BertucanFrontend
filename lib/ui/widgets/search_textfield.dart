@@ -5,11 +5,13 @@ import 'package:get/get.dart';
 class SearchTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
-  const SearchTextField({
-    Key? key,
-    required this.hintText,
-    required this.controller,
-  }) : super(key: key);
+  final Function(String)? onChanged;
+  const SearchTextField(
+      {Key? key,
+      required this.hintText,
+      required this.controller,
+      this.onChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class SearchTextField extends StatelessWidget {
           prefixIcon: const Icon(Icons.search),
         ),
         controller: controller,
+        onChanged: onChanged,
       ),
     );
   }

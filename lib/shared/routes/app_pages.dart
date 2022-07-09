@@ -1,5 +1,6 @@
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/ui/bindings/auth_binding.dart';
+import 'package:bertucanfrontend/ui/bindings/gbv_bindings.dart';
 import 'package:bertucanfrontend/ui/bindings/home_binding.dart';
 import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
@@ -35,7 +36,7 @@ abstract class AppPages {
     GetPage(
         name: Routes.homePage,
         page: () => const HomePage(),
-        binding: HomeBinding()),
+        bindings: [HomeBinding(), GbvBinding()]),
     GetPage(
       name: Routes.questionnairePage,
       page: () => QuestionnairePage(),
@@ -73,9 +74,9 @@ abstract class AppPages {
       page: () => const DailyDetailPage(),
     ),
     GetPage(
-      name: Routes.logPage, 
+      name: Routes.logPage,
       page: () => LogPage(),
-      ),
+    ),
     GetPage(
       name: Routes.gbvLocationPage,
       page: () => const GbvLocationPage(),

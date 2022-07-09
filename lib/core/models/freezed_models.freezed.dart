@@ -355,3 +355,608 @@ abstract class _UserToLogin implements UserToLogin {
   _$$_UserToLoginCopyWith<_$_UserToLogin> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Gbv _$GbvFromJson(Map<String, dynamic> json) {
+  return _Gbv.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Gbv {
+  int get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get phone_number => throw _privateConstructorUsedError;
+  int? get address_id => throw _privateConstructorUsedError;
+  int? get membership_id => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  String? get license => throw _privateConstructorUsedError;
+  String? get logo => throw _privateConstructorUsedError;
+  GbvAddress? get address => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GbvCopyWith<Gbv> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GbvCopyWith<$Res> {
+  factory $GbvCopyWith(Gbv value, $Res Function(Gbv) then) =
+      _$GbvCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String? name,
+      String? description,
+      String? phone_number,
+      int? address_id,
+      int? membership_id,
+      String? status,
+      String? license,
+      String? logo,
+      GbvAddress? address});
+
+  $GbvAddressCopyWith<$Res>? get address;
+}
+
+/// @nodoc
+class _$GbvCopyWithImpl<$Res> implements $GbvCopyWith<$Res> {
+  _$GbvCopyWithImpl(this._value, this._then);
+
+  final Gbv _value;
+  // ignore: unused_field
+  final $Res Function(Gbv) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? phone_number = freezed,
+    Object? address_id = freezed,
+    Object? membership_id = freezed,
+    Object? status = freezed,
+    Object? license = freezed,
+    Object? logo = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address_id: address_id == freezed
+          ? _value.address_id
+          : address_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      membership_id: membership_id == freezed
+          ? _value.membership_id
+          : membership_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      license: license == freezed
+          ? _value.license
+          : license // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logo: logo == freezed
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as GbvAddress?,
+    ));
+  }
+
+  @override
+  $GbvAddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $GbvAddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_GbvCopyWith<$Res> implements $GbvCopyWith<$Res> {
+  factory _$$_GbvCopyWith(_$_Gbv value, $Res Function(_$_Gbv) then) =
+      __$$_GbvCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int id,
+      String? name,
+      String? description,
+      String? phone_number,
+      int? address_id,
+      int? membership_id,
+      String? status,
+      String? license,
+      String? logo,
+      GbvAddress? address});
+
+  @override
+  $GbvAddressCopyWith<$Res>? get address;
+}
+
+/// @nodoc
+class __$$_GbvCopyWithImpl<$Res> extends _$GbvCopyWithImpl<$Res>
+    implements _$$_GbvCopyWith<$Res> {
+  __$$_GbvCopyWithImpl(_$_Gbv _value, $Res Function(_$_Gbv) _then)
+      : super(_value, (v) => _then(v as _$_Gbv));
+
+  @override
+  _$_Gbv get _value => super._value as _$_Gbv;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? phone_number = freezed,
+    Object? address_id = freezed,
+    Object? membership_id = freezed,
+    Object? status = freezed,
+    Object? license = freezed,
+    Object? logo = freezed,
+    Object? address = freezed,
+  }) {
+    return _then(_$_Gbv(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address_id: address_id == freezed
+          ? _value.address_id
+          : address_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      membership_id: membership_id == freezed
+          ? _value.membership_id
+          : membership_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      license: license == freezed
+          ? _value.license
+          : license // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logo: logo == freezed
+          ? _value.logo
+          : logo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as GbvAddress?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Gbv implements _Gbv {
+  const _$_Gbv(
+      {required this.id,
+      this.name,
+      this.description,
+      this.phone_number,
+      this.address_id,
+      this.membership_id,
+      this.status,
+      this.license,
+      this.logo,
+      this.address});
+
+  factory _$_Gbv.fromJson(Map<String, dynamic> json) => _$$_GbvFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String? name;
+  @override
+  final String? description;
+  @override
+  final String? phone_number;
+  @override
+  final int? address_id;
+  @override
+  final int? membership_id;
+  @override
+  final String? status;
+  @override
+  final String? license;
+  @override
+  final String? logo;
+  @override
+  final GbvAddress? address;
+
+  @override
+  String toString() {
+    return 'Gbv(id: $id, name: $name, description: $description, phone_number: $phone_number, address_id: $address_id, membership_id: $membership_id, status: $status, license: $license, logo: $logo, address: $address)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Gbv &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.phone_number, phone_number) &&
+            const DeepCollectionEquality()
+                .equals(other.address_id, address_id) &&
+            const DeepCollectionEquality()
+                .equals(other.membership_id, membership_id) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.license, license) &&
+            const DeepCollectionEquality().equals(other.logo, logo) &&
+            const DeepCollectionEquality().equals(other.address, address));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(phone_number),
+      const DeepCollectionEquality().hash(address_id),
+      const DeepCollectionEquality().hash(membership_id),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(license),
+      const DeepCollectionEquality().hash(logo),
+      const DeepCollectionEquality().hash(address));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GbvCopyWith<_$_Gbv> get copyWith =>
+      __$$_GbvCopyWithImpl<_$_Gbv>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GbvToJson(this);
+  }
+}
+
+abstract class _Gbv implements Gbv {
+  const factory _Gbv(
+      {required final int id,
+      final String? name,
+      final String? description,
+      final String? phone_number,
+      final int? address_id,
+      final int? membership_id,
+      final String? status,
+      final String? license,
+      final String? logo,
+      final GbvAddress? address}) = _$_Gbv;
+
+  factory _Gbv.fromJson(Map<String, dynamic> json) = _$_Gbv.fromJson;
+
+  @override
+  int get id;
+  @override
+  String? get name;
+  @override
+  String? get description;
+  @override
+  String? get phone_number;
+  @override
+  int? get address_id;
+  @override
+  int? get membership_id;
+  @override
+  String? get status;
+  @override
+  String? get license;
+  @override
+  String? get logo;
+  @override
+  GbvAddress? get address;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GbvCopyWith<_$_Gbv> get copyWith => throw _privateConstructorUsedError;
+}
+
+GbvAddress _$GbvAddressFromJson(Map<String, dynamic> json) {
+  return _GbvAddress.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GbvAddress {
+  int? get id => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+  dynamic get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+  dynamic get longitude => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GbvAddressCopyWith<GbvAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GbvAddressCopyWith<$Res> {
+  factory $GbvAddressCopyWith(
+          GbvAddress value, $Res Function(GbvAddress) then) =
+      _$GbvAddressCopyWithImpl<$Res>;
+  $Res call(
+      {int? id,
+      String? country,
+      String? city,
+      @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+          dynamic latitude,
+      @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+          dynamic longitude,
+      String? type,
+      String? status});
+}
+
+/// @nodoc
+class _$GbvAddressCopyWithImpl<$Res> implements $GbvAddressCopyWith<$Res> {
+  _$GbvAddressCopyWithImpl(this._value, this._then);
+
+  final GbvAddress _value;
+  // ignore: unused_field
+  final $Res Function(GbvAddress) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? country = freezed,
+    Object? city = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? type = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: latitude == freezed
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      longitude: longitude == freezed
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_GbvAddressCopyWith<$Res>
+    implements $GbvAddressCopyWith<$Res> {
+  factory _$$_GbvAddressCopyWith(
+          _$_GbvAddress value, $Res Function(_$_GbvAddress) then) =
+      __$$_GbvAddressCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int? id,
+      String? country,
+      String? city,
+      @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+          dynamic latitude,
+      @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+          dynamic longitude,
+      String? type,
+      String? status});
+}
+
+/// @nodoc
+class __$$_GbvAddressCopyWithImpl<$Res> extends _$GbvAddressCopyWithImpl<$Res>
+    implements _$$_GbvAddressCopyWith<$Res> {
+  __$$_GbvAddressCopyWithImpl(
+      _$_GbvAddress _value, $Res Function(_$_GbvAddress) _then)
+      : super(_value, (v) => _then(v as _$_GbvAddress));
+
+  @override
+  _$_GbvAddress get _value => super._value as _$_GbvAddress;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? country = freezed,
+    Object? city = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? type = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_$_GbvAddress(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latitude: latitude == freezed ? _value.latitude : latitude,
+      longitude: longitude == freezed ? _value.longitude : longitude,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GbvAddress implements _GbvAddress {
+  const _$_GbvAddress(
+      {required this.id,
+      this.country,
+      this.city,
+      @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+          this.latitude,
+      @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+          this.longitude,
+      this.type,
+      this.status});
+
+  factory _$_GbvAddress.fromJson(Map<String, dynamic> json) =>
+      _$$_GbvAddressFromJson(json);
+
+  @override
+  final int? id;
+  @override
+  final String? country;
+  @override
+  final String? city;
+  @override
+  @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+  final dynamic latitude;
+  @override
+  @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+  final dynamic longitude;
+  @override
+  final String? type;
+  @override
+  final String? status;
+
+  @override
+  String toString() {
+    return 'GbvAddress(id: $id, country: $country, city: $city, latitude: $latitude, longitude: $longitude, type: $type, status: $status)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GbvAddress &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.latitude, latitude) &&
+            const DeepCollectionEquality().equals(other.longitude, longitude) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.status, status));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(country),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(latitude),
+      const DeepCollectionEquality().hash(longitude),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(status));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GbvAddressCopyWith<_$_GbvAddress> get copyWith =>
+      __$$_GbvAddressCopyWithImpl<_$_GbvAddress>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GbvAddressToJson(this);
+  }
+}
+
+abstract class _GbvAddress implements GbvAddress {
+  const factory _GbvAddress(
+      {required final int? id,
+      final String? country,
+      final String? city,
+      @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+          final dynamic latitude,
+      @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+          final dynamic longitude,
+      final String? type,
+      final String? status}) = _$_GbvAddress;
+
+  factory _GbvAddress.fromJson(Map<String, dynamic> json) =
+      _$_GbvAddress.fromJson;
+
+  @override
+  int? get id;
+  @override
+  String? get country;
+  @override
+  String? get city;
+  @override
+  @JsonKey(name: 'latitude', fromJson: _stringOrNullToDoubleConverter)
+  dynamic get latitude;
+  @override
+  @JsonKey(name: 'longitude', fromJson: _stringOrNullToDoubleConverter)
+  dynamic get longitude;
+  @override
+  String? get type;
+  @override
+  String? get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GbvAddressCopyWith<_$_GbvAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}

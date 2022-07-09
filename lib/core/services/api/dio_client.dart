@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:bertucanfrontend/utils/constants.dart';
 import 'package:connectivity/connectivity.dart';
@@ -30,6 +31,7 @@ class DioClient {
       ..httpClientAdapter
       ..options.headers = {'Content-Type': 'application/json; charset=UTF-8'};
 
+    log('DioClient: ${_dio.options.baseUrl}');
     // if (kDebugMode) {
     //   _dio.interceptors.add(LogInterceptor(
     //       responseBody: true,
