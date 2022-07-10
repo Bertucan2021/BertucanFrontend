@@ -24,6 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isPasswordVisible = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -83,24 +84,67 @@ class _SignUpPageState extends State<SignUpPage> {
                 label: "full_name",
                 hintText: "marry_doe",
                 controller: _nameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "full_name_required".tr;
+                  }
+                  return null;
+                },
               ),
               CustomTextField(
-                  label: "email",
-                  hintText: "username@example.com",
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress),
+                label: "email",
+                hintText: "username@example.com",
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "email_required".tr;
+                  }
+                  if (!RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return "invalid_email".tr;
+                  }
+                  return null;
+                },
+              ),
               CustomTextField(
                 label: "phone",
                 hintText: "09923...",
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "phone_required".tr;
+                  }
+                  if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$").hasMatch(value)) {
+                    return "invalid_phone".tr;
+                  }
+                  return null;
+                },
               ),
               CustomTextField(
                 label: "password",
                 hintText: "password",
                 controller: _passwordController,
-                rightIcon: Icons.remove_red_eye,
-                obscureText: true,
+                rightIcon:
+                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                obscureText: !isPasswordVisible,
+                onRightIconPressed: () {
+                  setState(() {
+                    isPasswordVisible = !isPasswordVisible;
+                  });
+                  print("sett");
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "password_required".tr;
+                  }
+                  if (value.length < 6) {
+                    return "password_too_short".tr;
+                  }
+                  return null;
+                },
               ),
               const SizedBox(
                 height: 40,

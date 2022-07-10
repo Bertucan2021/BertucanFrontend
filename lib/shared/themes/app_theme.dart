@@ -109,7 +109,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(15),
         color: textFieldGrey,
       );
- static BoxDecoration textFieldDecoration2() => BoxDecoration(
+  static BoxDecoration textFieldDecoration2() => BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: peachBackground,
         border: Border.all(
@@ -158,5 +158,5 @@ class AppTheme {
   static InputDecoration textFieldInputDecoration() => const InputDecoration(
       border: InputBorder.none,
       hintStyle: AppTheme.hintTextStyle,
-      contentPadding: EdgeInsets.only(left: 10));
+      contentPadding: EdgeInsets.all(10));
 }

@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final IconData? rightIcon;
   final IconData? leftIcon;
+  final Function()? onRightIconPressed;
   final FormFieldValidator<String>? validator;
   final String hintText;
   final TextEditingController controller;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.rightIcon,
     this.leftIcon,
+    this.onRightIconPressed,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
   }) : super(key: key);
@@ -45,8 +47,22 @@ class CustomTextField extends StatelessWidget {
                   keyboardType: keyboardType,
                   validator: validator,
                   style: AppTheme.normalTextStyle,
-                  decoration: AppTheme.textFieldInputDecoration()
-                      .copyWith(hintText: hintText, suffix: rightIcon != null ? Icon(rightIcon) : null, prefix: leftIcon != null ? Icon(leftIcon) : null)),
+                  decoration: AppTheme.textFieldInputDecoration().copyWith(
+                    hintText: hintText,
+                    suffix: rightIcon != null
+                        ? IconButton(
+                            icon: Icon(rightIcon),
+                            onPressed: onRightIconPressed ?? () {})
+                        : null,
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.red,
+                      ),
+                    ),
+                    errorStyle:
+                        AppTheme.greySubtitleStyle.copyWith(color: Colors.red),
+                    prefix: leftIcon != null ? Icon(leftIcon) : null,
+                  )),
             ),
           ],
         ));
