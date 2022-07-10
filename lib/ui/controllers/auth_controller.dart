@@ -52,4 +52,16 @@ class AuthController extends GetxController {
       status = RxStatus.error(error);
     });
   }
+
+  setPasscode(String passcode) async {
+    _authRepository.setPasscode(passcode);
+  }
+
+  String getPasscode() {
+    return _authRepository.getPasscode();
+  }
+
+  deletePasscode() {
+    _authRepository.deletePasscode();
+  }
 }
