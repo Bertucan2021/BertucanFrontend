@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
@@ -5,16 +6,12 @@ import 'package:flutter/material.dart';
 import '../../shared/themes/app_theme.dart';
 
 class Questionnaire extends StatefulWidget {
-  final String question;
-  final List<String> answers;
+  final QuestionnaireModel questionnaire;
   final Function(List<int>) onAnswer;
-  final bool isMultiple;
   const Questionnaire({
     Key? key,
-    required this.question,
-    required this.answers,
+    required this.questionnaire,
     required this.onAnswer,
-    this.isMultiple = false,
   }) : super(key: key);
 
   @override
@@ -31,7 +28,7 @@ class _QuestionnaireState extends State<Questionnaire> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           LocalizedText(
-            widget.question,
+            widget.questionnaire.question,
             style: AppTheme.titleStyle.copyWith(color: AppTheme.textBlack),
             textAlign: TextAlign.center,
           ),
@@ -41,7 +38,7 @@ class _QuestionnaireState extends State<Questionnaire> {
               itemBuilder: (context, index) {
                 return InkWell(
                     onTap: () {
-                      if (!widget.isMultiple) {
+                      if (!widget.questionnaire.isMultiple) {
                         setState(() {
                           answersIndexes.add(index);
                         });
@@ -66,7 +63,7 @@ class _QuestionnaireState extends State<Questionnaire> {
                       padding: EdgeInsets.only(top: 15, bottom: 15, left: 20),
                       margin: EdgeInsets.symmetric(vertical: 15),
                       child: LocalizedText(
-                        widget.answers[index],
+                        widget.questionnaire.answers[index],
                         style: AppTheme.buttonLabelStyle.copyWith(
                           color: answersIndexes.contains(index)
                               ? AppTheme.white
@@ -75,10 +72,10 @@ class _QuestionnaireState extends State<Questionnaire> {
                       ),
                     ));
               },
-              itemCount: widget.answers.length,
+              itemCount: widget.questionnaire.answers.length,
             ),
           ),
-          if (widget.isMultiple)
+          if (widget.questionnaire.isMultiple)
             Column(
               children: [
                 const SizedBox(height: 10),

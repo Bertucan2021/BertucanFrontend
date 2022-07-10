@@ -5,18 +5,21 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
   final String text;
   final Function() onPressed;
-  const RoundedButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
+  final bool isEnabled;
+  const RoundedButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      this.isEnabled = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onPressed,
+      onTap: isEnabled ? onPressed : null,
       child: Container(
-        decoration: AppTheme.primaryColoredRoundedButtonDecoration(),
+        decoration: AppTheme.primaryColoredRoundedButtonDecoration()
+            .copyWith(color: isEnabled ? null : AppTheme.boxGrey),
         width: MediaQuery.of(context).size.width * 0.6,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: LocalizedText(

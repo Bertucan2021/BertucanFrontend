@@ -1,14 +1,14 @@
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/gbv_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
-import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class GbvDetailPage extends StatelessWidget {
   const GbvDetailPage({Key? key}) : super(key: key);
+  GbvController get gbvController => Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +81,8 @@ class GbvDetailPage extends StatelessWidget {
                   const SizedBox(height: 50),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
-                    child: const Text(
-                      "I need a designer for my new website. The project is just at the beginning and I need wireframes before I start coding the website. I only want wireframes and I don’t want prototype or UI design.",
+                    child: Text(
+                      gbvController.selectedGbv.description ?? "",
                       textAlign: TextAlign.center,
                       maxLines: 5,
                       style: AppTheme.articleTextStyle,

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:bertucanfrontend/ui/controllers/gbv_controller.dart';
+import 'package:bertucanfrontend/utils/constants.dart';
 import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,44 +17,56 @@ class GbvLocationPage extends StatefulWidget {
 }
 
 class _GbvLocationPageState extends State<GbvLocationPage> {
-  final Completer<GoogleMapController> _controller = Completer();
-  Position? _currentPosition;
+  final Completer<GoogleMapController> _mapController = Completer();
   final Set<Marker> _marker = {};
+  GbvController gbvController = Get.find();
+
   @override
   initState() {
     super.initState();
   }
 
   _onMapCreated(GoogleMapController controller) async {
-    _controller.complete(controller);
-    await getCurrentLocation().then((value) {
-      _currentPosition = value;
-      controller.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: LatLng(value.latitude, value.longitude),
-            zoom: 15,
-          ),
+    _mapController.complete(controller);
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: gbvController.currentLocation,
+          zoom: 15,
         ),
-      );
-    });
+      ),
+    );
     setState(() {
       _marker.add(
         Marker(
           markerId: const MarkerId('currentPosition'),
-          position:
-              LatLng(_currentPosition!.latitude, _currentPosition!.longitude),
-          infoWindow: const InfoWindow(
-            title: 'Your current position',
-            snippet: 'You are here',
+          position: gbvController.currentLocation,
+          infoWindow: InfoWindow(
+            title: 'your_current_position'.tr,
+            snippet: 'you_are_here'.tr,
           ),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         ),
       );
+      if (gbvController.selectedGbv.address?.latitude != null &&
+          gbvController.selectedGbv.address?.longitude != null) {
+        _marker.add(
+          Marker(
+            markerId: const MarkerId('selectedGbvPosition'),
+            position: LatLng(gbvController.selectedGbv.address!.latitude!,
+                gbvController.selectedGbv.address!.longitude!),
+            infoWindow: InfoWindow(
+              title: 'gbv'.tr,
+              snippet: 'gbv_is_here'.tr,
+            ),
+          ),
+        );
+      }
     });
   }
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: kInitialLocation,
     zoom: 14.4746,
   );
 

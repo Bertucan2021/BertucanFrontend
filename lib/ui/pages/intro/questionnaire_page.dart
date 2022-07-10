@@ -1,6 +1,8 @@
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/components/questionnaire.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,15 @@ class QuestionnairePage extends StatefulWidget {
 class _QuestionnairePageState extends State<QuestionnairePage> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
+  final AuthController _authController = Get.find();
+  List<Questionnaire> questionnaireWidgets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    setQuestionnairiesWidget();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,77 +59,26 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
         ),
         Expanded(
           child: PageView(
-            controller: _pageController,
-            children: [
-              Questionnaire(
-                question:
-                    "Is your menstrual cycle regular(varies by no more than 7 days)?",
-                answers: [
-                  "My cycle is  regular",
-                  "My cycle is  irregular",
-                  "I don’t know"
-                ],
-                onAnswer: (answerIndexs) {
-                  _changeQuestion(1);
-                },
-              ),
-              Questionnaire(
-                question:
-                    "Do you experiance discomfort due to any of the following?",
-                answers: [
-                  "Painful menstrual cramps",
-                  "PMS symptoms",
-                  "Unusual discharge","Heavy menstrual flow","Mood swings",
-                  "Other","No, nothing bothers me"
-                ],
-                 onAnswer: (answerIndexs) {
-                  _changeQuestion(2);
-                },
-              ),
-                 Questionnaire(
-                question:
-                    "Do you experiance discomfort due to any of the following?",
-                answers: [
-                  "Painful menstrual cramps",
-                  "PMS symptoms",
-                  "Unusual discharge","Heavy menstrual flow","Mood swings",
-                  "Other","No, nothing bothers me"
-                ],
-                isMultiple: true,
-                  onAnswer: (answerIndexs) {
-                  _changeQuestion(3);
-                },
-              ),
-                Questionnaire(
-                question:
-                    "Do you have any reproductive health disorders (endometriosis, PCOS, etc.)?",
-                answers: [
-                  "Yes",
-                  "No",
-                  "No, but I used to",
-                  "I don’t know"
-                ],
-                  onAnswer: (answerIndexs) {
-                  _changeQuestion(4);
-                },
-              ),  Questionnaire(
-                question:
-                    "Is there anything you want to improve about your sleep?",
-                answers: [
-                  "No, I sleep well","Difficulty falling sleep"
-                  "Waking up tired","Waking up during night"
-                  "Lack of sleep schedule","Insomnia",
-                  "Other"
-                ],
-                onAnswer: (answerIndexs) {
-                  Get.toNamed(Routes.homePage);
-                },
-              ),
-            ],
-          ),
+              controller: _pageController, children: questionnaireWidgets),
         ),
       ],
     ));
+  }
+
+  void setQuestionnairiesWidget() {
+    List<Questionnaire> questionnairies = [];
+    _authController.getQuestionnairies();
+    for (var element in _authController.questionnairies) {
+      questionnairies.add(Questionnaire(
+          questionnaire: element,
+          onAnswer: (answers) {
+            _authController.setAnswer(element, answers);
+            _changeQuestion(element.id);
+          }));
+    }
+    setState(() {
+      questionnaireWidgets = questionnairies;
+    });
   }
 
   void _changeQuestion(int index) {
