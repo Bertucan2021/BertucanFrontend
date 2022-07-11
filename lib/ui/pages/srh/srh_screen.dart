@@ -3,7 +3,9 @@ import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/components/gbv_tile.dart';
 import 'package:bertucanfrontend/ui/components/srh_title.dart';
 import 'package:bertucanfrontend/ui/controllers/srh_controller.dart';
+import 'package:bertucanfrontend/ui/widgets/empty_data.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/ui/widgets/no_data.dart';
 import 'package:bertucanfrontend/ui/widgets/search_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +19,11 @@ class SrhScreen extends StatefulWidget {
 
 class _SrhScreenState extends State<SrhScreen> {
   SrhController controller = Get.find();
-
+   TextEditingController searchController = TextEditingController();
+ 
   @override
   void initState() {
-    controller.getSrh();
+    controller.getSrhs();
     super.initState();
   }
 
@@ -37,35 +40,39 @@ class _SrhScreenState extends State<SrhScreen> {
             const SizedBox(height: 10),
             SearchTextField(
                 hintText: 'search_article',
-                controller: TextEditingController()),
+                controller: searchController,
+                onChanged: (value) {
+                  controller.searchSrhByName(value);
+                },),
             const SizedBox(height: 10),
             Obx(() {
               if (controller.status.value.isLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else {
-                if (controller.srhs.isEmpty) {
-                  return LocalizedText("no_articles",
-                      style: AppTheme.titleStyle2);
-                } else {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: controller.srhs.length,
-                      itemBuilder: (context, index) {
-                        return SrhTitle(
-                          name: controller.srhs[index].title ?? "",
+              } else if (controller.status.value.isSuccess) {
+                  if (controller.srhToShow.isEmpty) {
+                    return const EmptyData();
+                  } else {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: controller.srhToShow.length,
+                        itemBuilder: (context, index) => SrhTitle(
+                          srh: controller.srhToShow[index],
+                          name: controller.srhToShow[index].title ?? "",
                           description:
-                              controller.srhs[index].small_description ?? "",
+                              controller.srhToShow[index].small_description ?? "",
                           onTap: () {
-                            controller.selectSrh(controller.srhs[index]);
+                            controller
+                                .selectSrh(controller.srhToShow[index]);
                           },
-                        );
-                      },
-                    ),
-                  );
+                        ),
+                      ),
+                    );
+                  }
+                } else {
+                  return const NoData();
                 }
-              }
             })
           ],
         ),

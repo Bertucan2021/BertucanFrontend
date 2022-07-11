@@ -19,7 +19,7 @@ class SrhDetailPage extends StatelessWidget {
             Row(
               children: [
                 const SizedBox(width: 10),
-                IconButton(
+                IconButton( 
                   onPressed: () {
                     Get.back();
                   },

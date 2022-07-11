@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,13 @@ import 'package:get/get.dart';
 
 class SrhTitle extends StatelessWidget {
   final String name;
+  final Srh? srh;
   final String description;
   final String? imageUrl;
   final Function()? onTap;
   const SrhTitle({
     Key? key,
+    required this.srh,
     required this.name,
     required this.description,
     this.onTap,
