@@ -1210,3 +1210,694 @@ abstract class _GbvReport implements GbvReport {
   _$$_GbvReportCopyWith<_$_GbvReport> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Srh _$SrhFromJson(Map<String, dynamic> json) {
+  return _Srh.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Srh {
+  int get id => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get introduction => throw _privateConstructorUsedError;
+  String? get icon => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
+  String? get small_description => throw _privateConstructorUsedError;
+  int? get article_by => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SrhCopyWith<Srh> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SrhCopyWith<$Res> {
+  factory $SrhCopyWith(Srh value, $Res Function(Srh) then) =
+      _$SrhCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String? title,
+      String? introduction,
+      String? icon,
+      String? body,
+      String? small_description,
+      int? article_by,
+      String? status,
+      User? user});
+
+  $UserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class _$SrhCopyWithImpl<$Res> implements $SrhCopyWith<$Res> {
+  _$SrhCopyWithImpl(this._value, this._then);
+
+  final Srh _value;
+  // ignore: unused_field
+  final $Res Function(Srh) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? introduction = freezed,
+    Object? icon = freezed,
+    Object? body = freezed,
+    Object? small_description = freezed,
+    Object? article_by = freezed,
+    Object? status = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      introduction: introduction == freezed
+          ? _value.introduction
+          : introduction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      small_description: small_description == freezed
+          ? _value.small_description
+          : small_description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      article_by: article_by == freezed
+          ? _value.article_by
+          : article_by // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_SrhCopyWith<$Res> implements $SrhCopyWith<$Res> {
+  factory _$$_SrhCopyWith(_$_Srh value, $Res Function(_$_Srh) then) =
+      __$$_SrhCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int id,
+      String? title,
+      String? introduction,
+      String? icon,
+      String? body,
+      String? small_description,
+      int? article_by,
+      String? status,
+      User? user});
+
+  @override
+  $UserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$$_SrhCopyWithImpl<$Res> extends _$SrhCopyWithImpl<$Res>
+    implements _$$_SrhCopyWith<$Res> {
+  __$$_SrhCopyWithImpl(_$_Srh _value, $Res Function(_$_Srh) _then)
+      : super(_value, (v) => _then(v as _$_Srh));
+
+  @override
+  _$_Srh get _value => super._value as _$_Srh;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? introduction = freezed,
+    Object? icon = freezed,
+    Object? body = freezed,
+    Object? small_description = freezed,
+    Object? article_by = freezed,
+    Object? status = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_$_Srh(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      introduction: introduction == freezed
+          ? _value.introduction
+          : introduction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      small_description: small_description == freezed
+          ? _value.small_description
+          : small_description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      article_by: article_by == freezed
+          ? _value.article_by
+          : article_by // ignore: cast_nullable_to_non_nullable
+              as int?,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Srh with DiagnosticableTreeMixin implements _Srh {
+  const _$_Srh(
+      {required this.id,
+      this.title,
+      this.introduction,
+      this.icon,
+      this.body,
+      this.small_description,
+      this.article_by,
+      this.status,
+      this.user});
+
+  factory _$_Srh.fromJson(Map<String, dynamic> json) => _$$_SrhFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String? title;
+  @override
+  final String? introduction;
+  @override
+  final String? icon;
+  @override
+  final String? body;
+  @override
+  final String? small_description;
+  @override
+  final int? article_by;
+  @override
+  final String? status;
+  @override
+  final User? user;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Srh(id: $id, title: $title, introduction: $introduction, icon: $icon, body: $body, small_description: $small_description, article_by: $article_by, status: $status, user: $user)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Srh'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('introduction', introduction))
+      ..add(DiagnosticsProperty('icon', icon))
+      ..add(DiagnosticsProperty('body', body))
+      ..add(DiagnosticsProperty('small_description', small_description))
+      ..add(DiagnosticsProperty('article_by', article_by))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('user', user));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Srh &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.introduction, introduction) &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
+            const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality()
+                .equals(other.small_description, small_description) &&
+            const DeepCollectionEquality()
+                .equals(other.article_by, article_by) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.user, user));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(introduction),
+      const DeepCollectionEquality().hash(icon),
+      const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(small_description),
+      const DeepCollectionEquality().hash(article_by),
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(user));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SrhCopyWith<_$_Srh> get copyWith =>
+      __$$_SrhCopyWithImpl<_$_Srh>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SrhToJson(this);
+  }
+}
+
+abstract class _Srh implements Srh {
+  const factory _Srh(
+      {required final int id,
+      final String? title,
+      final String? introduction,
+      final String? icon,
+      final String? body,
+      final String? small_description,
+      final int? article_by,
+      final String? status,
+      final User? user}) = _$_Srh;
+
+  factory _Srh.fromJson(Map<String, dynamic> json) = _$_Srh.fromJson;
+
+  @override
+  int get id;
+  @override
+  String? get title;
+  @override
+  String? get introduction;
+  @override
+  String? get icon;
+  @override
+  String? get body;
+  @override
+  String? get small_description;
+  @override
+  int? get article_by;
+  @override
+  String? get status;
+  @override
+  User? get user;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SrhCopyWith<_$_Srh> get copyWith => throw _privateConstructorUsedError;
+}
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
+/// @nodoc
+mixin _$User {
+  int get id => throw _privateConstructorUsedError;
+  String? get first_name => throw _privateConstructorUsedError;
+  String? get last_name => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get profile_picture => throw _privateConstructorUsedError;
+  String? get log_status => throw _privateConstructorUsedError;
+  String? get birthdate => throw _privateConstructorUsedError;
+  String? get role => throw _privateConstructorUsedError;
+  int? get address_id => throw _privateConstructorUsedError;
+  String? get membership_id => throw _privateConstructorUsedError;
+  String? get remember_token => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String? first_name,
+      String? last_name,
+      String? email,
+      String? profile_picture,
+      String? log_status,
+      String? birthdate,
+      String? role,
+      int? address_id,
+      String? membership_id,
+      String? remember_token});
+}
+
+/// @nodoc
+class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._value, this._then);
+
+  final User _value;
+  // ignore: unused_field
+  final $Res Function(User) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
+    Object? profile_picture = freezed,
+    Object? log_status = freezed,
+    Object? birthdate = freezed,
+    Object? role = freezed,
+    Object? address_id = freezed,
+    Object? membership_id = freezed,
+    Object? remember_token = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profile_picture: profile_picture == freezed
+          ? _value.profile_picture
+          : profile_picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      log_status: log_status == freezed
+          ? _value.log_status
+          : log_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthdate: birthdate == freezed
+          ? _value.birthdate
+          : birthdate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address_id: address_id == freezed
+          ? _value.address_id
+          : address_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      membership_id: membership_id == freezed
+          ? _value.membership_id
+          : membership_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remember_token: remember_token == freezed
+          ? _value.remember_token
+          : remember_token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
+      __$$_UserCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {int id,
+      String? first_name,
+      String? last_name,
+      String? email,
+      String? profile_picture,
+      String? log_status,
+      String? birthdate,
+      String? role,
+      int? address_id,
+      String? membership_id,
+      String? remember_token});
+}
+
+/// @nodoc
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+    implements _$$_UserCopyWith<$Res> {
+  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+      : super(_value, (v) => _then(v as _$_User));
+
+  @override
+  _$_User get _value => super._value as _$_User;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
+    Object? profile_picture = freezed,
+    Object? log_status = freezed,
+    Object? birthdate = freezed,
+    Object? role = freezed,
+    Object? address_id = freezed,
+    Object? membership_id = freezed,
+    Object? remember_token = freezed,
+  }) {
+    return _then(_$_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      profile_picture: profile_picture == freezed
+          ? _value.profile_picture
+          : profile_picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      log_status: log_status == freezed
+          ? _value.log_status
+          : log_status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      birthdate: birthdate == freezed
+          ? _value.birthdate
+          : birthdate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      role: role == freezed
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address_id: address_id == freezed
+          ? _value.address_id
+          : address_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      membership_id: membership_id == freezed
+          ? _value.membership_id
+          : membership_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remember_token: remember_token == freezed
+          ? _value.remember_token
+          : remember_token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_User with DiagnosticableTreeMixin implements _User {
+  const _$_User(
+      {required this.id,
+      this.first_name,
+      this.last_name,
+      this.email,
+      this.profile_picture,
+      this.log_status,
+      this.birthdate,
+      this.role,
+      this.address_id,
+      this.membership_id,
+      this.remember_token});
+
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String? first_name;
+  @override
+  final String? last_name;
+  @override
+  final String? email;
+  @override
+  final String? profile_picture;
+  @override
+  final String? log_status;
+  @override
+  final String? birthdate;
+  @override
+  final String? role;
+  @override
+  final int? address_id;
+  @override
+  final String? membership_id;
+  @override
+  final String? remember_token;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, profile_picture: $profile_picture, log_status: $log_status, birthdate: $birthdate, role: $role, address_id: $address_id, membership_id: $membership_id, remember_token: $remember_token)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('first_name', first_name))
+      ..add(DiagnosticsProperty('last_name', last_name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('profile_picture', profile_picture))
+      ..add(DiagnosticsProperty('log_status', log_status))
+      ..add(DiagnosticsProperty('birthdate', birthdate))
+      ..add(DiagnosticsProperty('role', role))
+      ..add(DiagnosticsProperty('address_id', address_id))
+      ..add(DiagnosticsProperty('membership_id', membership_id))
+      ..add(DiagnosticsProperty('remember_token', remember_token));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_User &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.first_name, first_name) &&
+            const DeepCollectionEquality().equals(other.last_name, last_name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.profile_picture, profile_picture) &&
+            const DeepCollectionEquality()
+                .equals(other.log_status, log_status) &&
+            const DeepCollectionEquality().equals(other.birthdate, birthdate) &&
+            const DeepCollectionEquality().equals(other.role, role) &&
+            const DeepCollectionEquality()
+                .equals(other.address_id, address_id) &&
+            const DeepCollectionEquality()
+                .equals(other.membership_id, membership_id) &&
+            const DeepCollectionEquality()
+                .equals(other.remember_token, remember_token));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(first_name),
+      const DeepCollectionEquality().hash(last_name),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(profile_picture),
+      const DeepCollectionEquality().hash(log_status),
+      const DeepCollectionEquality().hash(birthdate),
+      const DeepCollectionEquality().hash(role),
+      const DeepCollectionEquality().hash(address_id),
+      const DeepCollectionEquality().hash(membership_id),
+      const DeepCollectionEquality().hash(remember_token));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UserCopyWith<_$_User> get copyWith =>
+      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserToJson(this);
+  }
+}
+
+abstract class _User implements User {
+  const factory _User(
+      {required final int id,
+      final String? first_name,
+      final String? last_name,
+      final String? email,
+      final String? profile_picture,
+      final String? log_status,
+      final String? birthdate,
+      final String? role,
+      final int? address_id,
+      final String? membership_id,
+      final String? remember_token}) = _$_User;
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+
+  @override
+  int get id;
+  @override
+  String? get first_name;
+  @override
+  String? get last_name;
+  @override
+  String? get email;
+  @override
+  String? get profile_picture;
+  @override
+  String? get log_status;
+  @override
+  String? get birthdate;
+  @override
+  String? get role;
+  @override
+  int? get address_id;
+  @override
+  String? get membership_id;
+  @override
+  String? get remember_token;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+}

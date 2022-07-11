@@ -1,12 +1,13 @@
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/srh_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SrhDetailPage extends StatelessWidget {
-  const SrhDetailPage({Key? key}) : super(key: key);
-
+   SrhDetailPage({Key? key}) : super(key: key);
+  SrhController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +76,7 @@ class SrhDetailPage extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Francisco Fisher",
+                              Text("${controller.selectedSrh.value.user?.first_name??""} ${controller.selectedSrh.value.user?.last_name??""}",
                                   style: AppTheme.titleStyle2),
                             ],
                           ),
@@ -91,23 +92,13 @@ class SrhDetailPage extends StatelessWidget {
                           )),
                       const SizedBox(height: 20),
                       Container(
-                        child: const Text(
-                          "I need a designer for my new website. The project is just at the beginning and I need wireframes before I start coding the website. I only want wireframes and I don’t want prototype or UI design.",
+                        child:  Text(controller.selectedSrh.value.body??"",
+                          style: AppTheme.articleTextStyle,
                           textAlign: TextAlign.left,
                           maxLines: 5,
-                          style: AppTheme.articleTextStyle,
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    child: const Text(
-                      "I need a designer for my new website. The project is just at the beginning and I need wireframes before I start coding the website. I only want wireframes and I don’t want prototype or UI design.",
-                      textAlign: TextAlign.left,
-                      maxLines: 5,
-                      style: AppTheme.articleTextStyle,
-                    ),
                   ),
                 ],
               ),

@@ -98,3 +98,57 @@ Map<String, dynamic> _$$_GbvReportToJson(_$_GbvReport instance) =>
       'abuse_types_id': instance.abuse_types_id,
       'file': instance.file,
     };
+
+_$_Srh _$$_SrhFromJson(Map<String, dynamic> json) => _$_Srh(
+      id: json['id'] as int,
+      title: json['title'] as String?,
+      introduction: json['introduction'] as String?,
+      icon: json['icon'] as String?,
+      body: json['body'] as String?,
+      small_description: json['small_description'] as String?,
+      article_by: json['article_by'] as int?,
+      status: json['status'] as String?,
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SrhToJson(_$_Srh instance) => <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'introduction': instance.introduction,
+      'icon': instance.icon,
+      'body': instance.body,
+      'small_description': instance.small_description,
+      'article_by': instance.article_by,
+      'status': instance.status,
+      'user': instance.user,
+    };
+
+_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+      id: json['id'] as int,
+      first_name: json['first_name'] as String?,
+      last_name: json['last_name'] as String?,
+      email: json['email'] as String?,
+      profile_picture: json['profile_picture'] as String?,
+      log_status: json['log_status'] as String?,
+      birthdate: json['birthdate'] as String?,
+      role: json['role'] as String?,
+      address_id: json['address_id'] as int?,
+      membership_id: json['membership_id'] as String?,
+      remember_token: json['remember_token'] as String?,
+    );
+
+Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+      'id': instance.id,
+      'first_name': instance.first_name,
+      'last_name': instance.last_name,
+      'email': instance.email,
+      'profile_picture': instance.profile_picture,
+      'log_status': instance.log_status,
+      'birthdate': instance.birthdate,
+      'role': instance.role,
+      'address_id': instance.address_id,
+      'membership_id': instance.membership_id,
+      'remember_token': instance.remember_token,
+    };
