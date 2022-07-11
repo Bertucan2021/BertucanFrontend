@@ -80,3 +80,44 @@ abstract class GbvReport with _$GbvReport {
   factory GbvReport.fromJson(Map<String, dynamic> json) =>
       _$GbvReportFromJson(json);
 }
+
+@freezed
+class Srh with _$Srh {
+  const factory Srh({
+    required int id,
+    String? title,
+    String? introduction,
+    String? icon,
+    String? body,
+    String? small_description,
+    int? article_by,
+    String? status,
+    User? user,
+
+  }) = _Srh;
+  
+  factory Srh.fromJson(Map<String, dynamic> json) =>
+      _$SrhFromJson(json);
+}
+
+
+@freezed
+class User with _$User {
+  const factory User({
+    required int id,
+    String? first_name,
+    String? last_name,
+    String? email,
+    String? profile_picture,
+    String? log_status,
+    String? birthdate,
+    String? role,
+    int? address_id,
+    String? membership_id,
+    String? remember_token,
+
+  }) = _User;
+  
+  factory User.fromJson(Map<String, dynamic> json) =>
+      _$UserFromJson(json);
+}
