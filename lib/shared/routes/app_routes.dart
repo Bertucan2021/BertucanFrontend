@@ -5,6 +5,7 @@ abstract class Routes {
   //auth
   static const signupPage = "/signupPage";
   static const loginPage = "/loginPage";
+  static const lockScreenPage = "/lockScreenPage";
 
   //main
   static const homePage = "/home_page";

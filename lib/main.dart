@@ -1,6 +1,6 @@
 import 'package:bertucanfrontend/shared/routes/app_pages.dart';
-import 'package:bertucanfrontend/shared/routes/app_routes.dart';
-import 'package:bertucanfrontend/ui/bindings/init_binding.dart';
+import 'package:bertucanfrontend/ui/bindings/auth_binding.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +8,8 @@ import 'package:get_storage/get_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  GetStorage storage = GetStorage();
+  storage.write('passcode', '1234');
   runApp(const MyApp());
 }
 
@@ -16,16 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var storage = GetStorage();
-    String initialRoute = Routes.introPage;
-    if (storage.hasData('answers')) {
-      initialRoute = Routes.homePage;
-    }
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: initialRoute,
-      initialBinding: InitBinding(),
+      initialRoute: getInitialRoute(),
+      initialBinding: AuthBinding(),
     );
   }
 }

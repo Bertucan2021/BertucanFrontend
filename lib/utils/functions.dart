@@ -1,6 +1,8 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/utils/confirm_dialog.dart';
 import "package:geolocator/geolocator.dart";
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 /// Determine the current position of the device.
 /// When the location services are not enabled or permissions
@@ -58,6 +60,20 @@ Future<Position> getCurrentLocation() async {
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
   return await Geolocator.getCurrentPosition();
+}
+
+String getInitialRoute() {
+  GetStorage storage = GetStorage();
+  if (!storage.hasData('token')) {
+    return Routes.lockScreenPage;
+    // return Routes.introPage;
+  } else if (!storage.hasData('answer')) {
+    return Routes.questionnairePage;
+  } else if (storage.hasData('passcode')) {
+    return Routes.lockScreenPage;
+  } else {
+    return Routes.homePage;
+  }
 }
 
 void toast(String title, String message) {

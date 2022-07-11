@@ -7,5 +7,8 @@ abstract class IAuthRepository {
   Future<void> logOut();
   List<QuestionnaireModel> getQuestionnairies();
   List<QuestionnaireModel> setQuestionnairies();
-  saveQuestionnairAnswers(List<QuestionnaireModel> questionnaires);
+  void saveQuestionnairAnswers(List<QuestionnaireModel> questionnaires);
+  void setPasscode(String passcode);
+  String getPasscode();
+  void deletePasscode();
 }

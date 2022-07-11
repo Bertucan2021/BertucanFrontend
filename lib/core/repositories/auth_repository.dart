@@ -98,4 +98,19 @@ class AuthRepository with IAuthRepository {
     storage.write('questionnaires', questionnaires);
     return questionnaires;
   }
+
+  @override
+  void deletePasscode() {
+    storage.remove("passcode");
+  }
+
+  @override
+  String getPasscode() {
+    return storage.read("passcode");
+  }
+
+  @override
+  void setPasscode(String passcode) {
+    storage.write("passcode", passcode);
+  }
 }
