@@ -9,9 +9,10 @@ part 'freezed_models.freezed.dart';
 class UserToSignUp with _$UserToSignUp {
   const factory UserToSignUp({
     required String email,
-    required String phoneNumber,
+    required String phone_number,
     required String password,
-    required String name,
+    required String first_name,
+    required String last_name,
   }) = _UserToSignUp;
 
   factory UserToSignUp.fromJson(Map<String, dynamic> json) =>
@@ -93,13 +94,10 @@ class Srh with _$Srh {
     int? article_by,
     String? status,
     User? user,
-
   }) = _Srh;
-  
-  factory Srh.fromJson(Map<String, dynamic> json) =>
-      _$SrhFromJson(json);
-}
 
+  factory Srh.fromJson(Map<String, dynamic> json) => _$SrhFromJson(json);
+}
 
 @freezed
 class User with _$User {
@@ -115,9 +113,7 @@ class User with _$User {
     int? address_id,
     String? membership_id,
     String? remember_token,
-
   }) = _User;
-  
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

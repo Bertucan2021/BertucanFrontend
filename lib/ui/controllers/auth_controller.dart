@@ -17,6 +17,12 @@ class AuthController extends GetxController {
     _status.value = value;
   }
 
+  final _user = User(id: -1).obs;
+  User get user => _user.value;
+  set user(User value) {
+    _user.value = value;
+  }
+
   final _questionnairies = <QuestionnaireModel>[].obs;
   List<QuestionnaireModel> get questionnairies => _questionnairies.value;
   set questionnairies(List<QuestionnaireModel> value) {
@@ -45,11 +51,30 @@ class AuthController extends GetxController {
   }
 
   Future<void> signUp(UserToSignUp signUpPayload) async {
+    log("adf");
     status = RxStatus.loading();
-    await _authRepository.signUp(signUpPayload).then((value) {
-      status = RxStatus.success();
-    }).catchError((error) {
-      status = RxStatus.error(error);
+    await _authRepository.signUp(signUpPayload).then((value) async {
+      if (value.success) {
+        await signIn(UserToLogin(
+          email: signUpPayload.email,
+          password: signUpPayload.password,
+        ));
+      } else {
+        status = RxStatus.error();
+      }
+    });
+  }
+
+  Future<void> signIn(UserToLogin loginPayload) async {
+    status = RxStatus.loading();
+    await _authRepository.signIn(loginPayload).then((value) {
+      if (value != null) {
+        status = RxStatus.success();
+        user = value;
+        Get.offAndToNamed(Routes.questionnairePage);
+      } else {
+        status = RxStatus.error();
+      }
     });
   }
 

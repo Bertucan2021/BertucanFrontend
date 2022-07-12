@@ -1,7 +1,8 @@
 import 'dart:io';
-
+import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
@@ -27,6 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isPasswordVisible = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  AuthController _authController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +89,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "full_name_required".tr;
+                  }
+                  if (value.split(" ").length != 2) {
+                    return "full_name_pattern_required";
                   }
                   return null;
                 },
@@ -149,15 +154,23 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 40,
               ),
-              RectangularButton(
+              Obx(
+                () => RectangularButton(
                   label: "register",
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      print("Form is valid");
-                    } else {
-                      print("Form is invalid");
+                      await _authController.signUp(UserToSignUp(
+                        first_name: _nameController.text.split(" ").first,
+                        last_name: _nameController.text.split(" ").first,
+                        email: _emailController.text,
+                        phone_number: _phoneController.text,
+                        password: _passwordController.text,
+                      ));
                     }
-                  }),
+                  },
+                  isActive: !_authController.status.isLoading,
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -216,14 +229,14 @@ class _SignUpPageState extends State<SignUpPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.photo_camera),
                 onPressed: () {
                   takePhoto(ImageSource.camera);
                 },
                 label: Text("Camera"),
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.photo_library),
                 onPressed: () {
                   takePhoto(ImageSource.gallery);

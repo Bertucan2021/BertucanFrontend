@@ -1,4 +1,6 @@
 import 'package:bertucanfrontend/shared/routes/app_pages.dart';
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/shared/translations/app_translation.dart';
 import 'package:bertucanfrontend/ui/bindings/auth_binding.dart';
 import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: getInitialRoute(),
+      initialRoute: Routes.introPage, // getInitialRoute(),
       initialBinding: AuthBinding(),
+      translations: AppTranslation(),
     );
   }
 }

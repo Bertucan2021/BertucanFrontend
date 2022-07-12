@@ -9,17 +9,19 @@ part of 'freezed_models.dart';
 _$_UserToSignUp _$$_UserToSignUpFromJson(Map<String, dynamic> json) =>
     _$_UserToSignUp(
       email: json['email'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      phone_number: json['phone_number'] as String,
       password: json['password'] as String,
-      name: json['name'] as String,
+      first_name: json['first_name'] as String,
+      last_name: json['last_name'] as String,
     );
 
 Map<String, dynamic> _$$_UserToSignUpToJson(_$_UserToSignUp instance) =>
     <String, dynamic>{
       'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
+      'phone_number': instance.phone_number,
       'password': instance.password,
-      'name': instance.name,
+      'first_name': instance.first_name,
+      'last_name': instance.last_name,
     };
 
 _$_UserToLogin _$$_UserToLoginFromJson(Map<String, dynamic> json) =>

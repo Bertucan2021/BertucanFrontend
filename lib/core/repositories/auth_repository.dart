@@ -8,26 +8,48 @@ import 'package:get_storage/get_storage.dart';
 class AuthRepository with IAuthRepository {
   final ApiClient apiClient;
   final GetStorage storage = GetStorage();
+
+  User? user;
   AuthRepository({required this.apiClient});
   @override
-  Future<void> logOut() {
-    // TODO: implement logOut
-    throw UnimplementedError();
+  Future<NormalResponse> logOut() async {
+    storage.erase();
+    return NormalResponse(success: true);
   }
 
   @override
-  Future<void> signIn(UserToLogin loginPayload) async {
+  Future<User?> signIn(UserToLogin loginPayload) async {
     final response = await apiClient.request(
       requestType: RequestType.post,
-      path: '/signin',
+      path: '/users/login',
       data: loginPayload.toJson(),
     );
+    if (response['success']) {
+      var user = User.fromJson(response['data']);
+      storage.write('token', user.remember_token!);
+      storage.write('user', user);
+      this.user = user;
+      return user;
+    }
+    return null;
   }
 
   @override
-  Future<void> signUp(UserToSignUp signUpPayload) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+  Future<NormalResponse> signUp(UserToSignUp signUpPayload) async {
+    final response = await apiClient.request(
+      requestType: RequestType.post,
+      path: '/users',
+      data: signUpPayload.toJson(),
+    );
+    if (response['success']) {
+      return NormalResponse(
+        success: true,
+      );
+    } else {
+      return NormalResponse(
+        success: false,
+      );
+    }
   }
 
   @override
@@ -87,9 +109,9 @@ class AuthRepository with IAuthRepository {
         answers: [
           "No, I sleep well",
           "Difficulty falling sleep"
-              "Waking up tired",
+          "Waking up tired",
           "Waking up during night"
-              "Lack of sleep schedule",
+          "Lack of sleep schedule",
           "Insomnia",
           "Other"
         ],
@@ -112,5 +134,10 @@ class AuthRepository with IAuthRepository {
   @override
   void setPasscode(String passcode) {
     storage.write("passcode", passcode);
+  }
+
+  @override
+  User getUser() {
+    return user ?? storage.read('user') as User;
   }
 }

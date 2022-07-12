@@ -22,7 +22,7 @@ class RectangularButton extends StatelessWidget {
       child: Container(
         width: double.maxFinite,
         padding: const EdgeInsets.symmetric(vertical: 16),
-        decoration: isColorPrimary
+        decoration: isColorPrimary || !isActive
             ? AppTheme.primaryColoredRectangularButtonDecoration()
             : AppTheme.nonPrimaryColoredRectangularButtonDecoration(),
         child: LocalizedText(

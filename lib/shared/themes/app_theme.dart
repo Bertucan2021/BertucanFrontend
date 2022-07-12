@@ -158,5 +158,5 @@ class AppTheme {
   static InputDecoration textFieldInputDecoration() => const InputDecoration(
       border: InputBorder.none,
       hintStyle: AppTheme.hintTextStyle,
-      contentPadding: EdgeInsets.all(10));
+      contentPadding: EdgeInsets.only(left: 10));
 }

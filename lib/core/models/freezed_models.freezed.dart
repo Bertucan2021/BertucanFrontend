@@ -21,9 +21,10 @@ UserToSignUp _$UserToSignUpFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserToSignUp {
   String get email => throw _privateConstructorUsedError;
-  String get phoneNumber => throw _privateConstructorUsedError;
+  String get phone_number => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get first_name => throw _privateConstructorUsedError;
+  String get last_name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,12 @@ abstract class $UserToSignUpCopyWith<$Res> {
   factory $UserToSignUpCopyWith(
           UserToSignUp value, $Res Function(UserToSignUp) then) =
       _$UserToSignUpCopyWithImpl<$Res>;
-  $Res call({String email, String phoneNumber, String password, String name});
+  $Res call(
+      {String email,
+      String phone_number,
+      String password,
+      String first_name,
+      String last_name});
 }
 
 /// @nodoc
@@ -50,26 +56,31 @@ class _$UserToSignUpCopyWithImpl<$Res> implements $UserToSignUpCopyWith<$Res> {
   @override
   $Res call({
     Object? email = freezed,
-    Object? phoneNumber = freezed,
+    Object? phone_number = freezed,
     Object? password = freezed,
-    Object? name = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -82,7 +93,12 @@ abstract class _$$_UserToSignUpCopyWith<$Res>
           _$_UserToSignUp value, $Res Function(_$_UserToSignUp) then) =
       __$$_UserToSignUpCopyWithImpl<$Res>;
   @override
-  $Res call({String email, String phoneNumber, String password, String name});
+  $Res call(
+      {String email,
+      String phone_number,
+      String password,
+      String first_name,
+      String last_name});
 }
 
 /// @nodoc
@@ -99,26 +115,31 @@ class __$$_UserToSignUpCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = freezed,
-    Object? phoneNumber = freezed,
+    Object? phone_number = freezed,
     Object? password = freezed,
-    Object? name = freezed,
+    Object? first_name = freezed,
+    Object? last_name = freezed,
   }) {
     return _then(_$_UserToSignUp(
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      phoneNumber: phoneNumber == freezed
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -129,9 +150,10 @@ class __$$_UserToSignUpCopyWithImpl<$Res>
 class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
   const _$_UserToSignUp(
       {required this.email,
-      required this.phoneNumber,
+      required this.phone_number,
       required this.password,
-      required this.name});
+      required this.first_name,
+      required this.last_name});
 
   factory _$_UserToSignUp.fromJson(Map<String, dynamic> json) =>
       _$$_UserToSignUpFromJson(json);
@@ -139,15 +161,17 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
   @override
   final String email;
   @override
-  final String phoneNumber;
+  final String phone_number;
   @override
   final String password;
   @override
-  final String name;
+  final String first_name;
+  @override
+  final String last_name;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserToSignUp(email: $email, phoneNumber: $phoneNumber, password: $password, name: $name)';
+    return 'UserToSignUp(email: $email, phone_number: $phone_number, password: $password, first_name: $first_name, last_name: $last_name)';
   }
 
   @override
@@ -156,9 +180,10 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
     properties
       ..add(DiagnosticsProperty('type', 'UserToSignUp'))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phoneNumber', phoneNumber))
+      ..add(DiagnosticsProperty('phone_number', phone_number))
       ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('name', name));
+      ..add(DiagnosticsProperty('first_name', first_name))
+      ..add(DiagnosticsProperty('last_name', last_name));
   }
 
   @override
@@ -168,9 +193,11 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
             other is _$_UserToSignUp &&
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber) &&
+                .equals(other.phone_number, phone_number) &&
             const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality()
+                .equals(other.first_name, first_name) &&
+            const DeepCollectionEquality().equals(other.last_name, last_name));
   }
 
   @JsonKey(ignore: true)
@@ -178,9 +205,10 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(phone_number),
       const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(first_name),
+      const DeepCollectionEquality().hash(last_name));
 
   @JsonKey(ignore: true)
   @override
@@ -196,9 +224,10 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
 abstract class _UserToSignUp implements UserToSignUp {
   const factory _UserToSignUp(
       {required final String email,
-      required final String phoneNumber,
+      required final String phone_number,
       required final String password,
-      required final String name}) = _$_UserToSignUp;
+      required final String first_name,
+      required final String last_name}) = _$_UserToSignUp;
 
   factory _UserToSignUp.fromJson(Map<String, dynamic> json) =
       _$_UserToSignUp.fromJson;
@@ -206,11 +235,13 @@ abstract class _UserToSignUp implements UserToSignUp {
   @override
   String get email;
   @override
-  String get phoneNumber;
+  String get phone_number;
   @override
   String get password;
   @override
-  String get name;
+  String get first_name;
+  @override
+  String get last_name;
   @override
   @JsonKey(ignore: true)
   _$$_UserToSignUpCopyWith<_$_UserToSignUp> get copyWith =>
