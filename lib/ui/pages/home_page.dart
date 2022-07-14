@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/home_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home/profile_screen.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.black,
+        selectedItemColor: AppTheme.primaryColor,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [

@@ -153,7 +153,7 @@ class AppTheme {
   static BoxDecoration orangeBoxDecoration() => const BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(30.0)), color: orange2);
   static BoxDecoration purpleBoxDecoration() => const BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(10.0)), color: purple);
+      borderRadius: BorderRadius.all(Radius.circular(10.0)), color: Color(0xFFFBEEFF));
   //input decorations
   static InputDecoration textFieldInputDecoration() => const InputDecoration(
       border: InputBorder.none,
