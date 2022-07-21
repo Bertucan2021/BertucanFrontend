@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/utils/confirm_dialog.dart';
 import "package:geolocator/geolocator.dart";
@@ -72,6 +74,15 @@ String getInitialRoute() {
     return Routes.lockScreenPage;
   } else {
     return Routes.homePage;
+  }
+}
+
+Locale getInitialLocale() {
+  GetStorage storage = GetStorage();
+  if (storage.hasData('locale')) {
+    return Locale(storage.read('locale'));
+  } else {
+    return const Locale('en', 'US');
   }
 }
 

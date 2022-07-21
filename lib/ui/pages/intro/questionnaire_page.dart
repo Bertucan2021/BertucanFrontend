@@ -38,7 +38,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
             LinearPercentIndicator(
               width: MediaQuery.of(context).size.width * 0.82,
               lineHeight: 3.0,
-              percent: 0.5,
+              percent: questionnaireWidgets.isNotEmpty
+                  ? _currentIndex / questionnaireWidgets.length
+                  : 0,
               backgroundColor: AppTheme.hintGrey,
               progressColor: AppTheme.textBlack,
               barRadius: const Radius.circular(5),

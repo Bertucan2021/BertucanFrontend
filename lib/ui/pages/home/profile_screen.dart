@@ -1,7 +1,11 @@
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -11,9 +15,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  AuthController authController = Get.find();
   final TextEditingController _nameemailController = TextEditingController();
-  List<String> languages = ["English", "Amharic"];
-  String keyLanguage = "English";
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   Icon(
                     Icons.language,
@@ -148,21 +152,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('language', style: AppTheme.titleStyle2),
+                        LocalizedText('language', style: AppTheme.titleStyle2),
                         SizedBox(
                           width: 20,
                         ),
-                        DropdownButton(
-                            value: keyLanguage,
-                            items: languages.map((item) {
-                              return DropdownMenuItem(
-                                child: Text(item),
-                                value: item,
-                              );
-                            }).toList(),
-                            onChanged: (item) => setState(() {
-                                  keyLanguage = item as String;
-                                }))
+                        Container(
+                          child: DropdownButton<Locale>(
+                              hint: LocalizedText(
+                                "set_language",
+                                style: AppTheme.hintTextStyle,
+                              ),
+                              onChanged: (value) {
+                                if (value != null) {
+                                  authController.setLocale(value);
+                                }
+                              },
+                              items: const <DropdownMenuItem<Locale>>[
+                                DropdownMenuItem(
+                                  value: Locale('am', 'ET'),
+                                  child: Text('Amharic'),
+                                ),
+                                DropdownMenuItem(
+                                  value: Locale('en', 'US'),
+                                  child: Text('English'),
+                                )
+                              ]),
+                        )
                       ],
                     ),
                   ),
@@ -172,7 +187,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.dialog(
+                    AlertDialog(
+                      title: const LocalizedText('logout'),
+                      content: const LocalizedText(
+                          'are_you_sure_you_want_to_logout?'),
+                      actions: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(
+                              child: LocalizedText('cancel',
+                                  style: AppTheme.normalTextStyle),
+                              onPressed: () {
+                                Get.back();
+                              },
+                            ),
+                            TextButton(
+                              child: Container(
+                                  decoration: AppTheme
+                                      .primaryColoredRectangularButtonDecoration(),
+                                  padding: EdgeInsets.all(10),
+                                  child: LocalizedText('logout',
+                                      style: AppTheme.normalTextStyle
+                                          .copyWith(color: Colors.white))),
+                              onPressed: () {
+                                authController.logout();
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -226,25 +275,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ));
-  }
-
-  Widget buildLanguage(BuildContext context) {
-    return DropdownButton<String>(
-      value: keyLanguage,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      onChanged: (String? newValue) {
-        setState(() {
-          keyLanguage = newValue!;
-        });
-      },
-      items: <String>['One', 'Two', 'Free', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
   }
 }

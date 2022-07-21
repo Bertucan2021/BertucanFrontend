@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bertucanfrontend/shared/routes/app_pages.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/translations/app_translation.dart';
@@ -17,7 +19,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Routes.introPage, // getInitialRoute(),
       initialBinding: AuthBinding(),
       translations: AppTranslation(),
+      locale: getInitialLocale(),
     );
   }
 }
