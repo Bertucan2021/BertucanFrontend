@@ -2,6 +2,7 @@ import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -12,6 +13,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameemailController = TextEditingController();
+  final TextEditingController _passCodeController = TextEditingController();
+
   List<String> languages = ["English", "Amharic"];
   String keyLanguage = "English";
 
@@ -105,7 +108,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: AppTheme.titleStyle2.copyWith(fontSize: 25)),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.dialog(
+                    AlertDialog(
+                      title: const LocalizedText('passcode',
+                          style: AppTheme.titleStyle,
+                          textAlign: TextAlign.center),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomTextField(
+                            label: 'enter_passcode',
+                            controller: _passCodeController,
+                            obscureText: true,
+                            hintText: 'enter_your_passcode',
+                          ),
+                          CustomTextField(
+                            label: 'confirm_passcode',
+                            controller: _passCodeController,
+                            obscureText: true,
+                            hintText: 'enter_your_passcode',
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const LocalizedText('Cancel',
+                              style: AppTheme.normalPrimaryTextStyle),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        TextButton(
+                          child: const LocalizedText(
+                            'save',
+                            style: AppTheme.normalPrimaryTextStyle,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -226,25 +270,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ));
-  }
-
-  Widget buildLanguage(BuildContext context) {
-    return DropdownButton<String>(
-      value: keyLanguage,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      onChanged: (String? newValue) {
-        setState(() {
-          keyLanguage = newValue!;
-        });
-      },
-      items: <String>['One', 'Two', 'Free', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
   }
 }
