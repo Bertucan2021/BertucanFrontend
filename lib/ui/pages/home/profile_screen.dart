@@ -17,10 +17,10 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   AuthController authController = Get.find();
   final TextEditingController _nameemailController = TextEditingController();
+  final TextEditingController _passCodeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var items;
     return Scaffold(
         backgroundColor: AppTheme.peachBackground,
         body: Padding(
@@ -108,7 +108,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: AppTheme.titleStyle2.copyWith(fontSize: 25)),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.dialog(
+                    AlertDialog(
+                      title: const LocalizedText('passcode',
+                          style: AppTheme.titleStyle,
+                          textAlign: TextAlign.center),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomTextField(
+                            label: 'enter_passcode',
+                            controller: _passCodeController,
+                            obscureText: true,
+                            hintText: 'enter_your_passcode',
+                          ),
+                          CustomTextField(
+                            label: 'confirm_passcode',
+                            controller: _passCodeController,
+                            obscureText: true,
+                            hintText: 'enter_your_passcode',
+                          ),
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const LocalizedText('Cancel',
+                              style: AppTheme.normalPrimaryTextStyle),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        TextButton(
+                          child: const LocalizedText(
+                            'save',
+                            style: AppTheme.normalPrimaryTextStyle,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  );
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
