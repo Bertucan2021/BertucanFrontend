@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: Routes.introPage, // getInitialRoute(),
+      initialRoute: getInitialRoute(),
       initialBinding: AuthBinding(),
       translations: AppTranslation(),
       locale: getInitialLocale(),
