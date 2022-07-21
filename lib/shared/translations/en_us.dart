@@ -1,1 +1,3 @@
-final Map<String, String> english = {};
+final Map<String, String> english = {
+  'language': 'Language',
+};

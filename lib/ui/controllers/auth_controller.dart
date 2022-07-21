@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
@@ -51,7 +52,6 @@ class AuthController extends GetxController {
   }
 
   Future<void> signUp(UserToSignUp signUpPayload) async {
-    log("adf");
     status = RxStatus.loading();
     await _authRepository.signUp(signUpPayload).then((value) async {
       if (value.success) {
@@ -88,5 +88,20 @@ class AuthController extends GetxController {
 
   deletePasscode() {
     _authRepository.deletePasscode();
+  }
+
+  logout() {
+    _authRepository.logOut();
+    Get.offAndToNamed(Routes.loginPage);
+  }
+
+  setLocale(Locale locale) {
+    log(locale.languageCode);
+    Get.updateLocale(locale);
+    _authRepository.setLocale(locale);
+  }
+
+  getLocale() {
+    return _authRepository.getLocale();
   }
 }

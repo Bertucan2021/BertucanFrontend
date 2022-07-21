@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
 import 'package:bertucanfrontend/core/enums/common_enums.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
@@ -109,9 +111,9 @@ class AuthRepository with IAuthRepository {
         answers: [
           "No, I sleep well",
           "Difficulty falling sleep"
-          "Waking up tired",
+              "Waking up tired",
           "Waking up during night"
-          "Lack of sleep schedule",
+              "Lack of sleep schedule",
           "Insomnia",
           "Other"
         ],
@@ -139,5 +141,17 @@ class AuthRepository with IAuthRepository {
   @override
   User getUser() {
     return user ?? storage.read('user') as User;
+  }
+
+  @override
+  void setLocale(Locale locale) {
+    storage.write('locale', locale.languageCode);
+  }
+
+  @override
+  Locale getLocale() {
+    return storage.hasData('locale')
+        ? Locale(storage.read('locale') as String)
+        : const Locale('en', 'US');
   }
 }

@@ -22,8 +22,7 @@ class SrhTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: 
-        onTap,
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         margin: const EdgeInsets.all(10),
@@ -45,7 +44,7 @@ class SrhTitle extends StatelessWidget {
                       style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
                   const SizedBox(height: 20),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
+                    width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(description,
                         style: AppTheme.greySubtitleStyle
                             .copyWith(fontWeight: FontWeight.w400)),
