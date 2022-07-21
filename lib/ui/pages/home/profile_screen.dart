@@ -1,6 +1,8 @@
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +16,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameemailController = TextEditingController();
   final TextEditingController _passCodeController = TextEditingController();
+  final TextEditingController _passCodeController2 = TextEditingController();
+  final AuthController _authController = Get.find();
 
   List<String> languages = ["English", "Amharic"];
   String keyLanguage = "English";
@@ -122,11 +126,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             controller: _passCodeController,
                             obscureText: true,
                             hintText: 'enter_your_passcode',
+                            keyboardType: TextInputType.number,
                           ),
                           CustomTextField(
                             label: 'confirm_passcode',
-                            controller: _passCodeController,
+                            controller: _passCodeController2,
                             obscureText: true,
+                            keyboardType: TextInputType.number,
                             hintText: 'enter_your_passcode',
                           ),
                         ],
@@ -140,12 +146,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           },
                         ),
                         TextButton(
-                          child: const LocalizedText(
-                            'save',
-                            style: AppTheme.normalPrimaryTextStyle,
-                          ),
-                          onPressed: () {},
-                        ),
+                            child: const LocalizedText(
+                              'save',
+                              style: AppTheme.normalPrimaryTextStyle,
+                            ),
+                            onPressed: () {
+                              if (_passCodeController.text.trim() !=
+                                  _passCodeController2.text.trim()) {
+                                toast(
+                                  'error',
+                                  'passcodes_do_not_match',
+                                );
+                              } else {
+                                _authController
+                                    .setPasscode(_passCodeController.text);
+                                Get.back();
+                              }
+                            }),
                       ],
                     ),
                   );

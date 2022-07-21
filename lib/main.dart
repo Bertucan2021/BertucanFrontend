@@ -11,7 +11,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   GetStorage storage = GetStorage();
-  storage.write('passcode', '1234');
   runApp(const MyApp());
 }
 
