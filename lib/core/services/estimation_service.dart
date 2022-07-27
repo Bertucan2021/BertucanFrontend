@@ -2,9 +2,10 @@ import 'package:bertucanfrontend/core/models/simple_models.dart';
 
 class EstimationService {
   //get next mensturation date
-  static MonthlyMensturationModel getNextMensurationDate(DateTime date) {
-    DateTime startDate = date.add(const Duration(days: 25));
+  MonthlyMensturationModel getNextMensurationDate(
+      MonthlyMensturationModel data) {
     return MonthlyMensturationModel(
-        startDate: startDate, endDate: startDate.add(const Duration(days: 7)));
+        startDate: data.endDate.add(Duration(days: 25)),
+        endDate: data.endDate.add(Duration(days: 32)));
   }
 }

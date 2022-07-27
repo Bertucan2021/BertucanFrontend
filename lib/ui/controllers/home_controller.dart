@@ -1,4 +1,6 @@
 import 'package:bertucanfrontend/core/adapters/home_adapter.dart';
+import 'package:bertucanfrontend/core/models/simple_models.dart';
+import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -17,6 +19,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     addSelectableDays();
+    Get.dialog(LogPeriodInfoPage(), barrierDismissible: false);
   }
 
   //a function that addes 30 days from the selected days and add on to selectable dates
@@ -32,4 +35,6 @@ class HomeController extends GetxController {
   void setSelectedDate(DateTime date) {
     selectedDate = date;
   }
+
+  void setCurrentPeriodDate(MonthlyMensturationModel data) {}
 }

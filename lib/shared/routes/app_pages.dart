@@ -82,7 +82,5 @@ abstract class AppPages {
       page: () => const GbvLocationPage(),
     ),
     GetPage(name: Routes.lockScreenPage, page: () => const LockScreenPage()),
-    GetPage(
-        name: Routes.logPeriodInfoPage, page: () => const LogPeriodInfoPage()),
   ];
 }

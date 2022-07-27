@@ -20,5 +20,4 @@ abstract class Routes {
   static const srhDetailPage = "/srh_detail_page";
   static const dailyDetailPage = "/daily_detail_page";
   static const gbvLocationPage = "/gbv_location_page";
-  static const logPeriodInfoPage = "/log_period_info_page";
 }

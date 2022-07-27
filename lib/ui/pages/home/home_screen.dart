@@ -46,8 +46,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: () {
-                      // Get.toNamed(Routes.notificationPage);
-                      Get.toNamed(Routes.logPeriodInfoPage);
+                      Get.toNamed(Routes.notificationPage);
                     },
                     icon: const Icon(
                       Icons.notifications,
