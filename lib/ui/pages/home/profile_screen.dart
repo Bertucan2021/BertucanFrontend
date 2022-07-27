@@ -16,7 +16,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  AuthController authController = Get.find();
   final TextEditingController _nameemailController = TextEditingController();
   final TextEditingController _passCodeController = TextEditingController();
   final TextEditingController _passCodeController2 = TextEditingController();
@@ -225,7 +224,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                                 onChanged: (value) {
                                   if (value != null) {
-                                    authController.setLocale(value);
+                                    _authController.setLocale(value);
                                   }
                                 },
                                 items: const <DropdownMenuItem<Locale>>[
@@ -274,7 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: AppTheme.normalTextStyle
                                             .copyWith(color: Colors.white))),
                                 onPressed: () {
-                                  authController.logout();
+                                  _authController.logout();
                                 },
                               ),
                             ],

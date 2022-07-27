@@ -12,6 +12,8 @@ import 'package:get_storage/get_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  GetStorage storage = GetStorage();
+  storage.write('passcode', '1234');
   runApp(const MyApp());
 }
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: Routes.lockScreenPage,
+      initialRoute: getInitialRoute(),
       initialBinding: AuthBinding(),
       translations: AppTranslation(),
       locale: getInitialLocale(),

@@ -15,11 +15,16 @@ class HomeController extends GetxController {
   List<DateTime> get selectableDates => _selectableDates;
   set selectableDates(List<DateTime> value) => _selectableDates.value = value;
 
+  final _predictedDates = <MonthlyMensturationModel>[].obs;
+  List<MonthlyMensturationModel> get predictedDates => _predictedDates.value;
+  set predictedDates(List<MonthlyMensturationModel> value) =>
+      _predictedDates.value = value;
+
   @override
   void onInit() {
     super.onInit();
     addSelectableDays();
-    Get.dialog(LogPeriodInfoPage(), barrierDismissible: false);
+    // Get.dialog(LogPeriodInfoPage(), barrierDismissible: false);
   }
 
   //a function that addes 30 days from the selected days and add on to selectable dates
@@ -36,5 +41,9 @@ class HomeController extends GetxController {
     selectedDate = date;
   }
 
-  void setCurrentPeriodDate(MonthlyMensturationModel data) {}
+  void setCurrentPeriodDate(MonthlyMensturationModel data) {
+    _repository.saveCurrentMensturationData(data);
+    predictedDates = [];
+    predictedDates = _repository.calculateNextMensturationDates(10, data);
+  }
 }

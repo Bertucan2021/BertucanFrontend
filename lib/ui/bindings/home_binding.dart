@@ -8,8 +8,7 @@ class HomeBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => EstimationService(), fenix: true);
-    Get.put<IHomeRepository>(
-        HomeRepository(storage: Get.find(), service: Get.find()));
+    Get.put<IHomeRepository>(HomeRepository(service: Get.find()));
     Get.lazyPut<HomeController>(() => HomeController(Get.find()));
   }
 }
