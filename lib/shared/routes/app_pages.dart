@@ -10,6 +10,7 @@ import 'package:bertucanfrontend/ui/pages/gbv/gbv_location_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/report_gbv_page.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
+import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/chances_of_pregnancy_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/daily_detail_page.dart';
@@ -80,6 +81,8 @@ abstract class AppPages {
       name: Routes.gbvLocationPage,
       page: () => const GbvLocationPage(),
     ),
-    GetPage(name: Routes.lockScreenPage, page: () => const LockScreenPage())
+    GetPage(name: Routes.lockScreenPage, page: () => const LockScreenPage()),
+    GetPage(
+        name: Routes.logPeriodInfoPage, page: () => const LogPeriodInfoPage()),
   ];
 }

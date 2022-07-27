@@ -37,3 +37,13 @@ class NormalResponse {
     required this.success,
   });
 }
+
+class MonthlyMensturationModel {
+  DateTime startDate;
+  DateTime endDate;
+
+  MonthlyMensturationModel({
+    required this.startDate,
+    required this.endDate,
+  });
+}

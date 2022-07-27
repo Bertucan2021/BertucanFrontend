@@ -12,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  GetStorage storage = GetStorage();
   runApp(const MyApp());
 }
 
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
-      initialRoute: getInitialRoute(),
+      initialRoute: Routes.lockScreenPage,
       initialBinding: AuthBinding(),
       translations: AppTranslation(),
       locale: getInitialLocale(),

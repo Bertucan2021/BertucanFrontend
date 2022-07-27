@@ -34,8 +34,8 @@ class HomeScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: IconButton(
-                          onPressed: ()  {
-                          Get.toNamed(Routes.logPage);
+                          onPressed: () {
+                            Get.toNamed(Routes.logPage);
                           },
                           icon: const Icon(
                             Icons.calendar_month_outlined,
@@ -46,7 +46,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.notificationPage);
+                      // Get.toNamed(Routes.notificationPage);
+                      Get.toNamed(Routes.logPeriodInfoPage);
                     },
                     icon: const Icon(
                       Icons.notifications,
