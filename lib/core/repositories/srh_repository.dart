@@ -10,7 +10,10 @@ class SrhRepository implements ISrhRepository {
 
   @override
   Future<List<Srh>> getSrhs() async {
-    var response = await apiClient.request(requestType: RequestType.get, path: "/articles");
+    var response = await apiClient.request(
+        requestType: RequestType.get,
+        path: "/articles",
+        data: {'language': 'english'});
     List<Srh> temp = [];
     response["data"].forEach((data) {
       temp.add(Srh.fromJson(data));

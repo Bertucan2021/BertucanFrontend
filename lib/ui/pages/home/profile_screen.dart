@@ -19,6 +19,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _nameemailController = TextEditingController();
   final TextEditingController _passCodeController = TextEditingController();
   final TextEditingController _passCodeController2 = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+
   final AuthController _authController = Get.find();
 
   @override
@@ -41,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       child: Image.asset('assets/profile.png'),
@@ -63,6 +66,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                     ),
+                    InkWell(
+                        onTap: () {
+                          Get.dialog(
+                            AlertDialog(
+                              title: const LocalizedText('edit_password',
+                                  style: AppTheme.titleStyle,
+                                  textAlign: TextAlign.center),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomTextField(
+                                    label: 'first_name',
+                                    controller: _firstNameController,
+                                    obscureText: true,
+                                    hintText: 'enter_your_first_name',
+                                    keyboardType: TextInputType.text,
+                                  ),
+                                  CustomTextField(
+                                    label: 'last_name',
+                                    controller: _lastNameController,
+                                    obscureText: true,
+                                    keyboardType: TextInputType.text,
+                                    hintText: 'enter_your_last_name',
+                                  ),
+                                  CustomTextField(
+                                    label: 'age',
+                                    controller: _ageController,
+                                    obscureText: true,
+                                    keyboardType: TextInputType.number,
+                                    hintText: 'enter_your_age',
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                TextButton(
+                                  child: const LocalizedText('Cancel',
+                                      style: AppTheme.normalPrimaryTextStyle),
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                ),
+                                TextButton(
+                                    child: const LocalizedText(
+                                      'save',
+                                      style: AppTheme.normalPrimaryTextStyle,
+                                    ),
+                                    onPressed: () {}),
+                              ],
+                            ),
+                          );
+                        },
+                        child: const Icon(Icons.edit,
+                            color: AppTheme.primaryColor)),
                   ],
                 ),
                 const SizedBox(
