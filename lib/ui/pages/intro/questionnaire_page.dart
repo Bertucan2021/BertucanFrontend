@@ -39,7 +39,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
               width: MediaQuery.of(context).size.width * 0.82,
               lineHeight: 3.0,
               percent: questionnaireWidgets.isNotEmpty
-                  ? _currentIndex / questionnaireWidgets.length
+                  ? (_currentIndex <= questionnaireWidgets.length)
+                      ? _currentIndex / questionnaireWidgets.length
+                      : 1
                   : 0,
               backgroundColor: AppTheme.hintGrey,
               progressColor: AppTheme.textBlack,
@@ -47,7 +49,9 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
             ),
             TextButton(
                 onPressed: () {
-                  _changeQuestion(_currentIndex + 1);
+                  _currentIndex <= questionnaireWidgets.length
+                      ? _changeQuestion(_currentIndex + 1)
+                      : Get.toNamed(Routes.homePage);
                 },
                 child: LocalizedText(
                   "skip",

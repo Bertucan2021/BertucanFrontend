@@ -4,6 +4,7 @@ import 'package:bertucanfrontend/ui/components/daily_insights.dart';
 import 'package:bertucanfrontend/ui/components/phase_container.dart';
 import 'package:bertucanfrontend/ui/components/selectable_dates.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
+import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/stat_container.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.notificationPage);
+                      // Get.toNamed(Routes.notificationPage);
+                      Get.to(LogPeriodInfoPage());
                     },
                     icon: const Icon(
                       Icons.notifications,
