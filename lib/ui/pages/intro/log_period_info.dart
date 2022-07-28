@@ -85,7 +85,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    LocalizedText('when_did_your_last_period_start',
+                    LocalizedText('when_did_your_period_start',
                         style: AppTheme.titleStyle2),
                     SizedBox(
                       height: 10,

@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 //         style: AppTheme.titleStyle)),
                 const Padding(
                   padding: EdgeInsets.only(top: 20.0, left: 20, bottom: 10),
-                  child: Text('Profile', style: AppTheme.titleStyle2),
+                  child: Text('profile', style: AppTheme.titleStyle2),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -101,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               actions: [
                                 TextButton(
-                                  child: const LocalizedText('Cancel',
+                                  child: const LocalizedText('cancel',
                                       style: AppTheme.normalPrimaryTextStyle),
                                   onPressed: () {
                                     Get.back();
@@ -164,8 +164,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 8, right: 10, bottom: 25, top: 40),
-                  child: Text('general_setting',
-                      style: AppTheme.titleStyle2.copyWith(fontSize: 25)),
+                  child: Text('general_setting', style: AppTheme.titleStyle2),
                 ),
                 InkWell(
                   onTap: () {
@@ -195,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         actions: [
                           TextButton(
-                            child: const LocalizedText('Cancel',
+                            child: const LocalizedText('cancel',
                                 style: AppTheme.normalPrimaryTextStyle),
                             onPressed: () {
                               Get.back();
@@ -241,7 +240,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             Text('passcode_setting',
-                                style: AppTheme.titleStyle2),
+                                style: AppTheme.titleStyle3),
                           ],
                         ),
                       ),
@@ -268,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           LocalizedText('language',
-                              style: AppTheme.titleStyle2),
+                              style: AppTheme.titleStyle3),
                           SizedBox(
                             width: 20,
                           ),
@@ -306,7 +305,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onTap: () {
                     Get.dialog(
                       AlertDialog(
-                        title: const LocalizedText('logout'),
+                        title: const LocalizedText(
+                          'logout',
+                          textAlign: TextAlign.center,
+                        ),
                         content: const LocalizedText(
                             'are_you_sure_you_want_to_logout?'),
                         actions: [
@@ -353,7 +355,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: const [
-                            Text('logout', style: AppTheme.titleStyle2),
+                            Text('logout', style: AppTheme.titleStyle3),
                           ],
                         ),
                       ),
@@ -364,7 +366,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: 10,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.dialog(
+                      AlertDialog(
+                        title: const LocalizedText(
+                          'delete_account',
+                          textAlign: TextAlign.center,
+                        ),
+                        content: const LocalizedText(
+                            'are_you_sure_you_want_to_delete_your_account?'),
+                        actions: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                child: LocalizedText('cancel',
+                                    style: AppTheme.normalTextStyle),
+                                onPressed: () {
+                                  Get.back();
+                                },
+                              ),
+                              TextButton(
+                                child: Container(
+                                    decoration: AppTheme
+                                        .primaryColoredRectangularButtonDecoration(),
+                                    padding: EdgeInsets.all(10),
+                                    child: LocalizedText('logout',
+                                        style: AppTheme.normalTextStyle
+                                            .copyWith(color: Colors.white))),
+                                onPressed: () {
+                                  _authController.logout();
+                                },
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -381,7 +420,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
-                            Text('delete_account', style: AppTheme.titleStyle2),
+                            Text('delete_account', style: AppTheme.titleStyle3),
                           ],
                         ),
                       ),
