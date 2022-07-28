@@ -1,4 +1,5 @@
 import 'package:bertucanfrontend/core/models/simple_models.dart';
+import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
@@ -20,95 +21,171 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
   bool isPeriodGoing = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        LocalizedText('are_you_on_your_period'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            RectangularButton(
-                label: 'no',
-                onPressed: () {
-                  setState(() {
-                    isPeriodGoing = false;
-                  });
-                }),
-            RectangularButton(
-                label: 'yes',
-                onPressed: () {
-                  setState(() {
-                    isPeriodGoing = true;
-                  });
-                }),
-          ],
-        ),
-        isPeriodGoing
-            ? Column(
-                children: [
-                  LocalizedText('when_did_your_last_period_start'),
-                  RoundedButton(
-                      text: 'select_date',
-                      onPressed: () {
-                        showDatePicker(
-                                context: context,
-                                initialDate: startDate,
-                                firstDate:
-                                    DateTime.now().subtract(Duration(days: 30)),
-                                lastDate: DateTime.now())
-                            .then((value) {
-                          if (value != null) {
-                            setState(() {
-                              startDate = value;
-                              lastDate = value.add(Duration(days: 7));
-                            });
-                          }
-                        });
-                      }),
-                ],
-              )
-            : Column(
-                children: [
-                  LocalizedText('select_the_start_and_end of_your_last_period'),
-                  RoundedButton(
-                      text: 'select_date_range',
-                      onPressed: () {
-                        showDateRangePicker(
-                                context: context,
-                                firstDate: startDate,
-                                lastDate:
-                                    DateTime.now().subtract(Duration(days: 1)))
-                            .then((value) {
-                          if (value != null) {
-                            setState(() {
-                              startDate = value.start;
-                              lastDate = value.end;
-                            });
-                          }
-                        });
-                      })
-                ],
+    return Material(
+        child: Container(
+      color: Colors.red,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          LocalizedText(
+            'are_you_on_your_period',
+            style: AppTheme.titleStyle2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  child: Container(
+                      decoration: AppTheme.textFieldDecoration(),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      child: LocalizedText(
+                        'no',
+                        style: AppTheme.buttonLabelStyle2,
+                        textAlign: TextAlign.center,
+                      )),
+                  onPressed: () {
+                    setState(() {
+                      isPeriodGoing = false;
+                    });
+                  }),
+              SizedBox(
+                width: 20,
               ),
-        Row(
-          children: [
-            RectangularButton(
-                label: 'cancel',
-                onPressed: () {
-                  Get.back();
-                }),
-            RectangularButton(
-                label: 'done',
-                onPressed: () {
-                  if (lastDate != null) {
-                    HomeController homeController = Get.find();
-                    homeController.setCurrentPeriodDate(
-                        MonthlyMensturationModel(
-                            startDate: startDate, endDate: lastDate!));
-                  }
-                }),
-          ],
-        )
-      ],
+              TextButton(
+                  child: Container(
+                      decoration: AppTheme.textFieldDecoration(),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      child: LocalizedText(
+                        'yes',
+                        style: AppTheme.buttonLabelStyle2,
+                        textAlign: TextAlign.center,
+                      )),
+                  onPressed: () {
+                    setState(() {
+                      isPeriodGoing = true;
+                    });
+                  }),
+            ],
+          ),
+          isPeriodGoing
+              ? Column(
+                  children: [
+                    LocalizedText('when_did_your_last_period_start'),
+                    TextButton(
+                        child: Container(
+                            decoration: AppTheme
+                                .primaryColoredRoundedButtonDecoration(),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: LocalizedText(
+                              'select_date',
+                              style: AppTheme.buttonLabelStyle2,
+                              textAlign: TextAlign.center,
+                            )),
+                        onPressed: () {
+                          showDatePicker(
+                                  context: context,
+                                  initialDate: startDate,
+                                  firstDate: DateTime.now()
+                                      .subtract(Duration(days: 30)),
+                                  lastDate: DateTime.now())
+                              .then((value) {
+                            if (value != null) {
+                              setState(() {
+                                startDate = value;
+                                lastDate = value.add(Duration(days: 7));
+                              });
+                            }
+                          });
+                        }),
+                  ],
+                )
+              : Column(
+                  children: [
+                    LocalizedText(
+                        'select_the_start_and_end of_your_last_period'),
+                    TextButton(
+                        child: Container(
+                            decoration: AppTheme
+                                .primaryColoredRoundedButtonDecoration(),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: LocalizedText(
+                              'select_date',
+                              style: AppTheme.buttonLabelStyle2,
+                              textAlign: TextAlign.center,
+                            )),
+                        onPressed: () {
+                          showDateRangePicker(
+                                  context: context,
+                                  firstDate: DateTime.now()
+                                      .subtract(Duration(days: 7)),
+                                  lastDate: DateTime.now()
+                                      .subtract(Duration(days: 1)))
+                              .then((value) {
+                            if (value != null) {
+                              setState(() {
+                                startDate = value.start;
+                                lastDate = value.end;
+                              });
+                            }
+                          });
+                        })
+                  ],
+                ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                    child: Container(
+                        decoration: AppTheme.textFieldDecoration(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: LocalizedText(
+                          'cancel',
+                          style: AppTheme.buttonLabelStyle2,
+                          textAlign: TextAlign.center,
+                        )),
+                    onPressed: () {
+                      Get.back();
+                    }),
+                SizedBox(
+                  width: 10,
+                ),
+                TextButton(
+                    child: Container(
+                        decoration: AppTheme.textFieldDecoration(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: LocalizedText(
+                          'done',
+                          style: AppTheme.buttonLabelStyle2,
+                          textAlign: TextAlign.center,
+                        )),
+                    onPressed: () {
+                      if (lastDate != null) {
+                        HomeController homeController = Get.find();
+                        homeController.setCurrentPeriodDate(
+                            MonthlyMensturationModel(
+                                startDate: startDate, endDate: lastDate!));
+                      }
+                    }),
+              ],
+            ),
+          )
+        ],
+      ),
     ));
   }
 }
