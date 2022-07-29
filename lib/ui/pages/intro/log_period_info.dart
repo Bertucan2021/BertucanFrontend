@@ -16,6 +16,8 @@ class LogPeriodInfoPage extends StatefulWidget {
 }
 
 class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
+  final TextEditingController _periodLength = TextEditingController();
+
   DateTime startDate = DateTime.now();
   DateTime? lastDate;
   bool isPeriodGoing = true;
@@ -28,65 +30,93 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.1,
           ),
           LocalizedText(
-            'are_you_on_your_period',
-            style: AppTheme.titleStyle2,
+            'log_you_cycle',
+            style: AppTheme.titleStyle,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 80,
-              ),
-              TextButton(
-                  child: Container(
-                      decoration: AppTheme.textFieldDecoration(),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      child: LocalizedText(
-                        'no',
-                        style: AppTheme.buttonLabelStyle2
-                            .copyWith(color: AppTheme.primaryColor),
-                        textAlign: TextAlign.center,
-                      )),
-                  onPressed: () {
-                    setState(() {
-                      isPeriodGoing = false;
-                    });
-                  }),
-              SizedBox(
-                width: 20,
-              ),
-              TextButton(
-                  child: Container(
-                      decoration: AppTheme.textFieldDecoration(),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      child: LocalizedText(
-                        'yes',
-                        style: AppTheme.buttonLabelStyle2
-                            .copyWith(color: AppTheme.primaryColor),
-                        textAlign: TextAlign.center,
-                      )),
-                  onPressed: () {
-                    setState(() {
-                      isPeriodGoing = true;
-                    });
-                  }),
-            ],
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomTextField(
+              label: 'enter_your_period_length',
+              controller: _periodLength,
+              obscureText: true,
+              keyboardType: TextInputType.number,
+              hintText: 'enter_your_period_length',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: CustomTextField(
+              label: 'enter_your_period_length',
+              controller: _periodLength,
+              obscureText: true,
+              keyboardType: TextInputType.number,
+              hintText: 'enter_your_period_length',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                LocalizedText(
+                  'are_you_on_your_period',
+                  style: AppTheme.normalTextStyle,
+                ),
+                TextButton(
+                    child: Container(
+                        decoration: AppTheme.textFieldDecoration(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: LocalizedText(
+                          'no',
+                          style: AppTheme.buttonLabelStyle2
+                              .copyWith(color: AppTheme.primaryColor),
+                          textAlign: TextAlign.center,
+                        )),
+                    onPressed: () {
+                      setState(() {
+                        isPeriodGoing = false;
+                      });
+                    }),
+                SizedBox(
+                  width: 5,
+                ),
+                TextButton(
+                    child: Container(
+                        decoration: AppTheme.textFieldDecoration(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: LocalizedText(
+                          'yes',
+                          style: AppTheme.buttonLabelStyle2
+                              .copyWith(color: AppTheme.primaryColor),
+                          textAlign: TextAlign.center,
+                        )),
+                    onPressed: () {
+                      setState(() {
+                        isPeriodGoing = true;
+                      });
+                    }),
+              ],
+            ),
           ),
           isPeriodGoing
-              ? Column(
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     LocalizedText('when_did_your_period_start',
-                        style: AppTheme.titleStyle2),
+                        style: AppTheme.normalTextStyle),
                     SizedBox(
                       height: 10,
                     ),
@@ -126,15 +156,16 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                     ),
                   ],
                 )
-              : Column(
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    LocalizedText(
-                      'select_the_start_and_end of_your_last_period',
-                      style: AppTheme.titleStyle2,
-                      textAlign: TextAlign.center,
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: LocalizedText(
+                        'select_the_start_and_end of_your_last_period',
+                        style: AppTheme.normalTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Theme(
                       data: _buildShrineTheme(),
@@ -172,10 +203,10 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                     )
                   ],
                 ),
-          Align(
-            alignment: Alignment.bottomCenter,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
                     child: Container(
