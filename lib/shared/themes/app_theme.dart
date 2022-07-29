@@ -20,7 +20,7 @@ class AppTheme {
 
   static const Color containerBlack = Color(0xFF4B4B4B);
   static const Color textFieldGrey = Color(0xFFEFF3F3);
-  static const Color creamyBackground = Color(0xFFE5E5E5);
+  static const Color creamyBackground = Color(0xFFFFFAF5);
   static const Color peachBackground = Color(0xFFF9F5F4);
 
   static const Color textBlack = Color(0xFF3F3F3F);
@@ -128,8 +128,15 @@ class AppTheme {
         color: primaryColor,
       );
   static BoxDecoration whiteBoxDecoration() => BoxDecoration(
-        borderRadius: BorderRadius.circular(37),
+        borderRadius: BorderRadius.circular(8),
         color: AppTheme.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            spreadRadius: 3,
+          ),
+        ],
       );
   static BoxDecoration nonPrimaryColoredRectangularButtonDecoration() =>
       BoxDecoration(

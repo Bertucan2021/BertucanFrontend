@@ -49,8 +49,12 @@ class _GbvPageState extends State<GbvPage> {
             const SizedBox(height: 10),
             Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                icon: const Icon(Icons.filter),
+              child: TextButton(
+                child: Container(
+                    decoration: AppTheme.whiteBoxDecoration(),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    child: LocalizedText('filiter_by_nearest',
+                        style: AppTheme.normalPrimaryTextStyle)),
                 onPressed: () {
                   gbvController.sortGbviesByLocation();
                 },

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SrhDetailPage extends StatelessWidget {
-   SrhDetailPage({Key? key}) : super(key: key);
+  SrhDetailPage({Key? key}) : super(key: key);
   SrhController controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -16,19 +16,23 @@ class SrhDetailPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
+            const SizedBox(height: 10),
             Row(
               children: [
                 const SizedBox(width: 10),
-                IconButton( 
+                IconButton(
                   onPressed: () {
                     Get.back();
                   },
                   icon: const Icon(
                     Icons.arrow_back,
-                    size: 40,
+                    size: 30,
+                    color: Colors.grey,
                   ),
                 ),
-                const LocalizedText("back", style: AppTheme.titleStyle3),
+                Center(
+                    child: LocalizedText("back",
+                        style: AppTheme.hintTextStyle.copyWith(fontSize: 20))),
               ],
             ),
             Padding(
@@ -37,6 +41,7 @@ class SrhDetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
@@ -46,24 +51,30 @@ class SrhDetailPage extends StatelessWidget {
                             const SizedBox(width: 10),
                             Container(
                               width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.1,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
                               margin: const EdgeInsets.all(10),
                               color: AppTheme.primaryColor,
                               child: Column(
                                 children: [
-                                  const LocalizedText(
+                                  const SizedBox(height: 10),
+                                  LocalizedText(
                                       "you_are_in_charge_of_this_project",
-                                      style: AppTheme.titleStyle4),
+                                      style: AppTheme.titleStyle4
+                                          .copyWith(color: Colors.white)),
                                   const SizedBox(width: 10, height: 5),
-                                  const LocalizedText("deadline_28/03/2020",
-                                      style: AppTheme.greySubtitleStyle),
+                                  LocalizedText("deadline_28/03/2020",
+                                      style: AppTheme.greySubtitleStyle
+                                          .copyWith(color: Colors.white)),
                                 ],
                               ),
                             ),
                           ],
                         ),
                       ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03),
                       Row(
                         children: [
                           CircleAvatar(
@@ -76,7 +87,8 @@ class SrhDetailPage extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("${controller.selectedSrh.value.user?.first_name??""} ${controller.selectedSrh.value.user?.last_name??""}",
+                              Text(
+                                  "${controller.selectedSrh.value.user?.first_name ?? ""} ${controller.selectedSrh.value.user?.last_name ?? ""}",
                                   style: AppTheme.titleStyle2),
                             ],
                           ),
@@ -92,7 +104,8 @@ class SrhDetailPage extends StatelessWidget {
                           )),
                       const SizedBox(height: 20),
                       Container(
-                        child:  Text(controller.selectedSrh.value.body??"",
+                        child: Text(
+                          controller.selectedSrh.value.body ?? "",
                           style: AppTheme.articleTextStyle,
                           textAlign: TextAlign.left,
                           maxLines: 5,

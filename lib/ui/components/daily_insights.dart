@@ -18,17 +18,17 @@ class DailyInsights extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              DailyInsightCard(
-                title: "log_your_symptoms",
-                bottom: const Icon(
-                  Icons.add_circle,
-                  color: AppTheme.subtleGreen,
-                  size: 30,
-                ),
-                onPressed: () {
-                  Get.toNamed(Routes.dailyDetailPage);
-                },
-              ),
+              // DailyInsightCard(
+              //   title: "log_your_symptoms",
+              //   bottom: const Icon(
+              //     Icons.add_circle,
+              //     color: AppTheme.subtleGreen,
+              //     size: 30,
+              //   ),
+              //   onPressed: () {
+              //     Get.toNamed(Routes.dailyDetailPage);
+              //   },
+              // ),
               const DailyInsightCard(
                 title: "todays_cycle_day",
                 bottom: Text(
@@ -48,17 +48,17 @@ class DailyInsights extends StatelessWidget {
                   Get.toNamed(Routes.logChancePregnancyPage);
                 },
               ),
-              DailyInsightCard(
-                title: "todays_symptoms",
-                bottom: const Text(
-                  "0",
-                  style: AppTheme.titleStyle2,
-                ),
-                color: AppTheme.subtlePink,
-                onPressed: () {
-                  Get.toNamed(Routes.symptomsPage);
-                },
-              ),
+              // DailyInsightCard(
+              //   title: "todays_symptoms",
+              //   bottom: const Text(
+              //     "0",
+              //     style: AppTheme.titleStyle2,
+              //   ),
+              //   color: AppTheme.subtlePink,
+              //   onPressed: () {
+              //     Get.toNamed(Routes.symptomsPage);
+              //   },
+              // ),
             ],
           ),
         )

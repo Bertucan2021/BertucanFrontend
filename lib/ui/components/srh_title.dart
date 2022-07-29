@@ -26,7 +26,18 @@ class SrhTitle extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         margin: const EdgeInsets.all(10),
-        color: Colors.white,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
+              blurRadius: 2,
+              spreadRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(

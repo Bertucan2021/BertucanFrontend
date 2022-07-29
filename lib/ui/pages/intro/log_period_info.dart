@@ -187,7 +187,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                               showDateRangePicker(
                                       context: context,
                                       firstDate: DateTime.now()
-                                          .subtract(Duration(days: 7)),
+                                          .subtract(Duration(days: 30)),
                                       lastDate: DateTime.now()
                                           .subtract(Duration(days: 1)))
                                   .then((value) {
