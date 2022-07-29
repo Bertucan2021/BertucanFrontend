@@ -56,25 +56,28 @@ class ChancesOfPregnancy extends StatelessWidget {
                     decoration: AppTheme.whiteBoxDecoration(),
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: Column(children: [
-                      Container(
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(37),
-                          color: AppTheme.subtlePurple,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: double.maxFinite,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(37),
+                            color: AppTheme.subtlePurple,
+                          ),
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                LocalizedText(
+                                  "likely_to_be",
+                                  style: AppTheme.titleStyle2,
+                                ),
+                                LocalizedText(
+                                  "low",
+                                  style: AppTheme.titleStyle5,
+                                ),
+                              ]),
                         ),
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              LocalizedText(
-                                "likely_to_be",
-                                style: AppTheme.titleStyle2,
-                              ),
-                              LocalizedText(
-                                "low",
-                                style: AppTheme.titleStyle5,
-                              ),
-                            ]),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(

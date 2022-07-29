@@ -326,7 +326,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Container(
                                     decoration: AppTheme
                                         .primaryColoredRectangularButtonDecoration(),
-                                    padding: EdgeInsets.all(10),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 8),
                                     child: LocalizedText('logout',
                                         style: AppTheme.normalTextStyle
                                             .copyWith(color: Colors.white))),
@@ -390,8 +391,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Container(
                                     decoration: AppTheme
                                         .primaryColoredRectangularButtonDecoration(),
-                                    padding: EdgeInsets.all(10),
-                                    child: LocalizedText('logout',
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 8),
+                                    child: LocalizedText('delete',
                                         style: AppTheme.normalTextStyle
                                             .copyWith(color: Colors.white))),
                                 onPressed: () {

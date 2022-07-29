@@ -32,29 +32,34 @@ class HomeScreen extends StatelessWidget {
                               .format(_homeController.selectedDate),
                           style: AppTheme.titleStyle3),
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.logPage);
-                          },
-                          icon: const Icon(
-                            Icons.calendar_month_outlined,
-                            size: 25,
-                          )),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.topLeft,
+                    //   child: IconButton(
+                    //       onPressed: () {
+                    //         Get.toNamed(Routes.logPage);
+                    //       },
+                    //       icon: const Icon(
+                    //         Icons.calendar_month_outlined,
+                    //         size: 25,
+                    //       )),
+                    // ),
                   ],
                 ),
                 IconButton(
                     onPressed: () {
-                      // Get.toNamed(Routes.notificationPage);
-                      Get.to(LogPeriodInfoPage());
+                      Get.toNamed(Routes.logPage);
                     },
-                    icon: const Icon(
-                      Icons.notifications,
-                      color: Colors.amber,
-                      size: 40,
-                    ))
+                    icon: const Icon(Icons.calendar_month_outlined)),
+                // IconButton(
+                //     onPressed: () {
+                //       // Get.toNamed(Routes.notificationPage);
+                //       Get.to(LogPeriodInfoPage());
+                //     },
+                //     icon: const Icon(
+                //       Icons.notifications,
+                //       color: Colors.amber,
+                //       size: 40,
+                //     ))
               ],
             ),
             Obx(
@@ -71,39 +76,39 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: const [
-                  StatContainer(
-                      label: "weight",
-                      stat: "65",
-                      unit: "kg",
-                      color: AppTheme.orange),
+                  // StatContainer(
+                  //     label: "weight",
+                  //     stat: "65",
+                  //     unit: "kg",
+                  //     color: AppTheme.orange),
                   StatContainer(
                       label: "period_in",
                       stat: "5",
                       unit: "days",
                       color: AppTheme.green),
-                  StatContainer(
-                      label: "water",
-                      stat: "3",
-                      unit: "litters",
-                      color: AppTheme.blue)
+                  // StatContainer(
+                  //     label: "water",
+                  //     stat: "3",
+                  //     unit: "litters",
+                  //     color: AppTheme.blue)
                 ],
               ),
             ),
             const SizedBox(height: 30),
             const DailyInsights(),
             const SizedBox(height: 30),
-            const LocalizedText(
-              "my_cycles",
-              style: AppTheme.boldTitle,
-            ),
-            const SizedBox(height: 15),
-            Container(
-              decoration: AppTheme.textFieldDecoration(),
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [myCycleRow(), myCycleRow()],
-              ),
-            ),
+            // const LocalizedText(
+            //   "my_cycles",
+            //   style: AppTheme.boldTitle,
+            // ),
+            // const SizedBox(height: 15),
+            // Container(
+            //   decoration: AppTheme.textFieldDecoration(),
+            //   padding: const EdgeInsets.all(20),
+            //   child: Column(
+            //     children: [myCycleRow(), myCycleRow()],
+            //   ),
+            // ),
             const SizedBox(
               height: 15,
             ),

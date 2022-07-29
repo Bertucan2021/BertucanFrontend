@@ -29,11 +29,12 @@ class GbvDetailPage extends StatelessWidget {
                   icon: const Icon(
                     Icons.arrow_back,
                     size: 30,
+                    color: Colors.grey,
                   ),
                 ),
-                const SizedBox(width: 10),
-                const Center(
-                    child: LocalizedText("back", style: AppTheme.titleStyle3)),
+                Center(
+                    child: LocalizedText("back",
+                        style: AppTheme.hintTextStyle.copyWith(fontSize: 20))),
               ],
             ),
             Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -49,15 +50,17 @@ class GbvDetailPage extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
-                        const LocalizedText("you_are_in_charge_of_this_project",
-                            style: AppTheme.titleStyle4),
+                        LocalizedText("you_are_in_charge_of_this_project",
+                            style: AppTheme.titleStyle4
+                                .copyWith(color: Colors.white)),
                         const SizedBox(height: 5),
-                        const LocalizedText("deadline_28/03/2020",
-                            style: AppTheme.greySubtitleStyle),
+                        LocalizedText("deadline_28/03/2020",
+                            style: AppTheme.greySubtitleStyle
+                                .copyWith(color: Colors.white)),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: Row(
