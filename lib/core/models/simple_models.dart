@@ -1,3 +1,5 @@
+import 'package:bertucanfrontend/core/models/freezed_models.dart';
+
 class QuestionnaireModel {
   int id;
   String question;
@@ -41,9 +43,60 @@ class NormalResponse {
 class MonthlyMensturationModel {
   DateTime startDate;
   DateTime endDate;
+  DateTime? pregnancyDate;
+  DateTime? phaseChange;
 
   MonthlyMensturationModel({
     required this.startDate,
     required this.endDate,
+    this.pregnancyDate,
+    this.phaseChange,
   });
+
+  MonthlyMensturationModel.fromJson(Map<String, dynamic> json)
+      : startDate = DateTime.parse(json['startDate']),
+        endDate = DateTime.parse(json['endDate']),
+        pregnancyDate = json['pregnancyDate'] == null
+            ? null
+            : DateTime.parse(json['pregnancyDate']),
+        phaseChange =
+            json['phaseChange'] == null ? null : DateTime.parse(json['phase']);
+
+  Map<String, dynamic> toJson() => {
+        'startDate': startDate.toIso8601String(),
+        'endDate': endDate.toIso8601String(),
+        'pregnancyDate': pregnancyDate?.toIso8601String(),
+        'phaseChange': phaseChange?.toIso8601String(),
+      };
+}
+
+class UserLogData {
+  DateTime startDate;
+  DateTime endDate;
+  int daysToStart;
+  int daysToEnd;
+
+  UserLogData({
+    required this.startDate,
+    required this.endDate,
+    required this.daysToStart,
+    required this.daysToEnd,
+  });
+  UserLogData.fromJson(Map<String, dynamic> json)
+      : startDate = DateTime.parse(json['startDate']),
+        endDate = DateTime.parse(json['endDate']),
+        daysToStart = json['daysToStart'],
+        daysToEnd = json['daysToEnd'];
+
+  Map<String, dynamic> toJson() => {
+        'startDate': startDate.toIso8601String(),
+        'endDate': endDate.toIso8601String(),
+        'daysToStart': daysToStart,
+        'daysToEnd': daysToEnd,
+      };
+}
+
+enum Phase {
+  letual,
+  menstrual,
 }

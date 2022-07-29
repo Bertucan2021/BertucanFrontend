@@ -3,6 +3,7 @@ import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/components/questionnaire.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
+import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,46 +30,47 @@ class _QuestionnairePageState extends State<QuestionnairePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        const SizedBox(height: 35),
-        Row(
-          children: [
-            LinearPercentIndicator(
-              width: MediaQuery.of(context).size.width * 0.82,
-              lineHeight: 3.0,
-              percent: questionnaireWidgets.isNotEmpty
-                  ? (_currentIndex <= questionnaireWidgets.length)
-                      ? _currentIndex / questionnaireWidgets.length
-                      : 1
-                  : 0,
-              backgroundColor: AppTheme.hintGrey,
-              progressColor: AppTheme.textBlack,
-              barRadius: const Radius.circular(5),
-            ),
-            TextButton(
-                onPressed: () {
-                  _currentIndex <= questionnaireWidgets.length
-                      ? _changeQuestion(_currentIndex + 1)
-                      : Get.toNamed(Routes.homePage);
-                },
-                child: LocalizedText(
-                  "skip",
-                  style: AppTheme.greySubtitleStyle
-                      .copyWith(color: AppTheme.textBlack),
-                ))
-          ],
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.05,
-        ),
-        Expanded(
-          child: PageView(
-              controller: _pageController, children: questionnaireWidgets),
-        ),
-      ],
-    ));
+    return LogPeriodInfoPage();
+    // return Scaffold(
+    //     body: Column(
+    //   children: [
+    //     const SizedBox(height: 35),
+    //     Row(
+    //       children: [
+    //         LinearPercentIndicator(
+    //           width: MediaQuery.of(context).size.width * 0.82,
+    //           lineHeight: 3.0,
+    //           percent: questionnaireWidgets.isNotEmpty
+    //               ? (_currentIndex <= questionnaireWidgets.length)
+    //                   ? _currentIndex / questionnaireWidgets.length
+    //                   : 1
+    //               : 0,
+    //           backgroundColor: AppTheme.hintGrey,
+    //           progressColor: AppTheme.textBlack,
+    //           barRadius: const Radius.circular(5),
+    //         ),
+    //         TextButton(
+    //             onPressed: () {
+    //               _currentIndex <= questionnaireWidgets.length
+    //                   ? _changeQuestion(_currentIndex + 1)
+    //                   : Get.toNamed(Routes.homePage);
+    //             },
+    //             child: LocalizedText(
+    //               "skip",
+    //               style: AppTheme.greySubtitleStyle
+    //                   .copyWith(color: AppTheme.textBlack),
+    //             ))
+    //       ],
+    //     ),
+    //     SizedBox(
+    //       height: MediaQuery.of(context).size.height * 0.05,
+    //     ),
+    //     Expanded(
+    //       child: PageView(
+    //           controller: _pageController, children: questionnaireWidgets),
+    //     ),
+    //   ],
+    // ));
   }
 
   void setQuestionnairiesWidget() {

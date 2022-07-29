@@ -104,4 +104,9 @@ class AuthController extends GetxController {
   getLocale() {
     return _authRepository.getLocale();
   }
+
+  deleteAccount() {
+    _authRepository.logOut();
+    Get.offAndToNamed(Routes.loginPage);
+  }
 }

@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:bertucanfrontend/core/adapters/home_adapter.dart';
 import 'package:bertucanfrontend/core/models/simple_models.dart';
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -41,9 +45,16 @@ class HomeController extends GetxController {
     selectedDate = date;
   }
 
-  void setCurrentPeriodDate(MonthlyMensturationModel data) {
-    _repository.saveCurrentMensturationData(data);
+  void setCurrentPeriodDate(UserLogData data) {
+    _repository.saveUserLogData(data);
     predictedDates = [];
-    predictedDates = _repository.calculateNextMensturationDates(10, data);
+    MonthlyMensturationModel currentMensturationData = MonthlyMensturationModel(
+        startDate: data.startDate, endDate: data.endDate);
+    predictedDates =
+        _repository.calculateNextMensturationDates(12, currentMensturationData);
+  }
+
+  void getPredictedDates() async {
+    predictedDates = await _repository.getForecomingMensturationDates();
   }
 }

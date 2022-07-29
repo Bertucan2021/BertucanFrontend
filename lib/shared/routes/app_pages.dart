@@ -38,9 +38,9 @@ abstract class AppPages {
         page: () => const HomePage(),
         bindings: [HomeBinding(), GbvBinding(), SrhBinding()]),
     GetPage(
-      name: Routes.questionnairePage,
-      page: () => QuestionnairePage(),
-    ),
+        name: Routes.questionnairePage,
+        page: () => QuestionnairePage(),
+        bindings: [HomeBinding()]),
     GetPage(
       name: Routes.introPage,
       page: () => IntroPage(),

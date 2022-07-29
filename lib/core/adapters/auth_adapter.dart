@@ -15,4 +15,5 @@ abstract class IAuthRepository {
   void deletePasscode();
   void setLocale(Locale locale);
   Locale getLocale();
+  Future<NormalResponse> deleteAccount();
 }

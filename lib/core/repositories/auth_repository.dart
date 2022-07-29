@@ -154,4 +154,10 @@ class AuthRepository with IAuthRepository {
         ? Locale(storage.read('locale') as String)
         : const Locale('en', 'US');
   }
+
+  @override
+  Future<NormalResponse> deleteAccount() async {
+    storage.erase();
+    return NormalResponse(success: true);
+  }
 }

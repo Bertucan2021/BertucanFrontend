@@ -395,7 +395,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         style: AppTheme.normalTextStyle
                                             .copyWith(color: Colors.white))),
                                 onPressed: () {
-                                  _authController.logout();
+                                  _authController.deleteAccount();
                                 },
                               ),
                             ],
