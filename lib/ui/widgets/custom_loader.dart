@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomLoader extends StatelessWidget {
@@ -6,7 +7,7 @@ class CustomLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: CircularProgressIndicator(),
+      child: CircularProgressIndicator(color: AppTheme.primaryColor),
     );
   }
 }
