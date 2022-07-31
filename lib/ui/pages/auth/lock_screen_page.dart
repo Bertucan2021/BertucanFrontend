@@ -19,6 +19,27 @@ class LockScreenPage extends StatelessWidget {
       didUnlocked: () {
         Get.offAndToNamed(Routes.homePage);
       },
+      secretsConfig: SecretsConfig(
+          spacing: 15, // or spacingRatio
+          padding: const EdgeInsets.all(40),
+          secretConfig: SecretConfig(
+            disabledColor: Colors.grey,
+            enabledColor: AppTheme.primaryColor,
+            height: 15,
+            width: 15,
+          )),
+      keyPadConfig: KeyPadConfig(
+        buttonConfig: StyledInputConfig(
+          textStyle: StyledInputConfig.getDefaultTextStyle(context).copyWith(
+            color: AppTheme.primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+          buttonStyle: OutlinedButton.styleFrom(
+            backgroundColor: AppTheme.primaryColor,
+          ),
+        ),
+      ),
+      cancelButton: const Icon(Icons.edit, color: Colors.black),
     );
   }
 }

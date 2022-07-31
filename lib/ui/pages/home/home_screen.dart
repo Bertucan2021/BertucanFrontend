@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/components/daily_insights.dart';
@@ -11,9 +14,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final HomeController _homeController = Get.find();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _homeController.getPredictedDates();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,12 +87,14 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            PhaseContainer(date: _homeController.selectedDate),
+            Obx(() => PhaseContainer(
+                data: _homeController.currentMenstruation,
+                date: _homeController.selectedDate)),
             const SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: const [
+                children: [
                   // StatContainer(
                   //     label: "weight",
                   //     stat: "65",
@@ -83,7 +102,11 @@ class HomeScreen extends StatelessWidget {
                   //     color: AppTheme.orange),
                   StatContainer(
                       label: "period_in",
-                      stat: "5",
+                      stat: (_homeController.currentMenstruation.startDate
+                              .difference(DateTime.now())
+                              .abs()
+                              .inDays)
+                          .toString(),
                       unit: "days",
                       color: AppTheme.green),
                   // StatContainer(
@@ -95,7 +118,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            const DailyInsights(),
+            DailyInsights(),
             const SizedBox(height: 30),
             // const LocalizedText(
             //   "my_cycles",
@@ -125,105 +148,136 @@ class HomeScreen extends StatelessWidget {
                         style:
                             AppTheme.titleStyle4.copyWith(color: Colors.black),
                       ),
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.cyclesHistoryPage);
+                        },
+                        child: Row(
+                          children: [
+                            LocalizedText(
+                              "see_all",
+                              style: AppTheme.titleStyle4
+                                  .copyWith(color: AppTheme.textGrey),
+                            ),
+                            const Icon(
+                              Icons.chevron_right,
+                              color: AppTheme.textGrey,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Container(
+                    height: 0.2,
+                    color: AppTheme.hintGrey,
+                    width: double.maxFinite,
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Row(
                         children: [
                           LocalizedText(
-                            "see_all",
+                            "current_cycle",
                             style: AppTheme.titleStyle4
-                                .copyWith(color: AppTheme.textGrey),
+                                .copyWith(color: Colors.black),
                           ),
+                          Text(
+                            " : ${_homeController.getUserLogData().daysToStart}",
+                            style: AppTheme.titleStyle4
+                                .copyWith(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          LocalizedText(
+                            "started at",
+                            style: AppTheme.articleTextStyle
+                                .copyWith(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            DateFormat.MMMd().format(
+                                _homeController.getUserLogData().startDate),
+                            style: AppTheme.articleTextStyle
+                                .copyWith(fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 0.2,
+                    color: AppTheme.hintGrey,
+                    width: double.maxFinite,
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LocalizedText(
+                            "current_month_period",
+                            style: AppTheme.titleStyle4
+                                .copyWith(color: Colors.black),
+                          ),
+                          Text(
+                            "${DateFormat.MMMd().format(_homeController.getUserLogData().startDate)}-${DateFormat.MMMd().format(_homeController.getUserLogData().endDate)}",
+                            style: AppTheme.articleTextStyle
+                                .copyWith(fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 0.2,
+                    color: AppTheme.hintGrey,
+                    width: double.maxFinite,
+                    margin: const EdgeInsets.symmetric(vertical: 15),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      await showDateRangePicker(
+                              context: context,
+                              firstDate:
+                                  DateTime.now().subtract(Duration(days: 365)),
+                              lastDate: DateTime.now())
+                          .then((value) {
+                        if (value != null) {
+                          _homeController.addPreviousCycle(
+                              MonthlyMensturationModel(
+                                  startDate: value.start, endDate: value.end));
+                        }
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           const Icon(
-                            Icons.chevron_right,
-                            color: AppTheme.textGrey,
+                            Icons.add_circle,
+                            color: AppTheme.primaryColor,
+                            size: 40,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          LocalizedText(
+                            "log_previous_cycles",
+                            style: AppTheme.titleStyle4
+                                .copyWith(color: AppTheme.primaryColor),
                           )
                         ],
-                      )
-                    ],
-                  ),
-                  Container(
-                    height: 0.2,
-                    color: AppTheme.hintGrey,
-                    width: double.maxFinite,
-                    margin: const EdgeInsets.symmetric(vertical: 15),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          LocalizedText(
-                            "current_cycle : 27 days",
-                            style: AppTheme.titleStyle4
-                                .copyWith(color: Colors.black),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          LocalizedText(
-                            "Started Dec 27,2021",
-                            style: AppTheme.articleTextStyle
-                                .copyWith(fontWeight: FontWeight.w500),
-                          ),
-                        ],
                       ),
-                      const Icon(
-                        Icons.chevron_right,
-                        color: AppTheme.textGrey,
-                      )
-                    ],
-                  ),
-                  Container(
-                    height: 0.2,
-                    color: AppTheme.hintGrey,
-                    width: double.maxFinite,
-                    margin: const EdgeInsets.symmetric(vertical: 15),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "37 days",
-                            style: AppTheme.titleStyle4
-                                .copyWith(color: Colors.black),
-                          ),
-                          Text(
-                            "Nov 23 - Dec 29",
-                            style: AppTheme.articleTextStyle
-                                .copyWith(fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 0.2,
-                    color: AppTheme.hintGrey,
-                    width: double.maxFinite,
-                    margin: const EdgeInsets.symmetric(vertical: 15),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.add_circle,
-                          color: AppTheme.primaryColor,
-                          size: 40,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        LocalizedText(
-                          "log_previous_cycles",
-                          style: AppTheme.titleStyle4
-                              .copyWith(color: AppTheme.primaryColor),
-                        )
-                      ],
                     ),
                   )
                 ],

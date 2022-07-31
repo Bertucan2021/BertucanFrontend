@@ -2,7 +2,7 @@
     package="com.example.bertucanfrontend">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    <application
-        android:label="bertucanfrontend"
+        android:label="Bertucan"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

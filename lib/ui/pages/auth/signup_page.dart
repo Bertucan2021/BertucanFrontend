@@ -1,12 +1,11 @@
-import 'dart:io';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
+import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
-import 'package:bertucanfrontend/utils/helpers/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,186 +31,165 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Stack(children: [
-                  CircleAvatar(
-                    radius: 60,
-                    backgroundColor: AppTheme.primaryColor,
-                    backgroundImage: _imageFile == null
-                        ? null
-                        : FileImage(File(_imageFile!.path)),
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 50,
-                    ),
-                  ),
-                  Positioned(
-                      top: 90,
-                      right: 20,
-                      child: InkWell(
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: ((builder) => bottomspace()));
-                        },
-                        child:
-                            Icon(Icons.camera_alt, color: AppTheme.lightPink),
-                      ))
-                ]),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              const LocalizedText(
-                "hello_there,",
-                style: AppTheme.thinTextStyle,
-              ),
-              const LocalizedText(
-                "sign_up_with",
-                style: AppTheme.titleStyle,
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              CustomTextField(
-                label: "full_name",
-                hintText: "marry_doe",
-                controller: _nameController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "full_name_required".tr;
-                  }
-                  if (value.split(" ").length != 2) {
-                    return "full_name_pattern_required";
-                  }
-                  return null;
-                },
-              ),
-              CustomTextField(
-                label: "email",
-                hintText: "username@example.com",
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "email_required".tr;
-                  }
-                  if (!RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      .hasMatch(value)) {
-                    return "invalid_email".tr;
-                  }
-                  return null;
-                },
-              ),
-              CustomTextField(
-                label: "phone",
-                hintText: "09923...",
-                controller: _phoneController,
-                keyboardType: TextInputType.phone,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "phone_required".tr;
-                  }
-                  if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$").hasMatch(value)) {
-                    return "invalid_phone".tr;
-                  }
-                  return null;
-                },
-              ),
-              CustomTextField(
-                label: "password",
-                hintText: "password",
-                controller: _passwordController,
-                rightIcon:
-                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                obscureText: !isPasswordVisible,
-                onRightIconPressed: () {
-                  setState(() {
-                    isPasswordVisible = !isPasswordVisible;
-                  });
-                  print("sett");
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "password_required".tr;
-                  }
-                  if (value.length < 6) {
-                    return "password_too_short".tr;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Obx(
-                () => RectangularButton(
-                  label: "register",
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      await _authController.signUp(UserToSignUp(
-                        first_name: _nameController.text.split(" ").first,
-                        last_name: _nameController.text.split(" ").first,
-                        email: _emailController.text,
-                        phone_number: _phoneController.text,
-                        password: _passwordController.text,
-                      ));
-                    }
-                  },
-                  isActive: !_authController.status.isLoading,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Align(
-                alignment: Alignment.center,
-                child: LocalizedText(
-                  "or",
-                  style: AppTheme.thinTextStyle,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              RectangularButton(
-                  label: "continue_without_account",
-                  isColorPrimary: false,
-                  onPressed: () {
-                    Get.toNamed(Routes.questionnairePage);
-                  }),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        body: Stack(
+      children: [
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 25,
+                  ),
                   const LocalizedText(
-                    "already_have_an_account",
+                    "hello_there,",
                     style: AppTheme.thinTextStyle,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.loginPage);
+                  const LocalizedText(
+                    "sign_up_with",
+                    style: AppTheme.titleStyle,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  CustomTextField(
+                    label: "full_name",
+                    hintText: "marry_doe",
+                    controller: _nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "full_name_required".tr;
+                      }
+                      if (value.split(" ").length != 2) {
+                        return "full_name_pattern_required";
+                      }
+                      return null;
                     },
-                    child: const LocalizedText(
-                      "sign_in",
-                      style: AppTheme.buttonLabelStyle2,
+                  ),
+                  CustomTextField(
+                    label: "email",
+                    hintText: "username@example.com",
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "email_required".tr;
+                      }
+                      if (!RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value)) {
+                        return "invalid_email".tr;
+                      }
+                      return null;
+                    },
+                  ),
+                  CustomTextField(
+                    label: "phone",
+                    hintText: "09923...",
+                    controller: _phoneController,
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "phone_required".tr;
+                      }
+                      if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$").hasMatch(value)) {
+                        return "invalid_phone".tr;
+                      }
+                      return null;
+                    },
+                  ),
+                  CustomTextField(
+                    label: "password",
+                    hintText: "password",
+                    controller: _passwordController,
+                    rightIcon: isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    obscureText: !isPasswordVisible,
+                    onRightIconPressed: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                      print("sett");
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "password_required".tr;
+                      }
+                      if (value.length < 6) {
+                        return "password_too_short".tr;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Obx(
+                    () => RectangularButton(
+                      label: "register",
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await _authController.signUp(UserToSignUp(
+                            first_name: _nameController.text.split(" ").first,
+                            last_name: _nameController.text.split(" ").first,
+                            email: _emailController.text,
+                            phone_number: _phoneController.text,
+                            password: _passwordController.text,
+                          ));
+                        }
+                      },
+                      isActive: !_authController.status.isLoading,
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Align(
+                    alignment: Alignment.center,
+                    child: LocalizedText(
+                      "or",
+                      style: AppTheme.thinTextStyle,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  RectangularButton(
+                      label: "continue_without_account",
+                      isColorPrimary: false,
+                      onPressed: () {
+                        Get.toNamed(Routes.questionnairePage);
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const LocalizedText(
+                        "already_have_an_account",
+                        style: AppTheme.thinTextStyle,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.loginPage);
+                        },
+                        child: const LocalizedText(
+                          "sign_in",
+                          style: AppTheme.buttonLabelStyle2,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         ),
-      ),
+        Obx(() =>
+            ModalProgressHUD(inAsyncCall: _authController.status.isLoading))
+      ],
     ));
   }
 

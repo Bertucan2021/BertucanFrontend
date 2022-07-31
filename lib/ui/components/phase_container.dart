@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,10 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class PhaseContainer extends StatelessWidget {
+  final MonthlyMensturationModel data;
   final DateTime date;
-  const PhaseContainer({
-    Key? key,
-    required this.date,
-  }) : super(key: key);
+  const PhaseContainer({Key? key, required this.data, required this.date})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class PhaseContainer extends StatelessWidget {
           rotateLinearGradient: true,
           animateFromLastPercent: true,
           startAngle: 180,
-          percent: .6,
+          percent: date.day / 31,
           center: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -44,15 +44,20 @@ class PhaseContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LocalizedText('luteal_phase',
+            LocalizedText(
+                data.phaseChange?.isAfter(date) ?? false
+                    ? 'luteal_phase'
+                    : 'the_other_phase',
                 style: AppTheme.titleStyle2.copyWith(color: AppTheme.white)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text('chance_of_pregnancy: ',
+              children: [
+                LocalizedText('chance_of_pregnancy: ',
                     style: AppTheme.greySubtitleStyle),
-                Text(
-                  "low",
+                LocalizedText(
+                  (data.pregnancyDate?.difference(date).abs().inDays ?? 10) > 5
+                      ? "low"
+                      : "high",
                   style: AppTheme.titleStyle4,
                 )
               ],
