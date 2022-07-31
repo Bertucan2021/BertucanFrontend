@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/ui/widgets/custom_loader.dart';
 import 'package:flutter/material.dart';
 
 ///
@@ -34,7 +35,7 @@ class ModalProgressHUD extends StatelessWidget {
     required this.inAsyncCall,
     this.opacity = 0.3,
     this.color = Colors.grey,
-    this.progressIndicator = const CircularProgressIndicator(),
+    this.progressIndicator = const CustomLoader(),
     this.offset,
     this.dismissible = false,
     this.child,
