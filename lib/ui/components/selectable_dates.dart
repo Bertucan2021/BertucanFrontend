@@ -42,14 +42,12 @@ class SelectableDates extends StatelessWidget {
                   children: [
                     Text(
                         DateFormat.E().format(
-                          DateTime(date.year, date.month, date.day)
-                              .add(Duration(days: index)),
+                          DateTime(date.year, date.month, date.day),
                         ),
                         style: AppTheme.greySubtitleStyle),
                     Text(
                         DateFormat.d().format(
-                          DateTime(date.year, date.month, date.day)
-                              .add(Duration(days: index)),
+                          DateTime(date.year, date.month, date.day),
                         ),
                         style: AppTheme.titleStyle4.copyWith(
                             color: selectedDate == date

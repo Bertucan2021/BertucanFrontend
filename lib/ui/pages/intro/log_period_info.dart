@@ -1,10 +1,9 @@
 import 'package:bertucanfrontend/core/models/simple_models.dart';
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
-import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
-import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,239 +16,140 @@ class LogPeriodInfoPage extends StatefulWidget {
 
 class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
   final TextEditingController _periodLength = TextEditingController();
+  final TextEditingController _periodComing = TextEditingController();
 
   DateTime startDate = DateTime.now();
-  DateTime? lastDate;
   bool isPeriodGoing = true;
+
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
       width: MediaQuery.of(context).size.width * 0.9,
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
-          ),
-          LocalizedText(
-            'log_you_cycle',
-            style: AppTheme.titleStyle,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomTextField(
-              label: 'enter_your_period_length',
-              controller: _periodLength,
-              obscureText: true,
-              keyboardType: TextInputType.number,
-              hintText: 'enter_your_period_length',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomTextField(
-              label: 'enter_your_period_length',
-              controller: _periodLength,
-              obscureText: true,
-              keyboardType: TextInputType.number,
-              hintText: 'enter_your_period_length',
+            LocalizedText(
+              'log_you_cycle',
+              style: AppTheme.titleStyle,
+              textAlign: TextAlign.center,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                LocalizedText(
-                  'are_you_on_your_period',
-                  style: AppTheme.normalTextStyle,
-                ),
-                TextButton(
-                    child: Container(
-                        decoration: AppTheme.textFieldDecoration(),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: LocalizedText(
-                          'no',
-                          style: AppTheme.buttonLabelStyle2
-                              .copyWith(color: AppTheme.primaryColor),
-                          textAlign: TextAlign.center,
-                        )),
-                    onPressed: () {
-                      setState(() {
-                        isPeriodGoing = false;
-                      });
-                    }),
-                SizedBox(
-                  width: 5,
-                ),
-                TextButton(
-                    child: Container(
-                        decoration: AppTheme.textFieldDecoration(),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: LocalizedText(
-                          'yes',
-                          style: AppTheme.buttonLabelStyle2
-                              .copyWith(color: AppTheme.primaryColor),
-                          textAlign: TextAlign.center,
-                        )),
-                    onPressed: () {
-                      setState(() {
-                        isPeriodGoing = true;
-                      });
-                    }),
-              ],
+            SizedBox(
+              height: 20,
             ),
-          ),
-          isPeriodGoing
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    LocalizedText('when_did_your_period_start',
-                        style: AppTheme.normalTextStyle),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Theme(
-                      data: _buildShrineTheme(),
-                      child: Builder(builder: (context) {
-                        return TextButton(
-                            child: Container(
-                                decoration: AppTheme
-                                    .primaryColoredRoundedButtonDecoration(),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                child: LocalizedText(
-                                  'select_date',
-                                  style: AppTheme.buttonLabelStyle2
-                                      .copyWith(color: Colors.white),
-                                  textAlign: TextAlign.center,
-                                )),
-                            onPressed: () {
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: startDate,
-                                      firstDate: DateTime.now()
-                                          .subtract(Duration(days: 30)),
-                                      lastDate: DateTime.now())
-                                  .then((value) {
-                                if (value != null) {
-                                  setState(() {
-                                    startDate = value;
-                                    lastDate = value.add(Duration(days: 7));
-                                  });
-                                }
-                              });
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomTextField(
+                label: 'enter_your_period_length',
+                controller: _periodLength,
+                keyboardType: TextInputType.number,
+                hintText: 'enter_your_period_length',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'enter_your_period_length';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomTextField(
+                label: 'enter_your_cycle_length',
+                controller: _periodComing,
+                keyboardType: TextInputType.number,
+                hintText: 'enter_your_cycle_length',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'enter_your_cycle_length';
+                  }
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LocalizedText('when_did_your_period_start',
+                      style: AppTheme.normalTextStyle),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Theme(
+                    data: _buildShrineTheme(),
+                    child: Builder(builder: (context) {
+                      return TextButton(
+                          child: Container(
+                              decoration: AppTheme
+                                  .primaryColoredRoundedButtonDecoration(),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
+                              child: LocalizedText(
+                                'select_date',
+                                style: AppTheme.buttonLabelStyle2
+                                    .copyWith(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              )),
+                          onPressed: () {
+                            showDatePicker(
+                                    context: context,
+                                    initialDate: startDate,
+                                    firstDate: DateTime.now()
+                                        .subtract(Duration(days: 30)),
+                                    lastDate: DateTime.now())
+                                .then((value) {
+                              if (value != null) {
+                                setState(() {
+                                  startDate = value;
+                                });
+                              }
                             });
-                      }),
-                    ),
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
+                          });
+                    }),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 50),
+              alignment: Alignment.center,
+              child: TextButton(
+                  child: Container(
+                      decoration: AppTheme.textFieldDecoration(),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      width: MediaQuery.of(context).size.width * 0.2,
                       child: LocalizedText(
-                        'select_the_start_and_end of_your_last_period',
-                        style: AppTheme.normalTextStyle,
+                        'done',
+                        style: AppTheme.buttonLabelStyle2
+                            .copyWith(color: AppTheme.primaryColor),
                         textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Theme(
-                      data: _buildShrineTheme(),
-                      child: Builder(builder: (context) {
-                        return TextButton(
-                            child: Container(
-                                decoration: AppTheme
-                                    .primaryColoredRoundedButtonDecoration(),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                child: LocalizedText(
-                                  'select_date',
-                                  style: AppTheme.buttonLabelStyle2
-                                      .copyWith(color: Colors.white),
-                                  textAlign: TextAlign.center,
-                                )),
-                            onPressed: () {
-                              showDateRangePicker(
-                                      context: context,
-                                      firstDate: DateTime.now()
-                                          .subtract(Duration(days: 30)),
-                                      lastDate: DateTime.now()
-                                          .subtract(Duration(days: 1)))
-                                  .then((value) {
-                                if (value != null) {
-                                  setState(() {
-                                    startDate = value.start;
-                                    lastDate = value.end;
-                                  });
-                                }
-                              });
-                            });
-                      }),
-                    )
-                  ],
-                ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                    child: Container(
-                        decoration: AppTheme.textFieldDecoration(),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: LocalizedText(
-                          'cancel',
-                          style: AppTheme.buttonLabelStyle2
-                              .copyWith(color: AppTheme.primaryColor),
-                          textAlign: TextAlign.center,
-                        )),
-                    onPressed: () {
-                      Get.back();
-                    }),
-                SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                    child: Container(
-                        decoration: AppTheme.textFieldDecoration(),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: LocalizedText(
-                          'done',
-                          style: AppTheme.buttonLabelStyle2
-                              .copyWith(color: AppTheme.primaryColor),
-                          textAlign: TextAlign.center,
-                        )),
-                    onPressed: () {
-                      if (lastDate != null) {
-                        HomeController homeController = Get.find();
-                        homeController.setCurrentPeriodDate(
-                            MonthlyMensturationModel(
-                                startDate: startDate, endDate: lastDate!));
-                      }
-                    }),
-              ],
-            ),
-          )
-        ],
+                      )),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      HomeController homeController = Get.find();
+                      homeController.setCurrentPeriodDate(UserLogData(
+                          startDate: startDate,
+                          endDate: startDate.add(
+                              Duration(days: int.parse(_periodLength.text))),
+                          daysToEnd: int.parse(_periodLength.text),
+                          daysToStart: int.parse(_periodComing.text)));
+                      Get.offAndToNamed(Routes.homePage);
+                    }
+                  }),
+            )
+          ],
+        ),
       ),
     ));
   }

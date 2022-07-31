@@ -1,70 +1,195 @@
-import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
+import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class LogPage extends StatelessWidget {
   LogPage({Key? key}) : super(key: key);
   final DateRangePickerController _controller = DateRangePickerController();
+  HomeController homeController = Get.find();
   DateTime? selectedDate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          TableCalendar(
+            headerStyle: HeaderStyle(formatButtonVisible: false),
+            focusedDay: DateTime.now(),
+            firstDay: DateTime.now().subtract(Duration(days: 365)),
+            lastDay: DateTime.now().add(Duration(days: 365)),
+            calendarBuilders: CalendarBuilders(
+              defaultBuilder: (context, day, focusedDay) {
+                var isRed = false;
+                var isBlue = false;
+                var isLessBlue = false;
+                for (var element in homeController.predictedDates) {
+                  if (day.isBefore(element.endDate.add(Duration(days: 1))) &&
+                      day.isAfter(element.startDate)) {
+                    isRed = true;
+                  } else if (element.pregnancyDate != null) {
+                    if ((day.difference(element.pregnancyDate!).abs().inDays ==
+                            0) &&
+                        day.day == element.pregnancyDate!.day) {
+                      isBlue = true;
+                    } else if (day
+                            .difference(element.pregnancyDate!)
+                            .abs()
+                            .inDays <
+                        4) {
+                      isLessBlue = true;
+                    }
+                  }
+                }
+                return isRed
+                    ? Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        width: 40,
+                        height: 40,
+                        child: Center(
+                            child: Text(
+                          day.day.toString(),
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      )
+                    : isBlue
+                        ? Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            width: 40,
+                            height: 40,
+                            child: Center(child: Text(day.day.toString())),
+                          )
+                        : isLessBlue
+                            ? Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.lightBlue,
+                                  ),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                                width: 40,
+                                height: 40,
+                                child: Center(child: Text(day.day.toString())),
+                              )
+                            : null;
+              },
+            ),
+          ),
+          // Expanded(
+          //   child: SfDateRangePicker(
+          //     todayHighlightColor: AppTheme.primaryColor,
+          //     startRangeSelectionColor: AppTheme.primaryColor,
+          //     endRangeSelectionColor: AppTheme.primaryColor,
+          //     rangeSelectionColor: AppTheme.lightPink,
+          //     view: DateRangePickerView.month,
+          //     selectionMode: DateRangePickerSelectionMode.range,
+          //     enableMultiView: true,
+          //     navigationDirection: DateRangePickerNavigationDirection.vertical,
+          //   ),
+          // ),
+          Divider(thickness: 1),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                  icon: Icon(Icons.close),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      width: 40,
+                      height: 40,
+                      child: Center(
+                          child: Text(
+                        '1',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    LocalizedText(
+                      'on_period',
+                      style: AppTheme.titleStyle4,
+                    ),
+                  ],
                 ),
-                Text(
-                  'today',
-                  style: AppTheme.normalTextStyle
-                      .copyWith(color: AppTheme.primaryColor),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.lightBlue,
+                        ),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      width: 40,
+                      height: 40,
+                      child: Center(child: Text('1')),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    LocalizedText(
+                      'good_chance_of_pregnancy',
+                      style: AppTheme.titleStyle4,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      width: 40,
+                      height: 40,
+                      child: Center(child: Text('1')),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    LocalizedText(
+                      'best_chance_of_pregnancy',
+                      style: AppTheme.titleStyle4,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          Expanded(
-            child: SfDateRangePicker(
-              todayHighlightColor: AppTheme.primaryColor,
-              startRangeSelectionColor: AppTheme.primaryColor,
-              endRangeSelectionColor: AppTheme.primaryColor,
-              rangeSelectionColor: AppTheme.lightPink,
-              view: DateRangePickerView.month,
-              selectionMode: DateRangePickerSelectionMode.range,
-              enableMultiView: true,
-              navigationDirection: DateRangePickerNavigationDirection.vertical,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.homePage);
-                  },
-                  child: Text(
-                    "cancel",
-                    style: AppTheme.normalTextStyle
-                        .copyWith(color: AppTheme.primaryColor),
-                  )),
-              TextButton(
-                  onPressed: () {
-                    selectedDate = _controller.selectedDate;
-                  },
-                  child: Text("save",
-                      style: AppTheme.normalTextStyle
-                          .copyWith(color: AppTheme.primaryColor)))
-            ],
           ),
         ],
       ),
