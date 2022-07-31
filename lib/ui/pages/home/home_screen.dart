@@ -100,15 +100,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   //     stat: "65",
                   //     unit: "kg",
                   //     color: AppTheme.orange),
-                  StatContainer(
-                      label: "period_in",
-                      stat: (_homeController.currentMenstruation.startDate
-                              .difference(DateTime.now())
-                              .abs()
-                              .inDays)
-                          .toString(),
-                      unit: "days",
-                      color: AppTheme.green),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.25),
+                    child: StatContainer(
+                        label: "period_in",
+                        stat: (_homeController.currentMenstruation.startDate
+                                .difference(DateTime.now())
+                                .abs()
+                                .inDays)
+                            .toString(),
+                        unit: "days",
+                        color: AppTheme.green),
+                  ),
                   // StatContainer(
                   //     label: "water",
                   //     stat: "3",

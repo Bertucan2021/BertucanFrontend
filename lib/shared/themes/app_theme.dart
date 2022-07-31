@@ -121,7 +121,17 @@ class AppTheme {
           width: 1,
         ),
       );
-
+  static BoxDecoration textFieldDecorations() => BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: primaryColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 4,
+            spreadRadius: 3,
+          ),
+        ],
+      );
   static BoxDecoration primaryColoredRectangularButtonDecoration() =>
       BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -146,6 +156,18 @@ class AppTheme {
   static BoxDecoration primaryColoredRoundedButtonDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(60),
         color: primaryColor,
+      );
+  static BoxDecoration primaryColoredRoundedButtonDecoration2() =>
+      BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: white,
+        boxShadow: [
+          BoxShadow(
+              color: containerBlack.withOpacity(0.2),
+              blurRadius: 4,
+              offset: Offset(0, 4),
+              spreadRadius: 3),
+        ],
       );
   static BoxDecoration insightCardDecoration() => BoxDecoration(
         borderRadius: BorderRadius.circular(5),

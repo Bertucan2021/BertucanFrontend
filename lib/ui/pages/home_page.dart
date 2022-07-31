@@ -35,7 +35,8 @@ class _HomePageState extends State<HomePage> {
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'hospital'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.article_outlined), label: 'hospital'),
           BottomNavigationBarItem(icon: Icon(Icons.article), label: 'articles'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_outlined), label: 'profile'),
