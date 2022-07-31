@@ -60,7 +60,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  MonthlyMensturationModel? getMonthMensturationModel(DateTime ofMonth) {
+  MonthlyMensturationModel? getCurrentMensturationdata() {
     return MonthlyMensturationModel.fromJson(
         storage.read('current_mensturation_data'));
   }
@@ -76,38 +76,65 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<List<MonthlyMensturationModel>>
-      getForecomingMensturationDates() async {
+  List<MonthlyMensturationModel> getForecomingMensturationDates() {
     if (storage.hasData('forecoming_mensturation_data')) {
       List<MonthlyMensturationModel> predictions = [];
-
       storage.read('forecoming_mensturation_data').forEach((element) {
         predictions.add(MonthlyMensturationModel.fromJson(element));
       });
       showPeriodNotification(DateTime.now().add(Duration(minutes: 1)), 1);
       showPeriodNotification(DateTime.now().add(Duration(minutes: 2)), 2);
       showPeriodNotification(DateTime.now().add(Duration(minutes: 3)), 3);
+      return predictions;
+    }
+    return [];
+  }
 
-      return predictions;
-    } else {
-      List<MonthlyMensturationModel> predictions = [];
-      final response = await apiClient.request(
-        requestType: RequestType.get,
-        path: '/cycles',
-      );
-      if (response['success']) {
-        response['data'].forEach((element) {
-          predictions.add(MonthlyMensturationModel.fromJson(element));
-        });
-      } else {
-        toast('error', 'could_not_load_data');
+  @override
+  Future<NormalResponse> loadMensturationCycles() async {
+    try {
+      if (storage.hasData('token')) {
+        List<MonthlyMensturationModel> predictions = [];
+        final response = await apiClient.request(
+          requestType: RequestType.get,
+          path: '/logInfos',
+        );
+        if (response['success']) {
+          response['data'].forEach((element) {
+            predictions.add(MonthlyMensturationModel.fromJson(element));
+          });
+          savePredictedDates(predictions);
+          return NormalResponse(success: true);
+        } else {
+          toast('error', 'could_not_load_data');
+          return NormalResponse(success: false);
+        }
       }
-      return predictions;
+      return NormalResponse(success: false);
+    } catch (e) {
+      return NormalResponse(success: false);
     }
   }
 
   @override
-  void savePredictedDates(List<MonthlyMensturationModel> data) {
+  Future<void> savePredictedDates(List<MonthlyMensturationModel> data) async {
     storage.write('forecoming_mensturation_data', data);
+    try {
+      if (storage.hasData('token')) {
+        var temp = [];
+        for (var element in data) {
+          temp.add(element.toJson());
+        }
+        final response = await apiClient.request(
+            requestType: RequestType.post,
+            path: '/logInfos',
+            data: {'log_infos': temp});
+        if (response['success']) {
+          toast('info', 'log_data_uploaded');
+        }
+      }
+    } catch (e) {
+      log('hhh$e');
+    }
   }
 }

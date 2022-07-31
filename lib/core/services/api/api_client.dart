@@ -39,22 +39,6 @@ class ApiClient {
       log("data: $data");
       log("queryParameters: $queryParameters");
       if (requiresAuth) await dioClient.addAuthorizationInterceptor();
-      if (requiresDefaultParams && data != null) {
-        String locale = GetStorage().read<String>('locale') ?? 'en';
-        data.addAll(defaultParams);
-        data['locale'] = locale;
-      }
-
-      if (requiresDefaultParams && queryParameters != null) {
-        queryParameters.addAll(defaultParams);
-        GetStorage storage = GetStorage();
-        final accessToken = storage.read('accessToken');
-        String locale = storage.read<String>('locale') ?? 'en';
-        queryParameters.addAll({
-          'locale': locale,
-          'access_token': accessToken,
-        });
-      }
 
       //log('sent payload: $data');
       dynamic response;
@@ -85,6 +69,8 @@ class ApiClient {
       final errorMessage = NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e));
       log('Api Error: $errorMessage');
+      log('Raw Error: $e');
+      toast('error', 'could_not_connect_try_again');
       return Future.error(NetworkExceptions.getDioException(e));
       //return NetworkExceptions.getDioException(e);
     }
@@ -153,7 +139,7 @@ class ApiClient {
     } on DioError catch (e) {
       final errorMessage = NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e));
-      print(errorMessage);
+      print("to toast: $errorMessage");
       toast('error', e.response?.data['message']);
       return Future.error(errorMessage);
     }

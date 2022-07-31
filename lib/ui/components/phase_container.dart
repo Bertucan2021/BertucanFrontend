@@ -10,11 +10,15 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class PhaseContainer extends StatelessWidget {
   final MonthlyMensturationModel data;
+  final Function(UserLogData) onEdit;
 
   final TextEditingController _periodLength = TextEditingController();
   final TextEditingController _periodComing = TextEditingController();
   final DateTime date;
-  PhaseContainer({Key? key, required this.data, required this.date})
+
+  var _formKey = GlobalKey<FormState>();
+  PhaseContainer(
+      {Key? key, required this.data, required this.date, required this.onEdit})
       : super(key: key);
 
   @override
@@ -84,50 +88,76 @@ class PhaseContainer extends StatelessWidget {
                             title: const LocalizedText('edit_period_log',
                                 style: AppTheme.titleStyle,
                                 textAlign: TextAlign.center),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                CustomTextField(
-                                  label: 'enter_your_period_length',
-                                  controller: _periodLength,
-                                  keyboardType: TextInputType.number,
-                                  hintText: 'enter_your_period_length',
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'enter_your_period_length';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                CustomTextField(
-                                  label: 'enter_your_cycle_length',
-                                  controller: _periodComing,
-                                  keyboardType: TextInputType.number,
-                                  hintText: 'enter_your_cycle_length',
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'enter_your_cycle_length';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ],
-                            ),
-                            actions: [
-                              TextButton(
-                                child: const LocalizedText('cancel',
-                                    style: AppTheme.normalPrimaryTextStyle),
-                                onPressed: () {
-                                  Get.back();
-                                },
-                              ),
-                              TextButton(
-                                  child: const LocalizedText(
-                                    'save',
-                                    style: AppTheme.normalPrimaryTextStyle,
+                            content: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomTextField(
+                                    label: 'enter_your_period_length',
+                                    controller: _periodLength,
+                                    keyboardType: TextInputType.number,
+                                    hintText: 'enter_your_period_length',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'enter_your_period_length';
+                                      }
+                                      return null;
+                                    },
                                   ),
-                                  onPressed: () {}),
-                            ],
+                                  CustomTextField(
+                                    label: 'enter_your_cycle_length',
+                                    controller: _periodComing,
+                                    keyboardType: TextInputType.number,
+                                    hintText: 'enter_your_cycle_length',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'enter_your_cycle_length';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                        child: const LocalizedText('cancel',
+                                            style: AppTheme
+                                                .normalPrimaryTextStyle),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      TextButton(
+                                          child: const LocalizedText(
+                                            'save',
+                                            style:
+                                                AppTheme.normalPrimaryTextStyle,
+                                          ),
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              Get.back();
+                                              onEdit(UserLogData(
+                                                  startDate: data.startDate,
+                                                  endDate: data.endDate,
+                                                  daysToStart: int.parse(
+                                                      _periodComing.text),
+                                                  daysToEnd: int.parse(
+                                                      _periodLength.text)));
+                                            }
+                                          }),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
                           ));
                 },
               ),

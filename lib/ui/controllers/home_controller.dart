@@ -4,6 +4,7 @@ import 'package:bertucanfrontend/core/adapters/home_adapter.dart';
 import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -32,13 +33,22 @@ class HomeController extends GetxController {
   set currentMenstruation(MonthlyMensturationModel value) =>
       _currentMenstruation.value = value;
 
-  UserLogData? _userLogData;
+  UserLogData? userLogData;
+
+  final _status = RxStatus.empty().obs;
+  RxStatus get status => _status.value;
+  set status(RxStatus value) {
+    _status.value = value;
+  }
 
   @override
   Future<void> onInit() async {
     super.onInit();
     addSelectableDays();
     try {
+      status = RxStatus.loading();
+      await _repository.loadMensturationCycles();
+      status = RxStatus.empty();
       getPredictedDates();
       // ignore: empty_catches
     } catch (e) {}
@@ -75,7 +85,7 @@ class HomeController extends GetxController {
   }
 
   void setCurrentPeriodDate(UserLogData data) {
-    _userLogData = data;
+    userLogData = data;
     _repository.saveUserLogData(data);
     predictedDates = [];
     MonthlyMensturationModel currentMensturationData = MonthlyMensturationModel(
@@ -84,9 +94,25 @@ class HomeController extends GetxController {
         _repository.calculateNextMensturationDates(12, currentMensturationData);
   }
 
-  void getPredictedDates() async {
-    predictedDates = await _repository.getForecomingMensturationDates();
-    setCurrentMenstruationCycle();
+  void editLogData(UserLogData data) {
+    userLogData = data;
+    _repository.saveUserLogData(data);
+    MonthlyMensturationModel tempData =
+        _repository.getCurrentMensturationdata() ??
+            MonthlyMensturationModel(
+                startDate: data.startDate, endDate: data.endDate);
+    predictedDates = predictedDates
+            .where((element) => element.startDate.isBefore(tempData.startDate))
+            .toList() +
+        _repository.calculateNextMensturationDates(12, tempData);
+    currentMenstruation = tempData;
+  }
+
+  void getPredictedDates() {
+    predictedDates = _repository.getForecomingMensturationDates();
+    if (predictedDates.isNotEmpty) {
+      setCurrentMenstruationCycle();
+    }
   }
 
   void addPreviousCycle(MonthlyMensturationModel data) {
@@ -108,6 +134,7 @@ class HomeController extends GetxController {
   }
 
   UserLogData getUserLogData() {
-    return _userLogData ?? _repository.getUserLogData();
+    log("1${userLogData?.toJson().toString()} 2 ${_repository.getUserLogData().toJson().toString()}");
+    return userLogData ?? _repository.getUserLogData();
   }
 }
