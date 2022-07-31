@@ -95,8 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 20),
                         Obx(() => PhaseContainer(
-                            data: _homeController.currentMenstruation,
-                            date: _homeController.selectedDate)),
+                              data: _homeController.currentMenstruation,
+                              date: _homeController.selectedDate,
+                              onEdit: _homeController.editLogData,
+                            )),
                         const SizedBox(height: 20),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,

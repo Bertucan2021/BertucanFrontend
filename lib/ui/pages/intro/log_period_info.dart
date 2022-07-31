@@ -36,16 +36,18 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
             ),
-            LocalizedText(
-              'log_you_cycle',
-              style: AppTheme.titleStyle,
-              textAlign: TextAlign.center,
+            Center(
+              child: LocalizedText(
+                'log_your_cycle',
+                style: AppTheme.titleStyle,
+                textAlign: TextAlign.center,
+              ),
             ),
             SizedBox(
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CustomTextField(
                 label: 'enter_your_period_length',
                 controller: _periodLength,
@@ -60,7 +62,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CustomTextField(
                 label: 'enter_your_cycle_length',
                 controller: _periodComing,
@@ -75,15 +77,15 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   LocalizedText('when_did_your_period_start',
                       style: AppTheme.normalTextStyle),
                   SizedBox(
-                    height: 10,
+                    width: 10,
                   ),
                   Theme(
                     data: _buildShrineTheme(),
@@ -91,13 +93,13 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                       return TextButton(
                           child: Container(
                               decoration: AppTheme
-                                  .primaryColoredRoundedButtonDecoration(),
+                                  .primaryColoredRoundedButtonDecoration2(),
                               padding: EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: LocalizedText(
                                 'select_date',
                                 style: AppTheme.buttonLabelStyle2
-                                    .copyWith(color: Colors.white),
+                                    .copyWith(color: AppTheme.primaryColor),
                                 textAlign: TextAlign.center,
                               )),
                           onPressed: () {
@@ -125,14 +127,14 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
               alignment: Alignment.center,
               child: TextButton(
                   child: Container(
-                      decoration: AppTheme.textFieldDecoration(),
+                      decoration: AppTheme.textFieldDecorations(),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      width: MediaQuery.of(context).size.width * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.6,
                       child: LocalizedText(
                         'done',
                         style: AppTheme.buttonLabelStyle2
-                            .copyWith(color: AppTheme.primaryColor),
+                            .copyWith(color: Colors.white, fontSize: 20),
                         textAlign: TextAlign.center,
                       )),
                   onPressed: () {

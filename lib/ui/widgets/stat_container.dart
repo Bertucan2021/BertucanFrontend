@@ -26,6 +26,7 @@ class StatContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(children: [
+        const SizedBox(height: 20),
         LocalizedText(
           label,
           style: AppTheme.normalTextStyle,
@@ -47,7 +48,7 @@ class StatContainer extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 30,
+          height: 20,
         )
       ]),
     );

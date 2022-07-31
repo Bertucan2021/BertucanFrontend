@@ -33,7 +33,7 @@ class HomeController extends GetxController {
   set currentMenstruation(MonthlyMensturationModel value) =>
       _currentMenstruation.value = value;
 
-  UserLogData? _userLogData;
+  UserLogData? userLogData;
 
   final _status = RxStatus.empty().obs;
   RxStatus get status => _status.value;
@@ -85,7 +85,7 @@ class HomeController extends GetxController {
   }
 
   void setCurrentPeriodDate(UserLogData data) {
-    _userLogData = data;
+    userLogData = data;
     _repository.saveUserLogData(data);
     predictedDates = [];
     MonthlyMensturationModel currentMensturationData = MonthlyMensturationModel(
@@ -95,7 +95,7 @@ class HomeController extends GetxController {
   }
 
   void editLogData(UserLogData data) {
-    _userLogData = data;
+    userLogData = data;
     _repository.saveUserLogData(data);
     MonthlyMensturationModel tempData =
         _repository.getCurrentMensturationdata() ??
@@ -105,6 +105,7 @@ class HomeController extends GetxController {
             .where((element) => element.startDate.isBefore(tempData.startDate))
             .toList() +
         _repository.calculateNextMensturationDates(12, tempData);
+    currentMenstruation = tempData;
   }
 
   void getPredictedDates() {
@@ -133,6 +134,7 @@ class HomeController extends GetxController {
   }
 
   UserLogData getUserLogData() {
-    return _userLogData ?? _repository.getUserLogData();
+    log("1${userLogData?.toJson().toString()} 2 ${_repository.getUserLogData().toJson().toString()}");
+    return userLogData ?? _repository.getUserLogData();
   }
 }

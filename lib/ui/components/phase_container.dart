@@ -1,14 +1,24 @@
 import 'package:bertucanfrontend/core/models/simple_models.dart';
+import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class PhaseContainer extends StatelessWidget {
   final MonthlyMensturationModel data;
+  final Function(UserLogData) onEdit;
+
+  final TextEditingController _periodLength = TextEditingController();
+  final TextEditingController _periodComing = TextEditingController();
   final DateTime date;
-  const PhaseContainer({Key? key, required this.data, required this.date})
+
+  var _formKey = GlobalKey<FormState>();
+  PhaseContainer(
+      {Key? key, required this.data, required this.date, required this.onEdit})
       : super(key: key);
 
   @override
@@ -61,7 +71,97 @@ class PhaseContainer extends StatelessWidget {
                   style: AppTheme.titleStyle4,
                 )
               ],
-            )
+            ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton(
+                child: Container(
+                    decoration: AppTheme.whiteBoxDecoration(),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    child: LocalizedText('edit_period_log',
+                        style: AppTheme.normalPrimaryTextStyle)),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                            title: const LocalizedText('edit_period_log',
+                                style: AppTheme.titleStyle,
+                                textAlign: TextAlign.center),
+                            content: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomTextField(
+                                    label: 'enter_your_period_length',
+                                    controller: _periodLength,
+                                    keyboardType: TextInputType.number,
+                                    hintText: 'enter_your_period_length',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'enter_your_period_length';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  CustomTextField(
+                                    label: 'enter_your_cycle_length',
+                                    controller: _periodComing,
+                                    keyboardType: TextInputType.number,
+                                    hintText: 'enter_your_cycle_length',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'enter_your_cycle_length';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      TextButton(
+                                        child: const LocalizedText('cancel',
+                                            style: AppTheme
+                                                .normalPrimaryTextStyle),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      TextButton(
+                                          child: const LocalizedText(
+                                            'save',
+                                            style:
+                                                AppTheme.normalPrimaryTextStyle,
+                                          ),
+                                          onPressed: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              Get.back();
+                                              onEdit(UserLogData(
+                                                  startDate: data.startDate,
+                                                  endDate: data.endDate,
+                                                  daysToStart: int.parse(
+                                                      _periodComing.text),
+                                                  daysToEnd: int.parse(
+                                                      _periodLength.text)));
+                                            }
+                                          }),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ));
+                },
+              ),
+            ),
           ],
         ),
       ]),
