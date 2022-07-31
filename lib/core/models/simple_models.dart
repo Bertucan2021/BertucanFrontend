@@ -59,8 +59,9 @@ class MonthlyMensturationModel {
         pregnancyDate = json['pregnancyDate'] == null
             ? null
             : DateTime.parse(json['pregnancyDate']),
-        phaseChange =
-            json['phaseChange'] == null ? null : DateTime.parse(json['phase']);
+        phaseChange = json['phaseChange'] == null
+            ? null
+            : DateTime.parse(json['phaseChange']);
 
   Map<String, dynamic> toJson() => {
         'startDate': startDate.toIso8601String(),

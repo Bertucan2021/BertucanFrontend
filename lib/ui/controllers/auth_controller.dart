@@ -24,6 +24,18 @@ class AuthController extends GetxController {
     _user.value = value;
   }
 
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getUser();
+  }
+
+  void getUser() {
+    user = _authRepository.getUser() ?? User(id: -1);
+    log(user.toJson().toString());
+  }
+
   final _questionnairies = <QuestionnaireModel>[].obs;
   List<QuestionnaireModel> get questionnairies => _questionnairies.value;
   set questionnairies(List<QuestionnaireModel> value) {
@@ -59,6 +71,7 @@ class AuthController extends GetxController {
           email: signUpPayload.email,
           password: signUpPayload.password,
         ));
+        status = RxStatus.success();
       } else {
         status = RxStatus.error();
       }

@@ -66,14 +66,17 @@ Future<Position> getCurrentLocation() async {
 
 String getInitialRoute() {
   GetStorage storage = GetStorage();
-  if (!storage.hasData('token')) {
-    return Routes.introPage;
-  } else if (!storage.hasData('answer')) {
-    return Routes.questionnairePage;
-  } else if (storage.hasData('passcode')) {
-    return Routes.lockScreenPage;
-  } else {
+  if (storage.hasData('user_log_data')) {
+    if (storage.hasData('passcode')) {
+      return Routes.lockScreenPage;
+    }
     return Routes.homePage;
+  } else {
+    if (!storage.hasData('token')) {
+      return Routes.introPage;
+    } else {
+      return Routes.questionnairePage;
+    }
   }
 }
 

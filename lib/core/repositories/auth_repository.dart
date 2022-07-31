@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
@@ -139,8 +140,13 @@ class AuthRepository with IAuthRepository {
   }
 
   @override
-  User getUser() {
-    return user ?? storage.read('user') as User;
+  User? getUser() {
+    try {
+      return user ?? User.fromJson(storage.read('user'));
+    } catch (e) {
+      log("no user saved $e");
+    }
+    return null;
   }
 
   @override

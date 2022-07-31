@@ -24,14 +24,26 @@ class HomeController extends GetxController {
   set predictedDates(List<MonthlyMensturationModel> value) =>
       _predictedDates.value = value;
 
+  final _currentMenstruation = MonthlyMensturationModel(
+          startDate: DateTime.now(), endDate: DateTime.now())
+      .obs;
+  MonthlyMensturationModel get currentMenstruation =>
+      _currentMenstruation.value;
+  set currentMenstruation(MonthlyMensturationModel value) =>
+      _currentMenstruation.value = value;
+
+  UserLogData? _userLogData;
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     addSelectableDays();
-    // Get.dialog(LogPeriodInfoPage(), barrierDismissible: false);
+    try {
+      getPredictedDates();
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
-  //a function that addes 30 days from the selected days and add on to selectable dates
   void addSelectableDays() {
     selectableDates.clear();
     final newDates = <DateTime>[];
@@ -41,11 +53,29 @@ class HomeController extends GetxController {
     selectableDates.addAll(newDates);
   }
 
+  setCurrentMenstruationCycle() {
+    currentMenstruation = predictedDates.firstWhere(
+      (element) {
+        return element.startDate.year == DateTime.now().year &&
+            element.startDate.month == DateTime.now().month;
+      },
+      orElse: () {
+        return predictedDates.firstWhere(
+          (element) {
+            return element.startDate.month == DateTime.now().month + 1;
+          },
+        );
+      },
+    );
+    _repository.saveCurrentMensturationData(currentMenstruation);
+  }
+
   void setSelectedDate(DateTime date) {
     selectedDate = date;
   }
 
   void setCurrentPeriodDate(UserLogData data) {
+    _userLogData = data;
     _repository.saveUserLogData(data);
     predictedDates = [];
     MonthlyMensturationModel currentMensturationData = MonthlyMensturationModel(
@@ -56,5 +86,28 @@ class HomeController extends GetxController {
 
   void getPredictedDates() async {
     predictedDates = await _repository.getForecomingMensturationDates();
+    setCurrentMenstruationCycle();
+  }
+
+  void addPreviousCycle(MonthlyMensturationModel data) {
+    var temp = predictedDates;
+    int wasPrevSet = temp.indexWhere((element) {
+      return element.startDate.year == DateTime.now().year &&
+          element.startDate.month == DateTime.now().month;
+    });
+    if (wasPrevSet != -1) {
+      temp[wasPrevSet] = data;
+    } else {
+      temp.add(data);
+    }
+    temp.sort((a, b) {
+      return a.startDate.compareTo(b.startDate);
+    });
+    predictedDates = temp;
+    _repository.savePredictedDates(predictedDates);
+  }
+
+  UserLogData getUserLogData() {
+    return _userLogData ?? _repository.getUserLogData();
   }
 }

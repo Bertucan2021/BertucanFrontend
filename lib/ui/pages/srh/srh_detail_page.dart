@@ -60,12 +60,8 @@ class SrhDetailPage extends StatelessWidget {
                                 children: [
                                   const SizedBox(height: 10),
                                   LocalizedText(
-                                      "you_are_in_charge_of_this_project",
+                                      controller.selectedSrh.value.title ?? "",
                                       style: AppTheme.titleStyle4
-                                          .copyWith(color: Colors.white)),
-                                  const SizedBox(width: 10, height: 5),
-                                  LocalizedText("deadline_28/03/2020",
-                                      style: AppTheme.greySubtitleStyle
                                           .copyWith(color: Colors.white)),
                                 ],
                               ),

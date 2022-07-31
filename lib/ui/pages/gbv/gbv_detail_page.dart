@@ -50,12 +50,8 @@ class GbvDetailPage extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 10),
-                        LocalizedText("you_are_in_charge_of_this_project",
+                        Text(gbvController.selectedGbv.name ?? "",
                             style: AppTheme.titleStyle4
-                                .copyWith(color: Colors.white)),
-                        const SizedBox(height: 5),
-                        LocalizedText("deadline_28/03/2020",
-                            style: AppTheme.greySubtitleStyle
                                 .copyWith(color: Colors.white)),
                       ],
                     ),

@@ -1,8 +1,7 @@
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/ui/bindings/gbv_bindings.dart';
-import 'package:bertucanfrontend/ui/bindings/home_binding.dart';
-import 'package:bertucanfrontend/ui/pages/auth/lock_screen_page.dart';
 import 'package:bertucanfrontend/ui/bindings/srh_binding.dart';
+import 'package:bertucanfrontend/ui/pages/auth/lock_screen_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/login_page.dart';
 import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_detail_page.dart';
@@ -10,9 +9,9 @@ import 'package:bertucanfrontend/ui/pages/gbv/gbv_location_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/report_gbv_page.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
-import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/chances_of_pregnancy_page.dart';
+import 'package:bertucanfrontend/ui/pages/log/cycles_history_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/daily_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/log_page.dart';
 import 'package:bertucanfrontend/ui/pages/log/symptoms_page.dart';
@@ -36,11 +35,11 @@ abstract class AppPages {
     GetPage(
         name: Routes.homePage,
         page: () => const HomePage(),
-        bindings: [HomeBinding(), GbvBinding(), SrhBinding()]),
+        bindings: [GbvBinding(), SrhBinding()]),
     GetPage(
-        name: Routes.questionnairePage,
-        page: () => QuestionnairePage(),
-        bindings: [HomeBinding()]),
+      name: Routes.questionnairePage,
+      page: () => QuestionnairePage(),
+    ),
     GetPage(
       name: Routes.introPage,
       page: () => IntroPage(),
@@ -81,6 +80,13 @@ abstract class AppPages {
       name: Routes.gbvLocationPage,
       page: () => const GbvLocationPage(),
     ),
-    GetPage(name: Routes.lockScreenPage, page: () => const LockScreenPage()),
+    GetPage(
+      name: Routes.lockScreenPage,
+      page: () => const LockScreenPage(),
+    ),
+    GetPage(
+      name: Routes.cyclesHistoryPage,
+      page: () => CyclesHistoryPage(),
+    ),
   ];
 }
