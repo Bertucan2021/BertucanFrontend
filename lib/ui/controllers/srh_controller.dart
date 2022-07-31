@@ -46,22 +46,23 @@ class SrhController extends GetxController {
     srhToShow = [];
     await repository.getSrhs().then((data) {
       if (data != null) {
-        srhs = data ;
+        srhs = data;
         srhToShow = data;
         status.value = RxStatus.success();
       } else {
         status.value = RxStatus.error("no_data".tr);
       }
     }).catchError((error) {
-      status.value = RxStatus.error(error);
+      status.value = RxStatus.error();
     });
   }
+
   selectSrh(Srh temp) {
     selectedSrh.value = temp;
     Get.toNamed(Routes.srhDetailPage);
   }
 
-   searchSrhByName(String title) {
+  searchSrhByName(String title) {
     if (title.isNotEmpty) {
       srhToShow = [];
       srhToShow.addAll(srhs.where((srh) =>

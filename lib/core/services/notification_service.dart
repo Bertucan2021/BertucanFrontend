@@ -54,17 +54,20 @@ class NotificationService {
 
   Future<void> scheduledNotification(
       String title, String desc, Duration showAfter, int id) async {
-    await lNotification.FlutterLocalNotificationsPlugin().zonedSchedule(
-        id,
-        title,
-        desc,
-        tz.TZDateTime.now(tz.local).add(showAfter),
-        NotificationDetails(
-            android: AndroidNotificationDetails(
-                'your channel $id', 'your channel $id',
-                channelDescription: 'your channel description')),
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
+    log(tz.TZDateTime.now(tz.local).add(showAfter).toLocal().toString());
+    if (tz.TZDateTime.now(tz.local).add(showAfter).isAfter(DateTime.now())) {
+      await lNotification.FlutterLocalNotificationsPlugin().zonedSchedule(
+          id,
+          title,
+          desc,
+          tz.TZDateTime.now(tz.local).add(showAfter),
+          NotificationDetails(
+              android: AndroidNotificationDetails(
+                  'your channel $id', 'your channel $id',
+                  channelDescription: 'your channel description')),
+          androidAllowWhileIdle: true,
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime);
+    }
   }
 }

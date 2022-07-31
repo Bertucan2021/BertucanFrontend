@@ -48,24 +48,20 @@ class DioClient {
   }
 
   Future addAuthorizationInterceptor() async {
-    // final _prefs = await SharedPreferences.getInstance();
-    // final accessToken = _prefs.getString('accessToken');
+    final token = GetStorage().read('token');
 
-    final accessToken = GetStorage().read('accessToken');
-
-    print('accessToken: $accessToken');
-    if (accessToken != null) {
+    print('token: $token');
+    if (token != null) {
       _dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
         // Do something before request is sent
-        // options.headers['Authorization'] = accessToken;
+        // options.headers['Authorization'] = token;
 
         // add the access token to the body too.
-        if (options.data != null) {
-          try {
-            options.data['access_token'] = accessToken;
-          } catch (e) {
-            print('$e');
-          }
+
+        try {
+          options.headers['Authorization'] = 'Bearer $token';
+        } catch (e) {
+          print('$e');
         }
 
         return handler.next(options); //continue

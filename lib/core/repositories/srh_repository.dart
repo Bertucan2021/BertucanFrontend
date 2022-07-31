@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bertucanfrontend/core/enums/common_enums.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/core/services/api/api_client.dart';
@@ -10,14 +12,19 @@ class SrhRepository implements ISrhRepository {
 
   @override
   Future<List<Srh>> getSrhs() async {
-    var response = await apiClient.request(
+    try {
+      var response = await apiClient.request(
         requestType: RequestType.get,
         path: "/articles",
-        data: {'language': 'english'});
-    List<Srh> temp = [];
-    response["data"].forEach((data) {
-      temp.add(Srh.fromJson(data));
-    });
-    return temp;
+      );
+      List<Srh> temp = [];
+      response["data"].forEach((data) {
+        temp.add(Srh.fromJson(data));
+      });
+      return temp;
+    } catch (e) {
+      log("hhhh $e");
+      return [];
+    }
   }
 }
