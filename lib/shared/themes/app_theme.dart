@@ -174,7 +174,7 @@ class AppTheme {
         color: white,
         boxShadow: [
           BoxShadow(
-              color: pink.withOpacity(0.3),
+              color: containerBlack.withOpacity(0.3),
               blurRadius: 4,
               offset: Offset(0, 4),
               spreadRadius: 3),
