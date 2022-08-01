@@ -57,7 +57,7 @@ class PhaseContainer extends StatelessWidget {
             LocalizedText(
                 data.phaseChange?.isAfter(date) ?? false
                     ? 'luteal_phase'
-                    : 'the_other_phase',
+                    : 'plateau_phase',
                 style: AppTheme.titleStyle2.copyWith(color: AppTheme.white)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

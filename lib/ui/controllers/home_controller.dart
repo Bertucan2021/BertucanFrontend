@@ -49,9 +49,9 @@ class HomeController extends GetxController {
       status = RxStatus.loading();
       await _repository.loadMensturationCycles();
       status = RxStatus.empty();
-      getPredictedDates();
       // ignore: empty_catches
     } catch (e) {}
+    getPredictedDates();
   }
 
   void addSelectableDays() {

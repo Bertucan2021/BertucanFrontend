@@ -23,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final AuthController _authController = Get.find();
 
-  final _formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -192,66 +192,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
               InkWell(
                 onTap: () {
                   Get.dialog(
-                    AlertDialog(
-                      title: const LocalizedText('passcode',
-                          style: AppTheme.titleStyle,
-                          textAlign: TextAlign.center),
-                      content: Form(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomTextField(
-                              label: 'enter_passcode',
-                              controller: _passCodeController,
-                              obscureText: true,
-                              hintText: 'enter_your_passcode',
-                              keyboardType: TextInputType.number,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'passcode_canot_be_null'.tr;
-                                }
-                              },
-                            ),
-                            CustomTextField(
-                                label: 'confirm_passcode',
-                                controller: _passCodeController2,
+                      AlertDialog(
+                        title: const LocalizedText('passcode',
+                            style: AppTheme.titleStyle,
+                            textAlign: TextAlign.center),
+                        content: Form(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomTextField(
+                                label: 'enter_passcode',
+                                controller: _passCodeController,
                                 obscureText: true,
-                                keyboardType: TextInputType.number,
                                 hintText: 'enter_your_passcode',
+                                keyboardType: TextInputType.number,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'passcode_canot_be_null'.tr;
-                                  } else if (value.trim() !=
-                                      _passCodeController.text) {
-                                    return 'the_two_passcodes_are_not_the_same';
                                   }
-                                }),
-                          ],
+                                },
+                              ),
+                              CustomTextField(
+                                  label: 'confirm_passcode',
+                                  controller: _passCodeController2,
+                                  obscureText: true,
+                                  keyboardType: TextInputType.number,
+                                  hintText: 'enter_your_passcode',
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'passcode_canot_be_null'.tr;
+                                    } else if (value.trim() !=
+                                        _passCodeController.text) {
+                                      return 'the_two_passcodes_are_not_the_same';
+                                    }
+                                  }),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextButton(
+                                    child: const LocalizedText('cancel',
+                                        style: AppTheme.normalPrimaryTextStyle),
+                                    onPressed: () {
+                                      _passCodeController.clear();
+                                      _passCodeController2.clear();
+                                      Get.back();
+                                    },
+                                  ),
+                                  TextButton(
+                                      child: const LocalizedText(
+                                        'save',
+                                        style: AppTheme.normalPrimaryTextStyle,
+                                      ),
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          _authController.setPasscode(
+                                              _passCodeController.text);
+                                          _passCodeController.clear();
+                                          _passCodeController2.clear();
+                                          Get.back();
+                                        }
+                                      }),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                      actions: [
-                        TextButton(
-                          child: const LocalizedText('cancel',
-                              style: AppTheme.normalPrimaryTextStyle),
-                          onPressed: () {
-                            Get.back();
-                          },
-                        ),
-                        TextButton(
-                            child: const LocalizedText(
-                              'save',
-                              style: AppTheme.normalPrimaryTextStyle,
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _authController
-                                    .setPasscode(_passCodeController.text);
-                                Get.back();
-                              }
-                            }),
-                      ],
-                    ),
-                  );
+                      barrierDismissible: false);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
