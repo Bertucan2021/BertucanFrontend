@@ -133,6 +133,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       last_name: json['last_name'] as String?,
       email: json['email'] as String?,
       profile_picture: json['profile_picture'] as String?,
+      phone_number: json['phone_number'] as String?,
       log_status: json['log_status'] as String?,
       birthdate: json['birthdate'] as String?,
       role: json['role'] as String?,
@@ -147,10 +148,43 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'last_name': instance.last_name,
       'email': instance.email,
       'profile_picture': instance.profile_picture,
+      'phone_number': instance.phone_number,
       'log_status': instance.log_status,
       'birthdate': instance.birthdate,
       'role': instance.role,
       'address_id': instance.address_id,
       'membership_id': instance.membership_id,
       'remember_token': instance.remember_token,
+    };
+
+_$_UserToEdit _$$_UserToEditFromJson(Map<String, dynamic> json) =>
+    _$_UserToEdit(
+      first_name: json['first_name'] as String,
+      last_name: json['last_name'] as String,
+      email: json['email'] as String,
+      phone_number: json['phone_number'] as String,
+      birthdate: json['birthdate'] as String,
+      status: json['status'] as String,
+    );
+
+Map<String, dynamic> _$$_UserToEditToJson(_$_UserToEdit instance) =>
+    <String, dynamic>{
+      'first_name': instance.first_name,
+      'last_name': instance.last_name,
+      'email': instance.email,
+      'phone_number': instance.phone_number,
+      'birthdate': instance.birthdate,
+      'status': instance.status,
+    };
+
+_$_PasswordToChange _$$_PasswordToChangeFromJson(Map<String, dynamic> json) =>
+    _$_PasswordToChange(
+      old_password: json['old_password'] as String,
+      new_password: json['new_password'] as String,
+    );
+
+Map<String, dynamic> _$$_PasswordToChangeToJson(_$_PasswordToChange instance) =>
+    <String, dynamic>{
+      'old_password': instance.old_password,
+      'new_password': instance.new_password,
     };

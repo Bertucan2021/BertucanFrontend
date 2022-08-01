@@ -5,6 +5,7 @@ import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -118,8 +119,42 @@ class AuthController extends GetxController {
     return _authRepository.getLocale();
   }
 
-  deleteAccount() {
-    _authRepository.logOut();
-    Get.offAndToNamed(Routes.loginPage);
+  editProfile(UserToEdit userToEdit) async {
+    status = RxStatus.loading();
+    await _authRepository.editProfile(userToEdit).then((value) {
+      if (value.success) {
+        status = RxStatus.success();
+        getUser();
+      } else {
+        status = RxStatus.error();
+      }
+    });
+  }
+
+  deleteAccount() async {
+    status = RxStatus.loading();
+    await _authRepository.deleteAccount().then((value) {
+      if (value.success) {
+        status = RxStatus.success();
+        Get.offAndToNamed(Routes.loginPage);
+        toast('success', 'account_deleted_successfully');
+      } else {
+        status = RxStatus.error();
+        toast('error', 'account_not_deleted');
+      }
+    });
+  }
+
+  changePassword(PasswordToChange passwordToChange) async {
+    status = RxStatus.loading();
+    await _authRepository.changePassword(passwordToChange).then((value) {
+      if (value.success) {
+        status = RxStatus.success();
+        toast('success', 'password_changed');
+      } else {
+        status = RxStatus.error();
+        toast('error', 'password_not_changed');
+      }
+    });
   }
 }

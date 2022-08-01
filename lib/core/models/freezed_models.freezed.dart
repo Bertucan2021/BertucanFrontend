@@ -217,7 +217,9 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToSignUpToJson(this);
+    return _$$_UserToSignUpToJson(
+      this,
+    );
   }
 }
 
@@ -385,7 +387,9 @@ class _$_UserToLogin with DiagnosticableTreeMixin implements _UserToLogin {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToLoginToJson(this);
+    return _$$_UserToLoginToJson(
+      this,
+    );
   }
 }
 
@@ -716,7 +720,9 @@ class _$_Gbv with DiagnosticableTreeMixin implements _Gbv {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GbvToJson(this);
+    return _$$_GbvToJson(
+      this,
+    );
   }
 }
 
@@ -1002,7 +1008,9 @@ class _$_GbvAddress with DiagnosticableTreeMixin implements _GbvAddress {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GbvAddressToJson(this);
+    return _$$_GbvAddressToJson(
+      this,
+    );
   }
 }
 
@@ -1214,7 +1222,9 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GbvReportToJson(this);
+    return _$$_GbvReportToJson(
+      this,
+    );
   }
 }
 
@@ -1531,7 +1541,9 @@ class _$_Srh with DiagnosticableTreeMixin implements _Srh {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SrhToJson(this);
+    return _$$_SrhToJson(
+      this,
+    );
   }
 }
 
@@ -1583,6 +1595,7 @@ mixin _$User {
   String? get last_name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get profile_picture => throw _privateConstructorUsedError;
+  String? get phone_number => throw _privateConstructorUsedError;
   String? get log_status => throw _privateConstructorUsedError;
   String? get birthdate => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
@@ -1605,6 +1618,7 @@ abstract class $UserCopyWith<$Res> {
       String? last_name,
       String? email,
       String? profile_picture,
+      String? phone_number,
       String? log_status,
       String? birthdate,
       String? role,
@@ -1628,6 +1642,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? last_name = freezed,
     Object? email = freezed,
     Object? profile_picture = freezed,
+    Object? phone_number = freezed,
     Object? log_status = freezed,
     Object? birthdate = freezed,
     Object? role = freezed,
@@ -1655,6 +1670,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       profile_picture: profile_picture == freezed
           ? _value.profile_picture
           : profile_picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
               as String?,
       log_status: log_status == freezed
           ? _value.log_status
@@ -1695,6 +1714,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? last_name,
       String? email,
       String? profile_picture,
+      String? phone_number,
       String? log_status,
       String? birthdate,
       String? role,
@@ -1719,6 +1739,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? last_name = freezed,
     Object? email = freezed,
     Object? profile_picture = freezed,
+    Object? phone_number = freezed,
     Object? log_status = freezed,
     Object? birthdate = freezed,
     Object? role = freezed,
@@ -1746,6 +1767,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       profile_picture: profile_picture == freezed
           ? _value.profile_picture
           : profile_picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
               as String?,
       log_status: log_status == freezed
           ? _value.log_status
@@ -1784,6 +1809,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       this.last_name,
       this.email,
       this.profile_picture,
+      this.phone_number,
       this.log_status,
       this.birthdate,
       this.role,
@@ -1804,6 +1830,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String? profile_picture;
   @override
+  final String? phone_number;
+  @override
   final String? log_status;
   @override
   final String? birthdate;
@@ -1818,7 +1846,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, profile_picture: $profile_picture, log_status: $log_status, birthdate: $birthdate, role: $role, address_id: $address_id, membership_id: $membership_id, remember_token: $remember_token)';
+    return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, profile_picture: $profile_picture, phone_number: $phone_number, log_status: $log_status, birthdate: $birthdate, role: $role, address_id: $address_id, membership_id: $membership_id, remember_token: $remember_token)';
   }
 
   @override
@@ -1831,6 +1859,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('last_name', last_name))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('profile_picture', profile_picture))
+      ..add(DiagnosticsProperty('phone_number', phone_number))
       ..add(DiagnosticsProperty('log_status', log_status))
       ..add(DiagnosticsProperty('birthdate', birthdate))
       ..add(DiagnosticsProperty('role', role))
@@ -1852,6 +1881,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             const DeepCollectionEquality()
                 .equals(other.profile_picture, profile_picture) &&
             const DeepCollectionEquality()
+                .equals(other.phone_number, phone_number) &&
+            const DeepCollectionEquality()
                 .equals(other.log_status, log_status) &&
             const DeepCollectionEquality().equals(other.birthdate, birthdate) &&
             const DeepCollectionEquality().equals(other.role, role) &&
@@ -1872,6 +1903,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(last_name),
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(profile_picture),
+      const DeepCollectionEquality().hash(phone_number),
       const DeepCollectionEquality().hash(log_status),
       const DeepCollectionEquality().hash(birthdate),
       const DeepCollectionEquality().hash(role),
@@ -1886,7 +1918,9 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(this);
+    return _$$_UserToJson(
+      this,
+    );
   }
 }
 
@@ -1897,6 +1931,7 @@ abstract class _User implements User {
       final String? last_name,
       final String? email,
       final String? profile_picture,
+      final String? phone_number,
       final String? log_status,
       final String? birthdate,
       final String? role,
@@ -1917,6 +1952,8 @@ abstract class _User implements User {
   @override
   String? get profile_picture;
   @override
+  String? get phone_number;
+  @override
   String? get log_status;
   @override
   String? get birthdate;
@@ -1931,4 +1968,429 @@ abstract class _User implements User {
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+}
+
+UserToEdit _$UserToEditFromJson(Map<String, dynamic> json) {
+  return _UserToEdit.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserToEdit {
+  String get first_name => throw _privateConstructorUsedError;
+  String get last_name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phone_number => throw _privateConstructorUsedError;
+  String get birthdate => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserToEditCopyWith<UserToEdit> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserToEditCopyWith<$Res> {
+  factory $UserToEditCopyWith(
+          UserToEdit value, $Res Function(UserToEdit) then) =
+      _$UserToEditCopyWithImpl<$Res>;
+  $Res call(
+      {String first_name,
+      String last_name,
+      String email,
+      String phone_number,
+      String birthdate,
+      String status});
+}
+
+/// @nodoc
+class _$UserToEditCopyWithImpl<$Res> implements $UserToEditCopyWith<$Res> {
+  _$UserToEditCopyWithImpl(this._value, this._then);
+
+  final UserToEdit _value;
+  // ignore: unused_field
+  final $Res Function(UserToEdit) _then;
+
+  @override
+  $Res call({
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
+    Object? phone_number = freezed,
+    Object? birthdate = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_value.copyWith(
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthdate: birthdate == freezed
+          ? _value.birthdate
+          : birthdate // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserToEditCopyWith<$Res>
+    implements $UserToEditCopyWith<$Res> {
+  factory _$$_UserToEditCopyWith(
+          _$_UserToEdit value, $Res Function(_$_UserToEdit) then) =
+      __$$_UserToEditCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String first_name,
+      String last_name,
+      String email,
+      String phone_number,
+      String birthdate,
+      String status});
+}
+
+/// @nodoc
+class __$$_UserToEditCopyWithImpl<$Res> extends _$UserToEditCopyWithImpl<$Res>
+    implements _$$_UserToEditCopyWith<$Res> {
+  __$$_UserToEditCopyWithImpl(
+      _$_UserToEdit _value, $Res Function(_$_UserToEdit) _then)
+      : super(_value, (v) => _then(v as _$_UserToEdit));
+
+  @override
+  _$_UserToEdit get _value => super._value as _$_UserToEdit;
+
+  @override
+  $Res call({
+    Object? first_name = freezed,
+    Object? last_name = freezed,
+    Object? email = freezed,
+    Object? phone_number = freezed,
+    Object? birthdate = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_$_UserToEdit(
+      first_name: first_name == freezed
+          ? _value.first_name
+          : first_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      last_name: last_name == freezed
+          ? _value.last_name
+          : last_name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone_number: phone_number == freezed
+          ? _value.phone_number
+          : phone_number // ignore: cast_nullable_to_non_nullable
+              as String,
+      birthdate: birthdate == freezed
+          ? _value.birthdate
+          : birthdate // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UserToEdit with DiagnosticableTreeMixin implements _UserToEdit {
+  const _$_UserToEdit(
+      {required this.first_name,
+      required this.last_name,
+      required this.email,
+      required this.phone_number,
+      required this.birthdate,
+      required this.status});
+
+  factory _$_UserToEdit.fromJson(Map<String, dynamic> json) =>
+      _$$_UserToEditFromJson(json);
+
+  @override
+  final String first_name;
+  @override
+  final String last_name;
+  @override
+  final String email;
+  @override
+  final String phone_number;
+  @override
+  final String birthdate;
+  @override
+  final String status;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserToEdit(first_name: $first_name, last_name: $last_name, email: $email, phone_number: $phone_number, birthdate: $birthdate, status: $status)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserToEdit'))
+      ..add(DiagnosticsProperty('first_name', first_name))
+      ..add(DiagnosticsProperty('last_name', last_name))
+      ..add(DiagnosticsProperty('email', email))
+      ..add(DiagnosticsProperty('phone_number', phone_number))
+      ..add(DiagnosticsProperty('birthdate', birthdate))
+      ..add(DiagnosticsProperty('status', status));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserToEdit &&
+            const DeepCollectionEquality()
+                .equals(other.first_name, first_name) &&
+            const DeepCollectionEquality().equals(other.last_name, last_name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.phone_number, phone_number) &&
+            const DeepCollectionEquality().equals(other.birthdate, birthdate) &&
+            const DeepCollectionEquality().equals(other.status, status));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(first_name),
+      const DeepCollectionEquality().hash(last_name),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(phone_number),
+      const DeepCollectionEquality().hash(birthdate),
+      const DeepCollectionEquality().hash(status));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UserToEditCopyWith<_$_UserToEdit> get copyWith =>
+      __$$_UserToEditCopyWithImpl<_$_UserToEdit>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserToEditToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserToEdit implements UserToEdit {
+  const factory _UserToEdit(
+      {required final String first_name,
+      required final String last_name,
+      required final String email,
+      required final String phone_number,
+      required final String birthdate,
+      required final String status}) = _$_UserToEdit;
+
+  factory _UserToEdit.fromJson(Map<String, dynamic> json) =
+      _$_UserToEdit.fromJson;
+
+  @override
+  String get first_name;
+  @override
+  String get last_name;
+  @override
+  String get email;
+  @override
+  String get phone_number;
+  @override
+  String get birthdate;
+  @override
+  String get status;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserToEditCopyWith<_$_UserToEdit> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PasswordToChange _$PasswordToChangeFromJson(Map<String, dynamic> json) {
+  return _PasswordToChange.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PasswordToChange {
+  String get old_password => throw _privateConstructorUsedError;
+  String get new_password => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PasswordToChangeCopyWith<PasswordToChange> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PasswordToChangeCopyWith<$Res> {
+  factory $PasswordToChangeCopyWith(
+          PasswordToChange value, $Res Function(PasswordToChange) then) =
+      _$PasswordToChangeCopyWithImpl<$Res>;
+  $Res call({String old_password, String new_password});
+}
+
+/// @nodoc
+class _$PasswordToChangeCopyWithImpl<$Res>
+    implements $PasswordToChangeCopyWith<$Res> {
+  _$PasswordToChangeCopyWithImpl(this._value, this._then);
+
+  final PasswordToChange _value;
+  // ignore: unused_field
+  final $Res Function(PasswordToChange) _then;
+
+  @override
+  $Res call({
+    Object? old_password = freezed,
+    Object? new_password = freezed,
+  }) {
+    return _then(_value.copyWith(
+      old_password: old_password == freezed
+          ? _value.old_password
+          : old_password // ignore: cast_nullable_to_non_nullable
+              as String,
+      new_password: new_password == freezed
+          ? _value.new_password
+          : new_password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_PasswordToChangeCopyWith<$Res>
+    implements $PasswordToChangeCopyWith<$Res> {
+  factory _$$_PasswordToChangeCopyWith(
+          _$_PasswordToChange value, $Res Function(_$_PasswordToChange) then) =
+      __$$_PasswordToChangeCopyWithImpl<$Res>;
+  @override
+  $Res call({String old_password, String new_password});
+}
+
+/// @nodoc
+class __$$_PasswordToChangeCopyWithImpl<$Res>
+    extends _$PasswordToChangeCopyWithImpl<$Res>
+    implements _$$_PasswordToChangeCopyWith<$Res> {
+  __$$_PasswordToChangeCopyWithImpl(
+      _$_PasswordToChange _value, $Res Function(_$_PasswordToChange) _then)
+      : super(_value, (v) => _then(v as _$_PasswordToChange));
+
+  @override
+  _$_PasswordToChange get _value => super._value as _$_PasswordToChange;
+
+  @override
+  $Res call({
+    Object? old_password = freezed,
+    Object? new_password = freezed,
+  }) {
+    return _then(_$_PasswordToChange(
+      old_password: old_password == freezed
+          ? _value.old_password
+          : old_password // ignore: cast_nullable_to_non_nullable
+              as String,
+      new_password: new_password == freezed
+          ? _value.new_password
+          : new_password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PasswordToChange
+    with DiagnosticableTreeMixin
+    implements _PasswordToChange {
+  const _$_PasswordToChange(
+      {required this.old_password, required this.new_password});
+
+  factory _$_PasswordToChange.fromJson(Map<String, dynamic> json) =>
+      _$$_PasswordToChangeFromJson(json);
+
+  @override
+  final String old_password;
+  @override
+  final String new_password;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PasswordToChange(old_password: $old_password, new_password: $new_password)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PasswordToChange'))
+      ..add(DiagnosticsProperty('old_password', old_password))
+      ..add(DiagnosticsProperty('new_password', new_password));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PasswordToChange &&
+            const DeepCollectionEquality()
+                .equals(other.old_password, old_password) &&
+            const DeepCollectionEquality()
+                .equals(other.new_password, new_password));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(old_password),
+      const DeepCollectionEquality().hash(new_password));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PasswordToChangeCopyWith<_$_PasswordToChange> get copyWith =>
+      __$$_PasswordToChangeCopyWithImpl<_$_PasswordToChange>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PasswordToChangeToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PasswordToChange implements PasswordToChange {
+  const factory _PasswordToChange(
+      {required final String old_password,
+      required final String new_password}) = _$_PasswordToChange;
+
+  factory _PasswordToChange.fromJson(Map<String, dynamic> json) =
+      _$_PasswordToChange.fromJson;
+
+  @override
+  String get old_password;
+  @override
+  String get new_password;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PasswordToChangeCopyWith<_$_PasswordToChange> get copyWith =>
+      throw _privateConstructorUsedError;
 }

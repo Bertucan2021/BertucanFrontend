@@ -107,6 +107,7 @@ class User with _$User {
     String? last_name,
     String? email,
     String? profile_picture,
+    String? phone_number,
     String? log_status,
     String? birthdate,
     String? role,
@@ -116,4 +117,29 @@ class User with _$User {
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+}
+
+@freezed
+class UserToEdit with _$UserToEdit {
+  const factory UserToEdit({
+    required String first_name,
+    required String last_name,
+    required String email,
+    required String phone_number,
+    required String birthdate,
+    required String status,
+  }) = _UserToEdit;
+
+  factory UserToEdit.fromJson(Map<String, dynamic> json) =>
+      _$UserToEditFromJson(json);
+}
+
+@freezed
+class PasswordToChange with _$PasswordToChange {
+  const factory PasswordToChange({
+    required String old_password,
+    required String new_password,
+  }) = _PasswordToChange;
+  factory PasswordToChange.fromJson(Map<String, dynamic> json) =>
+      _$PasswordToChangeFromJson(json);
 }

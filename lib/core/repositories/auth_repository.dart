@@ -163,7 +163,71 @@ class AuthRepository with IAuthRepository {
 
   @override
   Future<NormalResponse> deleteAccount() async {
-    storage.erase();
-    return NormalResponse(success: true);
+    if (storage.hasData('token') && user != null) {
+      UserToEdit temp = UserToEdit(
+          first_name: user?.first_name ?? "",
+          last_name: user?.last_name ?? "",
+          email: user?.email ?? "",
+          phone_number: user?.phone_number ?? "",
+          birthdate: user?.birthdate ?? "",
+          status: "delete");
+      final response = await apiClient.request(
+        requestType: RequestType.put,
+        path: '/users',
+        data: temp.toJson(),
+      );
+      if (response['success']) {
+        storage.erase();
+        return NormalResponse(
+          success: true,
+        );
+      } else {
+        return NormalResponse(
+          success: false,
+        );
+      }
+    }
+    return NormalResponse(
+      success: false,
+    );
+  }
+
+  @override
+  Future<NormalResponse> editProfile(UserToEdit userToEdit) async {
+    final response = await apiClient.request(
+      requestType: RequestType.put,
+      path: '/users',
+      data: userToEdit.toJson(),
+    );
+    if (response['success']) {
+      user = User.fromJson(userToEdit.toJson());
+      storage.write('user', user);
+      return NormalResponse(
+        success: true,
+      );
+    } else {
+      return NormalResponse(
+        success: false,
+      );
+    }
+  }
+
+  @override
+  Future<NormalResponse> changePassword(
+      PasswordToChange passwordToChange) async {
+    final response = await apiClient.request(
+      requestType: RequestType.put,
+      path: '/changePassword',
+      data: passwordToChange.toJson(),
+    );
+    if (response['success']) {
+      return NormalResponse(
+        success: true,
+      );
+    } else {
+      return NormalResponse(
+        success: false,
+      );
+    }
   }
 }
