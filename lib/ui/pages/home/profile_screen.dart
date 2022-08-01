@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
@@ -60,67 +61,119 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: InkWell(
                               onTap: () {
                                 Get.dialog(
-                                  AlertDialog(
-                                    title: const LocalizedText('edit_profile',
-                                        style: AppTheme.titleStyle,
-                                        textAlign: TextAlign.center),
-                                    content: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        CustomTextField(
-                                          label: 'first_name',
-                                          controller: _firstNameController,
-                                          obscureText: true,
-                                          hintText: 'enter_your_first_name',
-                                          keyboardType: TextInputType.text,
+                                  SingleChildScrollView(
+                                    child: AlertDialog(
+                                      title: const LocalizedText('edit_profile',
+                                          style: AppTheme.titleStyle,
+                                          textAlign: TextAlign.center),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          CustomTextField(
+                                            label: 'first_name',
+                                            controller: _firstNameController,
+                                            hintText: 'enter_your_first_name',
+                                            keyboardType: TextInputType.text,
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return "first_name_required".tr;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          CustomTextField(
+                                            label: 'last_name',
+                                            controller: _lastNameController,
+                                            keyboardType: TextInputType.text,
+                                            hintText: 'enter_your_last_name',
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return "last_name_required".tr;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          CustomTextField(
+                                            label: 'email',
+                                            controller: _emailController,
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            hintText: 'enter_your_email',
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return "email_required".tr;
+                                              }
+                                              if (!RegExp(
+                                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                  .hasMatch(value)) {
+                                                return "invalid_email".tr;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          CustomTextField(
+                                            label: 'phone_number',
+                                            controller: _phoneController,
+                                            keyboardType: TextInputType.phone,
+                                            hintText: 'enter_your_phone_number',
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return "phone_required".tr;
+                                              }
+                                              if (!RegExp(
+                                                      r"^(?:\+2519|09)[0-9]{8}$")
+                                                  .hasMatch(value)) {
+                                                return "invalid_phone".tr;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          CustomTextField(
+                                            label: 'age',
+                                            controller: _ageController,
+                                            keyboardType: TextInputType.name,
+                                            hintText: 'enter_your_age',
+                                          ),
+                                        ],
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          child: const LocalizedText('cancel',
+                                              style: AppTheme
+                                                  .normalPrimaryTextStyle),
+                                          onPressed: () {
+                                            Get.back();
+                                          },
                                         ),
-                                        CustomTextField(
-                                          label: 'last_name',
-                                          controller: _lastNameController,
-                                          obscureText: true,
-                                          keyboardType: TextInputType.text,
-                                          hintText: 'enter_your_last_name',
-                                        ),
-                                        CustomTextField(
-                                          label: 'email',
-                                          controller: _emailController,
-                                          obscureText: true,
-                                          keyboardType: TextInputType.text,
-                                          hintText: 'enter_your_email',
-                                        ),
-                                        CustomTextField(
-                                          label: 'phone_number',
-                                          controller: _emailController,
-                                          obscureText: true,
-                                          keyboardType: TextInputType.number,
-                                          hintText: 'enter_your_phone_number',
-                                        ),
-                                        CustomTextField(
-                                          label: 'age',
-                                          controller: _ageController,
-                                          obscureText: true,
-                                          keyboardType: TextInputType.number,
-                                          hintText: 'enter_your_age',
-                                        ),
+                                        TextButton(
+                                            child: const LocalizedText(
+                                              'save',
+                                              style: AppTheme
+                                                  .normalPrimaryTextStyle,
+                                            ),
+                                            onPressed: () async {
+                                              await _authController.editProfile(
+                                                  UserToEdit(
+                                                      first_name:
+                                                          _firstNameController
+                                                              .text,
+                                                      last_name:
+                                                          _lastNameController
+                                                              .text,
+                                                      email:
+                                                          _emailController.text,
+                                                      phone_number:
+                                                          _phoneController.text,
+                                                      birthdate:
+                                                          _ageController.text,
+                                                      status: 'active'));
+                                            }),
                                       ],
                                     ),
-                                    actions: [
-                                      TextButton(
-                                        child: const LocalizedText('cancel',
-                                            style: AppTheme
-                                                .normalPrimaryTextStyle),
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                      ),
-                                      TextButton(
-                                          child: const LocalizedText(
-                                            'save',
-                                            style:
-                                                AppTheme.normalPrimaryTextStyle,
-                                          ),
-                                          onPressed: () {}),
-                                    ],
                                   ),
                                 );
                               },
