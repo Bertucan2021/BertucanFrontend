@@ -55,107 +55,111 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Text('profile', style: AppTheme.titleStyle2),
                   ),
                   SizedBox(width: 20),
-                  _authController.user.id != -1
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: InkWell(
-                              onTap: () {
-                                Get.dialog(
-                                  SingleChildScrollView(
-                                    child: AlertDialog(
-                                      title: const LocalizedText('edit_profile',
-                                          style: AppTheme.titleStyle,
-                                          textAlign: TextAlign.center),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          CustomTextField(
-                                            label: 'first_name',
-                                            controller: _firstNameController,
-                                            hintText: 'enter_your_first_name',
-                                            keyboardType: TextInputType.text,
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return "first_name_required".tr;
-                                              }
-                                              return null;
-                                            },
-                                          ),
-                                          CustomTextField(
-                                            label: 'last_name',
-                                            controller: _lastNameController,
-                                            keyboardType: TextInputType.text,
-                                            hintText: 'enter_your_last_name',
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return "last_name_required".tr;
-                                              }
-                                              return null;
-                                            },
-                                          ),
-                                          CustomTextField(
-                                            label: 'email',
-                                            controller: _emailController,
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            hintText: 'enter_your_email',
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return "email_required".tr;
-                                              }
-                                              if (!RegExp(
-                                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                                  .hasMatch(value)) {
-                                                return "invalid_email".tr;
-                                              }
-                                              return null;
-                                            },
-                                          ),
-                                          CustomTextField(
-                                            label: 'phone_number',
-                                            controller: _phoneController,
-                                            keyboardType: TextInputType.phone,
-                                            hintText: 'enter_your_phone_number',
-                                            validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                return "phone_required".tr;
-                                              }
-                                              if (!RegExp(
-                                                      r"^(?:\+2519|09)[0-9]{8}$")
-                                                  .hasMatch(value)) {
-                                                return "invalid_phone".tr;
-                                              }
-                                              return null;
-                                            },
-                                          ),
-                                          CustomTextField(
-                                            label: 'age',
-                                            controller: _ageController,
-                                            keyboardType: TextInputType.name,
-                                            hintText: 'enter_your_age',
-                                          ),
-                                        ],
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          child: const LocalizedText('cancel',
-                                              style: AppTheme
-                                                  .normalPrimaryTextStyle),
-                                          onPressed: () {
-                                            Get.back();
+                  if (_authController.user.id != -1)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: InkWell(
+                          onTap: () {
+                            Get.dialog(
+                              SingleChildScrollView(
+                                child: Form(
+                                  key: _formKey,
+                                  child: AlertDialog(
+                                    title: const LocalizedText('edit_profile',
+                                        style: AppTheme.titleStyle,
+                                        textAlign: TextAlign.center),
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CustomTextField(
+                                          label: 'first_name',
+                                          controller: _firstNameController,
+                                          hintText: 'enter_your_first_name',
+                                          keyboardType: TextInputType.text,
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return "first_name_required".tr;
+                                            }
+                                            return null;
                                           },
                                         ),
-                                        TextButton(
-                                            child: const LocalizedText(
-                                              'save',
-                                              style: AppTheme
-                                                  .normalPrimaryTextStyle,
-                                            ),
-                                            onPressed: () async {
+                                        CustomTextField(
+                                          label: 'last_name',
+                                          controller: _lastNameController,
+                                          keyboardType: TextInputType.text,
+                                          hintText: 'enter_your_last_name',
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return "last_name_required".tr;
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                        CustomTextField(
+                                          label: 'email',
+                                          controller: _emailController,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          hintText: 'enter_your_email',
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return "email_required".tr;
+                                            }
+                                            if (!RegExp(
+                                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                                .hasMatch(value)) {
+                                              return "invalid_email".tr;
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                        CustomTextField(
+                                          label: 'phone_number',
+                                          controller: _phoneController,
+                                          keyboardType: TextInputType.phone,
+                                          hintText: 'enter_your_phone_number',
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return "phone_required".tr;
+                                            }
+                                            if (!RegExp(
+                                                    r"^(?:\+2519|09)[0-9]{8}$")
+                                                .hasMatch(value)) {
+                                              return "invalid_phone".tr;
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                        CustomTextField(
+                                          label: 'age',
+                                          controller: _ageController,
+                                          keyboardType: TextInputType.name,
+                                          hintText: 'enter_your_age',
+                                        ),
+                                      ],
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        child: const LocalizedText('cancel',
+                                            style: AppTheme
+                                                .normalPrimaryTextStyle),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                      TextButton(
+                                          child: const LocalizedText(
+                                            'save',
+                                            style:
+                                                AppTheme.normalPrimaryTextStyle,
+                                          ),
+                                          onPressed: () async {
+                                            if (_formKey.currentState!
+                                                .validate()) {
                                               await _authController.editProfile(
                                                   UserToEdit(
                                                       first_name:
@@ -170,17 +174,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           _phoneController.text,
                                                       birthdate: _ageController
                                                           .toString(),
-                                                      status: 'active'));
-                                            }),
-                                      ],
-                                    ),
+                                                      status: "active"));
+                                            }
+                                          }),
+                                    ],
                                   ),
-                                );
-                              },
-                              child: const Icon(Icons.edit,
-                                  color: AppTheme.primaryColor)),
-                        )
-                      : SizedBox(),
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.edit,
+                              color: AppTheme.primaryColor)),
+                    )
+                  else
+                    SizedBox(),
                 ],
               ),
 
