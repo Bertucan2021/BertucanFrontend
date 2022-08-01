@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _homeController.getPredictedDates();
   }
 
   @override

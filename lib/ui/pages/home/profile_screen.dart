@@ -20,6 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   final AuthController _authController = Get.find();
 
@@ -45,101 +47,156 @@ class _ProfileScreenState extends State<ProfileScreen> {
               //     alignment: Alignment.centerRight,
               //     child: const LocalizedText("logout",
               //         style: AppTheme.titleStyle)),
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0, left: 20, bottom: 10),
-                child: Text('profile', style: AppTheme.titleStyle2),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20.0, left: 20, bottom: 10),
+                    child: Text('profile', style: AppTheme.titleStyle2),
+                  ),
+                  SizedBox(width: 20),
+                  _authController.user.id != -1
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: InkWell(
+                              onTap: () {
+                                Get.dialog(
+                                  AlertDialog(
+                                    title: const LocalizedText('edit_profile',
+                                        style: AppTheme.titleStyle,
+                                        textAlign: TextAlign.center),
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        CustomTextField(
+                                          label: 'first_name',
+                                          controller: _firstNameController,
+                                          obscureText: true,
+                                          hintText: 'enter_your_first_name',
+                                          keyboardType: TextInputType.text,
+                                        ),
+                                        CustomTextField(
+                                          label: 'last_name',
+                                          controller: _lastNameController,
+                                          obscureText: true,
+                                          keyboardType: TextInputType.text,
+                                          hintText: 'enter_your_last_name',
+                                        ),
+                                        CustomTextField(
+                                          label: 'email',
+                                          controller: _emailController,
+                                          obscureText: true,
+                                          keyboardType: TextInputType.text,
+                                          hintText: 'enter_your_email',
+                                        ),
+                                        CustomTextField(
+                                          label: 'phone_number',
+                                          controller: _emailController,
+                                          obscureText: true,
+                                          keyboardType: TextInputType.number,
+                                          hintText: 'enter_your_phone_number',
+                                        ),
+                                        CustomTextField(
+                                          label: 'age',
+                                          controller: _ageController,
+                                          obscureText: true,
+                                          keyboardType: TextInputType.number,
+                                          hintText: 'enter_your_age',
+                                        ),
+                                      ],
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        child: const LocalizedText('cancel',
+                                            style: AppTheme
+                                                .normalPrimaryTextStyle),
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                      TextButton(
+                                          child: const LocalizedText(
+                                            'save',
+                                            style:
+                                                AppTheme.normalPrimaryTextStyle,
+                                          ),
+                                          onPressed: () {}),
+                                    ],
+                                  ),
+                                );
+                              },
+                              child: const Icon(Icons.edit,
+                                  color: AppTheme.primaryColor)),
+                        )
+                      : SizedBox(),
+                ],
               ),
 
               _authController.user.id != -1
-                  ? Column(
+                  ? Row(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            // CircleAvatar(
-                            //   child: Image.asset('assets/profile.png'),
-                            //   radius: 50,
-                            //   backgroundColor: const Color(0xFFFEEFF2),
-                            // ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      "${_authController.user.first_name ?? ""} ${_authController.user.last_name ?? ""}",
-                                      style: AppTheme.normalTextStyle),
-                                ],
-                              ),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  Get.dialog(
-                                    AlertDialog(
-                                      title: const LocalizedText('edit_profile',
-                                          style: AppTheme.titleStyle,
-                                          textAlign: TextAlign.center),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          CustomTextField(
-                                            label: 'first_name',
-                                            controller: _firstNameController,
-                                            obscureText: true,
-                                            hintText: 'enter_your_first_name',
-                                            keyboardType: TextInputType.text,
-                                          ),
-                                          CustomTextField(
-                                            label: 'last_name',
-                                            controller: _lastNameController,
-                                            obscureText: true,
-                                            keyboardType: TextInputType.text,
-                                            hintText: 'enter_your_last_name',
-                                          ),
-                                          CustomTextField(
-                                            label: 'age',
-                                            controller: _ageController,
-                                            obscureText: true,
-                                            keyboardType: TextInputType.number,
-                                            hintText: 'enter_your_age',
-                                          ),
-                                        ],
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          child: const LocalizedText('cancel',
-                                              style: AppTheme
-                                                  .normalPrimaryTextStyle),
-                                          onPressed: () {
-                                            Get.back();
-                                          },
-                                        ),
-                                        TextButton(
-                                            child: const LocalizedText(
-                                              'save',
-                                              style: AppTheme
-                                                  .normalPrimaryTextStyle,
-                                            ),
-                                            onPressed: () {}),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                child: const Icon(Icons.edit,
-                                    color: AppTheme.primaryColor)),
-                          ],
+                        CircleAvatar(
+                          child: Image.asset('assets/profile.png'),
+                          radius: 50,
+                          backgroundColor: const Color(0xFFFEEFF2),
                         ),
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const LocalizedText(
-                              "email",
-                              style: AppTheme.titleStyle2,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      LocalizedText(
+                                        "name :",
+                                        style: AppTheme.titleStyle2
+                                            .copyWith(fontSize: 20),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 2),
+                                        child: Text(
+                                            "${_authController.user.first_name ?? ""} ${_authController.user.last_name ?? ""}",
+                                            style: AppTheme.normalTextStyle),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              ":${_authController.user.email}",
-                              style: AppTheme.normal2TextStyle,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 8.0, left: 35),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      LocalizedText(
+                                        "email : ",
+                                        style: AppTheme.titleStyle2
+                                            .copyWith(fontSize: 20),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 2),
+                                        child: Text(
+                                          "${_authController.user.email}",
+                                          style: AppTheme.normal2TextStyle,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
