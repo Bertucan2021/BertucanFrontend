@@ -168,8 +168,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           _emailController.text,
                                                       phone_number:
                                                           _phoneController.text,
-                                                      birthdate:
-                                                          _ageController.text,
+                                                      birthdate: _ageController
+                                                          .toString(),
                                                       status: 'active'));
                                             }),
                                       ],
