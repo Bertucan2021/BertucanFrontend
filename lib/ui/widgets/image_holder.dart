@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bertucanfrontend/core/services/api_storage_service.dart';
+import 'package:bertucanfrontend/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ImageHolder extends StatelessWidget {
@@ -22,8 +24,9 @@ class ImageHolder extends StatelessWidget {
             future: imageClient.getImage(path!),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Image.memory(
-                  base64Decode(snapshot.data!),
+                log("image data: ${snapshot.data}");
+                return Image.network(
+                  '$kBaseStorageUrl${path}',
                   width: width,
                   height: height,
                   fit: BoxFit.cover,

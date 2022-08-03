@@ -208,9 +208,7 @@ class AuthRepository with IAuthRepository {
       file: File(picture),
     );
     if (response['success']) {
-      user = getUser();
-      log("user ${user?.toJson().toString()}");
-      user = userToEdit.toUser(user!);
+      user = User.fromJson(response['data']);
       storage.write('user', user);
       return NormalResponse(
         success: true,
@@ -239,5 +237,18 @@ class AuthRepository with IAuthRepository {
         success: false,
       );
     }
+  }
+
+  @override
+  Future<User?> fetchUser() async {
+    final response = await apiClient.request(
+      requestType: RequestType.get,
+      path: '/users/getLoggedInUser',
+    );
+    if (response['success']) {
+      user = User.fromJson(response['data']);
+      return user;
+    }
+    return User(id: -1);
   }
 }

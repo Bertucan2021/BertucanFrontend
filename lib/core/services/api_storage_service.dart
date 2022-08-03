@@ -25,7 +25,7 @@ class ApiStorageClient {
   }
 
   void showConnectError(error) {
-    log("could_not_connect_to_the_internet $error");
+    // log("could_not_connect_to_the_internet $error");
   }
 
   String? getStringFromResponse(Response? response) {
@@ -33,8 +33,8 @@ class ApiStorageClient {
     if (response.statusCode ~/ 100 == 2) {
       return response.body;
     } else {
-      showConnectError(response.body);
-      showConnectError(response.statusCode);
+      // showConnectError(response.body);
+      // showConnectError(response.statusCode);
     }
     return null;
   }

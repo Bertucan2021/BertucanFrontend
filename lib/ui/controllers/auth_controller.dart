@@ -26,9 +26,10 @@ class AuthController extends GetxController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
+    await _authRepository.fetchUser();
     getUser();
   }
 
