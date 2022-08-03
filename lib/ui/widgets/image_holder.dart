@@ -19,14 +19,18 @@ class ImageHolder extends StatelessWidget {
   ApiStorageClient imageClient = ApiStorageClient();
   @override
   Widget build(BuildContext context) {
-    return path != null
+    String? imagePath = path;
+    if (path != null && path![0] != '/') {
+      imagePath = "/$path";
+    }
+    return imagePath != null
         ? FutureBuilder<String?>(
-            future: imageClient.getImage(path!),
+            future: imageClient.getImage(imagePath),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 log("image data: ${snapshot.data}");
                 return Image.network(
-                  '$kBaseStorageUrl${path}',
+                  '$kBaseStorageUrl$imagePath',
                   width: width,
                   height: height,
                   fit: BoxFit.cover,
