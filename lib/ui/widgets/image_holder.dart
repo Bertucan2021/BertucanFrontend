@@ -29,11 +29,16 @@ class ImageHolder extends StatelessWidget {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 log("image data: ${snapshot.data}");
-                return Image.network(
-                  '$kBaseStorageUrl$imagePath',
-                  width: width,
-                  height: height,
-                  fit: BoxFit.cover,
+                return CircleAvatar(
+                  radius: width / 2,
+                  child: ClipOval(
+                    child: Image.network(
+                      '$kBaseStorageUrl$imagePath',
+                      width: width,
+                      height: height,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 );
               } else {
                 return Icon(

@@ -1,6 +1,7 @@
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/components/dialogs/change_passcode_dialog.dart';
 import 'package:bertucanfrontend/ui/components/dialogs/change_password_dialog.dart';
 import 'package:bertucanfrontend/ui/components/dialogs/edit_profile_dialog.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
@@ -195,6 +196,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: 10,
                     ),
+                    _authController.user.id != -1
+                        ? singleTile(
+                            onTap: () {
+                              Get.dialog(ChangePassword());
+                            },
+                            iconData: Icons.password,
+                            label: 'change_password',
+                          )
+                        : SizedBox(),
                     singleTile(
                       iconData: Icons.language,
                       label: 'language',

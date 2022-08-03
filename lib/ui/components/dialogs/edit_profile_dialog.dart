@@ -144,29 +144,35 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          InkWell(
-                            onTap: () => showDatePicker(
-                              context: context,
-                              firstDate: DateTime.now()
-                                  .subtract(Duration(days: 50 * 365)),
-                              lastDate: DateTime.now()
-                                  .subtract(Duration(days: 365 * 10)),
-                              initialDate: DateTime.now()
-                                  .subtract(Duration(days: 365 * 10)),
-                            ).then((value) {
-                              if (value != null) {
-                                setState(() {
-                                  _ageController =
-                                      DateFormat.yMd().format(value);
-                                });
-                              }
+                          Theme(
+                            data: _buildShrineTheme(),
+                            child: Builder(builder: (context) {
+                              return InkWell(
+                                onTap: () => showDatePicker(
+                                  context: context,
+                                  firstDate: DateTime.now()
+                                      .subtract(Duration(days: 50 * 365)),
+                                  lastDate: DateTime.now()
+                                      .subtract(Duration(days: 365 * 10)),
+                                  initialDate: DateTime.now()
+                                      .subtract(Duration(days: 365 * 10)),
+                                ).then((value) {
+                                  if (value != null) {
+                                    setState(() {
+                                      _ageController =
+                                          DateFormat.yMd().format(value);
+                                    });
+                                  }
+                                }),
+                                child: Container(
+                                    decoration: AppTheme.whiteBoxDecoration(),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 8),
+                                    child: LocalizedText('select',
+                                        style:
+                                            AppTheme.normalPrimaryTextStyle)),
+                              );
                             }),
-                            child: Container(
-                                decoration: AppTheme.whiteBoxDecoration(),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 8),
-                                child: LocalizedText('select',
-                                    style: AppTheme.normalPrimaryTextStyle)),
                           ),
                           SizedBox(width: 10),
                           _ageController != ""
@@ -212,4 +218,67 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       _imageFile = pickedFile?.path;
     });
   }
+
+  ThemeData _buildShrineTheme() {
+    final ThemeData base = ThemeData.light();
+    return base.copyWith(
+      colorScheme: _shrineColorScheme,
+      toggleableActiveColor: AppTheme.primaryColor,
+      accentColor: AppTheme.primaryColor,
+      primaryColor: AppTheme.primaryColor,
+      buttonColor: AppTheme.primaryColor,
+      scaffoldBackgroundColor: Colors.white,
+      cardColor: Colors.white,
+      textSelectionColor: AppTheme.primaryColor,
+      errorColor: Colors.red,
+      buttonTheme: ButtonThemeData(
+        colorScheme: _shrineColorScheme,
+        textTheme: ButtonTextTheme.normal,
+      ),
+      primaryIconTheme: _customIconTheme(base.iconTheme),
+      textTheme: _buildShrineTextTheme(base.textTheme),
+      primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+      accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+      iconTheme: _customIconTheme(base.iconTheme),
+    );
+  }
+
+  IconThemeData _customIconTheme(IconThemeData original) {
+    return original.copyWith(color: AppTheme.primaryColor);
+  }
+
+  TextTheme _buildShrineTextTheme(TextTheme base) {
+    return base
+        .copyWith(
+          caption: base.caption!.copyWith(
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+          ),
+          button: base.button!.copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+          ),
+        )
+        .apply(
+          fontFamily: 'Rubik',
+          displayColor: AppTheme.primaryColor,
+          bodyColor: AppTheme.primaryColor,
+        );
+  }
+
+  ColorScheme _shrineColorScheme = ColorScheme(
+    primary: AppTheme.primaryColor,
+    primaryVariant: AppTheme.primaryColor,
+    secondary: AppTheme.primaryColor,
+    secondaryVariant: AppTheme.primaryColor,
+    surface: AppTheme.primaryColor,
+    background: Colors.white,
+    error: Colors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.black,
+    onBackground: Colors.white,
+    onError: Colors.red,
+    brightness: Brightness.light,
+  );
 }

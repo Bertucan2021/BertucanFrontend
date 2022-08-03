@@ -1,63 +1,85 @@
+import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
+import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_dialog.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SetPassCode extends StatelessWidget {
-  SetPassCode({Key? key}) : super(key: key);
+class ChangePassword extends StatelessWidget {
+  ChangePassword({Key? key}) : super(key: key);
   final AuthController _authController = Get.find();
 
-  final TextEditingController _passCodeController = TextEditingController();
-  final TextEditingController _passCodeController2 = TextEditingController();
+  final TextEditingController _oldPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController2 = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return CustomDialog(
-        title: 'passcode',
-        content: [
-          Form(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-            CustomTextField(
-              label: 'enter_passcode',
-              controller: _passCodeController,
-              obscureText: true,
-              hintText: 'enter_your_passcode',
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'passcode_canot_be_null'.tr;
-                }
-              },
-            ),
-            CustomTextField(
-                label: 'confirm_passcode',
-                controller: _passCodeController2,
-                obscureText: true,
-                keyboardType: TextInputType.number,
-                hintText: 'enter_your_passcode',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'passcode_canot_be_null'.tr;
-                  } else if (value.trim() != _passCodeController.text) {
-                    return 'the_two_passcodes_are_not_the_same';
-                  }
-                })
-          ])),
-        ],
-        onCancel: () {
-          _passCodeController.clear();
-          _passCodeController2.clear();
-        },
-        onConfirm: () {
-          if (_formKey.currentState!.validate()) {
-            _authController.setPasscode(_passCodeController.text);
-            _passCodeController.clear();
-            _passCodeController2.clear();
-            Get.back();
-          }
-        });
+    return Stack(
+      children: [
+        CustomDialog(
+            title: 'change_password',
+            content: [
+              Form(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                CustomTextField(
+                  label: 'old_password',
+                  controller: _oldPasswordController,
+                  obscureText: true,
+                  hintText: 'enter_your_password',
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'password_canot_be_null'.tr;
+                    }
+                  },
+                ),
+                CustomTextField(
+                    label: 'new_password',
+                    controller: _newPasswordController,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    hintText: 'enter_your_password',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'password_canot_be_null'.tr;
+                      } else if (value.trim() != _newPasswordController.text) {
+                        return 'the_two_passwords_are_not_the_same';
+                      }
+                    }),
+                CustomTextField(
+                  label: 'confirm_new_password',
+                  controller: _newPasswordController2,
+                  obscureText: true,
+                  hintText: 'enter_your_password',
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value != _newPasswordController) {
+                      return 'password_is_not_the_same'.tr;
+                    }
+                  },
+                ),
+              ])),
+            ],
+            onCancel: () {
+              _newPasswordController.clear();
+              _oldPasswordController.clear();
+            },
+            onConfirm: () async {
+              if (_formKey.currentState!.validate()) {
+                _authController.changePassword(PasswordToChange(
+                    old_password: _oldPasswordController.text,
+                    new_password: _newPasswordController.text));
+              }
+            }),
+        Obx(() => ModalProgressHUD(
+              inAsyncCall: _authController.status.isLoading,
+            )),
+      ],
+    );
   }
 }
