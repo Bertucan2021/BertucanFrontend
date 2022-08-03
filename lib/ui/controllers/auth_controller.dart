@@ -119,9 +119,9 @@ class AuthController extends GetxController {
     return _authRepository.getLocale();
   }
 
-  editProfile(UserToEdit userToEdit) async {
+  editProfile(UserToEdit userToEdit, picture) async {
     status = RxStatus.loading();
-    await _authRepository.editProfile(userToEdit).then((value) {
+    await _authRepository.editProfile(userToEdit, picture).then((value) {
       if (value.success) {
         status = RxStatus.success();
         getUser();

@@ -143,3 +143,18 @@ class PasswordToChange with _$PasswordToChange {
   factory PasswordToChange.fromJson(Map<String, dynamic> json) =>
       _$PasswordToChangeFromJson(json);
 }
+
+extension UserExtension on UserToEdit {
+  User toUser(User user, {String? image}) => User(
+      id: user.id,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      phone_number: phone_number,
+      birthdate: birthdate,
+      address_id: user.address_id,
+      membership_id: user.membership_id,
+      remember_token: user.remember_token,
+      log_status: status,
+      profile_picture: image);
+}

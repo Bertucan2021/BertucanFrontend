@@ -65,6 +65,7 @@ class _SrhScreenState extends State<SrhScreen> {
                         onTap: () {
                           controller.selectSrh(controller.srhToShow[index]);
                         },
+                        imageUrl: controller.srhToShow[index].icon,
                       ),
                     ),
                   );

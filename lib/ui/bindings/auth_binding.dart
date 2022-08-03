@@ -3,6 +3,7 @@ import 'package:bertucanfrontend/core/adapters/home_adapter.dart';
 import 'package:bertucanfrontend/core/repositories/auth_repository.dart';
 import 'package:bertucanfrontend/core/repositories/home_repository.dart';
 import 'package:bertucanfrontend/core/services/api/api_client.dart';
+import 'package:bertucanfrontend/core/services/api_storage_service.dart';
 import 'package:bertucanfrontend/core/services/estimation_service.dart';
 import 'package:bertucanfrontend/core/services/notification_service.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
@@ -28,5 +29,6 @@ class AuthBinding implements Bindings {
         apiClient: Get.find(),
         notificationService: Get.find()));
     Get.put<HomeController>(HomeController(Get.find()));
+    Get.lazyPut(() => ApiStorageClient(), fenix: true);
   }
 }

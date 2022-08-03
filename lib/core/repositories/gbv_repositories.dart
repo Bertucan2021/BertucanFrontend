@@ -30,11 +30,11 @@ class GbvRepository implements IGbvRepository {
   @override
   Future<NormalResponse> reportGbv(GbvReport reportPayload) async {
     Map<String, dynamic> extra = {};
-    extra = reportPayload.toJson();
-    extra.removeWhere((key, value) => key == 'file');
-    var response =
-        await apiClient.uploadFile(reportPayload.file!, extra, "/reports");
-    print(response);
-    return NormalResponse(success: response["success"] as bool);
+    // extra = reportPayload.toJson();
+    // extra.removeWhere((key, value) => key == 'file');
+    // var response =
+    //     await apiClient.uploadFile(reportPayload.file!, extra, "/reports");
+    // print(response);
+    return NormalResponse(success: false);
   }
 }

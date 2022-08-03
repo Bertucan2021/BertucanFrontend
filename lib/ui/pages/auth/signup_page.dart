@@ -63,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (value == null || value.isEmpty) {
                         return "full_name_required".tr;
                       }
-                      if (value.split(" ").length != 2) {
+                      if (value.trim().split(" ").length != 2) {
                         return "full_name_pattern_required";
                       }
                       return null;

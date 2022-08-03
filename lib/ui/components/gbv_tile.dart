@@ -2,6 +2,8 @@ import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/image_holder.dart';
+
 class GbvTile extends StatelessWidget {
   final Gbv gbv;
   final Function() onTap;
@@ -22,8 +24,11 @@ class GbvTile extends StatelessWidget {
               CircleAvatar(
                 radius: 26,
                 backgroundColor: Colors.grey,
-                backgroundImage: NetworkImage(gbv.logo ??
-                    "https://api.lorem.space/image/face?hash=92310"),
+                child: ImageHolder(
+                  path: gbv.logo,
+                  height: 30,
+                  width: 30,
+                ),
               ),
               const SizedBox(width: 10),
               Column(

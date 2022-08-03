@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:bertucanfrontend/core/enums/common_enums.dart';
 import 'package:bertucanfrontend/utils/constants.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
@@ -83,6 +84,37 @@ class DioClient {
     }
   }
 
+  // Future addIsFileInterceptor() async {
+  //   _dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
+  //     // Do something before request is sent
+  //     // options.headers['Authorization'] = token;
+
+  //     // add the access token to the body too.
+
+  //     try {
+  //       options.headers['Content-Type'] = 'multipart/form-data';
+  //     } catch (e) {
+  //       print('$e');
+  //     }
+
+  //     return handler.next(options); //continue
+  //     // If you want to resolve the request with some custom data，
+  //     // you can resolve a `Response` object eg: return `dio.resolve(response)`.
+  //     // If you want to reject the request with a error message,
+  //     // you can reject a `DioError` object eg: return `dio.reject(dioError)`
+  //   }, onResponse: (response, handler) {
+  //     // Do something with response data
+  //     return handler.next(response); // continue
+  //     // If you want to reject the request with a error message,
+  //     // you can reject a `DioError` object eg: return `dio.reject(dioError)`
+  //   }, onError: (DioError e, handler) {
+  //     // Do something with response error
+  //     return handler.next(e); //continue
+  //     // If you want to resolve the request with some custom data，
+  //     // you can resolve a `Response` object eg: return `dio.resolve(response)`.
+  //   }));
+  // }
+
   Future<dynamic> get(
     String uri, {
     Map<String, dynamic>? queryParameters,
@@ -90,6 +122,7 @@ class DioClient {
     CancelToken? cancelToken,
     ProgressCallback? onReceiveProgress,
   }) async {
+    log("message: get $uri");
     try {
       var response = await _dio.get(
         uri,
@@ -204,6 +237,20 @@ class DioClient {
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
+      );
+      return response.data;
+    } on FormatException catch (_) {
+      throw const FormatException("Unable to process the data");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> fileUpload(String uri, dynamic data) async {
+    try {
+      var response = await _dio.post(
+        uri,
+        data: data,
       );
       return response.data;
     } on FormatException catch (_) {

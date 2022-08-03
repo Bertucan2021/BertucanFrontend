@@ -1,6 +1,7 @@
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/widgets/image_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,8 +43,8 @@ class SrhTitle extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(
             children: [
-              Image.asset(
-                imageUrl ?? 'assets/srh_img.png',
+              ImageHolder(
+                path: imageUrl,
                 height: 107,
                 width: 65,
               ),

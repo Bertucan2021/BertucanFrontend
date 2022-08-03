@@ -16,7 +16,7 @@ abstract class IAuthRepository {
   void setLocale(Locale locale);
   Locale getLocale();
   Future<NormalResponse> deleteAccount();
-  Future<NormalResponse> editProfile(UserToEdit userToEdit);
+  Future<NormalResponse> editProfile(UserToEdit userToEdit, String pricture);
   Future<NormalResponse> changePassword(PasswordToChange passwordToChange);
   User? getUser();
 }

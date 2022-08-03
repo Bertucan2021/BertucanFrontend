@@ -126,8 +126,6 @@ class ApiClient {
       }
 
       formPayload.addAll(defaultParams);
-      final accessToken = GetStorage().read('accessToken');
-      formPayload['access_token'] = accessToken;
       log('form payload here: $formPayload');
       var formData = FormData.fromMap(formPayload);
 
@@ -140,7 +138,6 @@ class ApiClient {
       final errorMessage = NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e));
       print("to toast: $errorMessage");
-      toast('error', e.response?.data['message']);
       return Future.error(errorMessage);
     }
   }

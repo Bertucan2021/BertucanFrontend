@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
@@ -13,7 +15,9 @@ class AuthRepository with IAuthRepository {
   final GetStorage storage = GetStorage();
 
   User? user;
-  AuthRepository({required this.apiClient});
+  AuthRepository({required this.apiClient}) {
+    user = getUser();
+  }
   @override
   Future<NormalResponse> logOut() async {
     storage.erase();
@@ -193,14 +197,20 @@ class AuthRepository with IAuthRepository {
   }
 
   @override
-  Future<NormalResponse> editProfile(UserToEdit userToEdit) async {
-    final response = await apiClient.request(
-      requestType: RequestType.put,
-      path: '/users',
-      data: userToEdit.toJson(),
+  Future<NormalResponse> editProfile(
+      UserToEdit userToEdit, String picture) async {
+    final response = await apiClient.sendFormData(
+      fileFieldName: 'file',
+      endPoint: '/users/update',
+      formPayload: {
+        'user': jsonEncode(userToEdit.toJson()),
+      },
+      file: File(picture),
     );
     if (response['success']) {
-      user = User.fromJson(userToEdit.toJson());
+      user = getUser();
+      log("user ${user?.toJson().toString()}");
+      user = userToEdit.toUser(user!);
       storage.write('user', user);
       return NormalResponse(
         success: true,
