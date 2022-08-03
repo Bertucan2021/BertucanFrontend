@@ -1060,6 +1060,8 @@ mixin _$GbvReport {
   String? get message => throw _privateConstructorUsedError;
   String? get user_id => throw _privateConstructorUsedError;
   String? get abuse_types_id => throw _privateConstructorUsedError;
+  String? get contact_phone_number => throw _privateConstructorUsedError;
+  String? get contact_address => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1073,7 +1075,12 @@ abstract class $GbvReportCopyWith<$Res> {
   factory $GbvReportCopyWith(GbvReport value, $Res Function(GbvReport) then) =
       _$GbvReportCopyWithImpl<$Res>;
   $Res call(
-      {String? message, String? user_id, String? abuse_types_id, String? file});
+      {String? message,
+      String? user_id,
+      String? abuse_types_id,
+      String? contact_phone_number,
+      String? contact_address,
+      String? file});
 }
 
 /// @nodoc
@@ -1089,6 +1096,8 @@ class _$GbvReportCopyWithImpl<$Res> implements $GbvReportCopyWith<$Res> {
     Object? message = freezed,
     Object? user_id = freezed,
     Object? abuse_types_id = freezed,
+    Object? contact_phone_number = freezed,
+    Object? contact_address = freezed,
     Object? file = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1103,6 +1112,14 @@ class _$GbvReportCopyWithImpl<$Res> implements $GbvReportCopyWith<$Res> {
       abuse_types_id: abuse_types_id == freezed
           ? _value.abuse_types_id
           : abuse_types_id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contact_phone_number: contact_phone_number == freezed
+          ? _value.contact_phone_number
+          : contact_phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contact_address: contact_address == freezed
+          ? _value.contact_address
+          : contact_address // ignore: cast_nullable_to_non_nullable
               as String?,
       file: file == freezed
           ? _value.file
@@ -1119,7 +1136,12 @@ abstract class _$$_GbvReportCopyWith<$Res> implements $GbvReportCopyWith<$Res> {
       __$$_GbvReportCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? message, String? user_id, String? abuse_types_id, String? file});
+      {String? message,
+      String? user_id,
+      String? abuse_types_id,
+      String? contact_phone_number,
+      String? contact_address,
+      String? file});
 }
 
 /// @nodoc
@@ -1137,6 +1159,8 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
     Object? message = freezed,
     Object? user_id = freezed,
     Object? abuse_types_id = freezed,
+    Object? contact_phone_number = freezed,
+    Object? contact_address = freezed,
     Object? file = freezed,
   }) {
     return _then(_$_GbvReport(
@@ -1152,6 +1176,14 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
           ? _value.abuse_types_id
           : abuse_types_id // ignore: cast_nullable_to_non_nullable
               as String?,
+      contact_phone_number: contact_phone_number == freezed
+          ? _value.contact_phone_number
+          : contact_phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contact_address: contact_address == freezed
+          ? _value.contact_address
+          : contact_address // ignore: cast_nullable_to_non_nullable
+              as String?,
       file: file == freezed
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -1164,7 +1196,12 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
   const _$_GbvReport(
-      {this.message, this.user_id, this.abuse_types_id, this.file});
+      {this.message,
+      this.user_id,
+      this.abuse_types_id,
+      this.contact_phone_number,
+      this.contact_address,
+      this.file});
 
   factory _$_GbvReport.fromJson(Map<String, dynamic> json) =>
       _$$_GbvReportFromJson(json);
@@ -1176,11 +1213,15 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
   @override
   final String? abuse_types_id;
   @override
+  final String? contact_phone_number;
+  @override
+  final String? contact_address;
+  @override
   final String? file;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, file: $file)';
+    return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, contact_phone_number: $contact_phone_number, contact_address: $contact_address, file: $file)';
   }
 
   @override
@@ -1191,6 +1232,8 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
       ..add(DiagnosticsProperty('message', message))
       ..add(DiagnosticsProperty('user_id', user_id))
       ..add(DiagnosticsProperty('abuse_types_id', abuse_types_id))
+      ..add(DiagnosticsProperty('contact_phone_number', contact_phone_number))
+      ..add(DiagnosticsProperty('contact_address', contact_address))
       ..add(DiagnosticsProperty('file', file));
   }
 
@@ -1203,6 +1246,10 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
             const DeepCollectionEquality().equals(other.user_id, user_id) &&
             const DeepCollectionEquality()
                 .equals(other.abuse_types_id, abuse_types_id) &&
+            const DeepCollectionEquality()
+                .equals(other.contact_phone_number, contact_phone_number) &&
+            const DeepCollectionEquality()
+                .equals(other.contact_address, contact_address) &&
             const DeepCollectionEquality().equals(other.file, file));
   }
 
@@ -1213,6 +1260,8 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(user_id),
       const DeepCollectionEquality().hash(abuse_types_id),
+      const DeepCollectionEquality().hash(contact_phone_number),
+      const DeepCollectionEquality().hash(contact_address),
       const DeepCollectionEquality().hash(file));
 
   @JsonKey(ignore: true)
@@ -1233,6 +1282,8 @@ abstract class _GbvReport implements GbvReport {
       {final String? message,
       final String? user_id,
       final String? abuse_types_id,
+      final String? contact_phone_number,
+      final String? contact_address,
       final String? file}) = _$_GbvReport;
 
   factory _GbvReport.fromJson(Map<String, dynamic> json) =
@@ -1244,6 +1295,10 @@ abstract class _GbvReport implements GbvReport {
   String? get user_id;
   @override
   String? get abuse_types_id;
+  @override
+  String? get contact_phone_number;
+  @override
+  String? get contact_address;
   @override
   String? get file;
   @override

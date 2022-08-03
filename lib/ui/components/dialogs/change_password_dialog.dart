@@ -25,45 +25,47 @@ class ChangePassword extends StatelessWidget {
             title: 'change_password',
             content: [
               Form(
+                  key: _formKey,
                   child: Column(mainAxisSize: MainAxisSize.min, children: [
-                CustomTextField(
-                  label: 'old_password',
-                  controller: _oldPasswordController,
-                  obscureText: true,
-                  hintText: 'enter_your_password',
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'password_canot_be_null'.tr;
-                    }
-                  },
-                ),
-                CustomTextField(
-                    label: 'new_password',
-                    controller: _newPasswordController,
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    hintText: 'enter_your_password',
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'password_canot_be_null'.tr;
-                      } else if (value.trim() != _newPasswordController.text) {
-                        return 'the_two_passwords_are_not_the_same';
-                      }
-                    }),
-                CustomTextField(
-                  label: 'confirm_new_password',
-                  controller: _newPasswordController2,
-                  obscureText: true,
-                  hintText: 'enter_your_password',
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value != _newPasswordController) {
-                      return 'password_is_not_the_same'.tr;
-                    }
-                  },
-                ),
-              ])),
+                    CustomTextField(
+                      label: 'old_password',
+                      controller: _oldPasswordController,
+                      obscureText: true,
+                      hintText: 'enter_your_password',
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'password_canot_be_null'.tr;
+                        }
+                      },
+                    ),
+                    CustomTextField(
+                        label: 'new_password',
+                        controller: _newPasswordController,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        hintText: 'enter_your_password',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'password_canot_be_null'.tr;
+                          } else if (value.trim() !=
+                              _newPasswordController.text) {
+                            return 'the_two_passwords_are_not_the_same';
+                          }
+                        }),
+                    CustomTextField(
+                      label: 'confirm_new_password',
+                      controller: _newPasswordController2,
+                      obscureText: true,
+                      hintText: 'enter_your_password',
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value != _newPasswordController.text) {
+                          return 'password_is_not_the_same'.tr;
+                        }
+                      },
+                    ),
+                  ])),
             ],
             onCancel: () {
               _newPasswordController.clear();

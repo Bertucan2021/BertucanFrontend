@@ -66,14 +66,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _authController.user.id != -1
                         ? Row(
                             children: [
-                              CircleAvatar(
+                              Container(
                                 child: ImageHolder(
                                   path: _authController.user.profile_picture,
                                   height: 107,
                                   width: 65,
                                 ),
-                                radius: 50,
-                                backgroundColor: const Color(0xFFFEEFF2),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(59),
+                                  color: const Color(0xFFFEEFF2),
+                                ),
+                                clipBehavior: Clip.hardEdge,
                               ),
                               SizedBox(width: 10),
                               Column(
@@ -199,7 +202,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _authController.user.id != -1
                         ? singleTile(
                             onTap: () {
-                              Get.dialog(ChangePassword());
+                              Get.dialog(
+                                ChangePassword(),
+                                barrierColor: Colors.grey.withOpacity(0.1),
+                              );
                             },
                             iconData: Icons.password,
                             label: 'change_password',

@@ -19,33 +19,34 @@ class SetPassCode extends StatelessWidget {
         title: 'passcode',
         content: [
           Form(
+              key: _formKey,
               child: Column(mainAxisSize: MainAxisSize.min, children: [
-            CustomTextField(
-              label: 'enter_passcode',
-              controller: _passCodeController,
-              obscureText: true,
-              hintText: 'enter_your_passcode',
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'passcode_canot_be_null'.tr;
-                }
-              },
-            ),
-            CustomTextField(
-                label: 'confirm_passcode',
-                controller: _passCodeController2,
-                obscureText: true,
-                keyboardType: TextInputType.number,
-                hintText: 'enter_your_passcode',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'passcode_canot_be_null'.tr;
-                  } else if (value.trim() != _passCodeController.text) {
-                    return 'the_two_passcodes_are_not_the_same';
-                  }
-                })
-          ])),
+                CustomTextField(
+                  label: 'enter_passcode',
+                  controller: _passCodeController,
+                  obscureText: true,
+                  hintText: 'enter_your_passcode',
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'passcode_canot_be_null'.tr;
+                    }
+                  },
+                ),
+                CustomTextField(
+                    label: 'confirm_passcode',
+                    controller: _passCodeController2,
+                    obscureText: true,
+                    keyboardType: TextInputType.number,
+                    hintText: 'enter_your_passcode',
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'passcode_canot_be_null'.tr;
+                      } else if (value.trim() != _passCodeController.text) {
+                        return 'the_two_passcodes_are_not_the_same';
+                      }
+                    })
+              ])),
         ],
         onCancel: () {
           _passCodeController.clear();

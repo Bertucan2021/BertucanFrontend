@@ -28,7 +28,6 @@ class ImageHolder extends StatelessWidget {
             future: imageClient.getImage(imagePath),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                log("image data: ${snapshot.data}");
                 return CircleAvatar(
                   radius: width / 2,
                   child: ClipOval(

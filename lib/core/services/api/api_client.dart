@@ -69,9 +69,13 @@ class ApiClient {
       final errorMessage = NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e));
       log('Api Error: $errorMessage');
-      log('Raw Error: $e');
-      toast('error', 'could_not_connect_try_again');
-      return Future.error(NetworkExceptions.getDioException(e));
+      log('Raw Error: ${e.response}');
+      String error = e.response?.data['content'][0]['error'];
+      if (error.isEmpty) error = e.response?.data['content'][0]['message'];
+      if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+      toast('error', error);
+      return Future.error(
+          {'main': NetworkExceptions.getDioException(e), 'message': error});
       //return NetworkExceptions.getDioException(e);
     }
   }

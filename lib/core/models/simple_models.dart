@@ -35,9 +35,8 @@ class QuestionnaireModel {
 
 class NormalResponse {
   bool success;
-  NormalResponse({
-    required this.success,
-  });
+  String? message;
+  NormalResponse({required this.success, this.message});
 }
 
 class MonthlyMensturationModel {

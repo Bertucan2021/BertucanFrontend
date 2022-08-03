@@ -152,9 +152,10 @@ class AuthController extends GetxController {
       if (value.success) {
         status = RxStatus.success();
         toast('success', 'password_changed');
+        logout();
       } else {
         status = RxStatus.error();
-        toast('error', 'password_not_changed');
+        toast('error', value.message ?? 'password_not_changed');
       }
     });
   }

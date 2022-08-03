@@ -225,7 +225,7 @@ class AuthRepository with IAuthRepository {
       PasswordToChange passwordToChange) async {
     final response = await apiClient.request(
       requestType: RequestType.put,
-      path: '/changePassword',
+      path: '/users/changePassword',
       data: passwordToChange.toJson(),
     );
     if (response['success']) {
@@ -235,6 +235,7 @@ class AuthRepository with IAuthRepository {
     } else {
       return NormalResponse(
         success: false,
+        message: response['content']['error'],
       );
     }
   }
