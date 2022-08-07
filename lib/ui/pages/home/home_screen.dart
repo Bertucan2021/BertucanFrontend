@@ -10,6 +10,7 @@ import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:bertucanfrontend/ui/widgets/stat_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _homeController.getPredictedDates();
   }
 
   @override
@@ -48,12 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Row(
                               children: [
-                                Obx(
-                                  () => Text(
-                                      DateFormat.yMMMd()
-                                          .format(_homeController.selectedDate),
-                                      style: AppTheme.titleStyle3),
-                                ),
+                                Text(
+                                    DateFormat.yMMMd()
+                                        .format(_homeController.selectedDate),
+                                    style: AppTheme.titleStyle3),
                                 // Align(
                                 //   alignment: Alignment.topLeft,
                                 //   child: IconButton(
@@ -85,19 +85,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             //     ))
                           ],
                         ),
-                        Obx(
-                          () => SelectableDates(
-                            selectedDate: _homeController.selectedDate,
-                            setSelectedDate: _homeController.setSelectedDate,
-                            selectableDates: _homeController.selectableDates,
-                          ),
+                        SelectableDates(
+                          selectedDate: _homeController.selectedDate,
+                          setSelectedDate: _homeController.setSelectedDate,
+                          selectableDates: _homeController.selectableDates,
                         ),
                         const SizedBox(height: 20),
-                        Obx(() => PhaseContainer(
-                              data: _homeController.currentMenstruation,
-                              date: _homeController.selectedDate,
-                              onEdit: _homeController.editLogData,
-                            )),
+                        PhaseContainer(
+                          data: _homeController.currentMenstruation,
+                          date: _homeController.selectedDate,
+                          onEdit: _homeController.editLogData,
+                        ),
                         const SizedBox(height: 20),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -307,7 +305,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ]),
                 ));
           } else {
-            return SizedBox();
+            return Center(
+              child: RoundedButton(
+                onPressed: () {
+                  _homeController.getPredictedDates();
+                },
+                text: 'retry',
+              ),
+            );
           }
         }),
         Obx(() =>

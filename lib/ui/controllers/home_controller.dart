@@ -108,10 +108,16 @@ class HomeController extends GetxController {
     currentMenstruation = tempData;
   }
 
-  void getPredictedDates() {
+  Future<void> getPredictedDates() async {
     predictedDates = _repository.getForecomingMensturationDates();
     if (predictedDates.isNotEmpty) {
       setCurrentMenstruationCycle();
+    } else {
+      status = RxStatus.loading();
+      await _repository.loadMensturationCycles(save: false);
+      predictedDates = _repository.getForecomingMensturationDates();
+      status = RxStatus.empty();
+      log("predictedDates: ${predictedDates.length}");
     }
   }
 
@@ -130,7 +136,7 @@ class HomeController extends GetxController {
       return a.startDate.compareTo(b.startDate);
     });
     predictedDates = temp;
-    _repository.savePredictedDates(predictedDates);
+    _repository.savePredictedDates(predictedDates, true);
   }
 
   UserLogData getUserLogData() {

@@ -76,6 +76,7 @@ abstract class GbvReport with _$GbvReport {
     String? user_id,
     String? abuse_types_id,
     String? contact_phone_number,
+    String? gbv_center,
     String? contact_address,
     String? file,
   }) = _GbvReport;

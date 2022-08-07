@@ -1061,6 +1061,7 @@ mixin _$GbvReport {
   String? get user_id => throw _privateConstructorUsedError;
   String? get abuse_types_id => throw _privateConstructorUsedError;
   String? get contact_phone_number => throw _privateConstructorUsedError;
+  String? get gbv_center => throw _privateConstructorUsedError;
   String? get contact_address => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
 
@@ -1079,6 +1080,7 @@ abstract class $GbvReportCopyWith<$Res> {
       String? user_id,
       String? abuse_types_id,
       String? contact_phone_number,
+      String? gbv_center,
       String? contact_address,
       String? file});
 }
@@ -1097,6 +1099,7 @@ class _$GbvReportCopyWithImpl<$Res> implements $GbvReportCopyWith<$Res> {
     Object? user_id = freezed,
     Object? abuse_types_id = freezed,
     Object? contact_phone_number = freezed,
+    Object? gbv_center = freezed,
     Object? contact_address = freezed,
     Object? file = freezed,
   }) {
@@ -1116,6 +1119,10 @@ class _$GbvReportCopyWithImpl<$Res> implements $GbvReportCopyWith<$Res> {
       contact_phone_number: contact_phone_number == freezed
           ? _value.contact_phone_number
           : contact_phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gbv_center: gbv_center == freezed
+          ? _value.gbv_center
+          : gbv_center // ignore: cast_nullable_to_non_nullable
               as String?,
       contact_address: contact_address == freezed
           ? _value.contact_address
@@ -1140,6 +1147,7 @@ abstract class _$$_GbvReportCopyWith<$Res> implements $GbvReportCopyWith<$Res> {
       String? user_id,
       String? abuse_types_id,
       String? contact_phone_number,
+      String? gbv_center,
       String? contact_address,
       String? file});
 }
@@ -1160,6 +1168,7 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
     Object? user_id = freezed,
     Object? abuse_types_id = freezed,
     Object? contact_phone_number = freezed,
+    Object? gbv_center = freezed,
     Object? contact_address = freezed,
     Object? file = freezed,
   }) {
@@ -1179,6 +1188,10 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
       contact_phone_number: contact_phone_number == freezed
           ? _value.contact_phone_number
           : contact_phone_number // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gbv_center: gbv_center == freezed
+          ? _value.gbv_center
+          : gbv_center // ignore: cast_nullable_to_non_nullable
               as String?,
       contact_address: contact_address == freezed
           ? _value.contact_address
@@ -1200,6 +1213,7 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
       this.user_id,
       this.abuse_types_id,
       this.contact_phone_number,
+      this.gbv_center,
       this.contact_address,
       this.file});
 
@@ -1215,13 +1229,15 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
   @override
   final String? contact_phone_number;
   @override
+  final String? gbv_center;
+  @override
   final String? contact_address;
   @override
   final String? file;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, contact_phone_number: $contact_phone_number, contact_address: $contact_address, file: $file)';
+    return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, contact_phone_number: $contact_phone_number, gbv_center: $gbv_center, contact_address: $contact_address, file: $file)';
   }
 
   @override
@@ -1233,6 +1249,7 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
       ..add(DiagnosticsProperty('user_id', user_id))
       ..add(DiagnosticsProperty('abuse_types_id', abuse_types_id))
       ..add(DiagnosticsProperty('contact_phone_number', contact_phone_number))
+      ..add(DiagnosticsProperty('gbv_center', gbv_center))
       ..add(DiagnosticsProperty('contact_address', contact_address))
       ..add(DiagnosticsProperty('file', file));
   }
@@ -1249,6 +1266,8 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
             const DeepCollectionEquality()
                 .equals(other.contact_phone_number, contact_phone_number) &&
             const DeepCollectionEquality()
+                .equals(other.gbv_center, gbv_center) &&
+            const DeepCollectionEquality()
                 .equals(other.contact_address, contact_address) &&
             const DeepCollectionEquality().equals(other.file, file));
   }
@@ -1261,6 +1280,7 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
       const DeepCollectionEquality().hash(user_id),
       const DeepCollectionEquality().hash(abuse_types_id),
       const DeepCollectionEquality().hash(contact_phone_number),
+      const DeepCollectionEquality().hash(gbv_center),
       const DeepCollectionEquality().hash(contact_address),
       const DeepCollectionEquality().hash(file));
 
@@ -1283,6 +1303,7 @@ abstract class _GbvReport implements GbvReport {
       final String? user_id,
       final String? abuse_types_id,
       final String? contact_phone_number,
+      final String? gbv_center,
       final String? contact_address,
       final String? file}) = _$_GbvReport;
 
@@ -1297,6 +1318,8 @@ abstract class _GbvReport implements GbvReport {
   String? get abuse_types_id;
   @override
   String? get contact_phone_number;
+  @override
+  String? get gbv_center;
   @override
   String? get contact_address;
   @override

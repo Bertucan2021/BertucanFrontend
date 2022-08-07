@@ -97,6 +97,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                     ),
                     const SizedBox(height: 20),
                     CustomTextField(
+                      decoration: AppTheme.purpleBoxDecoration(),
                       label: 'phone_number',
                       hintText: 'enter_phone_number',
                       controller: phoneController,
@@ -113,6 +114,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                       },
                     ),
                     CustomTextField(
+                        decoration: AppTheme.purpleBoxDecoration(),
                         label: 'place',
                         hintText: 'enter_place',
                         controller: placeController,
@@ -180,7 +182,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                               children: [
                                 SizedBox(
                                   width: 100,
-                                  child: LocalizedText(
+                                  child: Text(
                                     file!.split("/").last,
                                     style: AppTheme.hintTextStyle,
                                     overflow: TextOverflow.ellipsis,
@@ -218,8 +220,9 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                             GbvReport report = GbvReport(
                                 message: messageController.text,
                                 file: file!,
-                                user_id: '1',
                                 abuse_types_id: '1',
+                                gbv_center:
+                                    controller.selectedGbv.id.toString(),
                                 contact_address: placeController.text,
                                 contact_phone_number: phoneController.text);
                             await controller.reportGbv(report);

@@ -37,7 +37,7 @@ class HomeRepository implements IHomeRepository {
       }
       calculateFrom = temp;
     }
-    savePredictedDates(predictions);
+    savePredictedDates(predictions, true);
     MonthlyMensturationModel currentMonth = predictions.firstWhere(
         (element) => element.startDate.month == DateTime.now().month);
     saveCurrentMensturationData(currentMonth);
@@ -80,7 +80,11 @@ class HomeRepository implements IHomeRepository {
     if (storage.hasData('forecoming_mensturation_data')) {
       List<MonthlyMensturationModel> predictions = [];
       storage.read('forecoming_mensturation_data').forEach((element) {
-        predictions.add(MonthlyMensturationModel.fromJson(element));
+        if (element is MonthlyMensturationModel) {
+          predictions.add(element);
+        } else {
+          predictions.add(MonthlyMensturationModel.fromJson(element));
+        }
       });
       showPeriodNotification(DateTime.now().add(Duration(minutes: 1)), 1);
       showPeriodNotification(DateTime.now().add(Duration(minutes: 2)), 2);
@@ -91,7 +95,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<NormalResponse> loadMensturationCycles() async {
+  Future<NormalResponse> loadMensturationCycles({bool save = true}) async {
     try {
       if (storage.hasData('token')) {
         List<MonthlyMensturationModel> predictions = [];
@@ -103,7 +107,7 @@ class HomeRepository implements IHomeRepository {
           response['data'].forEach((element) {
             predictions.add(MonthlyMensturationModel.fromJson(element));
           });
-          savePredictedDates(predictions);
+          savePredictedDates(predictions, save);
           return NormalResponse(success: true);
         } else {
           toast('error', 'could_not_load_data');
@@ -117,10 +121,16 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<void> savePredictedDates(List<MonthlyMensturationModel> data) async {
+  Future<void> savePredictedDates(
+      List<MonthlyMensturationModel> data, bool save) async {
     storage.write('forecoming_mensturation_data', data);
+    saveUserLogData(UserLogData(
+        startDate: data[0].startDate,
+        endDate: data[0].endDate,
+        daysToStart: data[1].startDate.difference(data[0].endDate).inDays.abs(),
+        daysToEnd: data[0].endDate.difference(data[0].startDate).inDays.abs()));
     try {
-      if (storage.hasData('token')) {
+      if (storage.hasData('token') && save) {
         var temp = [];
         for (var element in data) {
           temp.add(element.toJson());

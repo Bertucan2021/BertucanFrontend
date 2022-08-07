@@ -91,6 +91,7 @@ _$_GbvReport _$$_GbvReportFromJson(Map<String, dynamic> json) => _$_GbvReport(
       user_id: json['user_id'] as String?,
       abuse_types_id: json['abuse_types_id'] as String?,
       contact_phone_number: json['contact_phone_number'] as String?,
+      gbv_center: json['gbv_center'] as String?,
       contact_address: json['contact_address'] as String?,
       file: json['file'] as String?,
     );
@@ -101,6 +102,7 @@ Map<String, dynamic> _$$_GbvReportToJson(_$_GbvReport instance) =>
       'user_id': instance.user_id,
       'abuse_types_id': instance.abuse_types_id,
       'contact_phone_number': instance.contact_phone_number,
+      'gbv_center': instance.gbv_center,
       'contact_address': instance.contact_address,
       'file': instance.file,
     };

@@ -84,7 +84,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                       CustomTextField(
                         label: 'first_name',
                         controller: _firstNameController,
-                        hintText: 'enter_your_first_name',
+                        hintText: _authController.user.first_name ??
+                            'enter_your_first_name',
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -97,7 +98,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         label: 'last_name',
                         controller: _lastNameController,
                         keyboardType: TextInputType.text,
-                        hintText: 'enter_your_last_name',
+                        hintText: _authController.user.last_name ??
+                            'enter_your_last_name',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "last_name_required".tr;
@@ -109,7 +111,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         label: 'email',
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        hintText: 'enter_your_email',
+                        hintText:
+                            _authController.user.email ?? 'enter_your_email',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "email_required".tr;
@@ -126,7 +129,8 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         label: 'phone_number',
                         controller: _phoneController,
                         keyboardType: TextInputType.phone,
-                        hintText: 'enter_your_phone_number',
+                        hintText: _authController.user.phone_number ??
+                            'enter_your_phone_number',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "phone_required".tr;

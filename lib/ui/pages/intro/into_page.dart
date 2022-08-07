@@ -32,7 +32,7 @@ class _IntroPageState extends State<IntroPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SvgPicture.asset(
-                    'assets/undraw_girl_just_wanna_have_fun.svg',
+                    'assets/1-02.svg',
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.4,
                   ),
@@ -71,7 +71,46 @@ class _IntroPageState extends State<IntroPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SvgPicture.asset(
-                    'assets/undraw_pilates_gpdb.svg',
+                    'assets/1-03.svg',
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.24),
+                    alignment: Alignment.center,
+                    child: LocalizedText(
+                      "take_control_of_your_cycle",
+                      style: AppTheme.titleStyle2,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    alignment: Alignment.center,
+                    child: LocalizedText(
+                      "plan_vacations_and_schedules_around_predicted_cycle",
+                      style: AppTheme.normal2TextStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Color(0xFFF8E7EE),
+              padding: const EdgeInsets.only(left: 40, right: 40, top: 180),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(
+                    'assets/third.svg',
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.4,
                   ),
@@ -141,6 +180,11 @@ class _IntroPageState extends State<IntroPage> {
         _currentPage = 1;
       });
       pageViewController.jumpToPage(1);
+    } else if (_currentPage == 1) {
+      setState(() {
+        _currentPage = 2;
+      });
+      pageViewController.jumpToPage(2);
     } else
       Get.toNamed(Routes.signupPage);
   }

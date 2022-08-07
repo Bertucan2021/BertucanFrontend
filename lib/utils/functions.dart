@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/shared/translations/untracked.dart';
 import 'package:bertucanfrontend/utils/confirm_dialog.dart';
 import "package:geolocator/geolocator.dart";
 import 'package:get/get.dart';
@@ -90,5 +92,14 @@ Locale getInitialLocale() {
 }
 
 void toast(String title, String message) {
+  addToTranslation(title);
+  addToTranslation(message);
   Get.snackbar(title.tr, message.tr, snackPosition: SnackPosition.BOTTOM);
+}
+
+addToTranslation(String key) {
+  key = "'$key'";
+  UntrackedKeys.untracked.putIfAbsent(key, () => "''");
+  log("untracked length ${UntrackedKeys.untracked.length.toString()}");
+  log(UntrackedKeys.untracked.toString());
 }

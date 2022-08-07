@@ -230,6 +230,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Text('Amharic'),
                             ),
                             DropdownMenuItem(
+                              value: Locale('or', 'ET'),
+                              child: Text('Oromifa'),
+                            ),
+                            DropdownMenuItem(
                               value: Locale('en', 'US'),
                               child: Text('English'),
                             )

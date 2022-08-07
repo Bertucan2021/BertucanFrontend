@@ -1,6 +1,13 @@
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:bertucanfrontend/core/repositories/auth_repository.dart';
 import 'package:bertucanfrontend/shared/translations/en_us.dart';
 import 'package:bertucanfrontend/shared/translations/untracked.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class LocalizedText extends StatelessWidget {
@@ -67,11 +74,7 @@ class LocalizedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!english.containsKey(data)) {
-      untracked.putIfAbsent(data, () => "");
-    } else {
-      untracked.remove(data);
-    }
+    addToTranslation(data);
     return Text(
       data.tr,
       key: key,

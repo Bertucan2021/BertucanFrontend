@@ -31,6 +31,9 @@ class SetPassCode extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'passcode_canot_be_null'.tr;
                     }
+                    if (value.length != 4) {
+                      return 'passcode_should_have_a_length_of_4'.tr;
+                    }
                   },
                 ),
                 CustomTextField(

@@ -12,18 +12,20 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool obscureText;
-  const CustomTextField({
-    Key? key,
-    required this.label,
-    this.validator,
-    required this.hintText,
-    required this.controller,
-    this.rightIcon,
-    this.leftIcon,
-    this.onRightIconPressed,
-    this.keyboardType = TextInputType.text,
-    this.obscureText = false,
-  }) : super(key: key);
+  final BoxDecoration? decoration;
+  const CustomTextField(
+      {Key? key,
+      required this.label,
+      this.validator,
+      required this.hintText,
+      required this.controller,
+      this.rightIcon,
+      this.leftIcon,
+      this.onRightIconPressed,
+      this.keyboardType = TextInputType.text,
+      this.obscureText = false,
+      this.decoration})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class CustomTextField extends StatelessWidget {
               height: 10,
             ),
             Container(
-              decoration: AppTheme.textFieldDecoration(),
+              decoration: decoration ?? AppTheme.textFieldDecoration(),
               child: TextFormField(
                   controller: controller,
                   obscureText: obscureText,

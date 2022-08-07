@@ -123,6 +123,8 @@ class GbvController extends GetxController {
               status = RxStatus.success(),
             }
           : status = RxStatus.error();
+    }).catchError((onError) {
+      status = RxStatus.error(onError);
     });
   }
 }

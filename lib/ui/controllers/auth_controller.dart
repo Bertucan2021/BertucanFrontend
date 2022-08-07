@@ -77,19 +77,30 @@ class AuthController extends GetxController {
       } else {
         status = RxStatus.error();
       }
+    }).catchError((onError) {
+      status = RxStatus.error();
     });
   }
 
   Future<void> signIn(UserToLogin loginPayload) async {
     status = RxStatus.loading();
-    await _authRepository.signIn(loginPayload).then((value) {
+    await _authRepository.signIn(loginPayload).then((value) async {
       if (value != null) {
-        status = RxStatus.success();
         user = value;
-        Get.offAndToNamed(Routes.questionnairePage);
+        await _authRepository.userHaveSetLog().then((value) {
+          if (value.success && value.message.isNotEmpty) {
+            Get.offAndToNamed(Routes.homePage);
+            toast('success', 'loading_previous_log');
+          } else {
+            Get.offAndToNamed(Routes.questionnairePage);
+          }
+        });
+        status = RxStatus.success();
       } else {
         status = RxStatus.error();
       }
+    }).catchError((onError) {
+      status = RxStatus.error();
     });
   }
 
@@ -129,6 +140,8 @@ class AuthController extends GetxController {
       } else {
         status = RxStatus.error();
       }
+    }).catchError((onError) {
+      status = RxStatus.error();
     });
   }
 
@@ -143,6 +156,9 @@ class AuthController extends GetxController {
         status = RxStatus.error();
         toast('error', 'account_not_deleted');
       }
+    }).catchError((onError) {
+      status = RxStatus.error();
+      toast('error', 'account_not_deleted');
     });
   }
 
@@ -157,6 +173,9 @@ class AuthController extends GetxController {
         status = RxStatus.error();
         toast('error', value.message ?? 'password_not_changed');
       }
+    }).catchError((onError) {
+      status = RxStatus.error();
+      toast('error', 'password_not_changed');
     });
   }
 }

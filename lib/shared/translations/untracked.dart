@@ -1,1 +1,3 @@
-final Map<String, String> untracked = {};
+class UntrackedKeys {
+  static Map<String, String> untracked = {};
+}

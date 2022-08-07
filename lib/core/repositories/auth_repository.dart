@@ -252,4 +252,28 @@ class AuthRepository with IAuthRepository {
     }
     return User(id: -1);
   }
+
+  @override
+  Future<NormalResponse> userHaveSetLog() async {
+    try {
+      if (storage.hasData('token')) {
+        List<MonthlyMensturationModel> predictions = [];
+        final response = await apiClient.request(
+          requestType: RequestType.get,
+          path: '/logInfos',
+        );
+        if (response['success']) {
+          return NormalResponse(
+            success: true,
+            message: response['data'],
+          );
+        } else {
+          return NormalResponse(success: true, message: []);
+        }
+      }
+      return NormalResponse(success: false);
+    } catch (e) {
+      return NormalResponse(success: false);
+    }
+  }
 }

@@ -29,7 +29,6 @@ class _GbvPageState extends State<GbvPage> {
 
   @override
   Widget build(BuildContext context) {
-    gbvController.getGbvies();
     return Scaffold(
       backgroundColor: AppTheme.creamyBackground,
       body: Padding(

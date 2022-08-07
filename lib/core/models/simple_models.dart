@@ -35,7 +35,7 @@ class QuestionnaireModel {
 
 class NormalResponse {
   bool success;
-  String? message;
+  dynamic message;
   NormalResponse({required this.success, this.message});
 }
 

@@ -70,9 +70,15 @@ class ApiClient {
           NetworkExceptions.getDioException(e));
       log('Api Error: $errorMessage');
       log('Raw Error: ${e.response}');
-      String error = e.response?.data['content'][0]['error'];
-      if (error.isEmpty) error = e.response?.data['content'][0]['message'];
-      if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+      String error = "";
+
+      try {
+        error = e.response?.data['content'][0]['error'].toString() ?? "";
+        if (error.isEmpty) error = e.response?.data['content'][0]['message'];
+      } catch (e) {
+      } finally {
+        if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+      }
       toast('error', error);
       return Future.error(
           {'main': NetworkExceptions.getDioException(e), 'message': error});
@@ -103,6 +109,10 @@ class ApiClient {
     List<File>? files,
   }) async {
     try {
+      log("request: post $endPoint");
+      log("formPayload: $formPayload");
+      log("file: ${file?.path}");
+      log("path: $endPoint");
       // For multiple files case
       if (files?.isNotEmpty ?? false) {
         List<MultipartFile> multipartFiles = [];
@@ -141,8 +151,20 @@ class ApiClient {
     } on DioError catch (e) {
       final errorMessage = NetworkExceptions.getErrorMessage(
           NetworkExceptions.getDioException(e));
-      print("to toast: $errorMessage");
-      return Future.error(errorMessage);
+      log('Api Error: $errorMessage');
+      log('Raw Error: ${e.response}');
+      String error = "";
+
+      try {
+        error = e.response?.data['content'][0]['error'].toString() ?? "";
+        if (error.isEmpty) error = e.response?.data['content'][0]['message'];
+      } catch (e) {
+      } finally {
+        if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+      }
+      toast('error', error);
+      return Future.error(
+          {'main': NetworkExceptions.getDioException(e), 'message': error});
     }
   }
 }

@@ -20,4 +20,5 @@ abstract class IAuthRepository {
   Future<NormalResponse> changePassword(PasswordToChange passwordToChange);
   User? getUser();
   Future<User?> fetchUser();
+  Future<NormalResponse> userHaveSetLog();
 }

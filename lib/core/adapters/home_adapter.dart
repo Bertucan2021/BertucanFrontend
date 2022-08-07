@@ -8,6 +8,6 @@ abstract class IHomeRepository {
   void saveUserLogData(UserLogData data);
   UserLogData getUserLogData();
   List<MonthlyMensturationModel> getForecomingMensturationDates();
-  void savePredictedDates(List<MonthlyMensturationModel> data);
-  Future<NormalResponse> loadMensturationCycles();
+  void savePredictedDates(List<MonthlyMensturationModel> data, bool save);
+  Future<NormalResponse> loadMensturationCycles({bool save = true});
 }
