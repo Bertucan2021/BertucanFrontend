@@ -95,28 +95,34 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                       style: AppTheme.titleStyle
                           .copyWith(color: AppTheme.textBlack),
                     ),
-                    const SizedBox(height: 20),
-                    CustomTextField(
-                      decoration: AppTheme.purpleBoxDecoration(),
-                      label: 'phone_number',
-                      hintText: 'enter_phone_number',
-                      controller: phoneController,
-                      keyboardType: TextInputType.phone,
-                      validator: (value) {
-                        if (value != null &&
-                            value.isNotEmpty &&
-                            !RegExp(r"^(?:\+2519|09)[0-9]{8}$")
-                                .hasMatch(value)) {
-                          return translate("invalid_phone");
-                        }
-                        return null;
-                      },
-                    ),
-                    CustomTextField(
+                    const SizedBox(height: 10),
+                    Container(
+                      margin: const EdgeInsets.only(right: 30),
+                      child: CustomTextField(
                         decoration: AppTheme.purpleBoxDecoration(),
-                        label: 'place',
-                        hintText: 'enter_place',
-                        controller: placeController),
+                        label: 'phone_number',
+                        hintText: 'enter_phone_number',
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                        validator: (value) {
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              !RegExp(r"^(?:\+2519|09)[0-9]{8}$")
+                                  .hasMatch(value)) {
+                            return "invalid_phone".tr;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 30),
+                      child: CustomTextField(
+                          decoration: AppTheme.purpleBoxDecoration(),
+                          label: 'place',
+                          hintText: 'enter_place',
+                          controller: placeController),
+                    ),
                     Container(
                       decoration: AppTheme.purpleBoxDecoration(),
                       padding: const EdgeInsets.all(10),
@@ -130,7 +136,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                         maxLines: 8,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return translate("please_enter_your_message");
+                            return 'please_enter_your_message'.tr;
                           }
                           return null;
                         },
@@ -199,7 +205,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.12,
+                  height: MediaQuery.of(context).size.height * 0.04,
                 ),
                 Obx(
                   () => Padding(
@@ -242,14 +248,14 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.photo_camera),
                 onPressed: () {
                   takePhoto(ImageSource.camera);
                 },
                 label: Text("Camera"),
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.photo_library),
                 onPressed: () {
                   takePhoto(ImageSource.gallery);

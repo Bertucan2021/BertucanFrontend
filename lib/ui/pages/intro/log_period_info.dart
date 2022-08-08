@@ -166,7 +166,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
       buttonColor: AppTheme.primaryColor,
       scaffoldBackgroundColor: Colors.white,
       cardColor: Colors.white,
-      textSelectionColor: AppTheme.primaryColor,
+      // textSelectionTheme: AppTheme.primaryColor,
       errorColor: Colors.red,
       buttonTheme: ButtonThemeData(
         colorScheme: _shrineColorScheme,

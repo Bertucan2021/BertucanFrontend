@@ -234,7 +234,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
       buttonColor: AppTheme.primaryColor,
       scaffoldBackgroundColor: Colors.white,
       cardColor: Colors.white,
-      textSelectionColor: AppTheme.primaryColor,
+      // textSelectionColor: AppTheme.primaryColor,
       errorColor: Colors.red,
       buttonTheme: ButtonThemeData(
         colorScheme: _shrineColorScheme,

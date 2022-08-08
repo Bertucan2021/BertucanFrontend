@@ -269,44 +269,53 @@ class _HomeScreenState extends State<HomeScreen> {
                                 margin:
                                     const EdgeInsets.symmetric(vertical: 15),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  await showDateRangePicker(
-                                          context: context,
-                                          firstDate: DateTime.now()
-                                              .subtract(Duration(days: 365)),
-                                          lastDate: DateTime.now())
-                                      .then((value) {
-                                    if (value != null) {
-                                      _homeController.addPreviousCycle(
-                                          MonthlyMensturationModel(
-                                              startDate: value.start,
-                                              endDate: value.end));
-                                    }
-                                  });
-                                },
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.add_circle,
-                                        color: AppTheme.primaryColor,
-                                        size: 40,
+                              Theme(
+                                data: _buildShrineTheme(),
+                                child: Builder(builder: (context) {
+                                  return InkWell(
+                                    onTap: () async {
+                                      await showDateRangePicker(
+                                              context: context,
+                                              firstDate: DateTime.now()
+                                                  .subtract(
+                                                      Duration(days: 365)),
+                                              lastDate: DateTime.now())
+                                          .then((value) {
+                                        if (value != null) {
+                                          _homeController.addPreviousCycle(
+                                              MonthlyMensturationModel(
+                                                  startDate: value.start,
+                                                  endDate: value.end));
+                                        }
+                                      });
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(
+                                            Icons.add_circle,
+                                            color: AppTheme.primaryColor,
+                                            size: 40,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          LocalizedText(
+                                            "log_previous_cycles",
+                                            style: AppTheme.titleStyle4
+                                                .copyWith(
+                                                    color:
+                                                        AppTheme.primaryColor),
+                                          )
+                                        ],
                                       ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      LocalizedText(
-                                        "log_previous_cycles",
-                                        style: AppTheme.titleStyle4.copyWith(
-                                            color: AppTheme.primaryColor),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  );
+                                }),
                               )
                             ],
                           ),
@@ -369,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
       buttonColor: AppTheme.primaryColor,
       scaffoldBackgroundColor: Colors.white,
       cardColor: Colors.white,
-      textSelectionColor: AppTheme.primaryColor,
+      // textSelectionColor: AppTheme.primaryColor,
       errorColor: Colors.red,
       buttonTheme: ButtonThemeData(
         colorScheme: _shrineColorScheme,
