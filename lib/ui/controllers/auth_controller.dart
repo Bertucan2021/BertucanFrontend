@@ -74,6 +74,7 @@ class AuthController extends GetxController {
           password: signUpPayload.password,
         ));
         status = RxStatus.success();
+        toast('success', 'user_signed_up_successfully'.tr);
       } else {
         status = RxStatus.error();
       }

@@ -92,8 +92,8 @@ Locale getInitialLocale() {
 }
 
 void toast(String title, String message) {
-  // addToTranslation(title);
-  // addToTranslation(message);
+  addToTranslation(title);
+  addToTranslation(message);
   Get.snackbar(title.tr, message.tr, snackPosition: SnackPosition.BOTTOM);
 }
 
@@ -102,4 +102,9 @@ addToTranslation(String key) {
   UntrackedKeys.untracked.putIfAbsent(key, () => "''");
   log("untracked length ${UntrackedKeys.untracked.length.toString()}");
   log(UntrackedKeys.untracked.toString());
+}
+
+String translate(String key) {
+  addToTranslation(key);
+  return key.tr;
 }

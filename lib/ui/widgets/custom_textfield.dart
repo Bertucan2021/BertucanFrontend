@@ -1,6 +1,8 @@
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -50,7 +52,7 @@ class CustomTextField extends StatelessWidget {
                   validator: validator,
                   style: AppTheme.normalTextStyle,
                   decoration: AppTheme.textFieldInputDecoration().copyWith(
-                    hintText: hintText,
+                    hintText: translate(hintText),
                     suffix: rightIcon != null
                         ? IconButton(
                             icon: Icon(rightIcon),

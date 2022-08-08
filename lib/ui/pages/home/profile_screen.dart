@@ -186,8 +186,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 8, right: 10, bottom: 25, top: 40),
-                      child:
-                          Text('general_setting', style: AppTheme.titleStyle2),
+                      child: LocalizedText('general_setting',
+                          style: AppTheme.titleStyle2),
                     ),
                     singleTile(
                       onTap: () {

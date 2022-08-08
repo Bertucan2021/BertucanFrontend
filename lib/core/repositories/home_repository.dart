@@ -86,9 +86,6 @@ class HomeRepository implements IHomeRepository {
           predictions.add(MonthlyMensturationModel.fromJson(element));
         }
       });
-      showPeriodNotification(DateTime.now().add(Duration(minutes: 1)), 1);
-      showPeriodNotification(DateTime.now().add(Duration(minutes: 2)), 2);
-      showPeriodNotification(DateTime.now().add(Duration(minutes: 3)), 3);
       return predictions;
     }
     return [];

@@ -135,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         if (_formKey.currentState!.validate()) {
                           await _authController.signUp(UserToSignUp(
                             first_name: _nameController.text.split(" ").first,
-                            last_name: _nameController.text.split(" ").first,
+                            last_name: _nameController.text.split(" ").last,
                             email: _emailController.text,
                             phone_number: _phoneController.text,
                             password: _passwordController.text,
