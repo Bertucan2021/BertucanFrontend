@@ -55,7 +55,7 @@ class SingleCycleItem extends StatelessWidget {
                       "highest_pregnancy_chance",
                       style: AppTheme.titleStyle4.copyWith(color: Colors.black),
                     ),
-                    Text('${DateFormat.MMMEd().format(data.pregnancyDate!)}',
+                    Text('${DateFormat.yMMMEd().format(data.pregnancyDate!)}',
                         style: AppTheme.articleTextStyle
                             .copyWith(fontWeight: FontWeight.w500)),
                   ],

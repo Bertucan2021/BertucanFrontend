@@ -120,7 +120,7 @@ class AuthController extends GetxController {
 
   logout() {
     _authRepository.logOut();
-    Get.offAndToNamed(Routes.loginPage);
+    Get.offAllNamed(Routes.loginPage);
   }
 
   setLocale(Locale locale) {

@@ -242,15 +242,17 @@ class AuthRepository with IAuthRepository {
 
   @override
   Future<User?> fetchUser() async {
-    final response = await apiClient.request(
-      requestType: RequestType.get,
-      path: '/users/getLoggedInUser',
-    );
-    if (response['success']) {
-      user = User.fromJson(response['data']);
-      return user;
+    if (storage.hasData('token')) {
+      final response = await apiClient.request(
+        requestType: RequestType.get,
+        path: '/users/getLoggedInUser',
+      );
+      if (response['success']) {
+        user = User.fromJson(response['data']);
+        return user;
+      }
+      return User(id: -1);
     }
-    return User(id: -1);
   }
 
   @override

@@ -52,8 +52,11 @@ class SrhTitle extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name,
-                      style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    child: Text(name,
+                        style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
+                  ),
                   const SizedBox(height: 20),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,

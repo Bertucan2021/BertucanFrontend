@@ -125,6 +125,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             style: AppTheme.titleStyle2
                                                 .copyWith(fontSize: 20),
                                           ),
+                                          SizedBox(
+                                            width: 13,
+                                          ),
                                           Container(
                                             width: MediaQuery.of(context)
                                                     .size

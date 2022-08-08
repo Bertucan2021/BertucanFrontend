@@ -21,14 +21,10 @@ class GbvTile extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 26,
-                backgroundColor: Colors.grey,
-                child: ImageHolder(
-                  path: gbv.logo,
-                  height: 30,
-                  width: 30,
-                ),
+              ImageHolder(
+                path: gbv.logo,
+                height: 50,
+                width: 50,
               ),
               const SizedBox(width: 10),
               Column(

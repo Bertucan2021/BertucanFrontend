@@ -2,6 +2,10 @@ final Map<String, String> english = {
   "skip": "Skip",
   "take_control_of_your_cycle": "Take control of your cycle",
   "plan_vacations_and_schedules_around_predicted_cycle": "",
+  "be_aware_about_gender_based violations_and_report_them_easily":
+      " Be aware about gender-based violations and report them easily",
+  "increase_your_sexual_and_reproductive_health knowledge":
+      "Increase your sexual and reproductive health knowledge",
   "hello_there,": "Hello there",
   "sign_up_with": "Sign up with",
   "full_name": "Full name",
@@ -15,7 +19,7 @@ final Map<String, String> english = {
   "sign_in": "Sign in",
   "welcome_back,": "Welcome Back",
   "login_with": "Login with",
-  "forgot_password": "Forgot Passowrd",
+  "forgot_password": "Forgot Password",
   "login": "Login",
   "don't_have_an_account": "Don't have an account",
   "sign_up": "Sign up",

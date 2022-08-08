@@ -28,89 +28,88 @@ class _IntroPageState extends State<IntroPage> {
             Container(
               height: 20,
               padding: const EdgeInsets.only(left: 40, right: 40, top: 180),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    'assets/1-02.svg',
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.24),
-                    alignment: Alignment.center,
-                    child: LocalizedText(
-                      "take_control_of_your_cycle",
-                      style: AppTheme.titleStyle2,
-                      textAlign: TextAlign.center,
+              child: Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/first.png',
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      height: MediaQuery.of(context).size.height * 0.4,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    alignment: Alignment.center,
-                    child: LocalizedText(
-                      "plan_vacations_and_schedules_around_predicted_cycle",
-                      style: AppTheme.normal2TextStyle,
-                      textAlign: TextAlign.center,
+                    const SizedBox(
+                      height: 25,
                     ),
-                  ),
-                ],
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.24),
+                      alignment: Alignment.center,
+                      child: LocalizedText(
+                        "take_control_of_your_cycle",
+                        style: AppTheme.titleStyle2,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.center,
+                      child: LocalizedText(
+                        "plan_vacations_and_schedules_around_predicted_cycle",
+                        style: AppTheme.normal2TextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
-              color: Color(0xFFF8E7EE),
               padding: const EdgeInsets.only(left: 40, right: 40, top: 180),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SvgPicture.asset(
-                    'assets/1-03.svg',
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.24),
-                    alignment: Alignment.center,
-                    child: LocalizedText(
-                      "take_control_of_your_cycle",
-                      style: AppTheme.titleStyle2,
-                      textAlign: TextAlign.center,
+              child: Center(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/second.jpg',
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      height: MediaQuery.of(context).size.height * 0.4,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    alignment: Alignment.center,
-                    child: LocalizedText(
-                      "plan_vacations_and_schedules_around_predicted_cycle",
-                      style: AppTheme.normal2TextStyle,
-                      textAlign: TextAlign.center,
+                    const SizedBox(
+                      height: 25,
                     ),
-                  ),
-                ],
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.04),
+                      alignment: Alignment.center,
+                      child: LocalizedText(
+                        "increase_your_sexual_and_reproductive_health knowledge",
+                        style: AppTheme.titleStyle2,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.center,
+                      child: LocalizedText(
+                        "plan_vacations_and_schedules_around_predicted_cycle",
+                        style: AppTheme.normal2TextStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
-              color: Color(0xFFF8E7EE),
               padding: const EdgeInsets.only(left: 40, right: 40, top: 180),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset(
-                    'assets/third.svg',
+                  Image.asset(
+                    'assets/third.png',
                     width: MediaQuery.of(context).size.width * 0.7,
                     height: MediaQuery.of(context).size.height * 0.4,
                   ),
@@ -119,10 +118,10 @@ class _IntroPageState extends State<IntroPage> {
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.24),
+                        horizontal: MediaQuery.of(context).size.width * 0.04),
                     alignment: Alignment.center,
                     child: LocalizedText(
-                      "take_control_of_your_cycle",
+                      "be_aware_about_gender_based violations_and_report_them_easily",
                       style: AppTheme.titleStyle2,
                       textAlign: TextAlign.center,
                     ),
