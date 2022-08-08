@@ -90,5 +90,8 @@ final Map<String, String> english = {
   "upload_file": "Upload File",
   "send": "Send",
   "srh_articles": "SRH Articles",
-  "SRH": "SRH"
+  "SRH": "SRH",
+  "todays_cycle_day": "Todays cycle day",
+  "chance_of_getting_pregnant": "Chance of pregnancy",
+  "you_are_not_logged_in": "You are not logged in"
 };

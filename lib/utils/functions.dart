@@ -98,10 +98,10 @@ void toast(String title, String message) {
 }
 
 addToTranslation(String key) {
-  key = "'$key'";
-  UntrackedKeys.untracked.putIfAbsent(key, () => "''");
-  log("untracked length ${UntrackedKeys.untracked.length.toString()}");
-  log(UntrackedKeys.untracked.toString());
+  // key = "'$key'";
+  // UntrackedKeys.untracked.putIfAbsent(key, () => "''");
+  // log("untracked length ${UntrackedKeys.untracked.length.toString()}");
+  // log(UntrackedKeys.untracked.toString());
 }
 
 String translate(String key) {

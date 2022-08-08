@@ -119,5 +119,8 @@ final Map<String, String> amharic = {
   "enter_your_passcode": "የይለፍ ቁጥርዎን ያስገቡ",
   "passcode_canot_be_null": "የይለፍ ቁጥር ባዶ መኾን አይችልም",
   "enter_your_password": "የይለፍ ቃልዎን ያስገቡ",
-  "password_canot_be_null": "የይለፍ ቃል ባዶ መኾን አይችልም"
+  "password_canot_be_null": "የይለፍ ቃል ባዶ መኾን አይችልም",
+  "todays_cycle_day": "የዛሬ ሳይክል ቀን",
+  "chance_of_getting_pregnant": "የመፀነስ ዕድል",
+  "you_are_not_logged_in": "አልገቡም"
 };

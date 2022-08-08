@@ -117,5 +117,8 @@ Map<String, String> tigrigna = {
   'last_name_required': 'ስም አቦሓጎ አድላዪ እዩ',
   "enter_old_passcode": 'ነቲ ዝጸንሐ ናይ ምሽጥር ቃል ኣእትዊ',
   "enter_your_password": 'ነቲ ናይ ምሽጥር ቃልኪ ኣእትዊ',
-  "password_canot_be_null": 'ናይ ምሽጥር ቃል ጥራሑ ክኾን ኣይኽእልን'
+  "password_canot_be_null": 'ናይ ምሽጥር ቃል ጥራሑ ክኾን ኣይኽእልን',
+  "todays_cycle_day": "ናይ ሎምዓንቲ ዕለት ዑደት",
+  "chance_of_getting_pregnant": "ጥንሲ ናይ ምትሓዝ ተኽእሎ",
+  "you_are_not_logged_in": "ናብ'ቲ መፍለዪ ሒሳብኪ ኣይኣተኽን"
 };

@@ -88,4 +88,38 @@ final Map<String, String> oromifa = {
   "send": "Ergi",
   "srh_articles": "Barruu fayyaa walqunnamtii saalaa fi walhormaataa",
   "SRH": "fayyaa walqunnamtii saalaa fi walhormaataa",
+  "todays_cycle_day": "marsaa guyyaa har'aa",
+  "chance_of_getting_pregnant": "Carraa ulfa ta'uu",
+  "you_are_not_logged_in": "Hin seenne",
+  "fight_gender_based_violations": "Sarbama saalaa irratti hundaa’e qolachuu",
+  "be_aware": "Hubadhaa",
+  "control_your_cycle": "Marsaa kee to’adhu",
+  "increase_your_sexual_and_reproductive_health knowledge":
+      "Hubannoo wal-qunamtti fi wal-hormaata fayyaa irratti dabalaa",
+  "take_control_of_your_cycle": "marsaa_kee_to'adhu",
+  "be_aware_about_gender_based violations_and_report_them_easily":
+      "waa'ee sarbama saala bu'uureffate beekuu fi salphatti gabaasu",
+  "chance_of_pregnancy": "Carraa ulfummaa",
+  "full_name_required": "Maqaa guutuu nibarbaachisaa",
+  "email_required": "Imaliin nibarbachisaa",
+  "phone_required": "Lakkoofsa Bilbilaa nibarbachisaa",
+  "password_required": "Iggita seensaan nibarbachisaa",
+  "success": "Milkaa’e",
+  "loading_previous_logo": "Asxaa duraanii fe'aa jira",
+  "retry": "Irra deebi'ii yaali",
+  "search_article": "Barreeffama barbaadi",
+  "search_gbv": "GBV barbaadi",
+  "enter_phone_number": "Lakkoofsa bilbilaakee galchii",
+  "enter_place": " Bakka jiraanya galchii",
+  "profile": "Raga fayyadamaa",
+  "general_setting": "sajoo waliigalaa",
+  "change_passcode": "Iggita seensaa jijjiiri /Koodii dabarsoo jijjiiri",
+  "first_name_required": "Maqaa kee nibarbaachisaa",
+  "last_name_required": "Maqaa dhumaa nibarbaachisaa",
+  "enter_old_passcode":
+      "Iggita seensaa durii galchii/ Koodii dabarsoo durii galchii",
+  "enter_your_passcode":
+      "Iggita seensaa keeti galchii/ Koodii dabarsoo keeti galchii",
+  "enter_your_password": "Iggita seensaa galchii",
+  "password cannot be null": "Jechi seensaa duwwaa ta'uu hin danda'u"
 };

@@ -41,9 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
           if (_homeController.predictedDates.isNotEmpty) {
             int periodIn = 0;
             DateTime today = DateTime.now();
-            if (today.isAfter(_homeController.currentMenstruation.startDate) &&
-                today.isBefore(_homeController.currentMenstruation.endDate)) {
-              periodIn = _homeController.currentMenstruation.endDate
+            if (today.isAfter(_homeController.currentMenstruation.startDate)) {
+              periodIn = _homeController.currentMenstruation.startDate
                   .add(Duration(
                       days: _homeController.userLogData?.daysToStart ?? 0))
                   .difference(today)

@@ -39,15 +39,13 @@ class LogPage extends StatelessWidget {
                       day.isAfter(element.startDate)) {
                     isRed = true;
                   } else if (element.pregnancyDate != null) {
-                    if ((day.difference(element.pregnancyDate!).abs().inDays ==
-                            0) &&
+                    if ((day.difference(element.pregnancyDate!).abs().inDays <=
+                            2) ||
                         day.day == element.pregnancyDate!.day) {
                       isBlue = true;
-                    } else if (day
-                            .difference(element.pregnancyDate!)
-                            .abs()
-                            .inDays <
-                        4) {
+                    } else if (day.isBefore(element.pregnancyDate!
+                            .subtract(Duration(days: 2))) &&
+                        day.isAfter(element.endDate)) {
                       isLessBlue = true;
                     }
                   }
@@ -71,7 +69,7 @@ class LogPage extends StatelessWidget {
                         ? Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 248, 152, 78),
                               borderRadius: BorderRadius.circular(40),
                             ),
                             width: 40,
@@ -83,7 +81,7 @@ class LogPage extends StatelessWidget {
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: Colors.lightBlue,
+                                    color: Color.fromARGB(255, 248, 152, 78),
                                   ),
                                   borderRadius: BorderRadius.circular(40),
                                 ),
@@ -147,7 +145,7 @@ class LogPage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.lightBlue,
+                          color: AppTheme.primaryColor,
                         ),
                         borderRadius: BorderRadius.circular(40),
                       ),
@@ -172,7 +170,7 @@ class LogPage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 248, 152, 78),
                         borderRadius: BorderRadius.circular(40),
                       ),
                       width: 40,
