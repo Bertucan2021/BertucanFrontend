@@ -87,7 +87,7 @@ Locale getInitialLocale() {
   if (storage.hasData('locale')) {
     return Locale(storage.read('locale'));
   } else {
-    return const Locale('en', 'US');
+    return const Locale('am', 'ET');
   }
 }
 

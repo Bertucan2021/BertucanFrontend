@@ -86,5 +86,36 @@ Map<String, String> tigrigna = {
   "upload_file": "ፋይል ጸዓን",
   "send": "ልኣኽ",
   "srh_articles": "SRH ዓንቀጻት",
-  "SRH": "SRH"
+  "SRH": "SRH",
+  "fight_gender_based_violations": "ኣብ ጾታ መሰረት ገይሮም ዝበጽሑ ዓመጻት",
+  "be_aware": "ብንቕሓት ተኸታተሊ",
+  "control_your_cycle": "ዑደትኪ ተቖጻጸሪዮ",
+  "increase_your_sexual_and_reproductive_health knowledge":
+      "ነቲ ናይ ጾታን ስነ-ተዋልዶን ፍልጠኪ አዕብዪዮ",
+  "take_control_of_your_cyle": "ን ሂወትኪ ተቖጻጸሪዮ",
+  "be_aware_about_gender_based violations_and_report_them_easily":
+      "ነቶም ኣብ ጾታ መሰረት ገይሮም ዝበጽሑ ዓመጻት ብንቕሓት ተኸታተሊን ብቐሊሉ ድማ ሪፖርት ግበርዮምን",
+  " chance_of_getting_pregnant": 'ጥንሲ ናይ ምሓዝ ተኽእሎ',
+  "full_name_required": 'ሙሉእ ስም ኣድላዪ እዩ',
+  "email_required": 'ኢሜይል ኣድላዪ እዩ',
+  "phone_required": 'ቁጽሪ ስልኪ ኣድላዪ እዩ',
+  "password_required": 'ናይ ምሽጥር ቃል ኣድላዪ እዩ',
+  "success": 'ዓወት',
+  "loading_previous_log": 'ነቲ ዝሓለፈ መዝገብ ኣብ ምጽዓን',
+  "retry": 'መሊስኪ ፈትኒ',
+  "todays_cycle_day": 'ናይ ሎምዓንቲ ዕለት ዑደት',
+  "search_article": 'ናይ ጽሑፍ ዓንቀጽ ኣልሺ',
+  'Female Circumcision: Rite of Passage Or Violation of Rights?':
+      'ናይ ጓል አነስተይቲ ግርዛት: ስርዓት ኣምልኾ ወይስ ጥሕሰት መሰል?',
+  "search_gbv": 'gbv ኣልሽ',
+  "enter_phone_number": 'ቁጽሪ ስልኪ ኣእትዊ',
+  "enter_place": 'ቦታ ኣእትዊ',
+  "profile": 'ፕሮፋይል',
+  "general_setting": 'ሓፈሻዊ መዐረዪ',
+  "change_passcode": 'ናይ ምሽጥር ቃል ቀይር',
+  "first_name_required": 'ስም አድላዪ እዩ',
+  'last_name_required': 'ስም አቦሓጎ አድላዪ እዩ',
+  "enter_old_passcode": 'ነቲ ዝጸንሐ ናይ ምሽጥር ቃል ኣእትዊ',
+  "enter_your_password": 'ነቲ ናይ ምሽጥር ቃልኪ ኣእትዊ',
+  "password_canot_be_null": 'ናይ ምሽጥር ቃል ጥራሑ ክኾን ኣይኽእልን'
 };

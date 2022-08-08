@@ -188,7 +188,7 @@ class AppTheme {
       borderRadius: BorderRadius.all(Radius.circular(30.0)), color: orange2);
   static BoxDecoration purpleBoxDecoration() => const BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-      color: Color(0xFFFBEEFF));
+      color: Color.fromARGB(255, 255, 240, 221));
   //input decorations
   static InputDecoration textFieldInputDecoration() => const InputDecoration(
       border: InputBorder.none,
