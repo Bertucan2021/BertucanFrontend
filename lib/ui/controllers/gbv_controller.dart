@@ -47,6 +47,10 @@ class GbvController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    locateMe();
+  }
+
+  locateMe() async {
     await getCurrentLocation().then((value) {
       currentLocation = LatLng(value.latitude, value.longitude);
     });
@@ -124,7 +128,7 @@ class GbvController extends GetxController {
             }
           : status = RxStatus.error();
     }).catchError((onError) {
-      status = RxStatus.error(onError);
+      status = RxStatus.error();
     });
   }
 }

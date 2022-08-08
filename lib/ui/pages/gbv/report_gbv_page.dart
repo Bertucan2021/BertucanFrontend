@@ -103,11 +103,10 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                       controller: phoneController,
                       keyboardType: TextInputType.phone,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'please_enter_your_phone_number'.tr;
-                        }
-                        if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$")
-                            .hasMatch(value)) {
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            !RegExp(r"^(?:\+2519|09)[0-9]{8}$")
+                                .hasMatch(value)) {
                           return "invalid_phone".tr;
                         }
                         return null;
@@ -117,13 +116,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                         decoration: AppTheme.purpleBoxDecoration(),
                         label: 'place',
                         hintText: 'enter_place',
-                        controller: placeController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'please_enter_your_place'.tr;
-                          }
-                          return null;
-                        }),
+                        controller: placeController),
                     Container(
                       decoration: AppTheme.purpleBoxDecoration(),
                       padding: const EdgeInsets.all(10),
@@ -215,19 +208,16 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                         text: "send",
                         isEnabled: !controller.status.isLoading,
                         onPressed: () async {
-                          if (file != null &&
-                              _formKey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate()) {
                             GbvReport report = GbvReport(
                                 message: messageController.text,
-                                file: file!,
+                                file: file,
                                 abuse_types_id: '1',
                                 gbv_center:
                                     controller.selectedGbv.id.toString(),
                                 contact_address: placeController.text,
                                 contact_phone_number: phoneController.text);
                             await controller.reportGbv(report);
-                          } else {
-                            toast("error", "insert_all_data");
                           }
                         }),
                   ),

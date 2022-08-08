@@ -47,7 +47,7 @@ class HomeController extends GetxController {
     addSelectableDays();
     try {
       status = RxStatus.loading();
-      await _repository.loadMensturationCycles();
+      await _repository.loadMensturationCycles(save: false);
       status = RxStatus.empty();
       // ignore: empty_catches
     } catch (e) {}
@@ -116,6 +116,7 @@ class HomeController extends GetxController {
       status = RxStatus.loading();
       await _repository.loadMensturationCycles(save: false);
       predictedDates = _repository.getForecomingMensturationDates();
+      predictedDates.sort((a, b) => a.startDate.compareTo(b.startDate));
       status = RxStatus.empty();
       log("predictedDates: ${predictedDates.length}");
     }

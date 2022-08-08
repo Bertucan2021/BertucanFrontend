@@ -24,6 +24,7 @@ class _GbvLocationPageState extends State<GbvLocationPage> {
   @override
   initState() {
     super.initState();
+    gbvController.locateMe();
   }
 
   _onMapCreated(GoogleMapController controller) async {
@@ -50,14 +51,15 @@ class _GbvLocationPageState extends State<GbvLocationPage> {
       );
       if (gbvController.selectedGbv.address?.latitude != null &&
           gbvController.selectedGbv.address?.longitude != null) {
+        log("locate: ${gbvController.selectedGbv.address?.latitude} ${gbvController.selectedGbv.address?.longitude}");
         _marker.add(
           Marker(
             markerId: const MarkerId('selectedGbvPosition'),
             position: LatLng(gbvController.selectedGbv.address!.latitude!,
                 gbvController.selectedGbv.address!.longitude!),
             infoWindow: InfoWindow(
-              title: 'gbv'.tr,
-              snippet: 'gbv_is_here'.tr,
+              title: gbvController.selectedGbv.name,
+              snippet: gbvController.selectedGbv.address?.city,
             ),
           ),
         );

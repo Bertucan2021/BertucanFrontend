@@ -74,7 +74,7 @@ class LocalizedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    addToTranslation(data);
+    // addToTranslation(data);
     return Text(
       data.tr,
       key: key,

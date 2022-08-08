@@ -34,8 +34,14 @@ class GbvTile extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(gbv.name ?? "",
-                      style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: Text(
+                      gbv.name ?? "",
+                      style: AppTheme.titleStyle2.copyWith(fontSize: 16),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   SizedBox(
                     width: 100,
                     child: Text(

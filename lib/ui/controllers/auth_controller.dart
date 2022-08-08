@@ -109,6 +109,7 @@ class AuthController extends GetxController {
   }
 
   String getPasscode() {
+    log("getPasscode ${_authRepository.getPasscode()}");
     return _authRepository.getPasscode();
   }
 

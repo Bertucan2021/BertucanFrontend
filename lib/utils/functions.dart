@@ -92,8 +92,8 @@ Locale getInitialLocale() {
 }
 
 void toast(String title, String message) {
-  addToTranslation(title);
-  addToTranslation(message);
+  // addToTranslation(title);
+  // addToTranslation(message);
   Get.snackbar(title.tr, message.tr, snackPosition: SnackPosition.BOTTOM);
 }
 

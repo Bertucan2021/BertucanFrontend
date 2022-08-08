@@ -24,7 +24,7 @@ class SingleCycleItem extends StatelessWidget {
                 style: AppTheme.titleStyle4.copyWith(color: Colors.black),
               ),
               Text(
-                  '${DateFormat.MMMEd().format(data.startDate)}-${DateFormat.MMMEd().format(data.endDate)}',
+                  '${DateFormat.yMMMEd().format(data.startDate)}-${DateFormat.yMMMEd().format(data.endDate)}',
                   style: AppTheme.articleTextStyle
                       .copyWith(fontWeight: FontWeight.w500)),
             ],

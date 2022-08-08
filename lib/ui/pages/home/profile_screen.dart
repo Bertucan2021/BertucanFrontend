@@ -191,10 +191,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     singleTile(
                       onTap: () {
-                        Get.dialog(SetPassCode(), barrierDismissible: false);
+                        Get.dialog(
+                          SetPassCode(),
+                        );
                       },
                       iconData: Icons.lock,
-                      label: 'passcode_setting',
+                      label: _authController.getPasscode().isNotEmpty
+                          ? 'change_passcode'
+                          : 'passcode_setting',
                     ),
                     SizedBox(
                       height: 10,
@@ -232,6 +236,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             DropdownMenuItem(
                               value: Locale('or', 'ET'),
                               child: Text('Oromifa'),
+                            ),
+                            DropdownMenuItem(
+                              value: Locale('tg', 'ET'),
+                              child: Text('Tigrigna'),
                             ),
                             DropdownMenuItem(
                               value: Locale('en', 'US'),

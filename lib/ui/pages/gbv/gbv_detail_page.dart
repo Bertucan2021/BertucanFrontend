@@ -59,22 +59,11 @@ class GbvDetailPage extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset(
-                          'assets/twitter_logo.png',
-                          height: 40,
-                        ),
-                        Image.asset(
-                          'assets/instagram_logo.png',
-                          height: 40,
-                        ),
-                        Image.asset(
-                          'assets/facebook_logo.png',
-                          height: 40,
-                        ),
-                      ],
+                    child: Text(
+                      gbvController.selectedGbv.phone_number ?? "",
+                      style: AppTheme.titleStyle
+                          .copyWith(color: AppTheme.textBlack),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(height: 50),
