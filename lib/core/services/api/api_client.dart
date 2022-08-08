@@ -63,7 +63,7 @@ class ApiClient {
           throw "Request type not found.";
       }
 
-      log('response: $response');
+      // log('response: $response');
       return (response is String) ? jsonDecode(response) : response;
     } on DioError catch (e) {
       final errorMessage = NetworkExceptions.getErrorMessage(
@@ -77,6 +77,7 @@ class ApiClient {
         if (error.isEmpty) error = e.response?.data['content'][0]['message'];
       } catch (e) {
       } finally {
+        log("aaaaaaaaa ${path} ${data} ${error}");
         if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
       }
       toast('error', error);

@@ -36,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.only(left: 40, right: 40, top: 10),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SvgPicture.asset(
-                'assets/undraw_certification_aif8.svg',
+              Image.asset(
+                'assets/login.jpg',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
