@@ -78,7 +78,7 @@ class ApiClient {
       } catch (e) {
       } finally {
         log("aaaaaaaaa ${path} ${data} ${error}");
-        if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+        if (error.isEmpty) error = translate("could_not_connect_try_again");
       }
       toast('error', error);
       return Future.error(
@@ -161,7 +161,8 @@ class ApiClient {
         if (error.isEmpty) error = e.response?.data['content'][0]['message'];
       } catch (e) {
       } finally {
-        if (error.isEmpty) error = 'could_not_connect_try_again'.tr;
+        log("bbbbbbb ${endPoint} ${formPayload} ${error}");
+        if (error.isEmpty) error = translate("could_not_connect_try_again");
       }
       toast('error', error);
       return Future.error(

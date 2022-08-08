@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_dialog.dart';
@@ -18,7 +20,7 @@ class SetPassCode extends StatelessWidget {
   bool hasPasscode = false;
   @override
   Widget build(BuildContext context) {
-    hasPasscode = _authController.getPasscode().isNotEmpty;
+    hasPasscode = _authController.getPasscode() != null;
     return CustomDialog(
         title: 'passcode',
         content: [
@@ -34,7 +36,7 @@ class SetPassCode extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'passcode_canot_be_null'.tr;
+                            return translate("passcode_canot_be_null");
                           }
                         },
                       )
@@ -47,10 +49,10 @@ class SetPassCode extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'passcode_canot_be_null'.tr;
+                      return translate("passcode_canot_be_null");
                     }
                     if (value.length != 4) {
-                      return 'passcode_should_have_a_length_of_4'.tr;
+                      return translate("passcode_should_have_a_length_of_4");
                     }
                   },
                 ),
@@ -62,7 +64,7 @@ class SetPassCode extends StatelessWidget {
                     hintText: 'enter_your_passcode',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'passcode_canot_be_null'.tr;
+                        return translate("passcode_canot_be_null");
                       } else if (value.trim() != _passCodeController.text) {
                         return 'the_two_passcodes_are_not_the_same';
                       }

@@ -25,7 +25,7 @@ class SrhTitle extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,

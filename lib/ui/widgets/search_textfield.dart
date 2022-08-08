@@ -1,4 +1,5 @@
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +34,7 @@ class SearchTextField extends StatelessWidget {
         style: AppTheme.normalTextStyle,
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: hintText.tr,
+          hintText: translate(hintText),
           hintStyle:
               AppTheme.greySubtitleStyle.copyWith(fontWeight: FontWeight.w400),
           prefixIcon: const Icon(Icons.search),

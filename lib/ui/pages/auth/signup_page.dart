@@ -6,6 +6,7 @@ import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rectangular_button.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _nameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "full_name_required".tr;
+                        return translate("full_name_required");
                       }
                       if (value.trim().split(" ").length != 2) {
                         return "full_name_pattern_required";
@@ -76,12 +77,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "email_required".tr;
+                        return translate("email_required");
                       }
                       if (!RegExp(
                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(value)) {
-                        return "invalid_email".tr;
+                        return translate("invalid_email");
                       }
                       return null;
                     },
@@ -93,10 +94,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     keyboardType: TextInputType.phone,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "phone_required".tr;
+                        return translate("phone_required");
                       }
                       if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$").hasMatch(value)) {
-                        return "invalid_phone".tr;
+                        return translate("invalid_phone");
                       }
                       return null;
                     },
@@ -117,10 +118,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "password_required".tr;
+                        return translate("password_required");
                       }
                       if (value.length < 6) {
-                        return "password_too_short".tr;
+                        return translate("password_too_short");
                       }
                       return null;
                     },

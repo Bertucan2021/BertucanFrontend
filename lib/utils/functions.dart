@@ -22,8 +22,8 @@ Future<Position> getCurrentLocation() async {
     // accessing the position and request users of the
     // App to enable the location services
     Get.dialog(ConfirmDialog(
-      title: 'enable_location'.tr,
-      content: 'enable_location_info'.tr,
+      title: translate("enable_location"),
+      content: translate("enable_location_info"),
       actionText: 'ok',
       actionCallback: () => Geolocator.openLocationSettings(),
     ));
@@ -35,7 +35,7 @@ Future<Position> getCurrentLocation() async {
   print(permission);
   if (permission == LocationPermission.deniedForever) {
     Get.dialog(ConfirmDialog(
-      title: '"Bertucan" requires Location Services to work'.tr,
+      title: translate("\"Bertucan\" requires Location Services to work"),
       content:
           'Go to Setting to allow "Taxiye" to determine your location. This will help us set your pickup location and improve our services.'
               .tr,

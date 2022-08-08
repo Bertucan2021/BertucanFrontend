@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 label: "email",
                 hintText: "marry_doe",
                 controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
               ),
               CustomTextField(
                 label: "password",

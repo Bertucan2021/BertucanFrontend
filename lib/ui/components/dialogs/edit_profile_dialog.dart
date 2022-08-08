@@ -5,6 +5,7 @@ import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_dialog.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -89,7 +90,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                         keyboardType: TextInputType.text,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "first_name_required".tr;
+                            return translate("first_name_required");
                           }
                           return null;
                         },
@@ -102,7 +103,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                             'enter_your_last_name',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "last_name_required".tr;
+                            return translate("last_name_required");
                           }
                           return null;
                         },
@@ -115,12 +116,12 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                             _authController.user.email ?? 'enter_your_email',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "email_required".tr;
+                            return translate("email_required");
                           }
                           if (!RegExp(
                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                               .hasMatch(value)) {
-                            return "invalid_email".tr;
+                            return translate("invalid_email");
                           }
                           return null;
                         },
@@ -133,11 +134,11 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                             'enter_your_phone_number',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "phone_required".tr;
+                            return translate("phone_required");
                           }
                           if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$")
                               .hasMatch(value)) {
-                            return "invalid_phone".tr;
+                            return translate("invalid_phone");
                           }
                           return null;
                         },

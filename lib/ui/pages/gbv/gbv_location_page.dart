@@ -43,8 +43,8 @@ class _GbvLocationPageState extends State<GbvLocationPage> {
           markerId: const MarkerId('currentPosition'),
           position: gbvController.currentLocation,
           infoWindow: InfoWindow(
-            title: 'your_current_position'.tr,
-            snippet: 'you_are_here'.tr,
+            title: translate("your_current_position"),
+            snippet: translate("you_are_here"),
           ),
           icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         ),

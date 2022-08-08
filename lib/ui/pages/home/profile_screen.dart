@@ -46,7 +46,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const Padding(
                           padding:
                               EdgeInsets.only(top: 20.0, left: 20, bottom: 10),
-                          child: Text('profile', style: AppTheme.titleStyle2),
+                          child: LocalizedText('profile',
+                              style: AppTheme.titleStyle2),
                         ),
                         SizedBox(width: 20),
                         if (_authController.user.id != -1)
@@ -199,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         );
                       },
                       iconData: Icons.lock,
-                      label: _authController.getPasscode().isNotEmpty
+                      label: _authController.getPasscode() != null
                           ? 'change_passcode'
                           : 'passcode_setting',
                     ),
