@@ -43,6 +43,7 @@ class ImageHolder extends StatelessWidget {
                 return Icon(
                   Icons.person,
                   color: Colors.grey,
+                  size: width,
                 );
               }
             },
@@ -50,6 +51,7 @@ class ImageHolder extends StatelessWidget {
         : Icon(
             Icons.person,
             color: Colors.grey,
+            size: width,
           );
   }
 }
