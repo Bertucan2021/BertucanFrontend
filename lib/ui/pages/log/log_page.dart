@@ -32,21 +32,22 @@ class LogPage extends StatelessWidget {
             calendarBuilders: CalendarBuilders(
               defaultBuilder: (context, day, focusedDay) {
                 var isRed = false;
-                var isBlue = false;
-                var isLessBlue = false;
+                var isOrange = false;
+                var isLessOrange = false;
                 for (var element in homeController.predictedDates) {
                   if (day.isBefore(element.endDate.add(Duration(days: 1))) &&
                       day.isAfter(element.startDate)) {
                     isRed = true;
                   } else if (element.pregnancyDate != null) {
                     if ((day.difference(element.pregnancyDate!).abs().inDays <=
-                            2) ||
-                        day.day == element.pregnancyDate!.day) {
-                      isBlue = true;
+                            1)
+                        // ||  day.day == element.pregnancyDate!.day
+                        ) {
+                      isOrange = true;
                     } else if (day.isBefore(element.pregnancyDate!
                             .subtract(Duration(days: 2))) &&
                         day.isAfter(element.endDate)) {
-                      isLessBlue = true;
+                      isLessOrange = true;
                     }
                   }
                 }
@@ -65,7 +66,7 @@ class LogPage extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         )),
                       )
-                    : isBlue
+                    : isOrange
                         ? Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -76,7 +77,7 @@ class LogPage extends StatelessWidget {
                             height: 40,
                             child: Center(child: Text(day.day.toString())),
                           )
-                        : isLessBlue
+                        : isLessOrange
                             ? Container(
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(

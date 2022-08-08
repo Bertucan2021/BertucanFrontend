@@ -101,6 +101,7 @@ class HomeController extends GetxController {
         _repository.getCurrentMensturationdata() ??
             MonthlyMensturationModel(
                 startDate: data.startDate, endDate: data.endDate);
+    tempData.pregnancyDate = tempData.endDate.add(Duration(days: 9));
     predictedDates = predictedDates
             .where((element) => element.startDate.isBefore(tempData.startDate))
             .toList() +
