@@ -134,8 +134,8 @@ class AuthRepository with IAuthRepository {
   }
 
   @override
-  String getPasscode() {
-    return storage.read("passcode").toString();
+  String? getPasscode() {
+    return storage.read("passcode") ?? null;
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/core/repositories/srh_repository.dart';
 import 'package:bertucanfrontend/core/services/api/api_client.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:get/get.dart';
 
 class SrhController extends GetxController {
@@ -50,7 +51,7 @@ class SrhController extends GetxController {
         srhToShow = data;
         status.value = RxStatus.success();
       } else {
-        status.value = RxStatus.error("no_data".tr);
+        status.value = RxStatus.error(translate("no_data"));
       }
     }).catchError((error) {
       status.value = RxStatus.error();

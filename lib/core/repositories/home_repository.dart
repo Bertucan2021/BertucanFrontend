@@ -48,8 +48,8 @@ class HomeRepository implements IHomeRepository {
     Duration showAfter = forDate.difference(DateTime.now());
 
     notificationService.scheduledNotification(
-        'period_alert'.tr,
-        '${'your_period_starts_in'.tr} ${showAfter.inDays.abs()} days',
+        translate("period_alert"),
+        "${translate('your_period_starts_in')} ${showAfter.inDays.abs()} ${translate('days')}",
         showAfter,
         id);
   }
@@ -107,7 +107,6 @@ class HomeRepository implements IHomeRepository {
           savePredictedDates(predictions, save);
           return NormalResponse(success: true);
         } else {
-          toast('error', 'could_not_load_data');
           return NormalResponse(success: false);
         }
       }

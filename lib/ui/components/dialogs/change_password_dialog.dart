@@ -5,6 +5,7 @@ import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_dialog.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +36,7 @@ class ChangePassword extends StatelessWidget {
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'password_canot_be_null'.tr;
+                          return translate("password_canot_be_null");
                         }
                       },
                     ),
@@ -47,7 +48,7 @@ class ChangePassword extends StatelessWidget {
                         hintText: 'enter_your_password',
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'password_canot_be_null'.tr;
+                            return translate("password_canot_be_null");
                           } else if (value.trim() !=
                               _newPasswordController.text) {
                             return 'the_two_passwords_are_not_the_same';
@@ -61,7 +62,7 @@ class ChangePassword extends StatelessWidget {
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value != _newPasswordController.text) {
-                          return 'password_is_not_the_same'.tr;
+                          return translate("password_is_not_the_same");
                         }
                       },
                     ),

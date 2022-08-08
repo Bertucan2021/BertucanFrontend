@@ -66,7 +66,7 @@ class GbvController extends GetxController {
         gbviesToShow = value;
         status = RxStatus.success();
       } else {
-        status = RxStatus.error("no_data".tr);
+        status = RxStatus.error(translate("no_data"));
       }
     }).catchError((error) {
       status = RxStatus.error(error);

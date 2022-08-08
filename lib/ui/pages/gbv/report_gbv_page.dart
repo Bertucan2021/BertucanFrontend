@@ -107,7 +107,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                             value.isNotEmpty &&
                             !RegExp(r"^(?:\+2519|09)[0-9]{8}$")
                                 .hasMatch(value)) {
-                          return "invalid_phone".tr;
+                          return translate("invalid_phone");
                         }
                         return null;
                       },
@@ -130,7 +130,7 @@ class _ReportGbvPageState extends State<ReportGbvPage> {
                         maxLines: 8,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'please_enter_your_message'.tr;
+                            return translate("please_enter_your_message");
                           }
                           return null;
                         },

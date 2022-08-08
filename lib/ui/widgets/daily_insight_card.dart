@@ -1,4 +1,5 @@
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:flutter/material.dart';
 
 class DailyInsightCard extends StatelessWidget {
@@ -28,7 +29,7 @@ class DailyInsightCard extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(10),
-              child: Text(
+              child: LocalizedText(
                 title,
                 style: AppTheme.greySubtitleStyle
                     .copyWith(color: AppTheme.textBlack),

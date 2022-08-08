@@ -15,7 +15,7 @@ class LockScreenPage extends StatelessWidget {
     return ScreenLock(
       screenLockConfig:
           ScreenLockConfig(backgroundColor: AppTheme.primaryColor),
-      correctString: authController.getPasscode(),
+      correctString: authController.getPasscode()!,
       didUnlocked: () {
         Get.offAndToNamed(Routes.homePage);
       },
