@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/translations/untracked.dart';
 import 'package:bertucanfrontend/utils/confirm_dialog.dart';
@@ -107,4 +108,18 @@ addToTranslation(String key) {
 String translate(String key) {
   addToTranslation(key);
   return key.tr;
+}
+
+String getChanceOfPregnancy(
+    DateTime day, MonthlyMensturationModel mensturation) {
+  if ((day.isAfter(mensturation.pregnancyDate!.subtract(Duration(days: 2)))) &&
+      (day.isBefore(mensturation.pregnancyDate!.add(Duration(days: 2))))) {
+    return 'high';
+  } else if (day
+          .isBefore(mensturation.pregnancyDate!.subtract(Duration(days: 2))) &&
+      day.isAfter(mensturation.endDate)) {
+    return 'low';
+  } else {
+    return 'none';
+  }
 }

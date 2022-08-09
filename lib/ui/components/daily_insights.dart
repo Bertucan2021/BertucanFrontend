@@ -3,6 +3,7 @@ import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/daily_insight_card.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,24 +39,20 @@ class DailyInsights extends StatelessWidget {
                 ),
                 color: AppTheme.subtleGreen,
               ),
-              DailyInsightCard(
-                title: "chance_of_getting_pregnant",
-                bottom: LocalizedText(
-                  (homeController.predictedDates[0].pregnancyDate
-                                  ?.difference(DateTime.now())
-                                  .abs()
-                                  .inDays ??
-                              10) >
-                          5
-                      ? "low"
-                      : "high",
-                  style: AppTheme.titleStyle2,
-                ),
-                color: AppTheme.subtleBlue,
-                onPressed: () {
-                  Get.toNamed(Routes.logChancePregnancyPage);
-                },
-              ),
+              homeController.currentMenstruation.pregnancyDate != null
+                  ? DailyInsightCard(
+                      title: "chance_of_getting_pregnant",
+                      bottom: LocalizedText(
+                        getChanceOfPregnancy(
+                            DateTime.now(), homeController.currentMenstruation),
+                        style: AppTheme.titleStyle2,
+                      ),
+                      color: AppTheme.subtleBlue,
+                      onPressed: () {
+                        Get.toNamed(Routes.logChancePregnancyPage);
+                      },
+                    )
+                  : SizedBox(),
               // DailyInsightCard(
               //   title: "todays_symptoms",
               //   bottom: const Text(
