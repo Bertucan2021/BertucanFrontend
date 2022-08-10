@@ -278,4 +278,43 @@ class AuthRepository with IAuthRepository {
       return NormalResponse(success: false);
     }
   }
+
+  @override
+  Future<NormalResponse> resetPassword(ResetPassword resetPassword) async {
+    final response = await apiClient.request(
+      requestType: RequestType.post,
+      path: '/resetpassword',
+      data: resetPassword.toJson(),
+    );
+    if (response['success']) {
+      return NormalResponse(
+        success: true,
+      );
+    } else {
+      return NormalResponse(
+        success: false,
+        message: response['content']['error'],
+      );
+    }
+  }
+
+  @override
+  Future<NormalResponse> requestResetPassword(
+      RequestResetPassword requestResetPassword) async {
+    final response = await apiClient.request(
+      requestType: RequestType.post,
+      path: '/requestpasswordreset',
+      data: requestResetPassword.toJson(),
+    );
+    if (response['success']) {
+      return NormalResponse(
+        success: true,
+      );
+    } else {
+      return NormalResponse(
+        success: false,
+        message: response['content']['error'],
+      );
+    }
+  }
 }

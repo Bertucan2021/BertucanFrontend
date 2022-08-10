@@ -52,6 +52,7 @@ class HomeController extends GetxController {
       // ignore: empty_catches
     } catch (e) {}
     getPredictedDates();
+    userLogData = getUserLogData();
   }
 
   void addSelectableDays() {
@@ -66,8 +67,8 @@ class HomeController extends GetxController {
   setCurrentMenstruationCycle() {
     currentMenstruation = predictedDates.firstWhere(
       (element) {
-        return element.startDate.year == DateTime.now().year &&
-            element.startDate.month == DateTime.now().month;
+        return element.startDate.isBefore(DateTime.now()) ||
+            element.startDate.difference(DateTime.now()).inDays == 0;
       },
       orElse: () {
         return predictedDates.firstWhere(
@@ -89,7 +90,9 @@ class HomeController extends GetxController {
     _repository.saveUserLogData(data);
     predictedDates = [];
     MonthlyMensturationModel currentMensturationData = MonthlyMensturationModel(
-        startDate: data.startDate, endDate: data.endDate);
+        startDate: data.startDate,
+        endDate: data.endDate,
+        pregnancyDate: data.endDate.add(Duration(days: 9)));
     predictedDates =
         _repository.calculateNextMensturationDates(12, currentMensturationData);
   }

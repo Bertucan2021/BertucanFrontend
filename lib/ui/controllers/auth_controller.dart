@@ -179,4 +179,39 @@ class AuthController extends GetxController {
       toast('error', 'password_not_changed');
     });
   }
+
+  Future<void> requestResetPassword(
+      RequestResetPassword requestResetPassword) async {
+    status = RxStatus.loading();
+    await _authRepository
+        .requestResetPassword(requestResetPassword)
+        .then((value) {
+      if (value.success) {
+        status = RxStatus.success();
+        toast('success', 'reset_password_email_sent');
+      } else {
+        status = RxStatus.error();
+        toast('error', value.message ?? 'reset_password_email_not_sent');
+      }
+    }).catchError((onError) {
+      status = RxStatus.error();
+      toast('error', 'reset_password_email_not_sent');
+    });
+  }
+
+  Future<void> resetPassword(ResetPassword resetPassword) async {
+    status = RxStatus.loading();
+    await _authRepository.resetPassword(resetPassword).then((value) {
+      if (value.success) {
+        status = RxStatus.success();
+        toast('success', 'password_reset');
+      } else {
+        status = RxStatus.error();
+        toast('error', value.message ?? 'password_not_reset');
+      }
+    }).catchError((onError) {
+      status = RxStatus.error();
+      toast('error', 'password_not_reset');
+    });
+  }
 }

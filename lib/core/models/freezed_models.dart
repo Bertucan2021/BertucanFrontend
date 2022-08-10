@@ -161,3 +161,23 @@ extension UserExtension on UserToEdit {
       log_status: status,
       profile_picture: image);
 }
+
+@freezed
+class ResetPassword with _$ResetPassword {
+  const factory ResetPassword({
+    required String email,
+    required String code,
+    required String new_password,
+  }) = _ResetPassword;
+  factory ResetPassword.fromJson(Map<String, dynamic> json) =>
+      _$ResetPasswordFromJson(json);
+}
+
+@freezed
+class RequestResetPassword with _$RequestResetPassword {
+  const factory RequestResetPassword({
+    required String email,
+  }) = _RequestResetPassword;
+  factory RequestResetPassword.fromJson(Map<String, dynamic> json) =>
+      _$RequestResetPasswordFromJson(json);
+}

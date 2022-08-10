@@ -3,6 +3,7 @@ import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -64,12 +65,12 @@ class PhaseContainer extends StatelessWidget {
               children: [
                 LocalizedText('chance_of_pregnancy: ',
                     style: AppTheme.greySubtitleStyle),
-                LocalizedText(
-                  (data.pregnancyDate?.difference(date).abs().inDays ?? 10) > 5
-                      ? "low"
-                      : "high",
-                  style: AppTheme.titleStyle4,
-                )
+                data.pregnancyDate != null
+                    ? LocalizedText(
+                        getChanceOfPregnancy(DateTime.now(), data),
+                        style: AppTheme.titleStyle4,
+                      )
+                    : SizedBox()
               ],
             ),
             SizedBox(height: 10),

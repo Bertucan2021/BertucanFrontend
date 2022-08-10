@@ -147,7 +147,7 @@ class __$$_UserToSignUpCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
+class _$_UserToSignUp implements _UserToSignUp {
   const _$_UserToSignUp(
       {required this.email,
       required this.phone_number,
@@ -170,20 +170,8 @@ class _$_UserToSignUp with DiagnosticableTreeMixin implements _UserToSignUp {
   final String last_name;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserToSignUp(email: $email, phone_number: $phone_number, password: $password, first_name: $first_name, last_name: $last_name)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserToSignUp'))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phone_number', phone_number))
-      ..add(DiagnosticsProperty('password', password))
-      ..add(DiagnosticsProperty('first_name', first_name))
-      ..add(DiagnosticsProperty('last_name', last_name));
   }
 
   @override
@@ -339,7 +327,7 @@ class __$$_UserToLoginCopyWithImpl<$Res> extends _$UserToLoginCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserToLogin with DiagnosticableTreeMixin implements _UserToLogin {
+class _$_UserToLogin implements _UserToLogin {
   const _$_UserToLogin({required this.email, required this.password});
 
   factory _$_UserToLogin.fromJson(Map<String, dynamic> json) =>
@@ -351,17 +339,8 @@ class _$_UserToLogin with DiagnosticableTreeMixin implements _UserToLogin {
   final String password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserToLogin(email: $email, password: $password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserToLogin'))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password));
   }
 
   @override
@@ -619,7 +598,7 @@ class __$$_GbvCopyWithImpl<$Res> extends _$GbvCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Gbv with DiagnosticableTreeMixin implements _Gbv {
+class _$_Gbv implements _Gbv {
   const _$_Gbv(
       {required this.id,
       this.name,
@@ -656,25 +635,8 @@ class _$_Gbv with DiagnosticableTreeMixin implements _Gbv {
   final GbvAddress? address;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Gbv(id: $id, name: $name, description: $description, phone_number: $phone_number, address_id: $address_id, membership_id: $membership_id, status: $status, license: $license, logo: $logo, address: $address)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Gbv'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('description', description))
-      ..add(DiagnosticsProperty('phone_number', phone_number))
-      ..add(DiagnosticsProperty('address_id', address_id))
-      ..add(DiagnosticsProperty('membership_id', membership_id))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('license', license))
-      ..add(DiagnosticsProperty('logo', logo))
-      ..add(DiagnosticsProperty('address', address));
   }
 
   @override
@@ -924,7 +886,7 @@ class __$$_GbvAddressCopyWithImpl<$Res> extends _$GbvAddressCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GbvAddress with DiagnosticableTreeMixin implements _GbvAddress {
+class _$_GbvAddress implements _GbvAddress {
   const _$_GbvAddress(
       {required this.id,
       this.country,
@@ -957,22 +919,8 @@ class _$_GbvAddress with DiagnosticableTreeMixin implements _GbvAddress {
   final String? status;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'GbvAddress(id: $id, country: $country, city: $city, latitude: $latitude, longitude: $longitude, type: $type, status: $status)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GbvAddress'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('country', country))
-      ..add(DiagnosticsProperty('city', city))
-      ..add(DiagnosticsProperty('latitude', latitude))
-      ..add(DiagnosticsProperty('longitude', longitude))
-      ..add(DiagnosticsProperty('type', type))
-      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -1207,7 +1155,7 @@ class __$$_GbvReportCopyWithImpl<$Res> extends _$GbvReportCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
+class _$_GbvReport implements _GbvReport {
   const _$_GbvReport(
       {this.message,
       this.user_id,
@@ -1236,22 +1184,8 @@ class _$_GbvReport with DiagnosticableTreeMixin implements _GbvReport {
   final String? file;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'GbvReport(message: $message, user_id: $user_id, abuse_types_id: $abuse_types_id, contact_phone_number: $contact_phone_number, gbv_center: $gbv_center, contact_address: $contact_address, file: $file)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GbvReport'))
-      ..add(DiagnosticsProperty('message', message))
-      ..add(DiagnosticsProperty('user_id', user_id))
-      ..add(DiagnosticsProperty('abuse_types_id', abuse_types_id))
-      ..add(DiagnosticsProperty('contact_phone_number', contact_phone_number))
-      ..add(DiagnosticsProperty('gbv_center', gbv_center))
-      ..add(DiagnosticsProperty('contact_address', contact_address))
-      ..add(DiagnosticsProperty('file', file));
   }
 
   @override
@@ -1525,7 +1459,7 @@ class __$$_SrhCopyWithImpl<$Res> extends _$SrhCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Srh with DiagnosticableTreeMixin implements _Srh {
+class _$_Srh implements _Srh {
   const _$_Srh(
       {required this.id,
       this.title,
@@ -1559,24 +1493,8 @@ class _$_Srh with DiagnosticableTreeMixin implements _Srh {
   final User? user;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'Srh(id: $id, title: $title, introduction: $introduction, icon: $icon, body: $body, small_description: $small_description, article_by: $article_by, status: $status, user: $user)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Srh'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('introduction', introduction))
-      ..add(DiagnosticsProperty('icon', icon))
-      ..add(DiagnosticsProperty('body', body))
-      ..add(DiagnosticsProperty('small_description', small_description))
-      ..add(DiagnosticsProperty('article_by', article_by))
-      ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('user', user));
   }
 
   @override
@@ -1880,7 +1798,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User with DiagnosticableTreeMixin implements _User {
+class _$_User implements _User {
   const _$_User(
       {required this.id,
       this.first_name,
@@ -1923,27 +1841,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   final String? remember_token;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'User(id: $id, first_name: $first_name, last_name: $last_name, email: $email, profile_picture: $profile_picture, phone_number: $phone_number, log_status: $log_status, birthdate: $birthdate, role: $role, address_id: $address_id, membership_id: $membership_id, remember_token: $remember_token)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('first_name', first_name))
-      ..add(DiagnosticsProperty('last_name', last_name))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('profile_picture', profile_picture))
-      ..add(DiagnosticsProperty('phone_number', phone_number))
-      ..add(DiagnosticsProperty('log_status', log_status))
-      ..add(DiagnosticsProperty('birthdate', birthdate))
-      ..add(DiagnosticsProperty('role', role))
-      ..add(DiagnosticsProperty('address_id', address_id))
-      ..add(DiagnosticsProperty('membership_id', membership_id))
-      ..add(DiagnosticsProperty('remember_token', remember_token));
   }
 
   @override
@@ -2193,7 +2092,7 @@ class __$$_UserToEditCopyWithImpl<$Res> extends _$UserToEditCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserToEdit with DiagnosticableTreeMixin implements _UserToEdit {
+class _$_UserToEdit implements _UserToEdit {
   const _$_UserToEdit(
       {required this.first_name,
       required this.last_name,
@@ -2219,21 +2118,8 @@ class _$_UserToEdit with DiagnosticableTreeMixin implements _UserToEdit {
   final String status;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserToEdit(first_name: $first_name, last_name: $last_name, email: $email, phone_number: $phone_number, birthdate: $birthdate, status: $status)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserToEdit'))
-      ..add(DiagnosticsProperty('first_name', first_name))
-      ..add(DiagnosticsProperty('last_name', last_name))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('phone_number', phone_number))
-      ..add(DiagnosticsProperty('birthdate', birthdate))
-      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -2396,9 +2282,7 @@ class __$$_PasswordToChangeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PasswordToChange
-    with DiagnosticableTreeMixin
-    implements _PasswordToChange {
+class _$_PasswordToChange implements _PasswordToChange {
   const _$_PasswordToChange(
       {required this.old_password, required this.new_password});
 
@@ -2411,17 +2295,8 @@ class _$_PasswordToChange
   final String new_password;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'PasswordToChange(old_password: $old_password, new_password: $new_password)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'PasswordToChange'))
-      ..add(DiagnosticsProperty('old_password', old_password))
-      ..add(DiagnosticsProperty('new_password', new_password));
   }
 
   @override
@@ -2470,5 +2345,315 @@ abstract class _PasswordToChange implements PasswordToChange {
   @override
   @JsonKey(ignore: true)
   _$$_PasswordToChangeCopyWith<_$_PasswordToChange> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ResetPassword _$ResetPasswordFromJson(Map<String, dynamic> json) {
+  return _ResetPassword.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResetPassword {
+  String get email => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
+  String get new_password => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResetPasswordCopyWith<ResetPassword> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResetPasswordCopyWith<$Res> {
+  factory $ResetPasswordCopyWith(
+          ResetPassword value, $Res Function(ResetPassword) then) =
+      _$ResetPasswordCopyWithImpl<$Res>;
+  $Res call({String email, String code, String new_password});
+}
+
+/// @nodoc
+class _$ResetPasswordCopyWithImpl<$Res>
+    implements $ResetPasswordCopyWith<$Res> {
+  _$ResetPasswordCopyWithImpl(this._value, this._then);
+
+  final ResetPassword _value;
+  // ignore: unused_field
+  final $Res Function(ResetPassword) _then;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? code = freezed,
+    Object? new_password = freezed,
+  }) {
+    return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      new_password: new_password == freezed
+          ? _value.new_password
+          : new_password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_ResetPasswordCopyWith<$Res>
+    implements $ResetPasswordCopyWith<$Res> {
+  factory _$$_ResetPasswordCopyWith(
+          _$_ResetPassword value, $Res Function(_$_ResetPassword) then) =
+      __$$_ResetPasswordCopyWithImpl<$Res>;
+  @override
+  $Res call({String email, String code, String new_password});
+}
+
+/// @nodoc
+class __$$_ResetPasswordCopyWithImpl<$Res>
+    extends _$ResetPasswordCopyWithImpl<$Res>
+    implements _$$_ResetPasswordCopyWith<$Res> {
+  __$$_ResetPasswordCopyWithImpl(
+      _$_ResetPassword _value, $Res Function(_$_ResetPassword) _then)
+      : super(_value, (v) => _then(v as _$_ResetPassword));
+
+  @override
+  _$_ResetPassword get _value => super._value as _$_ResetPassword;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+    Object? code = freezed,
+    Object? new_password = freezed,
+  }) {
+    return _then(_$_ResetPassword(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      new_password: new_password == freezed
+          ? _value.new_password
+          : new_password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ResetPassword implements _ResetPassword {
+  const _$_ResetPassword(
+      {required this.email, required this.code, required this.new_password});
+
+  factory _$_ResetPassword.fromJson(Map<String, dynamic> json) =>
+      _$$_ResetPasswordFromJson(json);
+
+  @override
+  final String email;
+  @override
+  final String code;
+  @override
+  final String new_password;
+
+  @override
+  String toString() {
+    return 'ResetPassword(email: $email, code: $code, new_password: $new_password)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ResetPassword &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality()
+                .equals(other.new_password, new_password));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(new_password));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ResetPasswordCopyWith<_$_ResetPassword> get copyWith =>
+      __$$_ResetPasswordCopyWithImpl<_$_ResetPassword>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ResetPasswordToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResetPassword implements ResetPassword {
+  const factory _ResetPassword(
+      {required final String email,
+      required final String code,
+      required final String new_password}) = _$_ResetPassword;
+
+  factory _ResetPassword.fromJson(Map<String, dynamic> json) =
+      _$_ResetPassword.fromJson;
+
+  @override
+  String get email;
+  @override
+  String get code;
+  @override
+  String get new_password;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ResetPasswordCopyWith<_$_ResetPassword> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RequestResetPassword _$RequestResetPasswordFromJson(Map<String, dynamic> json) {
+  return _RequestResetPassword.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RequestResetPassword {
+  String get email => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RequestResetPasswordCopyWith<RequestResetPassword> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RequestResetPasswordCopyWith<$Res> {
+  factory $RequestResetPasswordCopyWith(RequestResetPassword value,
+          $Res Function(RequestResetPassword) then) =
+      _$RequestResetPasswordCopyWithImpl<$Res>;
+  $Res call({String email});
+}
+
+/// @nodoc
+class _$RequestResetPasswordCopyWithImpl<$Res>
+    implements $RequestResetPasswordCopyWith<$Res> {
+  _$RequestResetPasswordCopyWithImpl(this._value, this._then);
+
+  final RequestResetPassword _value;
+  // ignore: unused_field
+  final $Res Function(RequestResetPassword) _then;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(_value.copyWith(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_RequestResetPasswordCopyWith<$Res>
+    implements $RequestResetPasswordCopyWith<$Res> {
+  factory _$$_RequestResetPasswordCopyWith(_$_RequestResetPassword value,
+          $Res Function(_$_RequestResetPassword) then) =
+      __$$_RequestResetPasswordCopyWithImpl<$Res>;
+  @override
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$_RequestResetPasswordCopyWithImpl<$Res>
+    extends _$RequestResetPasswordCopyWithImpl<$Res>
+    implements _$$_RequestResetPasswordCopyWith<$Res> {
+  __$$_RequestResetPasswordCopyWithImpl(_$_RequestResetPassword _value,
+      $Res Function(_$_RequestResetPassword) _then)
+      : super(_value, (v) => _then(v as _$_RequestResetPassword));
+
+  @override
+  _$_RequestResetPassword get _value => super._value as _$_RequestResetPassword;
+
+  @override
+  $Res call({
+    Object? email = freezed,
+  }) {
+    return _then(_$_RequestResetPassword(
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_RequestResetPassword implements _RequestResetPassword {
+  const _$_RequestResetPassword({required this.email});
+
+  factory _$_RequestResetPassword.fromJson(Map<String, dynamic> json) =>
+      _$$_RequestResetPasswordFromJson(json);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'RequestResetPassword(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RequestResetPassword &&
+            const DeepCollectionEquality().equals(other.email, email));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(email));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RequestResetPasswordCopyWith<_$_RequestResetPassword> get copyWith =>
+      __$$_RequestResetPasswordCopyWithImpl<_$_RequestResetPassword>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RequestResetPasswordToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RequestResetPassword implements RequestResetPassword {
+  const factory _RequestResetPassword({required final String email}) =
+      _$_RequestResetPassword;
+
+  factory _RequestResetPassword.fromJson(Map<String, dynamic> json) =
+      _$_RequestResetPassword.fromJson;
+
+  @override
+  String get email;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RequestResetPasswordCopyWith<_$_RequestResetPassword> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -11,6 +11,10 @@ abstract class IAuthRepository {
   List<QuestionnaireModel> setQuestionnairies();
   void saveQuestionnairAnswers(List<QuestionnaireModel> questionnaires);
   void setPasscode(String passcode);
+  Future<NormalResponse> resetPassword(ResetPassword resetPassword);
+  Future<NormalResponse> requestResetPassword(
+      RequestResetPassword requestResetPassword);
+
   String? getPasscode();
   void deletePasscode();
   void setLocale(Locale locale);

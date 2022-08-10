@@ -1,6 +1,8 @@
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
+import 'package:bertucanfrontend/ui/components/dialogs/forgot_password_dialog.dart';
+import 'package:bertucanfrontend/ui/components/dialogs/request_forgot_password_dialog.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
@@ -19,8 +21,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _forgotEmailController = TextEditingController();
 
   bool isPasswordVisible = false;
 
@@ -72,11 +74,19 @@ class _LoginPageState extends State<LoginPage> {
                   print("sett");
                 },
               ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: LocalizedText(
-                  'forgot_password',
-                  style: AppTheme.thinTextStyle,
+              InkWell(
+                onTap: () {
+                  Get.dialog(
+                    RequestForgotPassword(),
+                    barrierColor: Colors.grey.withOpacity(0.1),
+                  );
+                },
+                child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: LocalizedText(
+                    'forgot_password',
+                    style: AppTheme.thinTextStyle,
+                  ),
                 ),
               ),
               const SizedBox(
