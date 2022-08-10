@@ -43,10 +43,6 @@ class RequestForgotPassword extends StatelessWidget {
             if (_formKey.currentState!.validate()) {
               await _authController.requestResetPassword(
                   RequestResetPassword(email: _emailCodeController.text));
-              Get.dialog(
-                ResetForgotPassword(),
-                barrierColor: Colors.grey.withOpacity(0.1),
-              );
             }
           }),
       Obx(() =>

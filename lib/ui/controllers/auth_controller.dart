@@ -5,7 +5,9 @@ import 'package:bertucanfrontend/core/adapters/auth_adapter.dart';
 import 'package:bertucanfrontend/core/models/freezed_models.dart';
 import 'package:bertucanfrontend/core/models/simple_models.dart';
 import 'package:bertucanfrontend/shared/routes/app_routes.dart';
+import 'package:bertucanfrontend/ui/components/dialogs/forgot_password_dialog.dart';
 import 'package:bertucanfrontend/utils/functions.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -189,6 +191,11 @@ class AuthController extends GetxController {
       if (value.success) {
         status = RxStatus.success();
         toast('success', 'reset_password_email_sent');
+        Get.back();
+        Get.dialog(
+          ResetForgotPassword(),
+          barrierColor: Colors.grey.withOpacity(0.1),
+        );
       } else {
         status = RxStatus.error();
         toast('error', value.message ?? 'reset_password_email_not_sent');
@@ -205,6 +212,7 @@ class AuthController extends GetxController {
       if (value.success) {
         status = RxStatus.success();
         toast('success', 'password_reset');
+        Get.back();
       } else {
         status = RxStatus.error();
         toast('error', value.message ?? 'password_not_reset');
