@@ -55,10 +55,7 @@ class PhaseContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LocalizedText(
-                data.phaseChange?.isAfter(date) ?? false
-                    ? 'luteal_phase'
-                    : 'plateau_phase',
+            LocalizedText(getPhase(date, data),
                 style: AppTheme.titleStyle2.copyWith(color: AppTheme.white)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +64,7 @@ class PhaseContainer extends StatelessWidget {
                     style: AppTheme.greySubtitleStyle),
                 data.pregnancyDate != null
                     ? LocalizedText(
-                        getChanceOfPregnancy(DateTime.now(), data),
+                        getChanceOfPregnancy(date, data),
                         style: AppTheme.titleStyle4,
                       )
                     : SizedBox()
@@ -167,5 +164,24 @@ class PhaseContainer extends StatelessWidget {
         ),
       ]),
     );
+  }
+
+  getPhase(DateTime day, MonthlyMensturationModel data) {
+    if (day.isBefore(data.endDate.add(Duration(days: 1))) &&
+        day.isAfter(data.startDate)) {
+      return 'menstrual_phase';
+    } else if (data.pregnancyDate != null) {
+      if ((day.difference(data.pregnancyDate!).abs().inDays <= 1)
+          // ||  day.day == data.pregnancyDate!.day
+          ) {
+        return 'ovulation_phase';
+      } else if (day
+              .isBefore(data.pregnancyDate!.subtract(Duration(days: 2))) &&
+          day.isAfter(data.endDate)) {
+        return 'follicular_phase';
+      } else {
+        return 'luteal_phase';
+      }
+    }
   }
 }

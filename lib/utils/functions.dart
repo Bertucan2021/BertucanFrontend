@@ -118,8 +118,8 @@ String getChanceOfPregnancy(
   } else if (day
           .isBefore(mensturation.pregnancyDate!.subtract(Duration(days: 2))) &&
       day.isAfter(mensturation.endDate)) {
-    return 'low';
+    return 'normal';
   } else {
-    return 'none';
+    return 'low';
   }
 }
