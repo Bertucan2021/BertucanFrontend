@@ -23,7 +23,7 @@ class RequestForgotPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       CustomDialog(
-          title: 'Forgot_password',
+          title: 'forgot_password',
           content: [
             Form(
                 key: _formKey,

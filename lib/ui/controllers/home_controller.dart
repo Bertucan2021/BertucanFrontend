@@ -148,4 +148,20 @@ class HomeController extends GetxController {
     log("1${userLogData?.toJson().toString()} 2 ${_repository.getUserLogData().toJson().toString()}");
     return userLogData ?? _repository.getUserLogData();
   }
+
+  MonthlyMensturationModel getMenstruationCycleForDate(DateTime date) {
+    return predictedDates.lastWhere(
+      (element) {
+        return element.startDate.isBefore(date) ||
+            element.startDate.difference(date).inDays == 0;
+      },
+      orElse: () {
+        return predictedDates.firstWhere(
+          (element) {
+            return element.startDate.month == date.month + 1;
+          },
+        );
+      },
+    );
+  }
 }
