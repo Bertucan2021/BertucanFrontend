@@ -36,7 +36,7 @@ final Map<String, String> english = {
   "chance_of_pregnancy: ": "Chance of pregnancy",
   "low": "Low",
   "edit_period_log": "Edit period Log",
-  "period_in": "Period in",
+  "period_in": "Menstruation in",
   "days": "Days",
   "my_daily_insights": "My daily insights",
   "cycles_history": "Cycles History",
@@ -93,5 +93,6 @@ final Map<String, String> english = {
   "SRH": "SRH",
   "todays_cycle_day": "Todays cycle day",
   "chance_of_getting_pregnant": "Chance of pregnancy",
-  "you_are_not_logged_in": "You are not logged in"
+  "you_are_not_logged_in": "You are not logged in",
+  "hi": "Hi"
 };

@@ -6,12 +6,14 @@ import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/components/daily_insights.dart';
 import 'package:bertucanfrontend/ui/components/phase_container.dart';
 import 'package:bertucanfrontend/ui/components/selectable_dates.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
 import 'package:bertucanfrontend/ui/widgets/rounded_button.dart';
 import 'package:bertucanfrontend/ui/widgets/stat_container.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -25,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final HomeController _homeController = Get.find();
+  final AuthController _authController = Get.find();
 
   @override
   void initState() {
@@ -111,6 +114,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           onEdit: _homeController.editLogData,
                         ),
                         const SizedBox(height: 20),
+                        _authController.user.id != -1
+                            ? Text(
+                                "${translate("hi")} ${_authController.user.first_name} ",
+                                style: AppTheme.boldTitle,
+                              )
+                            : SizedBox(),
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(

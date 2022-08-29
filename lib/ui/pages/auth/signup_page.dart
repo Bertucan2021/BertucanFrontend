@@ -45,13 +45,50 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  const LocalizedText(
-                    "hello_there,",
-                    style: AppTheme.thinTextStyle,
-                  ),
-                  const LocalizedText(
-                    "sign_up_with",
-                    style: AppTheme.titleStyle,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          const LocalizedText(
+                            "hello_there,",
+                            style: AppTheme.thinTextStyle,
+                          ),
+                          const LocalizedText(
+                            "sign_up_with",
+                            style: AppTheme.titleStyle,
+                          ),
+                        ],
+                      ),
+                      DropdownButton<Locale>(
+                          hint: LocalizedText(
+                            "set_language",
+                            style: AppTheme.hintTextStyle,
+                          ),
+                          onChanged: (value) {
+                            if (value != null) {
+                              _authController.setLocale(value);
+                            }
+                          },
+                          items: const <DropdownMenuItem<Locale>>[
+                            DropdownMenuItem(
+                              value: Locale('am', 'ET'),
+                              child: Text('Amharic'),
+                            ),
+                            DropdownMenuItem(
+                              value: Locale('or', 'ET'),
+                              child: Text('Oromifa'),
+                            ),
+                            DropdownMenuItem(
+                              value: Locale('tg', 'ET'),
+                              child: Text('Tigrigna'),
+                            ),
+                            DropdownMenuItem(
+                              value: Locale('en', 'US'),
+                              child: Text('English'),
+                            )
+                          ]),
+                    ],
                   ),
                   const SizedBox(
                     height: 25,

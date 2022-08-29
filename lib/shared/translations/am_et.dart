@@ -122,5 +122,6 @@ final Map<String, String> amharic = {
   "password_canot_be_null": "የይለፍ ቃል ባዶ መኾን አይችልም",
   "todays_cycle_day": "የዛሬ ሳይክል ቀን",
   "chance_of_getting_pregnant": "የመፀነስ ዕድል",
-  "you_are_not_logged_in": "አልገቡም"
+  "you_are_not_logged_in": "አልገቡም",
+  "hi": "ሰላም",
 };
