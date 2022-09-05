@@ -16,14 +16,40 @@ class PhaseContainer extends StatelessWidget {
   final TextEditingController _periodLength = TextEditingController();
   final TextEditingController _periodComing = TextEditingController();
   final DateTime date;
-
+  final UserLogData userLogData;
   var _formKey = GlobalKey<FormState>();
   PhaseContainer(
-      {Key? key, required this.data, required this.date, required this.onEdit})
+      {Key? key,
+      required this.data,
+      required this.date,
+      required this.onEdit,
+      required this.userLogData})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int ovulationIn = 0;
+    if (date.isBefore(data.pregnancyDate!.subtract(Duration(days: 2)))) {
+      //selected date is before the start of ovulation
+      ovulationIn = date
+          .difference(data.pregnancyDate!.subtract(Duration(days: 2)))
+          .inDays
+          .abs();
+    } else {
+      //selected date is after the start of ovulation
+      if (date.isAfter(data.pregnancyDate!)) {
+        //selected date is after the end of ovulation of current month
+        //next line will calculate when the next ovulation will start and get the days left
+        ovulationIn = date
+            .difference(data.endDate.add(Duration(
+                days: userLogData.daysToStart + userLogData.daysToEnd + 7)))
+            .inDays
+            .abs();
+      } else {
+        //selected date is before the end of ovulation
+        //do nothing(ovulationIn stays 0)
+      }
+    }
     return Container(
       height: 160,
       decoration: AppTheme.orangeBoxDecoration(),
@@ -37,18 +63,21 @@ class PhaseContainer extends StatelessWidget {
             rotateLinearGradient: true,
             animateFromLastPercent: true,
             startAngle: 180,
-            percent: date.day / 31,
+            percent: ovulationIn / 30,
             center: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
                   width: 4,
                 ),
-                const LocalizedText("day",
+                LocalizedText(ovulationIn != 0 ? "ovulation_in" : "ovulating",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: AppTheme.greySubtitleStyle),
-                Text(DateFormat.d().format(date), style: AppTheme.titleStyle5),
+                ovulationIn != 0
+                    ? Text("$ovulationIn ${translate('days')}",
+                        style: AppTheme.normal2TextStyle)
+                    : SizedBox()
               ],
             ),
             progressColor: Colors.white,

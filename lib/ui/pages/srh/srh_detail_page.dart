@@ -55,7 +55,7 @@ class SrhDetailPage extends StatelessWidget {
                               Container(
                                 width: MediaQuery.of(context).size.width,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.08,
+                                    MediaQuery.of(context).size.height * 0.085,
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 10),
                                 margin: const EdgeInsets.all(10),

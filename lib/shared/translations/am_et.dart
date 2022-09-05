@@ -124,4 +124,6 @@ final Map<String, String> amharic = {
   "chance_of_getting_pregnant": "የመፀነስ ዕድል",
   "you_are_not_logged_in": "አልገቡም",
   "hi": "ሰላም",
+  "high": "ከፍተኛ",
+  "normal": 'የተለመደ',
 };

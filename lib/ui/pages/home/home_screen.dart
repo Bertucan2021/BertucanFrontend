@@ -108,11 +108,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 20),
                         PhaseContainer(
-                          data: _homeController.getMenstruationCycleForDate(
-                              _homeController.selectedDate),
-                          date: _homeController.selectedDate,
-                          onEdit: _homeController.editLogData,
-                        ),
+                            data: _homeController.getMenstruationCycleForDate(
+                                _homeController.selectedDate),
+                            date: _homeController.selectedDate,
+                            onEdit: _homeController.editLogData,
+                            userLogData: _homeController.userLogData!),
                         const SizedBox(height: 20),
                         _authController.user.id != -1
                             ? Text(

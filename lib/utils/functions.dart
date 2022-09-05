@@ -114,12 +114,12 @@ String getChanceOfPregnancy(
     DateTime day, MonthlyMensturationModel mensturation) {
   if ((day.isAfter(mensturation.pregnancyDate!.subtract(Duration(days: 2)))) &&
       (day.isBefore(mensturation.pregnancyDate!.add(Duration(days: 2))))) {
-    return 'high';
+    return translate('high');
   } else if (day
           .isBefore(mensturation.pregnancyDate!.subtract(Duration(days: 2))) &&
       day.isAfter(mensturation.endDate)) {
-    return 'normal';
+    return translate('normal');
   } else {
-    return 'low';
+    return translate('low');
   }
 }
