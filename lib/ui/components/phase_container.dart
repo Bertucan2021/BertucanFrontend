@@ -29,19 +29,19 @@ class PhaseContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int ovulationIn = 0;
-    if (date.isBefore(data.pregnancyDate!.subtract(Duration(days: 2)))) {
+    if (date.isBefore(data.pregnancyDate!.subtract(Duration(days: 1)))) {
       //selected date is before the start of ovulation
       ovulationIn = date
-          .difference(data.pregnancyDate!.subtract(Duration(days: 2)))
+          .difference(data.pregnancyDate!.subtract(Duration(days: 1)))
           .inDays
           .abs();
     } else {
       //selected date is after the start of ovulation
-      if (date.isAfter(data.pregnancyDate!)) {
+      if (date.isAfter(data.pregnancyDate!.add(Duration(days: 2)))) {
         //selected date is after the end of ovulation of current month
         //next line will calculate when the next ovulation will start and get the days left
         ovulationIn = date
-            .difference(data.endDate.add(Duration(
+            .difference(data.startDate.add(Duration(
                 days: userLogData.daysToStart + userLogData.daysToEnd + 7)))
             .inDays
             .abs();

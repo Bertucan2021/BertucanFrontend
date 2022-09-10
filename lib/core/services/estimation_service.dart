@@ -5,7 +5,7 @@ class EstimationService {
   MonthlyMensturationModel getNextMensurationDate(
       MonthlyMensturationModel data, UserLogData userLogData) {
     DateTime startDate =
-        data.endDate.add(Duration(days: userLogData.daysToStart));
+        data.startDate.add(Duration(days: userLogData.daysToStart));
     DateTime endDate = startDate.add(Duration(days: userLogData.daysToEnd));
     DateTime pregnancyDate = endDate.add(Duration(days: 9));
     DateTime phaseChange = endDate.add(Duration(days: 14));
