@@ -95,6 +95,6 @@ final Map<String, String> english = {
   "chance_of_getting_pregnant": "Chance of pregnancy",
   "you_are_not_logged_in": "You are not logged in",
   "hi": "Hi",
-  "high": "High" ,
-  "normal":"Normal"
+  "high": "High",
+  "normal": "Normal"
 };

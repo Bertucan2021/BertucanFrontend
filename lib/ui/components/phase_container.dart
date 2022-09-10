@@ -97,13 +97,11 @@ class PhaseContainer extends StatelessWidget {
                   child: LocalizedText('chance_of_pregnancy: ',
                       style: AppTheme.greySubtitleStyle),
                 ),
-                SizedBox(
-                  width: 5,
-                ),
                 data.pregnancyDate != null
                     ? LocalizedText(
                         getChanceOfPregnancy(date, data),
-                        style: AppTheme.titleStyle4,
+                        style: AppTheme.buttonLabelStyle2
+                            .copyWith(color: Colors.black),
                       )
                     : SizedBox()
               ],
@@ -114,8 +112,11 @@ class PhaseContainer extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                   decoration: AppTheme.whiteBoxDecoration(),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                  child: LocalizedText('edit_period_log',
-                      style: AppTheme.normalPrimaryTextStyle)),
+                  child: LocalizedText(
+                    'edit_period_log',
+                    style: AppTheme.normalPrimaryTextStyle,
+                    textAlign: TextAlign.center,
+                  )),
               onPressed: () {
                 showDialog(
                     context: context,
