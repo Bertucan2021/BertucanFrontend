@@ -31,14 +31,14 @@ class DailyInsights extends StatelessWidget {
               //     Get.toNamed(Routes.dailyDetailPage);
               //   },
               // ),
-              DailyInsightCard(
-                title: "todays_cycle_day",
-                bottom: Text(
-                  "${homeController.getUserLogData().daysToStart}",
-                  style: AppTheme.titleStyle2,
-                ),
-                color: AppTheme.subtleGreen,
-              ),
+              // DailyInsightCard(
+              //   title: "todays_cycle_day",
+              //   bottom: Text(
+              //     "${homeController.getUserLogData().daysToStart}",
+              //     style: AppTheme.titleStyle2,
+              //   ),
+              //   color: AppTheme.subtleGreen,
+              // ),
               homeController.currentMenstruation.pregnancyDate != null
                   ? DailyInsightCard(
                       title: "chance_of_getting_pregnant",

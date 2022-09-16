@@ -106,7 +106,7 @@ class PhaseContainer extends StatelessWidget {
                     : SizedBox()
               ],
             ),
-            SizedBox(height: 10),
+            // SizedBox(height: 10),
             TextButton(
               child: Container(
                   width: MediaQuery.of(context).size.width * 0.4,
