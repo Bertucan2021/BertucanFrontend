@@ -123,7 +123,8 @@ class HomeRepository implements IHomeRepository {
     saveUserLogData(UserLogData(
         startDate: data[0].startDate,
         endDate: data[0].endDate,
-        daysToStart: data[1].startDate.difference(data[0].endDate).inDays.abs(),
+        daysToStart:
+            data[1].startDate.difference(data[0].startDate).inDays.abs(),
         daysToEnd: data[0].endDate.difference(data[0].startDate).inDays.abs()));
     try {
       if (storage.hasData('token') && save) {

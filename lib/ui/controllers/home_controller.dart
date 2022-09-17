@@ -114,6 +114,7 @@ class HomeController extends GetxController {
 
   Future<void> getPredictedDates() async {
     predictedDates = _repository.getForecomingMensturationDates();
+    userLogData = getUserLogData();
     if (predictedDates.isNotEmpty) {
       setCurrentMenstruationCycle();
     } else {

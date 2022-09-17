@@ -265,6 +265,27 @@ class AuthRepository with IAuthRepository {
           path: '/logInfos',
         );
         if (response['success']) {
+          response['data'].forEach((element) {
+            predictions.add(MonthlyMensturationModel.fromJson(element));
+          });
+          storage.write('forecoming_mensturation_data', predictions);
+          storage.write(
+              'user_log_data',
+              UserLogData(
+                      startDate: predictions[0].startDate,
+                      endDate: predictions[0].endDate,
+                      daysToStart: predictions[1]
+                          .startDate
+                          .difference(predictions[0].startDate)
+                          .inDays
+                          .abs(),
+                      daysToEnd: predictions[0]
+                          .endDate
+                          .difference(predictions[0].startDate)
+                          .inDays
+                          .abs())
+                  .toJson());
+
           return NormalResponse(
             success: true,
             message: response['data'],
