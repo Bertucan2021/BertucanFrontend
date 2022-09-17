@@ -52,7 +52,7 @@ class PhaseContainer extends StatelessWidget {
     }
     return Container(
       height: 160,
-      // width: MediaQuery.of(context).size.width * 0.98,
+      width: MediaQuery.of(context).size.width,
       decoration: AppTheme.orangeBoxDecoration(),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
