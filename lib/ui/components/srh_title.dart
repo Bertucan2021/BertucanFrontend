@@ -22,53 +22,56 @@ class SrhTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
-              blurRadius: 2,
-              spreadRadius: 2,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(
-            children: [
-              ImageHolder(
-                path: imageUrl,
-                height: 107,
-                width: 65,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: Text(name,
-                        style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: Text(description,
-                        style: AppTheme.greySubtitleStyle
-                            .copyWith(fontWeight: FontWeight.w400)),
-                  ),
-                ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          margin: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.1),
+                blurRadius: 2,
+                spreadRadius: 2,
+                offset: Offset(0, 2),
               ),
             ],
           ),
-        ]),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(
+              children: [
+                ImageHolder(
+                  path: imageUrl,
+                  height: 107,
+                  width: 65,
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: Text(name,
+                          style: AppTheme.titleStyle2.copyWith(fontSize: 16)),
+                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Text(description,
+                          style: AppTheme.greySubtitleStyle
+                              .copyWith(fontWeight: FontWeight.w400)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ]),
+        ),
       ),
     );
   }

@@ -11,52 +11,55 @@ class GbvTile extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        margin: const EdgeInsets.all(10),
-        color: Colors.white,
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(
-            children: [
-              ImageHolder(
-                path: gbv.logo,
-                height: 50,
-                width: 50,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: Text(
-                      gbv.name ?? "",
-                      style: AppTheme.titleStyle2.copyWith(fontSize: 16),
-                      overflow: TextOverflow.ellipsis,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          margin: const EdgeInsets.all(10),
+          color: Colors.white,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(
+              children: [
+                ImageHolder(
+                  path: gbv.logo,
+                  height: 50,
+                  width: 50,
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: Text(
+                        gbv.name ?? "",
+                        style: AppTheme.titleStyle2.copyWith(fontSize: 16),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 100,
-                    child: Text(
-                      gbv.description ?? "",
-                      style: AppTheme.greySubtitleStyle
-                          .copyWith(fontWeight: FontWeight.w400),
-                      overflow: TextOverflow.ellipsis,
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        gbv.description ?? "",
+                        style: AppTheme.greySubtitleStyle
+                            .copyWith(fontWeight: FontWeight.w400),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const Icon(
-            Icons.chevron_right,
-            color: AppTheme.primaryColor,
-            size: 30,
-          ),
-        ]),
+                  ],
+                ),
+              ],
+            ),
+            const Icon(
+              Icons.chevron_right,
+              color: AppTheme.primaryColor,
+              size: 30,
+            ),
+          ]),
+        ),
       ),
     );
   }

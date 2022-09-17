@@ -52,23 +52,24 @@ class SrhDetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const SizedBox(width: 10),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.085,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                margin: const EdgeInsets.all(10),
-                                color: AppTheme.primaryColor,
-                                child: Column(
-                                  children: [
-                                    const SizedBox(height: 10),
-                                    LocalizedText(
-                                        controller.selectedSrh.value.title ??
-                                            "",
-                                        style: AppTheme.titleStyle4
-                                            .copyWith(color: Colors.white)),
-                                  ],
+                              SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  margin: const EdgeInsets.all(10),
+                                  color: AppTheme.primaryColor,
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(height: 10),
+                                      LocalizedText(
+                                          controller.selectedSrh.value.title ??
+                                              "",
+                                          style: AppTheme.titleStyle4
+                                              .copyWith(color: Colors.white)),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
