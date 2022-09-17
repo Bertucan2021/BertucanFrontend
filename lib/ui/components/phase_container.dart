@@ -50,11 +50,12 @@ class PhaseContainer extends StatelessWidget {
         //do nothing(ovulationIn stays 0)
       }
     }
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        height: 160,
-        decoration: AppTheme.orangeBoxDecoration(),
+    return Container(
+      height: 160,
+      // width: MediaQuery.of(context).size.width * 0.98,
+      decoration: AppTheme.orangeBoxDecoration(),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
