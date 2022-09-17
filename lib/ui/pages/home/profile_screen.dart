@@ -65,92 +65,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                     _authController.user.id != -1
-                        ? Row(
-                            children: [
-                              Container(
-                                child: ImageHolder(
-                                  path: _authController.user.profile_picture,
-                                  height: 107,
-                                  width: 65,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(59),
-                                  color: const Color(0xFFFEEFF2),
-                                ),
-                                clipBehavior: Clip.hardEdge,
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          LocalizedText(
-                                            "name :",
-                                            style: AppTheme.titleStyle2
-                                                .copyWith(fontSize: 20),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 2),
-                                            child: Text(
-                                                "${_authController.user.first_name ?? ""} ${_authController.user.last_name ?? ""}",
-                                                style:
-                                                    AppTheme.normalTextStyle),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                        ? SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: ImageHolder(
+                                    path: _authController.user.profile_picture,
+                                    height: 107,
+                                    width: 65,
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          LocalizedText(
-                                            "email : ",
-                                            style: AppTheme.titleStyle2
-                                                .copyWith(fontSize: 20),
-                                          ),
-                                          SizedBox(
-                                            width: 13,
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.46,
-                                            padding:
-                                                const EdgeInsets.only(top: 2),
-                                            child: Text(
-                                              "${_authController.user.email}",
-                                              style: AppTheme.normal2TextStyle,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(59),
+                                    color: const Color(0xFFFEEFF2),
+                                  ),
+                                  clipBehavior: Clip.hardEdge,
+                                ),
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            LocalizedText(
+                                              "name :",
+                                              style: AppTheme.titleStyle2
+                                                  .copyWith(fontSize: 20),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                            ],
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 2),
+                                              child: Text(
+                                                  "${_authController.user.first_name ?? ""} ${_authController.user.last_name ?? ""}",
+                                                  style:
+                                                      AppTheme.normalTextStyle),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            LocalizedText(
+                                              "email : ",
+                                              style: AppTheme.titleStyle2
+                                                  .copyWith(fontSize: 20),
+                                            ),
+                                            SizedBox(
+                                              width: 13,
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.46,
+                                              padding:
+                                                  const EdgeInsets.only(top: 2),
+                                              child: Text(
+                                                "${_authController.user.email}",
+                                                style:
+                                                    AppTheme.normal2TextStyle,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            ),
                           )
                         : Center(
                             child: Column(

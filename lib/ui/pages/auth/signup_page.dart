@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
       children: [
         SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+            padding: const EdgeInsets.only(left: 30, right: 40, top: 30),
             child: Form(
               key: _formKey,
               child: Column(
@@ -45,50 +45,56 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          const LocalizedText(
-                            "hello_there,",
-                            style: AppTheme.thinTextStyle,
-                          ),
-                          const LocalizedText(
-                            "sign_up_with",
-                            style: AppTheme.titleStyle,
-                          ),
-                        ],
-                      ),
-                      DropdownButton<Locale>(
-                          hint: LocalizedText(
-                            "set_language",
-                            style: AppTheme.hintTextStyle,
-                          ),
-                          onChanged: (value) {
-                            if (value != null) {
-                              _authController.setLocale(value);
-                            }
-                          },
-                          items: const <DropdownMenuItem<Locale>>[
-                            DropdownMenuItem(
-                              value: Locale('am', 'ET'),
-                              child: Text('Amharic'),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            const LocalizedText(
+                              "hello_there,",
+                              style: AppTheme.thinTextStyle,
                             ),
-                            DropdownMenuItem(
-                              value: Locale('or', 'ET'),
-                              child: Text('Oromifa'),
+                            const LocalizedText(
+                              "sign_up_with",
+                              style: AppTheme.titleStyle,
                             ),
-                            DropdownMenuItem(
-                              value: Locale('tg', 'ET'),
-                              child: Text('Tigrigna'),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        DropdownButton<Locale>(
+                            hint: LocalizedText(
+                              "set_language",
+                              style: AppTheme.hintTextStyle,
                             ),
-                            DropdownMenuItem(
-                              value: Locale('en', 'US'),
-                              child: Text('English'),
-                            )
-                          ]),
-                    ],
+                            onChanged: (value) {
+                              if (value != null) {
+                                _authController.setLocale(value);
+                              }
+                            },
+                            items: const <DropdownMenuItem<Locale>>[
+                              DropdownMenuItem(
+                                value: Locale('am', 'ET'),
+                                child: Text('Amharic'),
+                              ),
+                              DropdownMenuItem(
+                                value: Locale('or', 'ET'),
+                                child: Text('Oromifa'),
+                              ),
+                              DropdownMenuItem(
+                                value: Locale('tg', 'ET'),
+                                child: Text('Tigrigna'),
+                              ),
+                              DropdownMenuItem(
+                                value: Locale('en', 'US'),
+                                child: Text('English'),
+                              )
+                            ]),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 25,

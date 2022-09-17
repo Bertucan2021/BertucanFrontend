@@ -127,11 +127,6 @@ class LogPage extends StatelessWidget {
                         ),
                         width: 40,
                         height: 40,
-                        child: Center(
-                            child: Text(
-                          '1',
-                          style: TextStyle(color: Colors.white),
-                        )),
                       ),
                       SizedBox(
                         width: 5,
@@ -157,7 +152,6 @@ class LogPage extends StatelessWidget {
                         ),
                         width: 40,
                         height: 40,
-                        child: Center(child: Text('1')),
                       ),
                       SizedBox(
                         width: 5,
@@ -181,7 +175,6 @@ class LogPage extends StatelessWidget {
                         ),
                         width: 40,
                         height: 40,
-                        child: Center(child: Text('1')),
                       ),
                       SizedBox(
                         width: 5,

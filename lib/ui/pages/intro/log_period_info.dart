@@ -78,48 +78,51 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  LocalizedText('when_did_your_period_start',
-                      style: AppTheme.normalTextStyle),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Theme(
-                    data: _buildShrineTheme(),
-                    child: Builder(builder: (context) {
-                      return TextButton(
-                          child: Container(
-                              decoration: AppTheme
-                                  .primaryColoredRoundedButtonDecoration2(),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 10),
-                              child: LocalizedText(
-                                'select_date',
-                                style: AppTheme.buttonLabelStyle2
-                                    .copyWith(color: AppTheme.primaryColor),
-                                textAlign: TextAlign.center,
-                              )),
-                          onPressed: () {
-                            showDatePicker(
-                                    context: context,
-                                    initialDate: startDate,
-                                    firstDate: DateTime.now()
-                                        .subtract(Duration(days: 30)),
-                                    lastDate: DateTime.now())
-                                .then((value) {
-                              if (value != null) {
-                                setState(() {
-                                  startDate = value;
-                                });
-                              }
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    LocalizedText('when_did_your_period_start',
+                        style: AppTheme.normalTextStyle),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Theme(
+                      data: _buildShrineTheme(),
+                      child: Builder(builder: (context) {
+                        return TextButton(
+                            child: Container(
+                                decoration: AppTheme
+                                    .primaryColoredRoundedButtonDecoration2(),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 10),
+                                child: LocalizedText(
+                                  'select_date',
+                                  style: AppTheme.buttonLabelStyle2
+                                      .copyWith(color: AppTheme.primaryColor),
+                                  textAlign: TextAlign.center,
+                                )),
+                            onPressed: () {
+                              showDatePicker(
+                                      context: context,
+                                      initialDate: startDate,
+                                      firstDate: DateTime.now()
+                                          .subtract(Duration(days: 30)),
+                                      lastDate: DateTime.now())
+                                  .then((value) {
+                                if (value != null) {
+                                  setState(() {
+                                    startDate = value;
+                                  });
+                                }
+                              });
                             });
-                          });
-                    }),
-                  ),
-                ],
+                      }),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(

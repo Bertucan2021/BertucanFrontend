@@ -44,6 +44,7 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
             title: 'edit_profile',
             content: [
               SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
                 child: Form(
                   key: _editFormKey,
                   child: Column(
