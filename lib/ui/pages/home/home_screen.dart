@@ -70,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     DateFormat.yMMMd()
                                         .format(_homeController.selectedDate),
                                     style: AppTheme.titleStyle3),
+                                SizedBox()
                                 // Align(
                                 //   alignment: Alignment.topLeft,
                                 //   child: IconButton(
