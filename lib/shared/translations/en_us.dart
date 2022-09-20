@@ -96,5 +96,6 @@ final Map<String, String> english = {
   "you_are_not_logged_in": "You are not logged in",
   "hi": "Hi",
   "high": "High",
-  "normal": "Normal"
+  "normal": "Normal",
+  "you_are_currently_on_period": "You are on your period"
 };

@@ -29,6 +29,8 @@ class PhaseContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int ovulationIn = 0;
+    if (data.pregnancyDate == null)
+      data.pregnancyDate = data.endDate.add(Duration(days: 9));
     if (date.isBefore(data.pregnancyDate!.subtract(Duration(days: 1)))) {
       //selected date is before the start of ovulation
       ovulationIn = date

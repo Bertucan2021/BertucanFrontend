@@ -26,30 +26,32 @@ class StatContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(children: [
-        const SizedBox(height: 20),
+        SizedBox(height: stat != '0' ? 20 : 0),
         LocalizedText(
           label,
-          style: AppTheme.normalTextStyle,
+          style: stat != "0" ? AppTheme.normalTextStyle : AppTheme.titleStyle,
         ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              stat,
-              style:
-                  AppTheme.titleStyle2.copyWith(color: AppTheme.primaryColor),
-            ),
-            LocalizedText(
-              unit,
-              style: AppTheme.greySubtitleStyle
-                  .copyWith(color: AppTheme.primaryColor),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        )
+        if (stat != "0") ...[
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                stat,
+                style:
+                    AppTheme.titleStyle2.copyWith(color: AppTheme.primaryColor),
+              ),
+              LocalizedText(
+                unit,
+                style: AppTheme.greySubtitleStyle
+                    .copyWith(color: AppTheme.primaryColor),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          )
+        ]
       ]),
     );
   }

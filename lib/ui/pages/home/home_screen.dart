@@ -45,11 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
             int periodIn = 0;
             DateTime today = DateTime.now();
             if (today.isAfter(_homeController.currentMenstruation.startDate)) {
-              periodIn = _homeController.currentMenstruation.startDate
-                  .add(Duration(
-                      days: _homeController.userLogData?.daysToStart ?? 0))
-                  .difference(today)
-                  .inDays;
+              if (today.isBefore(_homeController.currentMenstruation.endDate)) {
+                periodIn = 0;
+              } else {
+                periodIn = _homeController.currentMenstruation.startDate
+                    .add(Duration(
+                        days: _homeController.userLogData?.daysToStart ?? 0))
+                    .difference(today)
+                    .inDays;
+              }
             } else {
               periodIn = _homeController.currentMenstruation.startDate
                   .difference(today)
@@ -131,7 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               //     unit: "kg",
                               //     color: AppTheme.orange),
                               StatContainer(
-                                  label: "period_in",
+                                  label: periodIn != 0
+                                      ? "period_in"
+                                      : "you_are_currently_on_period",
                                   stat: (periodIn).toString(),
                                   unit: "days",
                                   color: AppTheme.green),

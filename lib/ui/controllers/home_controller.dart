@@ -65,13 +65,13 @@ class HomeController extends GetxController {
   }
 
   setCurrentMenstruationCycle() {
-    currentMenstruation = predictedDates.firstWhere(
+    currentMenstruation = predictedDates.lastWhere(
       (element) {
         return element.startDate.isBefore(DateTime.now()) ||
             element.startDate.difference(DateTime.now()).inDays == 0;
       },
       orElse: () {
-        return predictedDates.firstWhere(
+        return predictedDates.lastWhere(
           (element) {
             return element.startDate.month == DateTime.now().month + 1;
           },
