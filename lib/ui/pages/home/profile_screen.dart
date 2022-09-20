@@ -103,11 +103,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             SizedBox(
                                               width: 10,
                                             ),
-                                            Padding(
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.46,
                                               padding:
                                                   const EdgeInsets.only(top: 2),
                                               child: Text(
                                                   "${_authController.user.first_name ?? ""} ${_authController.user.last_name ?? ""}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style:
                                                       AppTheme.normalTextStyle),
                                             ),
@@ -142,6 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   const EdgeInsets.only(top: 2),
                                               child: Text(
                                                 "${_authController.user.email}",
+                                                overflow: TextOverflow.ellipsis,
                                                 style:
                                                     AppTheme.normal2TextStyle,
                                               ),
