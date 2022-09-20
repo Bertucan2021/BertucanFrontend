@@ -43,155 +43,150 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
         CustomDialog(
             title: 'edit_profile',
             content: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Form(
-                  key: _editFormKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      LocalizedText('profile_picture',
-                          style: AppTheme.normalTextStyle),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () async {
-                              await takePhoto(ImageSource.gallery);
-                            },
-                            child: Container(
-                                decoration: AppTheme.whiteBoxDecoration(),
+              Form(
+                key: _editFormKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LocalizedText('profile_picture',
+                        style: AppTheme.normalTextStyle),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            await takePhoto(ImageSource.gallery);
+                          },
+                          child: Container(
+                              decoration: AppTheme.whiteBoxDecoration(),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 8),
+                              child: LocalizedText('select',
+                                  style: AppTheme.normalPrimaryTextStyle)),
+                        ),
+                        SizedBox(width: 10),
+                        _imageFile != null
+                            ? Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 8),
-                                child: LocalizedText('select',
-                                    style: AppTheme.normalPrimaryTextStyle)),
-                          ),
-                          SizedBox(width: 10),
-                          _imageFile != null
-                              ? Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.4,
+                                child: Text(_imageFile!.split('/').last,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    style: AppTheme.normalPrimaryTextStyle))
+                            : Container(),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    CustomTextField(
+                      label: 'first_name',
+                      controller: _firstNameController,
+                      hintText: _authController.user.first_name ??
+                          'enter_your_first_name',
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return translate("first_name_required");
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextField(
+                      label: 'last_name',
+                      controller: _lastNameController,
+                      keyboardType: TextInputType.text,
+                      hintText: _authController.user.last_name ??
+                          'enter_your_last_name',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return translate("last_name_required");
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextField(
+                      label: 'email',
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      hintText:
+                          _authController.user.email ?? 'enter_your_email',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return translate("email_required");
+                        }
+                        if (!RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value)) {
+                          return translate("invalid_email");
+                        }
+                        return null;
+                      },
+                    ),
+                    CustomTextField(
+                      label: 'phone_number',
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone,
+                      hintText: _authController.user.phone_number ??
+                          'enter_your_phone_number',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return translate("phone_required");
+                        }
+                        if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$")
+                            .hasMatch(value)) {
+                          return translate("invalid_phone");
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20),
+                    LocalizedText('data_of_birth',
+                        style: AppTheme.normalTextStyle),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Theme(
+                          data: _buildShrineTheme(),
+                          child: Builder(builder: (context) {
+                            return InkWell(
+                              onTap: () => showDatePicker(
+                                context: context,
+                                firstDate: DateTime.now()
+                                    .subtract(Duration(days: 50 * 365)),
+                                lastDate: DateTime.now()
+                                    .subtract(Duration(days: 365 * 10)),
+                                initialDate: DateTime.now()
+                                    .subtract(Duration(days: 365 * 10)),
+                              ).then((value) {
+                                if (value != null) {
+                                  setState(() {
+                                    _ageController =
+                                        DateFormat.yMd().format(value);
+                                  });
+                                }
+                              }),
+                              child: Container(
+                                  decoration: AppTheme.whiteBoxDecoration(),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 8),
-                                  child: Text(_imageFile!.split('/').last,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      style: AppTheme.normalPrimaryTextStyle))
-                              : Container(),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      CustomTextField(
-                        label: 'first_name',
-                        controller: _firstNameController,
-                        hintText: _authController.user.first_name ??
-                            'enter_your_first_name',
-                        keyboardType: TextInputType.text,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return translate("first_name_required");
-                          }
-                          return null;
-                        },
-                      ),
-                      CustomTextField(
-                        label: 'last_name',
-                        controller: _lastNameController,
-                        keyboardType: TextInputType.text,
-                        hintText: _authController.user.last_name ??
-                            'enter_your_last_name',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return translate("last_name_required");
-                          }
-                          return null;
-                        },
-                      ),
-                      CustomTextField(
-                        label: 'email',
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        hintText:
-                            _authController.user.email ?? 'enter_your_email',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return translate("email_required");
-                          }
-                          if (!RegExp(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(value)) {
-                            return translate("invalid_email");
-                          }
-                          return null;
-                        },
-                      ),
-                      CustomTextField(
-                        label: 'phone_number',
-                        controller: _phoneController,
-                        keyboardType: TextInputType.phone,
-                        hintText: _authController.user.phone_number ??
-                            'enter_your_phone_number',
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return translate("phone_required");
-                          }
-                          if (!RegExp(r"^(?:\+2519|09)[0-9]{8}$")
-                              .hasMatch(value)) {
-                            return translate("invalid_phone");
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(height: 20),
-                      LocalizedText('data_of_birth',
-                          style: AppTheme.normalTextStyle),
-                      SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Theme(
-                            data: _buildShrineTheme(),
-                            child: Builder(builder: (context) {
-                              return InkWell(
-                                onTap: () => showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime.now()
-                                      .subtract(Duration(days: 50 * 365)),
-                                  lastDate: DateTime.now()
-                                      .subtract(Duration(days: 365 * 10)),
-                                  initialDate: DateTime.now()
-                                      .subtract(Duration(days: 365 * 10)),
-                                ).then((value) {
-                                  if (value != null) {
-                                    setState(() {
-                                      _ageController =
-                                          DateFormat.yMd().format(value);
-                                    });
-                                  }
-                                }),
-                                child: Container(
-                                    decoration: AppTheme.whiteBoxDecoration(),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 8),
-                                    child: LocalizedText('select',
-                                        style:
-                                            AppTheme.normalPrimaryTextStyle)),
-                              );
-                            }),
-                          ),
-                          SizedBox(width: 10),
-                          _ageController != ""
-                              ? Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 8),
-                                  child: Text(_ageController,
-                                      style: AppTheme.normalPrimaryTextStyle))
-                              : Container(),
-                        ],
-                      ),
-                    ],
-                  ),
+                                  child: LocalizedText('select',
+                                      style: AppTheme.normalPrimaryTextStyle)),
+                            );
+                          }),
+                        ),
+                        SizedBox(width: 10),
+                        _ageController != ""
+                            ? Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 8),
+                                child: Text(_ageController,
+                                    style: AppTheme.normalPrimaryTextStyle))
+                            : Container(),
+                      ],
+                    ),
+                  ],
                 ),
               )
             ],

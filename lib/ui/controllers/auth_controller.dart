@@ -121,6 +121,7 @@ class AuthController extends GetxController {
 
   logout() {
     _authRepository.logOut();
+    user = User(id: -1);
     Get.offAllNamed(Routes.loginPage);
   }
 
