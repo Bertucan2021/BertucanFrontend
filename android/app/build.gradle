@@ -26,7 +26,8 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
+    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -42,12 +43,16 @@ android {
     }
 
     defaultConfig {
+
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.bertucanfrontend"
-        minSdkVersion 16
-        targetSdkVersion 31
+        applicationId "com.example.shit"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        minSdkVersion 20
     }
 
     buildTypes {
@@ -57,6 +62,16 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+        buildTypes {
+            debug {
+                resValue "string", "google_maps_api_key", "AIzaSyBP_U5uxX4VPy8fk9-OkTsNiW1usC70GEo"
+            }
+            release {
+                resValue "string", "google_maps_api_key", "[YOUR PROD KEY]"
+            }
+        }
+
 }
 
 flutter {
@@ -65,5 +80,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 }
+
+
