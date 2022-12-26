@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:geolocator/geolocator.dart';
+// import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as lNotification;
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -23,6 +23,9 @@ class NotificationService {
         tz.getLocation(await FlutterNativeTimezone.getLocalTimezone()));
 
 // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    const AndroidNotificationChannel channel =
+        AndroidNotificationChannel("id", "name", groupId: "Notification_group");
+        
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -64,7 +67,7 @@ class NotificationService {
           NotificationDetails(
               android: AndroidNotificationDetails(
                   'your channel $id', 'your channel $id',
-                  channelDescription: 'your channel description')),
+                  channelDescription: 'your channel description', groupKey: "notification_group")),
           androidAllowWhileIdle: true,
           uiLocalNotificationDateInterpretation:
               UILocalNotificationDateInterpretation.absoluteTime);

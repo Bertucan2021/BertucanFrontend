@@ -121,5 +121,6 @@ Map<String, String> tigrigna = {
   "todays_cycle_day": "ናይ ሎምዓንቲ ዕለት ዑደት",
   "chance_of_getting_pregnant": "ጥንሲ ናይ ምትሓዝ ተኽእሎ",
   "you_are_not_logged_in": "ናብ'ቲ መፍለዪ ሒሳብኪ ኣይኣተኽን",
-  "calendar" : "ዓውደ ኣዋርሕ"
+  "calendar" : "ዓውደ ኣዋርሕ",
+  "enter_valid_period_length": "ንውሓት ወርሓዊ ጽግያትካ ብትኽክል ኣእቱ",
 };

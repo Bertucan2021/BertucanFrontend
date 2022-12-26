@@ -7,6 +7,7 @@ import 'package:bertucanfrontend/ui/pages/auth/signup_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_detail_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/gbv_location_page.dart';
 import 'package:bertucanfrontend/ui/pages/gbv/report_gbv_page.dart';
+import 'package:bertucanfrontend/ui/pages/home/aboutus_screen.dart';
 import 'package:bertucanfrontend/ui/pages/home_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/into_page.dart';
 import 'package:bertucanfrontend/ui/pages/intro/questionnaire_page.dart';
@@ -74,7 +75,7 @@ abstract class AppPages {
       page: () => const DailyDetailPage(),
     ),
     GetPage(
-      name: Routes.ethioCalendar, 
+      name: Routes.ethioCalendar,
       page: () => EthioCalendar(),
     ),
     GetPage(
@@ -93,5 +94,9 @@ abstract class AppPages {
       name: Routes.cyclesHistoryPage,
       page: () => CyclesHistoryPage(),
     ),
+    GetPage(
+      name: Routes.aboutusPage,
+      page: () => const AboutUsPage(),
+    )
   ];
 }

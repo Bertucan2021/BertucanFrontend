@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           onChanged: (value) {
                             if (value != null) {
-                              _authController.setCal();
+                              _authController.setCal(value.toString());
                             }
                           },
                           items: const <DropdownMenuItem<Locale>>[
@@ -346,7 +346,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ],
                           )
-                        : SizedBox()
+                        : SizedBox(),
+                        ElevatedButton(onPressed: (){
+                          Get.toNamed(Routes.aboutusPage);
+                        }, child: Text("About Us page"))
                   ]),
             ),
           ),

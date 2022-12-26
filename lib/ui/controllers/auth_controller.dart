@@ -24,8 +24,8 @@ class AuthController extends GetxController {
 
   bool get isEthio => _isEthioCal;
 
-  void setCal() {
-    _isEthioCal = _isEthioCal ? false : true;
+  void setCal(String val) {
+    _isEthioCal = val == 'am_ET' ? true : false;
   }
 
   AuthController(this._authRepository);

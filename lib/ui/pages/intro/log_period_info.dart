@@ -6,6 +6,7 @@ import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/ui/pages/log/calendar/calendar.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bertucanfrontend/ui/pages/log/calendar/ethio_date_picker.dart';
@@ -64,7 +65,10 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                 hintText: 'enter_your_period_length',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'enter_your_period_length';
+                    return translate('enter_your_period_length');
+                  }
+                  if (!value.isValidPeriodLength) {
+                    return translate('enter_valid_period_length');
                   }
                   return null;
                 },
@@ -79,7 +83,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                 hintText: 'enter_your_cycle_length',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'enter_your_cycle_length';
+                    return translate('enter_your_cycle_length');
                   }
                   return null;
                 },
@@ -253,4 +257,17 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
     onError: Colors.red,
     brightness: Brightness.light,
   );
+}
+
+extension extString on String {
+  bool get isValidPeriodLength {
+    final PeriodLengthRegExp =
+        RegExp(r'^(?:(?:\d|1[0-9])|20)$');
+    return PeriodLengthRegExp.hasMatch(this);
+  }
+
+  bool get isValidCycleLength {
+    final cycleLengthRegExp = RegExp(r'[20-30]');
+    return cycleLengthRegExp.hasMatch(this);
+  }
 }

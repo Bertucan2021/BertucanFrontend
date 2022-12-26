@@ -98,5 +98,6 @@ final Map<String, String> english = {
   "high": "High",
   "normal": "Normal",
   "you_are_currently_on_period": "You are on your period",
-  "calendar": "Calendar"
+  "calendar": "Calendar",
+  "enter_valid_period_length": "Enter valid period length",
 };

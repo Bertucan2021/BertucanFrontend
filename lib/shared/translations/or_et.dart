@@ -123,4 +123,5 @@ final Map<String, String> oromifa = {
   "enter_your_password": "Iggita seensaa galchii",
   "password cannot be null": "Jechi seensaa duwwaa ta'uu hin danda'u",
   "calendar" : "Kalaandarii",
+  "enter_valid_period_length": "dheerina marsaa laguu kee sirritti galchi"
 };

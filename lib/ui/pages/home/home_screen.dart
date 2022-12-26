@@ -1,5 +1,5 @@
-import 'dart:collection';
-import 'dart:developer';
+// import 'dart:collection';
+// import 'dart:developer';
 
 import 'package:abushakir/abushakir.dart';
 import 'package:bertucanfrontend/core/models/simple_models.dart';
@@ -12,7 +12,7 @@ import 'package:bertucanfrontend/ui/components/phase_container.dart';
 import 'package:bertucanfrontend/ui/components/selectable_dates.dart';
 import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
-import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
+// import 'package:bertucanfrontend/ui/pages/intro/log_period_info.dart';
 import 'package:bertucanfrontend/ui/pages/log/calendar/ethio_range_picker.dart';
 import 'package:bertucanfrontend/ui/widgets/ModalProgressHUD.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
@@ -55,35 +55,52 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     _homeController.getPredictedDates();
-    for (int i = 0; i < _homeController.predictedDates.length; i++) {
-      int periodafter = 0;
-      DateTime currentDate = DateTime.now();
-      if (currentDate.isAfter(_homeController.currentMenstruation.startDate)) {
-        if (currentDate.isBefore(_homeController.currentMenstruation.endDate)) {
-          periodafter = 0;
-        } else {
-          periodafter = _homeController.currentMenstruation.startDate
-              .add(Duration(
-                  days: _homeController.userLogData?.daysToStart ?? 0))
-              .difference(currentDate)
-              .inDays;
-        }
-      } else {
-        periodafter = _homeController.currentMenstruation.startDate
-            .difference(currentDate)
-            .inDays;
-      }
-      if (periodafter == 0){
-      }
-      else{
-      NotificationService()
-          .scheduledNotification("period after ${periodafter} days.", "hello", Duration(seconds: 1), 5);
-      }
+    int length = _homeController.predictedDates.length;
+    for (int i = 0; i < length; i++) {
+      DateTime ThreeDaysLeft = _homeController.predictedDates[i].startDate
+          .subtract(Duration(days: 3));
+      DateTime TwoDaysLeft = _homeController.predictedDates[i].startDate
+          .subtract(Duration(days: 2));
+      DateTime OneDayLeft = _homeController.predictedDates[i].startDate
+          .subtract(Duration(days: 1));
+      DateTime today = DateTime.now();
+
+      Duration periodAfterThreeDays = ThreeDaysLeft.difference(today);
+      Duration periodAfterTwoDays = TwoDaysLeft.difference(today);
+      Duration periodAfterOneDays = OneDayLeft.difference(today);
+
+      NotificationService().scheduledNotification(
+          "your period is coming in 3 days.",
+          "you can start preparing.",
+          Duration(days: periodAfterThreeDays.inDays),
+          i);
+      NotificationService().scheduledNotification(
+          "your period is coming in 2 days.",
+          "you should start preparing.",
+          Duration(days: periodAfterTwoDays.inDays),
+          i + length);
+      NotificationService().scheduledNotification(
+          "your period is coming in 1 days.",
+          "you must get prepared.",
+          Duration(days: periodAfterOneDays.inDays),
+          i + (length * 2));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    ETC currentPeriodStart = ETC(
+        year: _homeController.getUserLogData().startDate.year,
+        month: _homeController.getUserLogData().startDate.month,
+        day: _homeController.getUserLogData().startDate.day);
+    ETC CurrentMonthPeriodStart = ETC(
+        year: _homeController.getUserLogData().startDate.year,
+        month: _homeController.getUserLogData().startDate.month,
+        day: _homeController.getUserLogData().startDate.day);
+    ETC CurrentMonthPeriodEnd = ETC(
+        year: _homeController.getUserLogData().endDate.year,
+        month: _homeController.getUserLogData().endDate.month,
+        day: _homeController.getUserLogData().endDate.day);
     return Stack(
       children: [
         Obx(() {
@@ -311,14 +328,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                             .copyWith(
                                                 fontWeight: FontWeight.w500),
                                       ),
-                                      Text(
-                                        DateFormat.MMMd().format(_homeController
-                                            .getUserLogData()
-                                            .startDate),
-                                        style: AppTheme.articleTextStyle
-                                            .copyWith(
-                                                fontWeight: FontWeight.w500),
-                                      ),
+                                      _authController.isEthio
+                                          ? Text(
+                                              " ${currentPeriodStart.monthName} ${currentPeriodStart.day}",
+                                            )
+                                          : Text(
+                                              DateFormat.MMMd().format(
+                                                  _homeController
+                                                      .getUserLogData()
+                                                      .startDate),
+                                              style: AppTheme.articleTextStyle
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                            ),
                                     ],
                                   ),
                                 ],
@@ -343,12 +366,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: AppTheme.titleStyle4
                                             .copyWith(color: Colors.black),
                                       ),
-                                      Text(
-                                        "${DateFormat.MMMd().format(_homeController.getUserLogData().startDate)}-${DateFormat.MMMd().format(_homeController.getUserLogData().endDate)}",
-                                        style: AppTheme.articleTextStyle
-                                            .copyWith(
-                                                fontWeight: FontWeight.w500),
-                                      ),
+                                      _authController.isEthio
+                                          ? Text(
+                                              " ${CurrentMonthPeriodStart.monthName} ${CurrentMonthPeriodStart.day} - ${CurrentMonthPeriodEnd.monthName} ${CurrentMonthPeriodEnd.day}",
+                                            )
+                                          : Text(
+                                              "${DateFormat.MMMd().format(_homeController.getUserLogData().startDate)}-${DateFormat.MMMd().format(_homeController.getUserLogData().endDate)}",
+                                              style: AppTheme.articleTextStyle
+                                                  .copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                            ),
                                     ],
                                   ),
                                 ],

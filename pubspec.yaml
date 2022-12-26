@@ -44,6 +44,7 @@ dependencies:
   equatable: ^2.0.5
   abushakir: ^1.0.0
   flutter_bloc: ^8.1.1
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:

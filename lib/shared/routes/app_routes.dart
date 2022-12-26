@@ -22,4 +22,5 @@ abstract class Routes {
   static const dailyDetailPage = "/daily_detail_page";
   static const gbvLocationPage = "/gbv_location_page";
   static const cyclesHistoryPage = "/cycles_history_page";
+  static const aboutusPage = "/about_us_page";
 }

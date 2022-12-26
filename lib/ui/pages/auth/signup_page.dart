@@ -103,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           onChanged: (value) {
                             if (value != null) {
-                              _authController.setCal();
+                              _authController.setCal(value.toString());
                             }
                           },
                           items: const <DropdownMenuItem<Locale>>[

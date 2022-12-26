@@ -128,5 +128,5 @@ final Map<String, String> amharic = {
   "normal": 'የተለመደ',
   "you_are_currently_on_period": "የወር አበባ ወቅት ላይ ነሽ",
   "calendar": "የ ቀን መቁጠሪያ",
-  
+  "enter_valid_period_length": "የወር አበባ ቆይታዎን በትክክል ያስገቡ",
 };
