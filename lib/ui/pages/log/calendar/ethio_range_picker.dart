@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/ethio_day_names.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,7 @@ class _RangePickerEthioCalendarState extends State<RangePickerEthioCalendar> {
           vertical: 1.838 * heightMultiplier),
       height: 20 * heightMultiplier,
       width: double.infinity,
-      decoration: const BoxDecoration(color: Colors.orange, boxShadow: [
+      decoration: const BoxDecoration(color: AppTheme.primaryColor, boxShadow: [
         BoxShadow(
             blurRadius: 2, color: Colors.black38, offset: Offset(0.1, 0.1))
       ]),
@@ -220,7 +221,7 @@ class _RangePickerEthioCalendarState extends State<RangePickerEthioCalendar> {
                                                 endDate.month &&
                                             startDate.day != endDate.day &&
                                             startDate.month != endDate.month
-                                        ? Colors.orange
+                                        ? AppTheme.primaryColor
                                         : Colors.transparent),
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(80),
@@ -236,9 +237,9 @@ class _RangePickerEthioCalendarState extends State<RangePickerEthioCalendar> {
                                               startDate.month ||
                                       current_date.day == endDate.day &&
                                           current_date.month == endDate.month
-                                  ? Colors.orange
+                                  ? AppTheme.primaryColor
                                   : Colors.white,
-                              border: Border.all(color: Colors.orange),
+                              border: Border.all(color: AppTheme.primaryColor),
                               borderRadius: BorderRadius.circular(80),
                             ),
                             child: Text(
@@ -310,7 +311,7 @@ class _RangePickerEthioCalendarState extends State<RangePickerEthioCalendar> {
                                               startDate.month) ||
                                       (current_date.day == endDate.day &&
                                           current_date.month == endDate.month)
-                                  ? Colors.orange
+                                  ? AppTheme.primaryColor
                                   : Color.fromARGB(104, 255, 153, 0),
                               borderRadius: (current_date.day ==
                                           startDate.day &&
@@ -375,7 +376,7 @@ class _RangePickerEthioCalendarState extends State<RangePickerEthioCalendar> {
                                             startDate.month) ||
                                     (current_date.day == endDate.day &&
                                         current_date.month == endDate.month)
-                                ? Colors.orange
+                                ? AppTheme.primaryColor
                                 : Colors.transparent,
                             borderRadius: BorderRadius.all(Radius.circular(80)),
                           ),

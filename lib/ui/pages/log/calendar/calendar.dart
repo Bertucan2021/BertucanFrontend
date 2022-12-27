@@ -125,8 +125,7 @@ class MyCalendar extends StatelessWidget {
             Text(
               "${a.monthName}, ${a.year}",
               style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 3.177 * textMultiplier,
+                  fontSize: 2.5 * textMultiplier,
                   color: Colors.black),
             ),
           ],

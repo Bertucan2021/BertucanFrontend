@@ -347,9 +347,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ],
                           )
                         : SizedBox(),
-                        ElevatedButton(onPressed: (){
+                    singleTile(
+                      onTap: () {
+                        Get.toNamed(Routes.aboutusPage);
+                      },
+                      iconData: Icons.contact_page_outlined,
+                      label: '',
+                      extra: ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(AppTheme.primaryColor)),
+                        onPressed: () {
                           Get.toNamed(Routes.aboutusPage);
-                        }, child: Text("About Us page"))
+                        },
+                        child: Text("About Us"),
+                      ),
+                    ),
                   ]),
             ),
           ),

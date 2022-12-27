@@ -1,3 +1,4 @@
+import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,7 +88,7 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
                                     onPressed: () => Navigator.pop(context),
                                     child: const Text("CANCEL",
                                         style:
-                                            TextStyle(color: Colors.orange))),
+                                            TextStyle(color: AppTheme.primaryColor))),
                                 TextButton(
                                     onPressed: () {
                                       _homeController
@@ -97,7 +98,7 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
                                       Get.back();
                                     },
                                     child: const Text("OK",
-                                        style: TextStyle(color: Colors.orange)))
+                                        style: TextStyle(color: AppTheme.primaryColor)))
                               ],
                             )
                           ],
@@ -125,7 +126,7 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
           padding: EdgeInsets.symmetric(
               horizontal: 4.63 * widthMultiplier,
               vertical: 1.838 * heightMultiplier),
-          color: Colors.orange,
+          color: AppTheme.primaryColor,
           height: 20 * heightMultiplier,
           width: double.infinity,
           child: Column(
@@ -240,9 +241,9 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
                       decoration: BoxDecoration(
                         color: current_date.day == selected_date.day &&
                                 current_date.month == selected_date.month
-                            ? Colors.orange
+                            ? AppTheme.primaryColor
                             : Colors.white,
-                        border: Border.all(color: Colors.orange),
+                        border: Border.all(color: AppTheme.primaryColor),
                         borderRadius: BorderRadius.circular(55),
                       ),
                     ));
@@ -280,7 +281,7 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
                     decoration: BoxDecoration(
                       color: current_date.day == selected_date.day &&
                               current_date.month == selected_date.month
-                          ? Colors.orange
+                          ? AppTheme.primaryColor
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(80),
                     ),
