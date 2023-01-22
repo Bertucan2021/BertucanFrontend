@@ -96,7 +96,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.aboutusPage,
-      page: () => const AboutUsPage(),
+      page: () => AboutUsPage(),
     )
   ];
 }

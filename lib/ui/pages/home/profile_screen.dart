@@ -9,6 +9,7 @@ import 'package:bertucanfrontend/ui/widgets/custom_dialog.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/image_holder.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -358,7 +359,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onPressed: () {
                           Get.toNamed(Routes.aboutusPage);
                         },
-                        child: Text("About Us"),
+                        child: Text(translate("about_us")),
                       ),
                     ),
                   ]),

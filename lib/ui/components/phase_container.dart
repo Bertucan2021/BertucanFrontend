@@ -77,7 +77,7 @@ class PhaseContainer extends StatelessWidget {
                       width: 4,
                     ),
                     LocalizedText(
-                        ovulationIn != 0 ? "ovulation_in" : "ovulating",
+                        ovulationIn != 0 ? translate("ovulation_in") : translate("ovulating"),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: AppTheme.greySubtitleStyle),

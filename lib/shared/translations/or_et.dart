@@ -123,5 +123,10 @@ final Map<String, String> oromifa = {
   "enter_your_password": "Iggita seensaa galchii",
   "password cannot be null": "Jechi seensaa duwwaa ta'uu hin danda'u",
   "calendar" : "Kalaandarii",
-  "enter_valid_period_length": "dheerina marsaa laguu kee sirritti galchi"
+  "enter_valid_period_length": "dheerina marsaa laguu kee sirritti galchi",
+  "period_alert": "akeekkachiisa marsaa laguu",
+  "your_period_starts_in": "Laguun kee jalqabuuf",
+  "about_us": "waa’ee keenya",
+  "ovulation_in": "ovulation keessatti",
+  "ovulating": "ovulate gochuu"
 };

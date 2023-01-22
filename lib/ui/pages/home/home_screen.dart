@@ -55,36 +55,36 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     _homeController.getPredictedDates();
-    int length = _homeController.predictedDates.length;
-    for (int i = 0; i < length; i++) {
-      DateTime ThreeDaysLeft = _homeController.predictedDates[i].startDate
-          .subtract(Duration(days: 3));
-      DateTime TwoDaysLeft = _homeController.predictedDates[i].startDate
-          .subtract(Duration(days: 2));
-      DateTime OneDayLeft = _homeController.predictedDates[i].startDate
-          .subtract(Duration(days: 1));
-      DateTime today = DateTime.now();
+    // int length = _homeController.predictedDates.length;
+    // for (int i = 0; i < length; i++) {
+    //   DateTime ThreeDaysLeft = _homeController.predictedDates[i].startDate
+    //       .subtract(Duration(days: 3));
+    //   DateTime TwoDaysLeft = _homeController.predictedDates[i].startDate
+    //       .subtract(Duration(days: 2));
+    //   DateTime OneDayLeft = _homeController.predictedDates[i].startDate
+    //       .subtract(Duration(days: 1));
+    //   DateTime today = DateTime.now();
 
-      Duration periodAfterThreeDays = ThreeDaysLeft.difference(today);
-      Duration periodAfterTwoDays = TwoDaysLeft.difference(today);
-      Duration periodAfterOneDays = OneDayLeft.difference(today);
+    //   Duration periodAfterThreeDays = ThreeDaysLeft.difference(today);
+    //   Duration periodAfterTwoDays = TwoDaysLeft.difference(today);
+    //   Duration periodAfterOneDays = OneDayLeft.difference(today);
 
-      NotificationService().scheduledNotification(
-          "your period is coming in 3 days.",
-          "you can start preparing.",
-          Duration(days: periodAfterThreeDays.inDays),
-          i);
-      NotificationService().scheduledNotification(
-          "your period is coming in 2 days.",
-          "you should start preparing.",
-          Duration(days: periodAfterTwoDays.inDays),
-          i + length);
-      NotificationService().scheduledNotification(
-          "your period is coming in 1 days.",
-          "you must get prepared.",
-          Duration(days: periodAfterOneDays.inDays),
-          i + (length * 2));
-    }
+    //   NotificationService().scheduledNotification(
+    //       "your period is coming in 3 days.",
+    //       "you can start preparing.",
+    //       Duration(days: periodAfterThreeDays.inDays),
+    //       i);
+    //   NotificationService().scheduledNotification(
+    //       "your period is coming in 2 days.",
+    //       "you should start preparing.",
+    //       Duration(days: periodAfterTwoDays.inDays),
+    //       i + length);
+    //   NotificationService().scheduledNotification(
+    //       "your period is coming in 1 days.",
+    //       "you must get prepared.",
+    //       Duration(days: periodAfterOneDays.inDays),
+    //       i + (length * 2));
+    // }
   }
 
   @override

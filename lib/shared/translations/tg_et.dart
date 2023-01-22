@@ -123,4 +123,9 @@ Map<String, String> tigrigna = {
   "you_are_not_logged_in": "ናብ'ቲ መፍለዪ ሒሳብኪ ኣይኣተኽን",
   "calendar" : "ዓውደ ኣዋርሕ",
   "enter_valid_period_length": "ንውሓት ወርሓዊ ጽግያትካ ብትኽክል ኣእቱ",
+  "period_alert": "ናይ ግዜ መጠንቀቕታ",
+  "your_period_starts_in": "ወርሓዊ ጽግያትኪ ኣብ",
+  "about_us": "ብዛዕባና ዝምልከት",
+  "ovulation_in": "ምውጻእ እንቋቑሖ ኣብ...",
+  "ovulating": "እንቋቑሖ ምውጻእ"
 };

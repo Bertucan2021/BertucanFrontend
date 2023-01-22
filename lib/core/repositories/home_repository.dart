@@ -31,7 +31,9 @@ class HomeRepository implements IHomeRepository {
       var temp = service.getNextMensurationDate(calculateFrom, userLogData);
       predictions.add(temp);
       try {
-        showPeriodNotification(temp.startDate.subtract(Duration(days: 2)), i);
+        showPeriodNotification(temp.startDate.subtract(Duration(days: 1)), i);
+        showPeriodNotification(temp.startDate.subtract(Duration(days: 2)), i + 300);
+        showPeriodNotification(temp.startDate.subtract(Duration(days: 3)), i + 600);
       } catch (e) {
         log(e.toString());
       }

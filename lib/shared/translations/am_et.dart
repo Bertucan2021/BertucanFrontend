@@ -129,4 +129,9 @@ final Map<String, String> amharic = {
   "you_are_currently_on_period": "የወር አበባ ወቅት ላይ ነሽ",
   "calendar": "የ ቀን መቁጠሪያ",
   "enter_valid_period_length": "የወር አበባ ቆይታዎን በትክክል ያስገቡ",
+  "period_alert": "የዑደት ማንቂያ",
+  "your_period_starts_in": "የወር አበባዎ የሚጀምረው በ",
+  "about_us": "ስለ እኛ",
+  "ovulation_in": "ኦቭዩሽን በ",
+  "ovulating": "ኦቭዩቲንግ"
 };

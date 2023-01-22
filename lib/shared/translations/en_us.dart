@@ -100,4 +100,9 @@ final Map<String, String> english = {
   "you_are_currently_on_period": "You are on your period",
   "calendar": "Calendar",
   "enter_valid_period_length": "Enter valid period length",
+  "period_alert": "Period Alert",
+  "your_period_starts_in": "Your Period Starts In",
+  "about_us": "About Us",
+  "ovulation_in": "Ovulation in",
+  "ovulating": "Ovulating"
 };
