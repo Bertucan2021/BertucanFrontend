@@ -31,9 +31,12 @@ class HomeRepository implements IHomeRepository {
       var temp = service.getNextMensurationDate(calculateFrom, userLogData);
       predictions.add(temp);
       try {
-        showPeriodNotification(temp.startDate.subtract(Duration(days: 1)), i);
-        showPeriodNotification(temp.startDate.subtract(Duration(days: 2)), i + 300);
-        showPeriodNotification(temp.startDate.subtract(Duration(days: 3)), i + 600);
+        showPeriodNotification(
+            temp.startDate, temp.startDate.subtract(Duration(days: 1)), i);
+        showPeriodNotification(temp.startDate,
+            temp.startDate.subtract(Duration(days: 2)), i + 300);
+        showPeriodNotification(temp.startDate,
+            temp.startDate.subtract(Duration(days: 3)), i + 600);
       } catch (e) {
         log(e.toString());
       }
@@ -46,12 +49,13 @@ class HomeRepository implements IHomeRepository {
     return predictions;
   }
 
-  showPeriodNotification(DateTime forDate, int id) {
+  showPeriodNotification(DateTime startdate, DateTime forDate, int id) {
     Duration showAfter = forDate.difference(DateTime.now());
+    Duration indays = startdate.difference(forDate);
 
     notificationService.scheduledNotification(
         translate("period_alert"),
-        "${translate('your_period_starts_in')} ${showAfter.inDays.abs()} ${translate('days')}",
+        "${translate('your_period_starts_in')} ${indays.inDays.abs()} ${translate('days')}",
         showAfter,
         id);
   }
