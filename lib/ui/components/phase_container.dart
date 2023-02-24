@@ -3,7 +3,11 @@ import 'package:bertucanfrontend/shared/routes/app_routes.dart';
 import 'package:bertucanfrontend/shared/themes/app_theme.dart';
 import 'package:bertucanfrontend/ui/widgets/custom_textfield.dart';
 import 'package:bertucanfrontend/ui/widgets/localized_text.dart';
+import 'package:bertucanfrontend/ui/controllers/auth_controller.dart';
+import 'package:bertucanfrontend/ui/controllers/home_controller.dart';
 import 'package:bertucanfrontend/utils/functions.dart';
+import 'package:bertucanfrontend/ui/pages/log/calendar/ethio_date_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +16,9 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 class PhaseContainer extends StatelessWidget {
   final MonthlyMensturationModel data;
   final Function(UserLogData) onEdit;
+  AuthController _authController = Get.find();
+  HomeController _homeController = Get.find();
+  DateTime startDate = DateTime.now();
 
   final TextEditingController _periodLength = TextEditingController();
   final TextEditingController _periodComing = TextEditingController();
@@ -28,6 +35,8 @@ class PhaseContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     int ovulationIn = 0;
     if (data.pregnancyDate == null)
       data.pregnancyDate = data.endDate.add(Duration(days: 9));
@@ -77,7 +86,9 @@ class PhaseContainer extends StatelessWidget {
                       width: 4,
                     ),
                     LocalizedText(
-                        ovulationIn != 0 ? translate("ovulation_in") : translate("ovulating"),
+                        ovulationIn != 0
+                            ? translate("ovulation_in")
+                            : translate("ovulating"),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: AppTheme.greySubtitleStyle),
@@ -168,6 +179,80 @@ class PhaseContainer extends StatelessWidget {
                                       height: 15,
                                     ),
                                     Row(
+                                      children: [
+                                        LocalizedText(
+                                            'when_did_your_period_start',
+                                            style: AppTheme.normalTextStyle),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Theme(
+                                          data: _buildShrineTheme(),
+                                          child: Builder(builder: (context) {
+                                            return TextButton(
+                                                child: Container(
+                                                    decoration: AppTheme
+                                                        .primaryColoredRoundedButtonDecoration2(),
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 15,
+                                                            vertical: 10),
+                                                    child: LocalizedText(
+                                                      'select_date',
+                                                      style: AppTheme
+                                                          .buttonLabelStyle2
+                                                          .copyWith(
+                                                              color: AppTheme
+                                                                  .primaryColor),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                                onPressed: () {
+                                                  if (_authController.isEthio) {
+                                                    showDialog(
+                                                            barrierDismissible:
+                                                                false,
+                                                            useSafeArea: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return AlertDialog(
+                                                                  contentPadding:
+                                                                      const EdgeInsets.all(
+                                                                          0),
+                                                                  scrollable:
+                                                                      true,
+                                                                  content: SizedBox(
+                                                                      height: 0.85 *
+                                                                          height,
+                                                                      width: 0.85 *
+                                                                          width,
+                                                                      child:
+                                                                          SelectableEthioCalendar()));
+                                                            })
+                                                        .then((_) => startDate =
+                                                            DateTime.fromMillisecondsSinceEpoch(
+                                                                _homeController
+                                                                    .selectedPeriodDate
+                                                                    .moment));
+                                                  } else {
+                                                    Get.to(showDatePicker(
+                                                        context: context,
+                                                        initialDate: startDate,
+                                                        firstDate: DateTime
+                                                                .now()
+                                                            .subtract(Duration(
+                                                                days: 30)),
+                                                        lastDate:
+                                                            DateTime.now()));
+                                                  }
+                                                  ;
+                                                });
+                                          }),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 15,),
+                                    Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         TextButton(
@@ -234,4 +319,67 @@ class PhaseContainer extends StatelessWidget {
       }
     }
   }
+
+  ThemeData _buildShrineTheme() {
+    final ThemeData base = ThemeData.light();
+    return base.copyWith(
+      colorScheme: _shrineColorScheme,
+      toggleableActiveColor: AppTheme.primaryColor,
+      accentColor: AppTheme.primaryColor,
+      primaryColor: Color.fromARGB(255, 63, 45, 32),
+      buttonColor: AppTheme.primaryColor,
+      scaffoldBackgroundColor: Colors.white,
+      cardColor: Colors.white,
+      // textSelectionTheme: AppTheme.primaryColor,
+      errorColor: Colors.red,
+      buttonTheme: ButtonThemeData(
+        colorScheme: _shrineColorScheme,
+        textTheme: ButtonTextTheme.normal,
+      ),
+      primaryIconTheme: _customIconTheme(base.iconTheme),
+      textTheme: _buildShrineTextTheme(base.textTheme),
+      primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
+      accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
+      iconTheme: _customIconTheme(base.iconTheme),
+    );
+  }
+
+  IconThemeData _customIconTheme(IconThemeData original) {
+    return original.copyWith(color: AppTheme.primaryColor);
+  }
+
+  TextTheme _buildShrineTextTheme(TextTheme base) {
+    return base
+        .copyWith(
+          caption: base.caption!.copyWith(
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+          ),
+          button: base.button!.copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+          ),
+        )
+        .apply(
+          fontFamily: 'Rubik',
+          displayColor: AppTheme.primaryColor,
+          bodyColor: AppTheme.primaryColor,
+        );
+  }
+
+  ColorScheme _shrineColorScheme = ColorScheme(
+    primary: AppTheme.primaryColor,
+    primaryVariant: AppTheme.primaryColor,
+    secondary: AppTheme.primaryColor,
+    secondaryVariant: AppTheme.primaryColor,
+    surface: AppTheme.primaryColor,
+    background: Colors.white,
+    error: Colors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.black,
+    onBackground: Colors.white,
+    onError: Colors.red,
+    brightness: Brightness.light,
+  );
 }
