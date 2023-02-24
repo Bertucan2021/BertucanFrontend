@@ -178,78 +178,84 @@ class PhaseContainer extends StatelessWidget {
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Row(
-                                      children: [
-                                        LocalizedText(
-                                            'when_did_your_period_start',
-                                            style: AppTheme.normalTextStyle),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Theme(
-                                          data: _buildShrineTheme(),
-                                          child: Builder(builder: (context) {
-                                            return TextButton(
-                                                child: Container(
-                                                    decoration: AppTheme
-                                                        .primaryColoredRoundedButtonDecoration2(),
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 15,
-                                                            vertical: 10),
-                                                    child: LocalizedText(
-                                                      'select_date',
-                                                      style: AppTheme
-                                                          .buttonLabelStyle2
-                                                          .copyWith(
-                                                              color: AppTheme
-                                                                  .primaryColor),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    )),
-                                                onPressed: () {
-                                                  if (_authController.isEthio) {
-                                                    showDialog(
-                                                            barrierDismissible:
-                                                                false,
-                                                            useSafeArea: false,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 0),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                          children: [
+                                            LocalizedText(
+                                                'when_did_your_period_start',
+                                                style: AppTheme.normalTextStyle),
+                                            SizedBox(
+                                              width: width * 0.03,
+                                            ),
+                                            Theme(
+                                              data: _buildShrineTheme(),
+                                              child: Builder(builder: (context) {
+                                                return TextButton(
+                                                    child: Container(
+                                                        decoration: AppTheme
+                                                            .primaryColoredRoundedButtonDecoration2(),
+                                                        padding:
+                                                            EdgeInsets.symmetric(
+                                                                horizontal: 15,
+                                                                vertical: 10),
+                                                        child: LocalizedText(
+                                                          'select_date',
+                                                          style: AppTheme
+                                                              .buttonLabelStyle2
+                                                              .copyWith(
+                                                                  color: AppTheme
+                                                                      .primaryColor),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        )),
+                                                    onPressed: () {
+                                                      if (_authController.isEthio) {
+                                                        showDialog(
+                                                                barrierDismissible:
+                                                                    false,
+                                                                useSafeArea: false,
+                                                                context: context,
+                                                                builder: (context) {
+                                                                  return AlertDialog(
+                                                                      contentPadding:
+                                                                          const EdgeInsets.all(
+                                                                              0),
+                                                                      scrollable:
+                                                                          true,
+                                                                      content: SizedBox(
+                                                                          height: 0.85 *
+                                                                              height,
+                                                                          width: 0.85 *
+                                                                              width,
+                                                                          child:
+                                                                              SelectableEthioCalendar()));
+                                                                })
+                                                            .then((_) => startDate =
+                                                                DateTime.fromMillisecondsSinceEpoch(
+                                                                    _homeController
+                                                                        .selectedPeriodDate
+                                                                        .moment));
+                                                      } else {
+                                                        Get.to(showDatePicker(
                                                             context: context,
-                                                            builder: (context) {
-                                                              return AlertDialog(
-                                                                  contentPadding:
-                                                                      const EdgeInsets.all(
-                                                                          0),
-                                                                  scrollable:
-                                                                      true,
-                                                                  content: SizedBox(
-                                                                      height: 0.85 *
-                                                                          height,
-                                                                      width: 0.85 *
-                                                                          width,
-                                                                      child:
-                                                                          SelectableEthioCalendar()));
-                                                            })
-                                                        .then((_) => startDate =
-                                                            DateTime.fromMillisecondsSinceEpoch(
-                                                                _homeController
-                                                                    .selectedPeriodDate
-                                                                    .moment));
-                                                  } else {
-                                                    Get.to(showDatePicker(
-                                                        context: context,
-                                                        initialDate: startDate,
-                                                        firstDate: DateTime
-                                                                .now()
-                                                            .subtract(Duration(
-                                                                days: 30)),
-                                                        lastDate:
-                                                            DateTime.now()));
-                                                  }
-                                                  ;
-                                                });
-                                          }),
-                                        )
-                                      ],
+                                                            initialDate: startDate,
+                                                            firstDate: DateTime
+                                                                    .now()
+                                                                .subtract(Duration(
+                                                                    days: 30)),
+                                                            lastDate:
+                                                                DateTime.now()));
+                                                      }
+                                                      ;
+                                                    });
+                                              }),
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(height: 15,),
                                     Row(
