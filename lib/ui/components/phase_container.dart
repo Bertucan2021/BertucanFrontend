@@ -13,18 +13,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class PhaseContainer extends StatelessWidget {
+class PhaseContainer extends StatefulWidget {
   final MonthlyMensturationModel data;
   final Function(UserLogData) onEdit;
-  AuthController _authController = Get.find();
-  HomeController _homeController = Get.find();
-  DateTime startDate = DateTime.now();
-
-  final TextEditingController _periodLength = TextEditingController();
-  final TextEditingController _periodComing = TextEditingController();
   final DateTime date;
   final UserLogData userLogData;
-  var _formKey = GlobalKey<FormState>();
   PhaseContainer(
       {Key? key,
       required this.data,
@@ -32,28 +25,54 @@ class PhaseContainer extends StatelessWidget {
       required this.onEdit,
       required this.userLogData})
       : super(key: key);
+  // bool isPeriodGoing = true;
+  // AuthController _authController = Get.find();
+
+  @override
+  State<PhaseContainer> createState() => _PhaseContainerState();
+}
+
+class _PhaseContainerState extends State<PhaseContainer> {
+  AuthController _authController = Get.find();
+  HomeController _homeController = Get.find();
+  DateTime startDate = DateTime.now();
+
+  final TextEditingController _periodLength = TextEditingController();
+  final TextEditingController _periodComing = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+  // PhaseContainer(
+  //     {Key? key,
+  //     required this.data,
+  //     required this.date,
+  //     required this.onEdit,
+  //     required this.userLogData})
+  //     : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     int ovulationIn = 0;
-    if (data.pregnancyDate == null)
-      data.pregnancyDate = data.endDate.add(Duration(days: 9));
-    if (date.isBefore(data.pregnancyDate!.subtract(Duration(days: 1)))) {
+    if (widget.data.pregnancyDate == null)
+      widget.data.pregnancyDate = widget.data.endDate.add(Duration(days: 9));
+    if (widget.date
+        .isBefore(widget.data.pregnancyDate!.subtract(Duration(days: 1)))) {
       //selected date is before the start of ovulation
-      ovulationIn = date
-          .difference(data.pregnancyDate!.subtract(Duration(days: 1)))
+      ovulationIn = widget.date
+          .difference(widget.data.pregnancyDate!.subtract(Duration(days: 1)))
           .inDays
           .abs();
     } else {
       //selected date is after the start of ovulation
-      if (date.isAfter(data.pregnancyDate!.add(Duration(days: 2)))) {
+      if (widget.date
+          .isAfter(widget.data.pregnancyDate!.add(Duration(days: 2)))) {
         //selected date is after the end of ovulation of current month
         //next line will calculate when the next ovulation will start and get the days left
-        ovulationIn = date
-            .difference(data.startDate.add(Duration(
-                days: userLogData.daysToStart + userLogData.daysToEnd + 7)))
+        ovulationIn = widget.date
+            .difference(widget.data.startDate.add(Duration(
+                days: widget.userLogData.daysToStart +
+                    widget.userLogData.daysToEnd +
+                    7)))
             .inDays
             .abs();
       } else {
@@ -115,11 +134,11 @@ class PhaseContainer extends StatelessWidget {
                       child: LocalizedText('chance_of_pregnancy: ',
                           style: AppTheme.greySubtitleStyle),
                     ),
-                    data.pregnancyDate != null
+                    widget.data.pregnancyDate != null
                         ? Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: LocalizedText(
-                              getChanceOfPregnancy(date, data),
+                              getChanceOfPregnancy(widget.date, widget.data),
                               style: AppTheme.buttonLabelStyle2
                                   .copyWith(color: Colors.black),
                             ),
@@ -179,26 +198,29 @@ class PhaseContainer extends StatelessWidget {
                                       height: 15,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0),
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
                                           children: [
                                             LocalizedText(
                                                 'when_did_your_period_start',
-                                                style: AppTheme.normalTextStyle),
+                                                style:
+                                                    AppTheme.normalTextStyle),
                                             SizedBox(
                                               width: width * 0.03,
                                             ),
                                             Theme(
                                               data: _buildShrineTheme(),
-                                              child: Builder(builder: (context) {
+                                              child:
+                                                  Builder(builder: (context) {
                                                 return TextButton(
                                                     child: Container(
                                                         decoration: AppTheme
                                                             .primaryColoredRoundedButtonDecoration2(),
-                                                        padding:
-                                                            EdgeInsets.symmetric(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
                                                                 horizontal: 15,
                                                                 vertical: 10),
                                                         child: LocalizedText(
@@ -212,7 +234,8 @@ class PhaseContainer extends StatelessWidget {
                                                               TextAlign.center,
                                                         )),
                                                     onPressed: () {
-                                                      if (_authController.isEthio) {
+                                                      if (_authController
+                                                          .isEthio) {
                                                         showDialog(
                                                                 barrierDismissible:
                                                                     false,
@@ -240,14 +263,26 @@ class PhaseContainer extends StatelessWidget {
                                                                         .moment));
                                                       } else {
                                                         Get.to(showDatePicker(
-                                                            context: context,
-                                                            initialDate: startDate,
-                                                            firstDate: DateTime
-                                                                    .now()
-                                                                .subtract(Duration(
-                                                                    days: 30)),
-                                                            lastDate:
-                                                                DateTime.now()));
+                                                                context:
+                                                                    context,
+                                                                initialDate:
+                                                                    startDate,
+                                                                firstDate: DateTime
+                                                                        .now()
+                                                                    .subtract(
+                                                                        Duration(
+                                                                            days:
+                                                                                30)),
+                                                                lastDate:
+                                                                    DateTime
+                                                                        .now())
+                                                            .then((value) {
+                                                          if (value != null) {
+                                                            setState(() {
+                                                              startDate = value;
+                                                            });
+                                                          }
+                                                        }));
                                                       }
                                                       ;
                                                     });
@@ -257,7 +292,9 @@ class PhaseContainer extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 15,),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -281,14 +318,29 @@ class PhaseContainer extends StatelessWidget {
                                             onPressed: () {
                                               if (_formKey.currentState!
                                                   .validate()) {
-                                                Get.back();
-                                                onEdit(UserLogData(
-                                                    startDate: data.startDate,
-                                                    endDate: data.endDate,
+                                                print("original startDate: ");
+                                                print(widget.data.startDate);
+                                                print("The new StartDate: ");
+                                                print(startDate);
+                                                print("original endDate: ");
+                                                print(widget.data.endDate);
+                                                print("The new endDate: ");
+                                                print(startDate.add(Duration(
+                                                    days: int.parse(
+                                                        _periodLength.text))));
+                                                HomeController homeController = Get.find();
+                      homeController.setCurrentPeriodDate(UserLogData(
+                                                    startDate: startDate,
+                                                    endDate: startDate.add(
+                                                        Duration(
+                                                            days: int.parse(
+                                                                _periodLength
+                                                                    .text))),
                                                     daysToStart: int.parse(
                                                         _periodComing.text),
                                                     daysToEnd: int.parse(
                                                         _periodLength.text)));
+                                                Get.back();
                                               }
                                             }),
                                       ],
