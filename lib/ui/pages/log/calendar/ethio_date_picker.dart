@@ -249,7 +249,7 @@ class _SelectableEthioCalendarState extends State<SelectableEthioCalendar> {
                     ));
               } else if (current_date.isAfter(EtDatetime.now()) ||
                   current_date.isBefore(
-                      EtDatetime.now().subtract(const Duration(days: 30)))) {
+                      EtDatetime.now().subtract(const Duration(days: 40)))) {
                 return Container(
                   alignment: Alignment.center,
                   height: 1.225 * heightMultiplier,

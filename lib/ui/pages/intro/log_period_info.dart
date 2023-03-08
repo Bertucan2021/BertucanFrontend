@@ -143,7 +143,7 @@ class _LogPeriodInfoPageState extends State<LogPeriodInfoPage> {
                                         context: context,
                                         initialDate: startDate,
                                         firstDate: DateTime.now()
-                                            .subtract(Duration(days: 30)),
+                                            .subtract(Duration(days: 40)),
                                         lastDate: DateTime.now())
                                     .then((value) {
                                   if (value != null) {
